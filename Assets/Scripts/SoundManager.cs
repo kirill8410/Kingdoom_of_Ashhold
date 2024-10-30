@@ -7,9 +7,17 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        if (!bool.Parse(PlayerPrefs.GetString("Music")))
+        {
+            audioSource.playOnAwake = false;
+            audioSource.Stop();
+        }
     }
     public void PlaySound(AudioSource Audio)
     {
-        Audio.Play();
+        if (bool.Parse(PlayerPrefs.GetString("Music")))
+        {
+            Audio.Play();
+        }
     }
 }
