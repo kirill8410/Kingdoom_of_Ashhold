@@ -8,4 +8,8 @@ public class SoundManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
+    public void PlaySound(AudioSource Audio)
+    {
+        Audio.Play();
+    }
 }
