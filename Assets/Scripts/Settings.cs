@@ -19,7 +19,7 @@ public class Settings : MonoBehaviour // Сохранение и сброс настроек игры (а так
         PlayerPrefs.SetString(Training.saveInfo, "true");
         PlayerPrefs.SetString(Music.saveInfo, "true");
         PlayerPrefs.SetString("Difficulty", "");
-        PlayerPrefs.SetInt("Level", 1);
+        PlayerPrefs.SetFloat("Level", 1f);
         PlayerPrefs.Save();
         SceneManager.LoadScene("Menu");
     }
