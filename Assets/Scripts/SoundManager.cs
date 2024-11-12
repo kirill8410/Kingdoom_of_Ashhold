@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour // Отвечает за все звуки в игре
 {
     private AudioSource audioSource;
     private void Start()
     {
+        // Находим AudioSource
         audioSource = GetComponent<AudioSource>();
-        if (!bool.Parse(PlayerPrefs.GetString("Music")))
+        if (!bool.Parse(PlayerPrefs.GetString("Music"))) // Выключаем музыку если она выключена в настройках
         {
             audioSource.Stop();
         }
