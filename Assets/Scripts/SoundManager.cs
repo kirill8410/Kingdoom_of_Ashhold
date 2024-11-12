@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour // Отвечает за все звуки в игре
             audioSource.Stop();
         }
     }
-    public void SoundUpdate()
+    public void SoundUpdate() // Включаем или выключаем музыку в зависимости от настроек
     {
         if (!bool.Parse(PlayerPrefs.GetString("Music")))
         {
@@ -23,7 +23,7 @@ public class SoundManager : MonoBehaviour // Отвечает за все звуки в игре
             audioSource.Play();
         }
     }
-    public void PlaySound(AudioSource Audio)
+    public void PlaySound(AudioSource Audio) // проигрываем звук если он включён в настройках
     {
         if (bool.Parse(PlayerPrefs.GetString("Music")))
         {
