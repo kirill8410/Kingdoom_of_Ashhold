@@ -9,7 +9,6 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
     public Enemy target;
 
     private int trueDamage;
-    private float trueAttackSpeed;
 
     private void Start()
     {
@@ -22,12 +21,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
     {
         while (true)
         {
-            trueAttackSpeed = tower.attackSpeed + tower.attackAcceleration - tower.attackSlowdown;
-            if (trueAttackSpeed <= 0)
-            {
-                trueAttackSpeed = 0.001f;
-            }
-            yield return new WaitForSeconds(1f/trueAttackSpeed);
+            yield return new WaitForSeconds(1f/tower.attackSpeed);
             if ((target != null) && (tower.isAttack))
             {
                 trueDamage = tower.damage - tower.damageReduction + tower.damegeIncrease;
@@ -40,7 +34,6 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
                     trueDamage = 0;
                 }
                 target.HP -= trueDamage;
-                print("Пиу");
             }
         }
     }

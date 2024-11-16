@@ -21,14 +21,15 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
     [SerializeField] GameObject attackPrefab; // Объект которым стреляет башня
 
     // Дебафы
-    public float attackSlowdown; // уменьшение скорости стрельбы
     public int damageReduction; // уменьшение урона
 
     // Бафы
-
-    public float attackAcceleration; // Увеличение скорости стрельбы
     public int damegeIncrease; // Увеличение урона
-
+    // Бонусы знамён
+    public bool isFireBoost;
+    public bool isIceBoost;
+    public bool isWindBoost;
+    public bool isHeroBoost;
 }
 
 public interface TowerFunctions // Общие функции башен
