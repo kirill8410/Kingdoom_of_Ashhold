@@ -716,14 +716,14 @@ MonoBehaviour:
   price: 0
   level: 0
   attackDistance: 5
-  attackSpeed: 5
+  attackSpeed: 1
   damage: 15
   damageType: 0
   isAttack: 1
   attackPrefab: {fileID: 0}
-  attackSlowdown: 10
+  attackSlowdown: 0
   damageReduction: 0
-  attackAcceleration: 6
+  attackAcceleration: 0
   damegeIncrease: 0
 --- !u!65 &1763349800
 BoxCollider:

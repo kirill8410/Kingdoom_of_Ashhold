@@ -23,7 +23,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
         while (true)
         {
             trueAttackSpeed = tower.attackSpeed + tower.attackAcceleration - tower.attackSlowdown;
-            if (trueAttackSpeed < 0 )
+            if (trueAttackSpeed <= 0)
             {
                 trueAttackSpeed = 0.001f;
             }
@@ -35,7 +35,6 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
                 {
                     trueDamage -= target.protection;
                 }
-                trueDamage += Random.Range(-1*(trueDamage/5), trueDamage/5);
                 if (trueDamage < 0)
                 {
                     trueDamage = 0;
