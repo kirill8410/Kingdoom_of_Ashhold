@@ -7,6 +7,8 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
     private Tower tower;
 
     public Enemy target;
+    [SerializeField] GameObject Turet_osnov;
+    [SerializeField] GameObject Turet_osnov_2;
 
     private int trueDamage;
 
@@ -70,5 +72,10 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
             tower.price = 120;
             tower.level = 3;
         }
+    }
+
+    private void RotationTuret()
+    {
+
     }
 }
