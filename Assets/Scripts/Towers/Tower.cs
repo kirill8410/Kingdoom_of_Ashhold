@@ -18,7 +18,8 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
     public DamageTypes damageType;
     public bool isAttack = true; // Может ли башня атакавать
 
-    [SerializeField] GameObject attackPrefab; // Объект которым стреляет башня
+    public GameObject attackPrefab; // Объект которым стреляет башня
+    public Transform attackPoint; // Точка появления снаряда
 
     // Дебафы
     public int damageReduction; // уменьшение урона

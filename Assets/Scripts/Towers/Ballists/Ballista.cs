@@ -45,7 +45,9 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
                 {
                     trueDamage = 0;
                 }
-                target.HP -= trueDamage;
+                GameObject attack = Instantiate(tower.attackPrefab, tower.attackPoint.position, tower.attackPoint.rotation);
+                attack.GetComponent<Arrow>().damage = trueDamage;
+                attack.GetComponent<Arrow>().target = target;
             }
         }
     }
