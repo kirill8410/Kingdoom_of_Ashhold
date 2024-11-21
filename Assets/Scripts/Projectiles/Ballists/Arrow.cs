@@ -7,9 +7,12 @@ public class Arrow : MonoBehaviour
     public float speed;
 
     private void Update()
-    {
-        transform.LookAt(target.gameObject.transform.position);
-        transform.Translate(Vector3.forward);
+    { if (target != null)
+        {
+            transform.LookAt(target.gameObject.transform.position);
+            //transform.localPosition += new Vector3();
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
