@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using NUnit.Framework.Constraints;
+using static UnityEngine.GraphicsBuffer;
 
 public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
 {
@@ -8,7 +9,6 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
 
     public Enemy target;
     [SerializeField] GameObject Turet_osnov;
-    [SerializeField] GameObject Turet_osnov_2;
 
     private int trueDamage;
 
@@ -18,6 +18,13 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
     }
+    private void Update()
+    {
+        if (target != null)
+        {
+            RotationTuret();
+        }
+    }
 
     public IEnumerator Attack()
     {
@@ -26,6 +33,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
             yield return new WaitForSeconds(1f/tower.attackSpeed);
             if ((target != null) && (tower.isAttack))
             {
+                GetComponent<Animator>().SetTrigger("Attack");
                 trueDamage = tower.damage - tower.damageReduction + tower.damegeIncrease;
                 if (tower.damageType == target.protectionType)
                 {
@@ -76,6 +84,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
 
     private void RotationTuret()
     {
-
+        Turet_osnov.transform.LookAt(target.gameObject.transform.position);
+        Turet_osnov.transform.rotation = new Quaternion(0f, Turet_osnov.transform.rotation.y, 0f, Turet_osnov.transform.rotation.w);
     }
 }
