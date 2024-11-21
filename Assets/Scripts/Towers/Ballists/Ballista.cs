@@ -9,6 +9,8 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
 
     public Enemy target;
     [SerializeField] GameObject Turet_osnov;
+    [SerializeField] GameObject Turet_osnov2;
+
 
     private int trueDamage;
 
@@ -84,7 +86,9 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
 
     private void RotationTuret()
     {
+        //Turet_osnov.transform.LookAt(target.gameObject.transform.position);
         Turet_osnov.transform.LookAt(target.gameObject.transform.position);
-        Turet_osnov.transform.rotation = new Quaternion(0f, Turet_osnov.transform.rotation.y, 0f, Turet_osnov.transform.rotation.w);
+        Turet_osnov2.transform.LookAt(new Vector3(target.gameObject.transform.position.x, Turet_osnov2.transform.position.y,target.gameObject.transform.position.z));
+        //Turet_osnov.transform.rotation = new Quaternion(0f, Turet_osnov.transform.rotation.y, 0f, Turet_osnov.transform.rotation.w);
     }
 }
