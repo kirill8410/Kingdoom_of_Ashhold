@@ -12,6 +12,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
     [SerializeField] GameObject Turet_osnov2;
     public float dis;
     private GameObject at;
+    private Transform at2;
 
     private int trueDamage;
 
@@ -20,6 +21,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
         tower = GetComponent<Tower>();
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
+        dis = 7f;
     }
     private void Update()
     {
@@ -27,9 +29,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
         {
             RotationTuret();
         }
-        
-        
-
+        dis = Vector3.Distance(gameObject.transform.position, at2.position);
 
     }
     public void ArrowSpawn()
@@ -42,7 +42,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
         while (true)
         {
             yield return new WaitForSeconds(1f/tower.attackSpeed);
-            if ((target != null) && (tower.isAttack))
+            if ((target != null) && (tower.isAttack)&& dis <= tower.attackDistance)
             {
                 GetComponent<Animator>().SetTrigger("Attack");
                 trueDamage = tower.damage - tower.damageReduction + tower.damegeIncrease;
@@ -74,8 +74,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
                 {
                     if ((target == null) || (enemy.distanceToPoint < target.distanceToPoint))
                     {
-                        
-                        dis = Vector3.Distance(gameObject.transform.position, enemy.transform.position); 
+                        at2 = enemy.transform;
                         target = enemy;
                     }
                 }
