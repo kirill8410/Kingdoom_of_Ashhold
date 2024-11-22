@@ -11,7 +11,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
 
     [SerializeField] GameObject Turet_osnov;
     [SerializeField] GameObject Turet_osnov2;
-
+    private GameObject arrow;
     private int trueDamage;
 
     private void Start()
@@ -26,6 +26,10 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
         {
             RotationTuret();
         }
+    }
+    public void ArrowSpawn()
+    {
+        arrow.SetActive(true);
     }
 
     public IEnumerator Attack()
@@ -47,10 +51,10 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
                 {
                     trueDamage = 0;
                 }
-
                 GameObject attack = Instantiate(tower.attackPrefab, tower.attackPoint.position, tower.attackPoint.rotation);
                 attack.GetComponent<Arrow>().damage = trueDamage;
                 attack.GetComponent<Arrow>().target = target;
+                arrow = attack;
             }
         }
     }
