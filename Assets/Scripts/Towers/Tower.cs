@@ -26,11 +26,6 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
 
     // Бафы
     public int damegeIncrease; // Увеличение урона
-    // Бонусы знамён
-    public bool isFireBoost;
-    public bool isIceBoost;
-    public bool isWindBoost;
-    public bool isHeroBoost;
 }
 
 public interface TowerFunctions // Общие функции башен
