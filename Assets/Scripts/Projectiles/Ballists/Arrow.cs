@@ -7,17 +7,14 @@ public class Arrow : MonoBehaviour
     public float speed;
 
     private void Update()
-    { if (target != null)
-        {
-            transform.LookAt(target.gameObject.transform.position);
-            //transform.localPosition += new Vector3();
-        }
-
+    { 
+        this.transform.LookAt(target.gameObject.transform.position);
+        this.transform.Translate(0, 0, speed * Time.deltaTime * 10f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == target)
+        if (other.gameObject.tag == "Enemy")
         {
             target.HP -= damage;
             Destroy(gameObject);

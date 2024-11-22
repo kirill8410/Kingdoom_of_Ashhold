@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 1121786888}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   HP: 100
   maxHP: 0
   protection: 10
-  protectionType: 1
+  protectionType: 0
   enemyType: 0
   speed: 0
   moveType: 0
@@ -1337,7 +1337,6 @@ MonoBehaviour:
   target: {fileID: 0}
   Turet_osnov: {fileID: 9014776603592843918}
   Turet_osnov2: {fileID: 8757042447167808121}
-  attack: {fileID: 0}
   dis: 0
 --- !u!114 &919132148321352783
 MonoBehaviour:
