@@ -7,9 +7,28 @@ public class Arrow : MonoBehaviour
     public float speed;
 
     private void Update()
-    { 
-        this.transform.LookAt(target.gameObject.transform.position);
-        this.transform.Translate(0, 0, speed * Time.deltaTime * 10f);
+    {
+        if (target != null)
+        {
+            transform.LookAt(target.gameObject.transform.position);
+            transform.Translate(0, 0, speed * Time.deltaTime * 10f);
+        }
+        else
+        {
+            Enemy[] enemyes = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+            foreach (Enemy enemy in enemyes)
+            {
+                if ((enemy.numberPoint > target.numberPoint) || ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                {
+                    target = enemy;
+                }
+            }
+            if (target == null)
+            {
+                Destroy(gameObject);
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
