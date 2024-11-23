@@ -327,6 +327,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: 2142456008faa8742ac1bf0fa719ac5e, type: 3}
+--- !u!1 &1977080785039140196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1482762848702826789}
+  m_Layer: 0
+  m_Name: LevelUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1482762848702826789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977080785039140196}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6527972222309509420}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2873972260655290582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1205,7 @@ Transform:
   - {fileID: 8952009073569877389}
   - {fileID: 8928124210607648544}
   - {fileID: 4684943197633542091}
+  - {fileID: 1482762848702826789}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2707419907453492524
@@ -1213,7 +1245,7 @@ MonoBehaviour:
   price: 50
   level: 1
   attackDistance: 8
-  attackSpeed: 1
+  attackSpeed: 0.8
   damage: 10
   damageType: 0
   isAttack: 1
@@ -1221,10 +1253,6 @@ MonoBehaviour:
   attackPoint: {fileID: 7706607923824448461}
   damageReduction: 0
   damegeIncrease: 0
-  isFireBoost: 0
-  isIceBoost: 0
-  isWindBoost: 0
-  isHeroBoost: 0
 --- !u!114 &6699443384626920845
 MonoBehaviour:
   m_ObjectHideFlags: 0
