@@ -6,6 +6,8 @@ public class Base : MonoBehaviour
 {
     private LevelManager LM;
 
+    private TowerData selectTower;
+
     [Header("Windows")]
     [SerializeField] GameObject Information;
     [SerializeField] GameObject Selection;
@@ -22,6 +24,9 @@ public class Base : MonoBehaviour
     [SerializeField] Image MageDamage;
     [SerializeField] Image PhysicalDamage;
 
+    [Header("Button")]
+    [SerializeField] Button BuildButton;
+
     private void Start()
     {
         LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
@@ -31,6 +36,8 @@ public class Base : MonoBehaviour
     {
         if (Information.activeSelf == false)
         {
+            selectTower = tower;
+
             Information.SetActive(true);
             Selection.transform.localPosition = new Vector3(-80f, 0f, 0f);
 
@@ -57,12 +64,12 @@ public class Base : MonoBehaviour
             Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
     }
-    public void Build(TowerData tower)
+    public void Build()
     {
-        if (LM.coins >= tower.price)
+        if (LM.coins >= selectTower.price)
         {
-            LM.coins -= tower.price;
-            Instantiate(tower.tower);
+            LM.coins -= selectTower.price;
+            Instantiate(selectTower.tower);
             Destroy(gameObject);
         }
     }

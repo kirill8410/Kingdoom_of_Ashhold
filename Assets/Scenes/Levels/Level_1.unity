@@ -402,7 +402,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 152925757}
-  - component: {fileID: 152925758}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -427,28 +426,6 @@ Transform:
   - {fileID: 1098643080}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &152925758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152925756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c6d37b664fa90e488dab366cbb2a4d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Information: {fileID: 1372769779}
-  Selection: {fileID: 772359750}
-  Name: {fileID: 543076299}
-  Description: {fileID: 479902567}
-  Price: {fileID: 39956710}
-  Damage: {fileID: 1765285559}
-  Distance: {fileID: 552802925}
-  AttackSpeed: {fileID: 1286882295}
-  MageDamage: {fileID: 262013046}
-  PhysicalDamage: {fileID: 1261470139}
 --- !u!1 &182475213
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1738677108, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1333,7 +1310,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1161264425, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1609,7 +1586,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -745263427, guid: a20ebb42a761bd846be1f266ae841328, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1948,7 +1925,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 152925758}
+      - m_Target: {fileID: 1098643086}
         m_TargetAssemblyTypeName: Base, Assembly-CSharp
         m_MethodName: ShowInformation
         m_Mode: 2
@@ -1980,7 +1957,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1924906102, guid: 9acc384df027ee54d8ad97d7585352af, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2055,7 +2032,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1261219717, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2087,6 +2064,7 @@ GameObject:
   - component: {fileID: 1098643083}
   - component: {fileID: 1098643082}
   - component: {fileID: 1098643081}
+  - component: {fileID: 1098643086}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -2211,6 +2189,29 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1098643086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098643079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6d37b664fa90e488dab366cbb2a4d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Information: {fileID: 1372769779}
+  Selection: {fileID: 772359750}
+  Name: {fileID: 543076299}
+  Description: {fileID: 479902567}
+  Price: {fileID: 39956710}
+  Damage: {fileID: 1765285559}
+  Distance: {fileID: 552802925}
+  AttackSpeed: {fileID: 1286882295}
+  MageDamage: {fileID: 262013046}
+  PhysicalDamage: {fileID: 1261470139}
+  BuildButton: {fileID: 1629854316}
 --- !u!1 &1121786887
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,7 +2815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -811221617, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3406,7 +3407,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1629854317}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1098643086}
+        m_TargetAssemblyTypeName: Base, Assembly-CSharp
+        m_MethodName: Build
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1629854317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3427,8 +3440,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 1248306257, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
