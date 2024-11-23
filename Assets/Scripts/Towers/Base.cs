@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Base : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Base : MonoBehaviour
 
     private void Start()
     {
-        LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();   
+        LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
     }
 
     public void ShowInformation(TowerData tower)

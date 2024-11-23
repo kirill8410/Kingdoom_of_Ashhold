@@ -17,5 +17,5 @@ MonoBehaviour:
     \u0441\u0442\u0440\u0435\u043B\u044F\u044E\u0448\u0430\u044F \u0441\u0442\u0440\u0435\u043B\u044F\u044E\u0448\u0430\u044F
     \u0441\u0442\u0440\u0435\u043B\u0430\u043C\u0438"
   price: 30
-  icon: {fileID: 0}
+  icon: {fileID: -1350198823, guid: 9acc384df027ee54d8ad97d7585352af, type: 3}
   tower: {fileID: 0}
