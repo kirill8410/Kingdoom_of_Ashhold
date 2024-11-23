@@ -2111,7 +2111,7 @@ GameObject:
   - component: {fileID: 8879971899661386837}
   - component: {fileID: 3955437704186851670}
   m_Layer: 0
-  m_Name: goblin_prefab
+  m_Name: Goblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

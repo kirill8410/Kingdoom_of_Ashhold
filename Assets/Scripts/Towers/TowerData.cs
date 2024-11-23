@@ -7,6 +7,5 @@ public class TowerData : ScriptableObject
     [TextArea]
     public string description;
     public int price;
-    public Sprite icon;
     public GameObject tower;
 }
