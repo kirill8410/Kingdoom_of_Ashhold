@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,12 @@ public class Base : MonoBehaviour
     private LevelManager LM;
     [SerializeField] GameObject Information;
     [SerializeField] GameObject Selection;
+
+    [SerializeField] TextMeshProUGUI Name;
+    [SerializeField] TextMeshProUGUI Description;
+    [SerializeField] TextMeshProUGUI Damage;
+    [SerializeField] TextMeshProUGUI Distance;
+    [SerializeField] TextMeshProUGUI AttackSpeed;
 
     private void Start()
     {
@@ -17,7 +24,11 @@ public class Base : MonoBehaviour
         if (Information.activeSelf == false)
         {
             Information.SetActive(true);
-            Selection.transform.localPosition = new Vector3(80f, 0f, 0f);
+            Selection.transform.localPosition = new Vector3(-80f, 0f, 0f);
+
+            Description.text = tower.description;
+            Name.text = tower.name;
+
         }
         else
         {
