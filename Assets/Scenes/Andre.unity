@@ -3339,12 +3339,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75826a3bd60e8e348a5ffd37739b1733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 50
   maxHP: 0
   protection: 0
   protectionType: 0
   enemyType: 0
-  speed: 1
+  speed: 1.5
   moveType: 0
   points:
   - {fileID: 1505357521}
