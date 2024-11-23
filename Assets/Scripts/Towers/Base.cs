@@ -38,7 +38,7 @@ public class Base : MonoBehaviour
             Name.text = tower.TowerName;
             Price.text = tower.price.ToString();
             Damage.text = tower.tower.GetComponent<Tower>().damage.ToString();
-            Distance.text = tower.tower.GetComponent<Tower>().attackDistance.ToString();
+            Distance.text = (tower.tower.GetComponent<Tower>().attackDistance / 5).ToString();
             AttackSpeed.text = tower.tower.GetComponent<Tower>().attackSpeed.ToString();
             if (tower.tower.GetComponent<Tower>().damageType == Tower.DamageTypes.Physical)
             {
