@@ -4,8 +4,7 @@ using UnityEngine;
 public class TowerData : ScriptableObject
 {
     public string TowerName;
-    [TextArea]
-    public string description;
+    [TextArea] public string description;
     public int price;
     public GameObject tower;
 }
