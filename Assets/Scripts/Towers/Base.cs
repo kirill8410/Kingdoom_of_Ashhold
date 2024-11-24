@@ -4,9 +4,12 @@ using UnityEngine.UI;
 
 public class Base : MonoBehaviour
 {
+    // Менеджеры
     private LevelManager LM;
+    private SoundManager SM;
 
     private TowerData selectTower;
+    private TowerFunctions _tower;
 
     [Header("Windows")]
     [SerializeField] GameObject Information;
@@ -27,14 +30,23 @@ public class Base : MonoBehaviour
     [Header("Button")]
     [SerializeField] Button BuildButton;
 
-    private void Start()
+    [Header("Audio")]
+    [SerializeField] AudioClip Buy;
+    [SerializeField] AudioClip Error;
+
+    private void Start() 
     {
+        // Нахождение менеджеров
         LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        SM = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+
+        // Нахождение башни на которой находится этот UI
+        _tower = GetComponentInParent<TowerFunctions>();
     }
 
-    public void ShowInformation(TowerData tower)
+    public void ShowInformation(TowerData tower) // Паказываем информацию о башне
     {
-        if (Information.activeSelf == false)
+        if (Information.activeSelf == false || selectTower != tower) // Показать информацию если информация не показана или показана о другой башне
         {
             selectTower = tower;
 
@@ -58,19 +70,45 @@ public class Base : MonoBehaviour
                 PhysicalDamage.enabled = false;
             }
         }
-        else
+        else if ((Information.activeSelf == false && selectTower == tower) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
         {
+            selectTower = null;
             Information.SetActive(false);
             Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
     }
-    public void Build()
+    public void Build() // Построить башню
     {
         if (LM.coins >= selectTower.price)
         {
+            GetComponent<AudioSource>().clip = Buy;
+            SM.PlaySound(GetComponent<AudioSource>());
+
             LM.coins -= selectTower.price;
             Instantiate(selectTower.tower);
             Destroy(gameObject);
         }
+        else
+        {
+            GetComponent<AudioSource>().clip = Error;
+            SM.PlaySound(GetComponent<AudioSource>());
+        }
+    }
+
+    public void LevelUp()
+    {
+        if (LM.coins >= _tower.ReturtParameters("priceLevelUp"))
+        {
+            GetComponent<AudioSource>().clip = Buy;
+            SM.PlaySound(GetComponent<AudioSource>());
+
+            LM.coins -= _tower.ReturtParameters("priceLevelUp");
+            _tower.LevelUp();
+        }
+        else
+        {
+            GetComponent<AudioSource>().clip = Error; 
+            SM.PlaySound(GetComponent<AudioSource>());
+        }   
     }
 }
