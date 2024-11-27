@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour// Общие пораметры всех башен
 {
-    // Цена улучшения/покупки и уровень башни
-    public int price;
+    // уровень башни
     public int level = 1;
+    public int priceLevelUp;
 
     // Параметры атаки башни
     public float attackDistance;
@@ -19,6 +19,7 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
     public bool isAttack = true; // Может ли башня атакавать
 
     public GameObject attackPrefab; // Объект которым стреляет башня
+    public GameObject Distance;
     public Transform attackPoint; // Точка появления снаряда
 
     // Дебафы
@@ -26,10 +27,16 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
 
     // Бафы
     public int damegeIncrease; // Увеличение урона
+
+    private void Update()
+    {
+        Distance.transform.localScale = new Vector3(attackDistance * 2f, attackDistance * 2f, 1f);
+    }
 }
 
 public interface TowerFunctions // Общие функции башен
 {
+    public int ReturtParameters(string parameter);
     public IEnumerator Attack(); // Атака башни 
     public IEnumerator SearchTarget(); // Поиск цели
     public void LevelUp(); // Увеничение параметров при повышении уровня

@@ -82,16 +82,30 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
         if (tower.level == 1)
         {
             tower.damage += 5;
-            tower.price = 85;
+            tower.priceLevelUp = 85;
             tower.level = 2;
         }
         else if (tower.level == 2) 
         {
             tower.damage += 5;
-            tower.price = 120;
+            tower.priceLevelUp = 120;
             tower.level = 3;
         }
     }
+
+    public int ReturtParameters(string parameter)
+    {
+        if (parameter == "priceLevelUp")
+        {
+            return tower.priceLevelUp;
+        }
+        else if (parameter == "level")
+        {
+            return tower.level;
+        }
+        return 0;
+    }
+
 
     private void RotationTuret()
     {
