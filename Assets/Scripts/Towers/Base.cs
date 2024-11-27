@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +30,8 @@ public class Base : MonoBehaviour
 
     [Header("Button")]
     [SerializeField] Button BuildButton;
+    [SerializeField] Button[] EvolutionButtons;
+    [SerializeField] Button LevelUpButton;
 
     [Header("Audio")]
     [SerializeField] AudioClip Buy;
@@ -42,6 +45,29 @@ public class Base : MonoBehaviour
 
         // Нахождение башни на которой находится этот UI
         _tower = GetComponentInParent<TowerFunctions>();
+    }
+
+    private void Update()
+    {
+        if (_tower != null)
+        {
+            if (_tower.Towerlevel != 3)
+            {
+                LevelUpButton.gameObject.SetActive(true);
+                foreach (Button EvolutionButton in EvolutionButtons)
+                {
+                    EvolutionButton.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                LevelUpButton.gameObject.SetActive(false);
+                foreach (Button EvolutionButton in EvolutionButtons)
+                {
+                    EvolutionButton.gameObject.SetActive(true);
+                }
+            }
+        }
     }
 
     public void ShowInformation(TowerData tower) // Паказываем информацию о башне
@@ -97,12 +123,13 @@ public class Base : MonoBehaviour
 
     public void LevelUp()
     {
-        if (LM.coins >= _tower.ReturtParameters("priceLevelUp"))
+
+        if (LM.coins >= _tower.PriceLevelUp)
         {
             GetComponent<AudioSource>().clip = Buy;
             SM.PlaySound(GetComponent<AudioSource>());
 
-            LM.coins -= _tower.ReturtParameters("priceLevelUp");
+            LM.coins -= _tower.PriceLevelUp;
             _tower.LevelUp();
         }
         else

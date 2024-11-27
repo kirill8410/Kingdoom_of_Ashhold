@@ -2871,13 +2871,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7479118076309050198}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.88701016, y: -0, z: -0, w: 0.46174997}
-  m_LocalPosition: {x: 0, y: -0.040000018, z: -0.004799952}
+  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
+  m_LocalPosition: {x: 0, y: -0.04, z: -0.0048}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6574140807708826464}
-  m_LocalEulerAnglesHint: {x: 125, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
 --- !u!1 &7701080378617686028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3184,7 +3184,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6527972222309509420}
   - component: {fileID: 2707419907453492524}
-  - component: {fileID: 3149570902339609375}
   - component: {fileID: 6699443384626920845}
   m_Layer: 0
   m_Name: Simple_turet
@@ -3233,30 +3232,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3149570902339609375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8418063812881115448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f94d21c8e185eee429c066125229d77b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 1
-  priceLevelUp: 0
-  attackDistance: 8
-  attackSpeed: 0.8
-  damage: 10
-  damageType: 0
-  isAttack: 1
-  attackPrefab: {fileID: 5652138828623769678, guid: c44ac3293e4625f4e9cd5c92d8cf49a1, type: 3}
-  Distance: {fileID: 2977622866563331958}
-  attackPoint: {fileID: 7706607923824448461}
-  damageReduction: 0
-  damegeIncrease: 0
 --- !u!114 &6699443384626920845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3269,6 +3244,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0800573cb8b8e2f4d9a8046501a8112b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 1
+  priceLevelUp: 0
+  attackDistance: 10
+  attackSpeed: 0.8
+  damage: 10
+  damageType: 0
+  isAttack: 1
+  attackPrefab: {fileID: 5652138828623769678, guid: c44ac3293e4625f4e9cd5c92d8cf49a1, type: 3}
+  Distance: {fileID: 2977622866563331958}
+  attackPoint: {fileID: 7706607923824448461}
+  damageReduction: 0
+  damegeIncrease: 0
   target: {fileID: 0}
   Turet_osnov: {fileID: 4421778034366791578}
   Turet_osnov2: {fileID: 6522714019000063619}

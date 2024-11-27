@@ -3,20 +3,26 @@ using System.Collections;
 using NUnit.Framework.Constraints;
 using static UnityEngine.GraphicsBuffer;
 
-public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
+public class Ballista : Tower, TowerFunctions // Баллиста
 {
-    private Tower tower;
+    public int PriceLevelUp { get; set; }
+    public int Towerlevel { get; set; }
 
-    public Enemy target;
-
+    [Header("Turets")]
     [SerializeField] GameObject Turet_osnov;
     [SerializeField] GameObject Turet_osnov2;
+
+    [Header("TowerType")]
+    [SerializeField] bool isPoison;
+    [SerializeField] bool isDouble;
+
     private GameObject arrow;
     private int trueDamage;
 
+    public Enemy target;
+
     private void Start()
     {
-        tower = GetComponent<Tower>();
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
     }
@@ -36,14 +42,14 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f/tower.attackSpeed);
-            if ((target != null) && (tower.isAttack) && Vector3.Distance(gameObject.transform.position,
-                target.gameObject.transform.position) <= tower.attackDistance)
+            yield return new WaitForSeconds(1f/attackSpeed);
+            if ((target != null) && (isAttack) && Vector3.Distance(gameObject.transform.position,
+                target.gameObject.transform.position) <= attackDistance)
             {
                 GetComponent<Animator>().SetTrigger("Attack");
 
-                trueDamage = tower.damage - tower.damageReduction + tower.damegeIncrease;
-                if (tower.damageType == target.protectionType)
+                trueDamage = damage - damageDown;
+                if (damageType == target.protectionType)
                 {
                     trueDamage -= target.protection;
                 }
@@ -51,7 +57,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
                 {
                     trueDamage = 0;
                 }
-                GameObject attack = Instantiate(tower.attackPrefab, tower.attackPoint.position, tower.attackPoint.rotation);
+                GameObject attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                 attack.GetComponent<Arrow>().damage = trueDamage;
                 attack.GetComponent<Arrow>().target = target;
                 arrow = attack;
@@ -66,7 +72,7 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
             Enemy[] enemyes = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
             {
-                if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= tower.attackDistance)
+                if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= attackDistance)
                 {
                     if ((target == null) || (enemy.numberPoint > target.numberPoint) || 
                         ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
@@ -79,33 +85,21 @@ public class Ballista : MonoBehaviour, TowerFunctions // Баллиста
     }
     public void LevelUp()
     {
-        if (tower.level == 1)
+        if (Towerlevel == 1)
         {
-            tower.damage += 5;
-            tower.priceLevelUp = 85;
-            tower.level = 2;
+            damage += levelUp.damage_1;
+            attackDistance += levelUp.distance_1;
+            PriceLevelUp = levelUp.priceLevelUp_1;
+            Towerlevel = 2;
         }
-        else if (tower.level == 2) 
+        else if (Towerlevel == 2)
         {
-            tower.damage += 5;
-            tower.priceLevelUp = 120;
-            tower.level = 3;
+            damage += levelUp.damage_2;
+            attackDistance += levelUp.distance_2;
+            PriceLevelUp = levelUp.priceLevelUp_2;
+            Towerlevel = 3;
         }
     }
-
-    public int ReturtParameters(string parameter)
-    {
-        if (parameter == "priceLevelUp")
-        {
-            return tower.priceLevelUp;
-        }
-        else if (parameter == "level")
-        {
-            return tower.level;
-        }
-        return 0;
-    }
-
 
     private void RotationTuret()
     {

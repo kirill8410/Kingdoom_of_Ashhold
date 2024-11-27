@@ -1,13 +1,13 @@
 using System.Collections;
+using System.IO;
 using UnityEngine;
 
 public class Tower : MonoBehaviour// Общие пораметры всех башен
 {
-    // уровень башни
-    public int level = 1;
-    public int priceLevelUp;
+    [Header("Level")]
+    public LevelUp levelUp;
 
-    // Параметры атаки башни
+    [Header("Attack")]
     public float attackDistance;
     public float attackSpeed;
     public int damage;
@@ -22,11 +22,8 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
     public GameObject Distance;
     public Transform attackPoint; // Точка появления снаряда
 
-    // Дебафы
-    public int damageReduction; // уменьшение урона
-
-    // Бафы
-    public int damegeIncrease; // Увеличение урона
+    [Header("Effects")]
+    public int damageDown; // уменьшение урона
 
     private void Update()
     {
@@ -36,8 +33,9 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
 
 public interface TowerFunctions // Общие функции башен
 {
-    public int ReturtParameters(string parameter);
     public IEnumerator Attack(); // Атака башни 
     public IEnumerator SearchTarget(); // Поиск цели
     public void LevelUp(); // Увеничение параметров при повышении уровня
+    public int PriceLevelUp { get; set; }
+    public int Towerlevel { get; set; }
 }
