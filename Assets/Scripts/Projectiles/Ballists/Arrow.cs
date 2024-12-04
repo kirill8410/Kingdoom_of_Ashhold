@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR.OpenXR.Features;
 
 public class Arrow : MonoBehaviour // Обычная стрела
 {
@@ -18,9 +19,12 @@ public class Arrow : MonoBehaviour // Обычная стрела
             Enemy[] enemyes = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
             {
-                if ((enemy.numberPoint > target.numberPoint) || ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                if (Vector3.Distance(gameObject.transform.position, enemy.gameObject.transform.position) <= 3f)
                 {
-                    target = enemy;
+                    if ((enemy.numberPoint > target.numberPoint) || ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                    {
+                        target = enemy;
+                    }
                 }
             }
             if (target == null) // Удаление стрелы если врагов на корте не осталось
@@ -28,14 +32,14 @@ public class Arrow : MonoBehaviour // Обычная стрела
                 Destroy(gameObject);
             }
         }
-
     }
 
     private void OnTriggerEnter(Collider other) // Нанесение урона при поподании по врагу
     {
         if (other.gameObject.tag == "Enemy")
         {
-            target.HP -= damage;
+            target.ReduceHP(damage);
+            print(damage);
             Destroy(gameObject);
         }
     }
