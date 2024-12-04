@@ -1091,7 +1091,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6979716047153150037}
   - component: {fileID: 6994092607971425432}
-  - component: {fileID: 4035003882858076829}
   - component: {fileID: 5833155265291524084}
   m_Layer: 0
   m_Name: big_turet
@@ -1141,30 +1140,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4035003882858076829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8807779418078994800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f94d21c8e185eee429c066125229d77b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 1
-  priceLevelUp: 0
-  attackDistance: 8
-  attackSpeed: 0.2
-  damage: 50
-  damageType: 0
-  isAttack: 1
-  attackPrefab: {fileID: 5652138828623769678, guid: 7e8f9455dff28cd42a3164a802e5fdfc, type: 3}
-  Distance: {fileID: 0}
-  attackPoint: {fileID: 3429923566732738596}
-  damageReduction: 0
-  damegeIncrease: 0
 --- !u!114 &5833155265291524084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,6 +1152,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0800573cb8b8e2f4d9a8046501a8112b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  levelUp: {fileID: 0}
+  attackDistance: 8
+  attackSpeed: 0.2
+  damage: 50
+  damageType: 0
+  isAttack: 1
+  attackPrefab: {fileID: 5652138828623769678, guid: 7e8f9455dff28cd42a3164a802e5fdfc, type: 3}
+  Distance: {fileID: 0}
+  attackPoint: {fileID: 3429923566732738596}
+  damageDown: 0
   Turet_osnov: {fileID: 5457373178665798019}
   Turet_osnov2: {fileID: 6832308172814860759}
+  isPoison: 0
+  isDouble: 0
+  target: {fileID: 0}
