@@ -41,6 +41,8 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         maxHP = HP;
         point = points[numberPoint].transform.position;
         agent = GetComponent<NavMeshAgent>();
+        agent.destination = point;
+        agent.SetDestination(point);
     }
 
     private void Update()
@@ -58,12 +60,13 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
             else
             {
                 point = points[numberPoint].transform.position;
+                agent.SetDestination(point);
             }
         }
         // NawMesh
         agent.speed = speed;
-        agent.destination = point;
        
+
         if (HP <= 0)
         {
             Dead();

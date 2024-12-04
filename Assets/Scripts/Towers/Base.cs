@@ -111,7 +111,7 @@ public class Base : MonoBehaviour
             SM.PlaySound(GetComponent<AudioSource>());
 
             LM.coins -= selectTower.price;
-            Instantiate(selectTower.tower);
+            Instantiate(selectTower.tower, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         else

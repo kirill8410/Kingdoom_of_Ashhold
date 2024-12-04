@@ -4923,7 +4923,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2590665399736888822, guid: 234f4b51fcff2ea428d0ed7e98271174, type: 3}
       propertyPath: coins
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6743774894944366450, guid: 234f4b51fcff2ea428d0ed7e98271174, type: 3}
       propertyPath: m_LocalPosition.x
