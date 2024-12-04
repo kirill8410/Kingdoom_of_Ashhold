@@ -22,9 +22,6 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
     public GameObject Distance;
     public Transform attackPoint; // Точка появления снаряда
 
-    [Header("Effects")]
-    public int damageDown; // уменьшение урона
-
     private void Update()
     {
         Distance.transform.localScale = new Vector3(attackDistance * 2f, attackDistance * 2f, 1f);

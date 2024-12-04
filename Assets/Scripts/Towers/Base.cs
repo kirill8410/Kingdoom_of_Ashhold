@@ -37,6 +37,9 @@ public class Base : MonoBehaviour
     [SerializeField] AudioClip Buy;
     [SerializeField] AudioClip Error;
 
+    [Header("GameObject")]
+    [SerializeField] GameObject _base;
+
     private void Start() 
     {
         // Нахождение менеджеров
@@ -105,20 +108,23 @@ public class Base : MonoBehaviour
     }
     public void Build() // Построить башню
     {
-        if (LM.coins >= selectTower.price)
+        if (_base != null)
         {
-            GetComponent<AudioSource>().clip = Buy;
-            SM.PlaySound(GetComponent<AudioSource>());
+            if (LM.coins >= selectTower.price)
+            {
+                GetComponent<AudioSource>().clip = Buy;
+                SM.PlaySound(GetComponent<AudioSource>());
 
-            LM.coins -= selectTower.price;
-            Instantiate(selectTower.tower, gameObject.transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
-        else
-        {
-            GetComponent<AudioSource>().clip = Error;
-            SM.PlaySound(GetComponent<AudioSource>());
-        }
+                LM.coins -= selectTower.price;
+                Instantiate(selectTower.tower, _base.transform.position, Quaternion.identity);
+                Destroy(_base);
+            }
+            else
+            {
+                GetComponent<AudioSource>().clip = Error;
+                SM.PlaySound(GetComponent<AudioSource>());
+            }
+        } 
     }
 
     public void LevelUp()

@@ -5,31 +5,28 @@ using UnityEngine.Rendering;
 public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 {
     private NavMeshAgent agent; // NavMeshAgent
+    private LevelManager LM;
 
-    // Здоровье врага
-    public int HP;
+    [SerializeField] int dropCoins;
+
+    [Header("HP")]
+    [SerializeField] int hp;
     public int maxHP;
 
-    // Защита врага
+    [Header("Protection")]
     public int protection;
+    public int shild;
     public Tower.DamageTypes protectionType;
 
-    // Тип врага
+    [Header("Type")]
     public EnemyTypes enemyType;
     public enum EnemyTypes
     {
         None, Boss
     }
 
-    // Скорость и тип движения врага
+    [Header("Move")]
     public float speed;
-    public MoveTypes moveType;
-    public enum MoveTypes
-    {
-        Walk/*По земле*/, Fly/*По воздуху*/
-    }
-
-    // Точки движения врага
     public GameObject[] points;
     public int numberPoint = 0;
     private Vector3 point;
@@ -38,7 +35,8 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     private void Start()
     {
-        maxHP = HP;
+        LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        maxHP = hp;
         point = points[numberPoint].transform.position;
         agent = GetComponent<NavMeshAgent>();
         agent.destination = point;
@@ -67,7 +65,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         agent.speed = speed;
        
 
-        if (HP <= 0)
+        if (hp <= 0)
         {
             Dead();
         }
@@ -78,8 +76,22 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         Destroy(gameObject);
     }
 
+    public void ReduceHP(int damage)
+    {
+        if (shild > 0)
+        {
+            shild -= 1;
+        }
+        else
+        {
+            hp -= damage;
+            shild = 0;
+        }
+    }
+
     private void Dead() // Действия врага при смерти
     {
+        LM.coins += dropCoins;
         Destroy(gameObject);
     }
 }

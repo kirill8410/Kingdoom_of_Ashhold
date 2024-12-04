@@ -48,7 +48,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
             {
                 GetComponent<Animator>().SetTrigger("Attack");
 
-                trueDamage = damage - damageDown;
+                trueDamage = damage;
                 if (damageType == target.protectionType)
                 {
                     trueDamage -= target.protection;
