@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0a8d35a293e894a9d2d9d946db8ebf, type: 3}
   m_Name: Big_turet
   m_EditorClassIdentifier: 
-  TowerName: 
-  description: 
-  price: 0
+  TowerName: "\u0431\u043E\u043B\u044C\u0448\u0430\u044F \u0431\u0430\u043B\u043B\u0438\u0441\u0442\u0430"
+  description: "\u043F\u0440\u043E\u0441\u0442\u043E \u0411\u041E\u041B\u042C\u0448\u0430\u044F
+    \u0431\u0430\u043B\u043B\u0438\u0441\u0442\u0430"
+  price: 70
   tower: {fileID: 0}
