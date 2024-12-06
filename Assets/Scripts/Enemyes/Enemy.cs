@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -32,6 +33,10 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     private Vector3 point;
 
     public float distanceToPoint; // дистанция до следующей точки
+
+    // эфекты
+    [SerializeField] bool immunity;
+    bool potion;
 
     private void Start()
     {
@@ -93,5 +98,22 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     {
         LM.coins += dropCoins;
         Destroy(gameObject);
+    }
+
+    public IEnumerator Potion()
+    {
+        if (!immunity)
+        {
+            if (!potion)
+            {
+                potion = true;
+                for (float i = 2f; i > 0f; i -= 0.1f)
+                {
+                    yield return new WaitForSeconds(i);
+                    hp -= 1;
+                }
+                potion = false;
+            }
+        }
     }
 }

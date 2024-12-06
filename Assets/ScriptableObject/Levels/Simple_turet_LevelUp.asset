@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Simple_turet_LevelUp
+  m_EditorClassIdentifier: Assembly-CSharp::LevelUp
+  damage_1: 0
+  distance_1: 0
+  priceLevelUp_1: 0
+  damage_2: 0
+  distance_2: 0
+  priceLevelUp_2: 0

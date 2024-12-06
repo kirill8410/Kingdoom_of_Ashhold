@@ -15,6 +15,7 @@ public class Base : MonoBehaviour
     [Header("Windows")]
     [SerializeField] GameObject Information;
     [SerializeField] GameObject Selection;
+    [SerializeField] GameObject InformationLevelUp;
 
     [Header("Texts")]
     [SerializeField] TextMeshProUGUI Name;
@@ -23,6 +24,10 @@ public class Base : MonoBehaviour
     [SerializeField] TextMeshProUGUI Damage;
     [SerializeField] TextMeshProUGUI Distance;
     [SerializeField] TextMeshProUGUI AttackSpeed;
+    [SerializeField] TextMeshProUGUI TextLeveUp;
+    [SerializeField] TextMeshProUGUI DamageLeveUp;
+    [SerializeField] TextMeshProUGUI DistanceLeveUp;
+    [SerializeField] TextMeshProUGUI PriceLeveUp;
 
     [Header("Images")]
     [SerializeField] Image MageDamage;
@@ -50,11 +55,11 @@ public class Base : MonoBehaviour
         _tower = GetComponentInParent<TowerFunctions>();
     }
 
-    private void Update()
+    private void Update() 
     {
         if (_tower != null)
         {
-            if (_tower.Towerlevel != 3)
+            if (_tower.Towerlevel != 3) // Отображение кнопок прокачки если уровень не максимальный
             {
                 LevelUpButton.gameObject.SetActive(true);
                 foreach (Button EvolutionButton in EvolutionButtons)
@@ -62,7 +67,7 @@ public class Base : MonoBehaviour
                     EvolutionButton.gameObject.SetActive(false);
                 }
             }
-            else
+            else // Отображение кнопок эволюции если уровень максимальный
             {
                 LevelUpButton.gameObject.SetActive(false);
                 foreach (Button EvolutionButton in EvolutionButtons)
@@ -86,7 +91,7 @@ public class Base : MonoBehaviour
             Name.text = tower.TowerName;
             Price.text = tower.price.ToString();
             Damage.text = tower.tower.GetComponent<Tower>().damage.ToString();
-            Distance.text = (tower.tower.GetComponent<Tower>().attackDistance / 5).ToString();
+            Distance.text = ((tower.tower.GetComponent<Tower>().attackDistance / 4) - 0.5f).ToString();
             AttackSpeed.text = tower.tower.GetComponent<Tower>().attackSpeed.ToString();
             if (tower.tower.GetComponent<Tower>().damageType == Tower.DamageTypes.Physical)
             {
@@ -99,7 +104,7 @@ public class Base : MonoBehaviour
                 PhysicalDamage.enabled = false;
             }
         }
-        else if ((Information.activeSelf == false && selectTower == tower) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
+        else if ((Information.activeSelf == true && selectTower == tower) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
         {
             selectTower = null;
             Information.SetActive(false);
@@ -126,8 +131,36 @@ public class Base : MonoBehaviour
             }
         } 
     }
+    public void ShowLevelUpInformation() // Показать информацию о улучшении башни
+    {
+        if (InformationLevelUp.activeSelf == false) // Показать информацию если информация не показана
+        {
+            InformationLevelUp.SetActive(true);
+            Selection.transform.localPosition = new Vector3(-80f, 0f, 0f);
+            if (_tower.Towerlevel == 1)
+            {
+                DamageLeveUp.text = _tower.levelUp.damage_1.ToString();
+                TextLeveUp.text = "Улучшить до уроня 2";
+                DistanceLeveUp.text = _tower.levelUp.distance_1.ToString();
+                PriceLeveUp.text = _tower.levelUp.priceLevelUp_1.ToString();
+            }
+            else if (_tower.Towerlevel == 2)
+            {
+                DamageLeveUp.text = _tower.levelUp.damage_2.ToString();
+                TextLeveUp.text = "Улучшить до уроня 3";
+                DistanceLeveUp.text = _tower.levelUp.distance_2.ToString();
+                PriceLeveUp.text = _tower.levelUp.priceLevelUp_2.ToString();
+            }
 
-    public void LevelUp()
+        }
+        else if ((InformationLevelUp.activeSelf == true) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
+        {
+            InformationLevelUp.SetActive(false);
+            Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+        }
+    }
+
+    public void LevelUp() // Повышение уровня башни
     {
 
         if (LM.coins >= _tower.PriceLevelUp)
@@ -137,6 +170,8 @@ public class Base : MonoBehaviour
 
             LM.coins -= _tower.PriceLevelUp;
             _tower.LevelUp();
+
+            ShowLevelUpInformation();
         }
         else
         {
@@ -144,4 +179,5 @@ public class Base : MonoBehaviour
             SM.PlaySound(GetComponent<AudioSource>());
         }   
     }
+
 }

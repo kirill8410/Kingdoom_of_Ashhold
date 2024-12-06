@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour// Общие пораметры всех башен
 {
-    [Header("Level")]
-    public LevelUp levelUp;
-
     [Header("Attack")]
     public float attackDistance;
     public float attackSpeed;
@@ -35,4 +32,5 @@ public interface TowerFunctions // Общие функции башен
     public void LevelUp(); // Увеничение параметров при повышении уровня
     public int PriceLevelUp { get; set; }
     public int Towerlevel { get; set; }
+    public LevelUp levelUp { get; set; }
 }

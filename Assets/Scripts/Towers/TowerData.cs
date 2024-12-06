@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TowerData", menuName = "TowerData", order = 1)]
+[CreateAssetMenu(fileName = "TowerData", order = 1)]
 public class TowerData : ScriptableObject
 {
     public string TowerName;
@@ -9,7 +9,7 @@ public class TowerData : ScriptableObject
     public GameObject tower;
 }
 
-[CreateAssetMenu(fileName = "LevelUp", menuName = "TowerData", order = 2)]
+[CreateAssetMenu(fileName = "LevelUp", order = 2)]
 public class LevelUp : ScriptableObject
 {
     [Header("LevelUp_1")]

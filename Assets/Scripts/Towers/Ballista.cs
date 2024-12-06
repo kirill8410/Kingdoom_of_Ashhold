@@ -6,17 +6,32 @@ using static UnityEngine.GraphicsBuffer;
 public class Ballista : Tower, TowerFunctions // Баллиста
 {
     public int PriceLevelUp { get; set; }
-    public int Towerlevel { get; set; }
+    public int Towerlevel { get; set; } = 1;
+
+    [Header("Level")]
+    [SerializeField] LevelUp _levelUp;
+    public LevelUp levelUp
+    {
+        get
+        {
+            return _levelUp;
+        }
+        set
+        {
+            _levelUp = value;
+        }
+    }
 
     [Header("Turets")]
     [SerializeField] GameObject Turet_osnov;
     [SerializeField] GameObject Turet_osnov2;
 
     [Header("TowerType")]
-    [SerializeField] bool isPoison;
+    [SerializeField] bool isSniper;
     [SerializeField] bool isDouble;
 
-    private GameObject arrow;
+    private GameObject _arrow1;
+    private GameObject _arrow2;
     private int trueDamage;
 
     public Enemy target;
@@ -33,9 +48,17 @@ public class Ballista : Tower, TowerFunctions // Баллиста
             RotationTuret();
         }
     }
-    public void ArrowSpawn()
+    public void ArrowSpawn(int arrow)
     {
-        arrow.SetActive(true);
+        
+        if (arrow == 1)
+        {
+            _arrow1.SetActive(true);
+        }
+        else if (arrow == 2)
+        {
+            _arrow2.SetActive(true);
+        }
     }
 
     public IEnumerator Attack()
@@ -60,7 +83,18 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 GameObject attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                 attack.GetComponent<Arrow>().damage = trueDamage;
                 attack.GetComponent<Arrow>().target = target;
-                arrow = attack;
+                _arrow1 = attack;
+                if (isDouble)
+                {
+                    GameObject attack1 = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
+                    attack1.GetComponent<Arrow>().damage = trueDamage;
+                    attack1.GetComponent<Arrow>().target = target;
+                    _arrow2 = attack;
+                }
+                if (isSniper)
+                {
+                    attack.GetComponent<Arrow>().tower = gameObject.transform;
+                }
             }
         }
     }

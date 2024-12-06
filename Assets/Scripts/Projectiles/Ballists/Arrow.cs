@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.XR.OpenXR.Features;
 
 public class Arrow : MonoBehaviour // Обычная стрела
@@ -6,6 +8,10 @@ public class Arrow : MonoBehaviour // Обычная стрела
     public Enemy target; // Цель в которую летит стрела
     public int damage; // Урон стрелы
     public float speed; // Скорость стрелы
+    public Transform tower;
+    [Header("Effects")]    
+    [SerializeField] bool potion;
+    [SerializeField] bool sniper;
 
     private void Update()
     {
@@ -16,7 +22,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
         }
         else // Поиск цели если она отсутствует 
         {
-            Enemy[] enemyes = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+            Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
             {
                 if (Vector3.Distance(gameObject.transform.position, enemy.gameObject.transform.position) <= 3f)
@@ -38,9 +44,16 @@ public class Arrow : MonoBehaviour // Обычная стрела
     {
         if (other.gameObject.tag == "Enemy")
         {
+            if (sniper)
+            {
+                damage += Convert.ToInt32(Vector3.Distance(gameObject.transform.position, tower.position) - 0.5f);
+            }
             target.ReduceHP(damage);
-            print(damage);
             Destroy(gameObject);
+            if (potion)
+            {
+                target.Potion();
+            }
         }
     }
 }
