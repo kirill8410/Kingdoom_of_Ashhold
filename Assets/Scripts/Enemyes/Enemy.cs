@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     // эфекты
     [SerializeField] bool immunity;
-    bool potion;
+    public int potion;
 
     private void Start()
     {
@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         agent = GetComponent<NavMeshAgent>();
         agent.destination = point;
         agent.SetDestination(point);
+        StartCoroutine(Potion());
     }
 
     private void Update()
@@ -102,17 +103,23 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     public IEnumerator Potion()
     {
-        if (!immunity)
+        while (true)
         {
-            if (!potion)
+            if (potion > 3)
             {
-                potion = true;
-                for (float i = 2f; i > 0f; i -= 0.1f)
+                potion = 3;
+            }
+            if (potion > 0)
+            {
+                for (int i = 0; i < 6; i++)
                 {
-                    yield return new WaitForSeconds(i);
-                    hp -= 1;
+                    if (!immunity)
+                    {
+                        hp -= 3 * potion;
+                    }
+                    yield return new WaitForSeconds(2f);
                 }
-                potion = false;
+                potion -= 1;
             }
         }
     }

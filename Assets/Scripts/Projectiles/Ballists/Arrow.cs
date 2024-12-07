@@ -7,7 +7,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
 {
     public Enemy target; // Цель в которую летит стрела
     public int damage; // Урон стрелы
-    public float speed; // Скорость стрелы
+    public float speed = 2; // Скорость стрелы
     public Transform tower;
     [Header("Effects")]    
     [SerializeField] bool potion;
@@ -46,13 +46,13 @@ public class Arrow : MonoBehaviour // Обычная стрела
         {
             if (sniper)
             {
-                damage += Convert.ToInt32(Vector3.Distance(gameObject.transform.position, tower.position) - 0.5f);
+                damage += Convert.ToInt32(Vector3.Distance(tower.transform.position, tower.position) - 0.5f);
             }
             target.ReduceHP(damage);
             Destroy(gameObject);
             if (potion)
             {
-                target.Potion();
+                StartCoroutine(target.Potion());
             }
         }
     }
