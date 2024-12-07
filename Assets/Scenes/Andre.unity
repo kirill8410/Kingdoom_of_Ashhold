@@ -1709,6 +1709,7 @@ MonoBehaviour:
   - {fileID: 489799627}
   numberPoint: 0
   distanceToPoint: 0
+  immunity: 0
 --- !u!23 &1346797573
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1994,6 +1995,7 @@ MonoBehaviour:
   - {fileID: 489799627}
   numberPoint: 0
   distanceToPoint: 0
+  immunity: 0
 --- !u!23 &1427129829
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2485,6 +2487,7 @@ MonoBehaviour:
   - {fileID: 489799627}
   numberPoint: 0
   distanceToPoint: 0
+  immunity: 0
 --- !u!23 &1788070574
 MeshRenderer:
   m_ObjectHideFlags: 0
