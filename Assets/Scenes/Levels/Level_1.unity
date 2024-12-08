@@ -745,6 +745,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6699443384626920845, guid: f72232e154e821e4ca4073ed02893af5, type: 3}
+      propertyPath: isAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699443384626920845, guid: f72232e154e821e4ca4073ed02893af5, type: 3}
       propertyPath: attackSpeed
       value: 1
       objectReference: {fileID: 0}
@@ -1233,7 +1237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropCoins: 0
-  hp: 10000
+  hp: 100
   maxHP: 100
   protection: 0
   shild: 0

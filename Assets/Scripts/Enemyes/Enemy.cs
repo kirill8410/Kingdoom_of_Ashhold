@@ -35,8 +35,8 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     public float distanceToPoint; // дистанция до следующей точки
 
     // эфекты
-    [SerializeField] bool immunity;
-    public int potion;
+    [SerializeField] bool immunity = false;
+    [SerializeField] bool potion = false;
 
     private void Start()
     {
@@ -46,7 +46,6 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         agent = GetComponent<NavMeshAgent>();
         agent.destination = point;
         agent.SetDestination(point);
-        StartCoroutine(Potion());
     }
 
     private void Update()
@@ -103,24 +102,25 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     public IEnumerator Potion()
     {
-        while (true)
+        print("1");
+        if (!potion)
         {
-            if (potion > 3)
+            potion = true;
+            print("2");
+            for (int i = 0; i < 15; i++)
             {
-                potion = 3;
-            }
-            if (potion > 0)
-            {
-                for (int i = 0; i < 6; i++)
+                print("3");
+                yield return new WaitForSeconds(0.5f);
+                print("4");
+                if (!immunity)
                 {
-                    if (!immunity)
-                    {
-                        hp -= 3 * potion;
-                    }
-                    yield return new WaitForSeconds(2f);
+                    print("5");
+                    hp -= 1;
                 }
-                potion -= 1;
+                print("6");
             }
+            print("7");
+            potion = false;
         }
     }
 }

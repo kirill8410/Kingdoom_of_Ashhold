@@ -48,12 +48,12 @@ public class Arrow : MonoBehaviour // Обычная стрела
             {
                 damage += Convert.ToInt32(Vector3.Distance(tower.transform.position, tower.position) - 0.5f);
             }
-            target.ReduceHP(damage);
-            Destroy(gameObject);
             if (potion)
             {
                 StartCoroutine(target.Potion());
             }
+            target.ReduceHP(damage);
+            Destroy(gameObject);
         }
     }
 }
