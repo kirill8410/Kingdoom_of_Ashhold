@@ -47,10 +47,14 @@ public class Arrow : MonoBehaviour // Обычная стрела
             if (sniper)
             {
                 damage += Convert.ToInt32(Vector3.Distance(tower.transform.position, tower.position) - 0.5f);
+                if (target.enemyType == Enemy.EnemyTypes.Boss)
+                {
+                    damage += 5;
+                }
             }
             if (potion)
             {
-                StartCoroutine(target.Potion());
+                target.Potion();
             }
             target.ReduceHP(damage);
             Destroy(gameObject);

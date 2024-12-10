@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     // эфекты
     [SerializeField] bool immunity = false;
-    [SerializeField] bool potion = false;
+    [SerializeField] int _potion = 0;
 
     private void Start()
     {
@@ -100,27 +101,32 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         Destroy(gameObject);
     }
 
-    public IEnumerator Potion()
+    IEnumerator _Potion()
     {
-        print("1");
-        if (!potion)
+        if (_potion <= 5)
         {
-            potion = true;
-            print("2");
-            for (int i = 0; i < 15; i++)
+            _potion += 1;
+            if (_potion > 5)
             {
-                print("3");
-                yield return new WaitForSeconds(0.5f);
-                print("4");
+                _potion = 5;
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                yield return new WaitForSeconds(2f);
                 if (!immunity)
                 {
-                    print("5");
-                    hp -= 1;
+                    hp -= 5;
+                    if (enemyType == EnemyTypes.Boss)
+                    {
+                        hp += 4;
+                    }
                 }
-                print("6");
             }
-            print("7");
-            potion = false;
+            _potion -= 1;
         }
+    }
+    public void Potion()
+    {
+        StartCoroutine(_Potion());
     }
 }
