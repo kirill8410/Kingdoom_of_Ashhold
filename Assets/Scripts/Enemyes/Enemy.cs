@@ -27,6 +27,12 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         None, Boss
     }
 
+    public enum EnemyClass
+    {
+        Simple, Fast
+    }
+    public EnemyClass enemyClass;
+
     [Header("Move")]
     public float speed;
     public GameObject[] points;

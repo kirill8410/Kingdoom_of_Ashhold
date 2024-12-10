@@ -453,7 +453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1525491122, guid: bd7930286bbef88408940766f33111a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1087,12 +1087,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Information: {fileID: 507446172443004419}
   Selection: {fileID: 2448089475846341327}
+  InformationLevelUp: {fileID: 0}
   Name: {fileID: 6391672030226177240}
   Description: {fileID: 7365488375876644558}
   Price: {fileID: 3088833240877169332}
   Damage: {fileID: 1019704365453834405}
   Distance: {fileID: 775196846917778567}
   AttackSpeed: {fileID: 10649881367803778}
+  TextLeveUp: {fileID: 0}
+  DamageLeveUp: {fileID: 0}
+  DistanceLeveUp: {fileID: 0}
+  PriceLeveUp: {fileID: 0}
   MageDamage: {fileID: 6207061841433592569}
   PhysicalDamage: {fileID: 1558519469977594200}
   BuildButton: {fileID: 1824590216124534944}
@@ -1693,7 +1698,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -78314021, guid: bd7930286bbef88408940766f33111a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
