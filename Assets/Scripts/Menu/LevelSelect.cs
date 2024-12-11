@@ -7,13 +7,13 @@ public class LevelSelect : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerPrefs.GetInt("Difficulty") >= numberLevel)
+        if (PlayerPrefs.GetInt("Level") >= numberLevel)
         {
             GetComponent<Canvas>().enabled = true;
         }
         else
         {
-            GetComponent<Canvas>().enabled = false;
+            GetComponentInChildren<Canvas>().enabled = false;
         }
     }
 

@@ -47,7 +47,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
         {
             if (sniper)
             {
-                damage += Convert.ToInt32(Vector3.Distance(gameObject.transform.position, towerTransform.position) - 0.5f);
+                damage += Convert.ToInt32(Vector3.Distance(gameObject.transform.position, towerTransform.position) * 2);
                 if (target.enemyType == Enemy.EnemyTypes.Boss)
                 {
                     damage += 5;
