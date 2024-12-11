@@ -1721,6 +1721,7 @@ MonoBehaviour:
   shild: 0
   protectionType: 0
   enemyType: 0
+  enemyClass: 0
   speed: 0.5
   points:
   - {fileID: 1505357521}
@@ -1728,6 +1729,7 @@ MonoBehaviour:
   numberPoint: 0
   distanceToPoint: 0
   immunity: 0
+  _potion: 0
 --- !u!23 &1346797573
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2007,6 +2009,7 @@ MonoBehaviour:
   shild: 0
   protectionType: 0
   enemyType: 0
+  enemyClass: 0
   speed: 0.5
   points:
   - {fileID: 1505357521}
@@ -2014,6 +2017,7 @@ MonoBehaviour:
   numberPoint: 0
   distanceToPoint: 0
   immunity: 0
+  _potion: 0
 --- !u!23 &1427129829
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2556,6 +2560,7 @@ MonoBehaviour:
   shild: 0
   protectionType: 0
   enemyType: 0
+  enemyClass: 0
   speed: 1.5
   points:
   - {fileID: 1505357521}
@@ -2563,6 +2568,7 @@ MonoBehaviour:
   numberPoint: 0
   distanceToPoint: 0
   immunity: 0
+  _potion: 0
 --- !u!23 &1788070574
 MeshRenderer:
   m_ObjectHideFlags: 0
