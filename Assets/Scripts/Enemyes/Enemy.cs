@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -26,6 +27,12 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         None, Boss
     }
 
+    public enum EnemyClass
+    {
+        Simple, Fast
+    }
+    public EnemyClass enemyClass;
+
     [Header("Move")]
     public float speed;
     public GameObject[] points;
@@ -35,8 +42,8 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     public float distanceToPoint; // дистанция до следующей точки
 
     // эфекты
-    [SerializeField] bool immunity;
-    public int potion;
+    [SerializeField] bool immunity = false;
+    [SerializeField] int _potion = 0;
 
     private void Start()
     {
@@ -46,7 +53,6 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         agent = GetComponent<NavMeshAgent>();
         agent.destination = point;
         agent.SetDestination(point);
-        StartCoroutine(Potion());
     }
 
     private void Update()
@@ -101,26 +107,32 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         Destroy(gameObject);
     }
 
-    public IEnumerator Potion()
+    IEnumerator _Potion()
     {
-        while (true)
+        if (_potion <= 5)
         {
-            if (potion > 3)
+            _potion += 1;
+            if (_potion > 5)
             {
-                potion = 3;
+                _potion = 5;
             }
-            if (potion > 0)
+            for (int i = 0; i < 3; i++)
             {
-                for (int i = 0; i < 6; i++)
+                yield return new WaitForSeconds(2f);
+                if (!immunity)
                 {
-                    if (!immunity)
+                    hp -= 5;
+                    if (enemyType == EnemyTypes.Boss)
                     {
-                        hp -= 3 * potion;
+                        hp += 4;
                     }
-                    yield return new WaitForSeconds(2f);
                 }
-                potion -= 1;
             }
+            _potion -= 1;
         }
+    }
+    public void Potion()
+    {
+        StartCoroutine(_Potion());
     }
 }
