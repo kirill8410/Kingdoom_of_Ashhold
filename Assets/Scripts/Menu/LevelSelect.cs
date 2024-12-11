@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,11 +6,16 @@ public class LevelSelect : MonoBehaviour
 {
     [SerializeField] int numberLevel;
 
+    private void Start()
+    {
+        GetComponentInChildren<TextMeshProUGUI>().text = numberLevel.ToString();
+    }
+
     private void Update()
     {
         if (PlayerPrefs.GetInt("Level") >= numberLevel)
         {
-            GetComponent<Canvas>().enabled = true;
+            GetComponentInChildren<Canvas>().enabled = true;
         }
         else
         {
