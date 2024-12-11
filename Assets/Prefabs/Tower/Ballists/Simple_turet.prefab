@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2619794794036064168
 RectTransform:
   m_ObjectHideFlags: 0
@@ -692,7 +692,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -30, y: -0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4130578905642028606
 CanvasRenderer:
@@ -1013,7 +1013,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -25, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &517098270699390393
 CanvasRenderer:
@@ -1068,7 +1068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4545741592448616058
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1364,7 +1364,7 @@ MonoBehaviour:
         m_MethodName: ShowInformation
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 1467d94c2915ddd49965129b69ca21dd, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 7accb7988ae2fb44e9a9c33138b59211, type: 2}
           m_ObjectArgumentAssemblyTypeName: TowerData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2757,7 +2757,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -25, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4481951965539701782
 CanvasRenderer:
@@ -3058,7 +3058,7 @@ MonoBehaviour:
         m_MethodName: ShowInformation
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 1467d94c2915ddd49965129b69ca21dd, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: f58d514d0bc9ae44c843ca62eee98eb5, type: 2}
           m_ObjectArgumentAssemblyTypeName: TowerData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3378,7 +3378,7 @@ MonoBehaviour:
   LevelUpButton: {fileID: 1995877735490243361}
   Buy: {fileID: 8300000, guid: 9a40290ff99105e449e5ccc211dd1389, type: 3}
   Error: {fileID: 8300000, guid: 662ac3bdeadbff04e93a73c1ad82caa8, type: 3}
-  _base: {fileID: 0}
+  _base: {fileID: 8418063812881115448}
 --- !u!82 &8662522410734518375
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3678,7 +3678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -37, y: -4}
+  m_AnchoredPosition: {x: -37, y: -10}
   m_SizeDelta: {x: 20, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4018520288968621606
@@ -3816,7 +3816,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -37, y: 48}
+  m_AnchoredPosition: {x: -37, y: 34}
   m_SizeDelta: {x: 20, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &411348276031971053
@@ -4063,7 +4063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -37, y: 22}
+  m_AnchoredPosition: {x: -37, y: 12}
   m_SizeDelta: {x: 20, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2952173770338595863
@@ -4311,7 +4311,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -25, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1723140372268449137
 CanvasRenderer:
@@ -4429,7 +4429,7 @@ MonoBehaviour:
   attackPrefab: {fileID: 5652138828623769678, guid: c44ac3293e4625f4e9cd5c92d8cf49a1, type: 3}
   Distance: {fileID: 2977622866563331958}
   attackPoint: {fileID: 7706607923824448461}
-  _levelUp: {fileID: 11400000, guid: 1546b83b6d3d08d43a64dcd0bceb0408, type: 2}
+  _levelUp: {fileID: 11400000, guid: 33ed10af125d6ad4db997fb011a309c4, type: 2}
   Turet_osnov: {fileID: 4421778034366791578}
   Turet_osnov2: {fileID: 6522714019000063619}
   isSniper: 0
@@ -4470,7 +4470,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -25, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5740364604325710005
 CanvasRenderer:
@@ -4635,7 +4635,7 @@ MonoBehaviour:
         m_MethodName: ShowInformation
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 1467d94c2915ddd49965129b69ca21dd, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 77fbc34cada953941b6c3b96cc2cd3ed, type: 2}
           m_ObjectArgumentAssemblyTypeName: TowerData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
