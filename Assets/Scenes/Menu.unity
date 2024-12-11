@@ -2157,7 +2157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5049ff74cff9af42b86400d6a602c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: NaN
+  difficulty: 3
 --- !u!1 &1280668072
 GameObject:
   m_ObjectHideFlags: 0
@@ -3214,7 +3214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5049ff74cff9af42b86400d6a602c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: NaN
+  difficulty: 1
 --- !u!224 &1603716115 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5497867594757696337, guid: e952b2834a178c845af18c9c6b46c062, type: 3}
@@ -3695,7 +3695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5049ff74cff9af42b86400d6a602c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: NaN
+  difficulty: 2
 --- !u!1001 &1363484185742996850
 PrefabInstance:
   m_ObjectHideFlags: 0
