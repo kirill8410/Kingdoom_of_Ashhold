@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int numberLevel;
     [SerializeField] GameObject UI;
     [SerializeField] GameObject enemySpawn;
+    [SerializeField] GameObject[] points;
 
     public void Win()
     {
