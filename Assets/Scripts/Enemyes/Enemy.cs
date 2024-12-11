@@ -107,7 +107,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         Destroy(gameObject);
     }
 
-    IEnumerator _Potion()
+    IEnumerator _Potion(int potionDamage)
     {
         if (_potion <= 5)
         {
@@ -121,18 +121,18 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                 yield return new WaitForSeconds(2f);
                 if (!immunity)
                 {
-                    hp -= 5;
+                    hp -= potionDamage;
                     if (enemyType == EnemyTypes.Boss)
                     {
-                        hp += 4;
+                        hp += potionDamage - 1;
                     }
                 }
             }
             _potion -= 1;
         }
     }
-    public void Potion()
+    public void Potion(int potionDamage)
     {
-        StartCoroutine(_Potion());
+        StartCoroutine(_Potion(potionDamage));
     }
 }

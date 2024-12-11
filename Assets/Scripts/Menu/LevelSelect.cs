@@ -1,16 +1,24 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSelect : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] int numberLevel;
+
+    private void Update()
     {
-        
+        if (PlayerPrefs.GetInt("Difficulty") >= numberLevel)
+        {
+            GetComponent<Canvas>().enabled = true;
+        }
+        else
+        {
+            GetComponent<Canvas>().enabled = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartLevel()
     {
-        
+        SceneManager.LoadScene($"Level_{numberLevel}");
     }
 }

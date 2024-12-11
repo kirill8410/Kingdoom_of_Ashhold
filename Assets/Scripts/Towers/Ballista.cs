@@ -83,7 +83,9 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 GameObject attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                 attack.GetComponent<Arrow>().damage = trueDamage;
                 attack.GetComponent<Arrow>().target = target;
+                attack.GetComponent<Arrow>().tower = this;
                 _arrow1 = attack;
+
                 if (isDouble)
                 {
                     GameObject attack1 = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
@@ -93,7 +95,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 }
                 if (isSniper)
                 {
-                    attack.GetComponent<Arrow>().tower = gameObject.transform;
+                    attack.GetComponent<Arrow>().towerTransform = gameObject.transform;
                 }
             }
         }
