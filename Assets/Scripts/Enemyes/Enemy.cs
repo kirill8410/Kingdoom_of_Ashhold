@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     [Header("HP")]
     [SerializeField] int hp;
     public int maxHP;
+    [SerializeField] TextMeshProUGUI HPText;
 
     [Header("Protection")]
     public int protection;
@@ -48,6 +50,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     private void Start()
     {
         LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        hp = hp * PlayerPrefs.GetInt("Difficulty");
         maxHP = hp;
         point = points[numberPoint].transform.position;
         agent = GetComponent<NavMeshAgent>();
@@ -81,6 +84,9 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         {
             Dead();
         }
+
+        // Отображение здоровья
+        HPText.text = $"{hp}/{maxHP}"; 
     }
 
     private void Finish() // Действия врага когда он дошёл до конца

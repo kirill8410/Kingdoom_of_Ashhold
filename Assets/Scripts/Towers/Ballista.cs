@@ -47,6 +47,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         {
             RotationTuret();
         }
+        Distance.transform.localScale = new Vector3(attackDistance * 2f, attackDistance * 2f, 1f);
     }
     public void ArrowSpawn(int arrow)
     {
