@@ -122,7 +122,7 @@ public class Base : MonoBehaviour
 
                 LM.coins -= selectTower.price;
                 Instantiate(selectTower.tower, _base.transform.position, Quaternion.identity);
-                Destroy(_base);
+                Destroy(_base, 0.8f);
             }
             else
             {
@@ -171,7 +171,8 @@ public class Base : MonoBehaviour
             LM.coins -= _tower.PriceLevelUp;
             _tower.LevelUp();
 
-            ShowLevelUpInformation();
+            InformationLevelUp.SetActive(false);
+            Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
         else
         {

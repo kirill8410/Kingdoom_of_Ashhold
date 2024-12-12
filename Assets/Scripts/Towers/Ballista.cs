@@ -48,6 +48,14 @@ public class Ballista : Tower, TowerFunctions // Баллиста
             RotationTuret();
         }
         Distance.transform.localScale = new Vector3(attackDistance * 2f, attackDistance * 2f, 1f);
+        if (Towerlevel == 1)
+        {
+            PriceLevelUp = levelUp.priceLevelUp_1;
+        }
+        else if (Towerlevel == 2)
+        {
+            PriceLevelUp = levelUp.priceLevelUp_2;
+        }
     }
     public void ArrowSpawn(int arrow)
     {
@@ -126,14 +134,12 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         {
             damage += levelUp.damage_1;
             attackDistance += levelUp.distance_1;
-            PriceLevelUp = levelUp.priceLevelUp_1;
             Towerlevel = 2;
         }
         else if (Towerlevel == 2)
         {
             damage += levelUp.damage_2;
             attackDistance += levelUp.distance_2;
-            PriceLevelUp = levelUp.priceLevelUp_2;
             Towerlevel = 3;
         }
     }

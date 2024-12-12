@@ -91,6 +91,11 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     private void Finish() // Действия врага когда он дошёл до конца
     {
+        LM.HP -= 1;
+        if (enemyType == EnemyTypes.Boss)
+        {
+            LM.HP = 0;
+        }
         Destroy(gameObject);
     }
 

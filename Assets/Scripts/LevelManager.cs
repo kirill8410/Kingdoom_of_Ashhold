@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public int coins;
     public int HP = 10;
-    public int wave;
+    public int wave = 0;
     private bool isWave = false;
     private bool isSpawn = false;
     [SerializeField] int numberLevel;
@@ -14,11 +14,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Canvas waveButton;
     public Transform enemySpawn;
     public GameObject[] points;
-    [SerializeField] Wave[] waves;
+    public Wave[] waves;
 
     private void Update()
     {
-        if (wave >= waves.Length + 1)
+        if (wave >= waves.Length)
         {
             Win();
         }
@@ -65,7 +65,7 @@ public class LevelManager : MonoBehaviour
     {
         isWave = true;
         isSpawn = false;
-        StartCoroutine(waves[wave - 1].SpawnEnemies(this));
+        StartCoroutine(waves[wave].SpawnEnemies(this));
         waveButton.enabled = false;
     }
 
