@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0a8d35a293e894a9d2d9d946db8ebf, type: 3}
   m_Name: Sniper_turet
   m_EditorClassIdentifier: 
-  TowerName: 
-  description: 
-  price: 0
+  TowerName: "\u0421\u043D\u0430\u0439\u043F\u0435\u0440\u0441\u043A\u0430\u044F
+    \u0442\u0443\u0440\u0435\u043B\u044C"
+  description: "\u041D\u0438\u043A\u043E\u0433\u0434\u0430 \u043D\u0435 \u043F\u0440\u043E\u043C\u0430\u0445\u0438\u0432\u0430\u0435\u0442\u0441\u044F
+    \u0438 \u0447\u0435\u043C \u0434\u0430\u043B\u044C\u0448\u0435 \u0446\u0435\u043B\u044C
+    \u0442\u0435\u043C \u0435\u0439 \u0431\u0443\u0434\u0435\u0442 \u0431\u043E\u043B\u044C\u043D\u0435\u0435."
+  price: 55
   tower: {fileID: 7842681586933842562, guid: bb20623462df7f14db960674c9471839, type: 3}

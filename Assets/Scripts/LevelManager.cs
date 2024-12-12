@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject UI;
     [SerializeField] GameObject enemySpawn;
     [SerializeField] GameObject[] points;
+    [SerializeField] 
 
     public void Win()
     {
@@ -30,6 +31,11 @@ public class LevelManager : MonoBehaviour
     public void ReturtToLobby()
     {
         SceneManager.LoadScene("GameLobby");
+    }
+
+    public void StartWave()
+    {
+
     }
 
 }
