@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         // Определение дистанции до точки
         distanceToPoint = Vector3.Distance(point, gameObject.transform.position);
         // Переключение на следующую точку
-        if (distanceToPoint < 0.3f)
+        if (distanceToPoint < 0.35f)
         {
             numberPoint += 1;
             if (numberPoint >= points.Length)
