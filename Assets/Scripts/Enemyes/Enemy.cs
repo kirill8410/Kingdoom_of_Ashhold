@@ -45,7 +45,8 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     // эфекты
     [SerializeField] bool immunity = false;
-    [SerializeField] int _potion = 0;
+    int _potion = 0;
+    bool _ice = false;
 
     private void Start()
     {
@@ -145,5 +146,23 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     public void Potion(int potionDamage)
     {
         StartCoroutine(_Potion(potionDamage));
+    }
+
+    private IEnumerator _Ice()
+    {
+        if (!_ice)
+        {
+            _ice = true;
+            float SlowSpeed = speed * 0.6f;
+            speed -= SlowSpeed;
+            yield return new WaitForSeconds(10f);
+            speed += SlowSpeed;
+            _ice = false;
+        }
+    }
+
+    public void Ice()
+    {
+        StartCoroutine(_Ice());
     }
 }

@@ -141,7 +141,7 @@ public class Base : MonoBehaviour
             {
                 DamageLeveUp.text = $"+ {_tower.levelUp.damage_1}";
                 TextLeveUp.text = "Улучшить до уроня 2";
-                DistanceLeveUp.text = $"+ {(_tower.levelUp.distance_1 / 4) - 0.5f}";
+                DistanceLeveUp.text = $"+ {(_tower.levelUp.distance_1 / 4)}";
                 PriceLeveUp.text = _tower.levelUp.priceLevelUp_1.ToString();
             }
             else if (_tower.Towerlevel == 2)

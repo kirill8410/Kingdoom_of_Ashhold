@@ -63,7 +63,6 @@ MonoBehaviour:
   numberPoint: 0
   distanceToPoint: 0
   immunity: 0
-  _potion: 0
 --- !u!195 &5785045042091345980
 NavMeshAgent:
   m_ObjectHideFlags: 0

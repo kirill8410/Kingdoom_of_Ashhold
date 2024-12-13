@@ -14,6 +14,10 @@ public class Wave : ScriptableObject
         yield return new WaitForSeconds(1f);
         for (int i = 0; i < Enemies.Length; i++)
         {
+            if (NumberOfEnemies[i] == 0)
+            {
+                NumberOfEnemies[i] = 1;
+            }
             for (int j = 0; j < NumberOfEnemies[i]; j++)
             {
                 GameObject enemy = Instantiate(Enemies[i].gameObject, LM.enemySpawn.position, LM.enemySpawn.rotation);

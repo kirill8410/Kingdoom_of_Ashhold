@@ -5,10 +5,11 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Ballista : Tower, TowerFunctions // Баллиста
 {
+    [Header("Level")]
+
     public int PriceLevelUp { get; set; }
     public int Towerlevel { get; set; } = 1;
 
-    [Header("Level")]
     [SerializeField] LevelUp _levelUp;
     public LevelUp levelUp
     {
