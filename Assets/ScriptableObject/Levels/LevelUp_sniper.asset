@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58713c2d5e5af804b9c6a9c6e0d1f488, type: 3}
-  m_Name: LevelUp_simple
+  m_Name: LevelUp_sniper
   m_EditorClassIdentifier: 
-  damage_1: 15
-  distance_1: 5
-  priceLevelUp_1: 50
-  damage_2: 30
-  distance_2: 5
-  priceLevelUp_2: 125
+  damage_1: 5
+  distance_1: 10
+  priceLevelUp_1: 65
+  damage_2: 20
+  distance_2: 15
+  priceLevelUp_2: 130

@@ -2579,7 +2579,7 @@ MonoBehaviour:
   attackPrefab: {fileID: 5652138828623769678, guid: c44ac3293e4625f4e9cd5c92d8cf49a1, type: 3}
   Distance: {fileID: 481511812890174541}
   attackPoint: {fileID: 3150454543140692013}
-  _levelUp: {fileID: 0}
+  _levelUp: {fileID: 11400000, guid: 3cecc1f56fe03a5478920b8fa70bde00, type: 2}
   Turet_osnov: {fileID: 8343393977920028741}
   Turet_osnov2: {fileID: 1236262321093328936}
   isSniper: 0

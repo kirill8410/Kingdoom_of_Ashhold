@@ -43,9 +43,9 @@ public class LevelManager : MonoBehaviour
 
     public void Win()
     {
-        if (PlayerPrefs.GetInt("Level") < numberLevel)
+        if (PlayerPrefs.GetInt("Level") < numberLevel + 1)
         {
-            PlayerPrefs.SetInt("Level", numberLevel);
+            PlayerPrefs.SetInt("Level", numberLevel + 1);
             PlayerPrefs.Save();
         }
         UI.SetActive(true);
