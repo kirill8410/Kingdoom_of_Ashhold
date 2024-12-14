@@ -23,7 +23,6 @@ public class HealthBar : MonoBehaviour
     }
     private void Update()
     {
-        health = (script.hp/script.maxHP)*100;
        if(health < maxhealth)
        {           
             Health();

@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     [SerializeField] int dropCoins;
 
     [Header("HP")]
-    public int hp;
+    [SerializeField] int hp;
     public int maxHP;
     [SerializeField] TextMeshProUGUI HPText;
 
