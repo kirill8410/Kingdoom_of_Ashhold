@@ -34,6 +34,9 @@ public class Mage : Tower, TowerFunctions
         Simple, Fire, Ice, Death, God
     }
 
+    private int charge = 0;
+    private Enemy target2;
+
     private int trueDamage;
 
     public Enemy target;
@@ -100,7 +103,24 @@ public class Mage : Tower, TowerFunctions
                         attack.GetComponent<IceSpell>().target = target;
                         attack.GetComponent<IceSpell>().mage = this;
                         break;
+                    case MageType.Fire:
+                        MageCrystal.SetActive(true);
+                        attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
+                        attack.GetComponent<FireSpell>().target = target;
+                        if (target != target2)
+                        {
+                            charge = 0;
+                        }
+                        trueDamage += damage * charge;
+                        charge += 1;
+                        target2 = target;
+                        target.ReduceHP(trueDamage);
+                        break;
                 }
+            }
+            else if (mageType == MageType.Fire)
+            {
+                MageCrystal.SetActive(false);
             }
         }
     }

@@ -29,11 +29,11 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         None, Boss
     }
 
-    public enum EnemyClass
+    public enum EnemySpell
     {
-        Simple, Fast
+        None, Health, CreateShild, SpeedBust, SpawnEnemy
     }
-    public EnemyClass enemyClass;
+    public EnemySpell enemySpell;
 
     [Header("Move")]
     public float speed;
