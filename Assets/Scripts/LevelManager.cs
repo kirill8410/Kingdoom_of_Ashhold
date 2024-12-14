@@ -16,6 +16,19 @@ public class LevelManager : MonoBehaviour
     public GameObject[] points;
     public Wave[] waves;
 
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("Difficulty") == 0)
+        {
+            PlayerPrefs.SetInt("Difficulty", 2);
+            PlayerPrefs.Save();
+        }
+        if (PlayerPrefs.GetString("Music") != "true" && PlayerPrefs.GetString("Music") != "false")
+        {
+            PlayerPrefs.SetString("Music", "true");
+            PlayerPrefs.Save();
+        }
+    }
     private void Update()
     {
         if (wave >= waves.Length)

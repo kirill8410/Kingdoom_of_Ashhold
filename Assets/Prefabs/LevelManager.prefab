@@ -728,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 100
-  HP: 10
+  HP: 1000
   wave: 0
   numberLevel: 1
   UI: {fileID: 2794597447593523270}
