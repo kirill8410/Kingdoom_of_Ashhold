@@ -94,10 +94,6 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         {
             Dead();
         }
-
-        // Отображение здоровья
-
-
     }
 
     private void Finish() // Действия врага когда он дошёл до конца
@@ -121,9 +117,26 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
             hp -= damage;
             shild = 0;
         }
+        HealthBar();
     }
     private void HealthBar()
     {
+        if (enemyType == EnemyTypes.Boss)
+        {
+            healthIcon.sprite = healthIcons[2];
+        }
+        else
+        {
+            healthIcon.sprite = healthIcons[0];
+        }
+        foreach (SpriteRenderer strip in strips)
+        {
+            strip.color = new Color(1f, 0f, 0f);
+        }
+        for (int i = 10; i > ((hp / maxHP) * 10); i--)
+        {
+            strips[i].color = new Color(1f, 0f, 0f, 0f);
+        }
         if (shild > 0)
         {
             if (enemyType == EnemyTypes.Boss)
@@ -135,21 +148,6 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                 healthIcon.sprite = healthIcons[1];
             }
             for (int i = 0; i < shild; i++)
-            {
-                strips[i].color = new Color(1f, 1f, 1f);
-            }
-        }
-        else 
-        {
-            if (enemyType == EnemyTypes.Boss)
-            {
-                healthIcon.sprite = healthIcons[2];
-            }
-            else
-            {
-                healthIcon.sprite = healthIcons[0];
-            }
-            for (int i = 10; i < shild; i++)
             {
                 strips[i].color = new Color(1f, 1f, 1f);
             }
@@ -181,6 +179,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                     {
                         hp += potionDamage - 1;
                     }
+                    HealthBar();
                 }
             }
             _potion -= 1;
