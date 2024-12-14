@@ -21,8 +21,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     [SerializeField] SpriteRenderer[] strips = new SpriteRenderer[10];
     [SerializeField] SpriteRenderer healthIcon;
     [SerializeField] Sprite[] healthIcons = new Sprite[4];
-
-
+    [SerializeField] Sprite[] stripIcons = new Sprite[6];
 
     [Header("Protection")]
     public int protection;
@@ -66,6 +65,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         agent = GetComponent<NavMeshAgent>();
         agent.destination = point;
         agent.SetDestination(point);
+        HealthBar();
     }
 
     private void Update()
@@ -121,37 +121,48 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     }
     private void HealthBar()
     {
+        int a = 0;
+        if (shild > 0)
+        {
+            a = 1;
+        }
         if (enemyType == EnemyTypes.Boss)
         {
-            healthIcon.sprite = healthIcons[2];
+            healthIcon.sprite = healthIcons[2 + a];
         }
         else
         {
-            healthIcon.sprite = healthIcons[0];
+            healthIcon.sprite = healthIcons[0 + a];
         }
         foreach (SpriteRenderer strip in strips)
         {
-            strip.color = new Color(1f, 0f, 0f);
-        }
-        for (int i = 10; i > ((hp / maxHP) * 10); i--)
-        {
-            strips[i].color = new Color(1f, 0f, 0f, 0f);
-        }
-        if (shild > 0)
-        {
-            if (enemyType == EnemyTypes.Boss)
+            if (Array.IndexOf(strips, strip) < Convert.ToInt32((Convert.ToSingle(hp)/ Convert.ToSingle(maxHP))*10f) 
+                || Array.IndexOf(strips, strip) < shild)
             {
-                healthIcon.sprite = healthIcons[3];
+                strip.gameObject.SetActive(true);
+                a = 0;
+                if (Array.IndexOf(strips, strip) < shild)
+                {
+                    a = 3;
+                }
+                if (strip == strips[0])
+                {
+                    strip.sprite = stripIcons[0 + a];
+                }
+                else if (strip == strips[strips.Length - 1])
+                {
+                    strip.sprite = stripIcons[2 + a];
+                }
+                else
+                {
+                    strip.sprite = stripIcons[1 + a];
+                }
             }
             else
             {
-                healthIcon.sprite = healthIcons[1];
+                strip.gameObject.SetActive(false);
             }
-            for (int i = 0; i < shild; i++)
-            {
-                strips[i].color = new Color(1f, 1f, 1f);
-            }
-        }
+        } 
     }
 
     private void Dead() // Действия врага при смерти
@@ -174,12 +185,11 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                 yield return new WaitForSeconds(2f);
                 if (!immunity)
                 {
-                    hp -= potionDamage;
                     if (enemyType == EnemyTypes.Boss)
                     {
                         hp += potionDamage - 1;
                     }
-                    HealthBar();
+                    ReduceHP(potionDamage);
                 }
             }
             _potion -= 1;
@@ -206,5 +216,14 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     public void Ice()
     {
         StartCoroutine(_Ice());
+    }
+
+    public void Curse(int curse)
+    {
+        protection -= curse;
+        if (shild > 0)
+        {
+            shild -= 1;
+        }
     }
 }

@@ -16,7 +16,7 @@ public class IceSpell : MonoBehaviour
         }
         else // Поиск цели если она отсутствует 
         {
-            mage.MageCrystalRecharge();
+            mage.MageCrystalRecharge(true);
             Destroy(gameObject);
         }
     }
@@ -26,7 +26,7 @@ public class IceSpell : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             target.ReduceHP(damage);
-            mage.MageCrystalRecharge();
+            mage.MageCrystalRecharge(true);
             target.Ice();
             Destroy(gameObject);
         }

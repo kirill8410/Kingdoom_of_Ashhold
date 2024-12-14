@@ -68,6 +68,13 @@ MonoBehaviour:
   - {fileID: 947444708, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
   - {fileID: 1000412885, guid: 21ebb1f800521d6489c789dc62c5c91a, type: 3}
   - {fileID: 44804205, guid: 21ebb1f800521d6489c789dc62c5c91a, type: 3}
+  stripIcons:
+  - {fileID: 1998040847, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
+  - {fileID: -1074080911, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
+  - {fileID: -418145236, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
+  - {fileID: -448098536, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
+  - {fileID: 990118371, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
+  - {fileID: -403479227, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
   protection: 0
   shild: 0
   protectionType: 0

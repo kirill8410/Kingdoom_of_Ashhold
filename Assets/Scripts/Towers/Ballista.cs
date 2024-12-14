@@ -115,6 +115,10 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
+            if (target != null && Vector3.Distance(target.transform.position, gameObject.transform.position) > attackDistance)
+            {
+                target = null;
+            }
             Enemy[] enemyes = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
             {
