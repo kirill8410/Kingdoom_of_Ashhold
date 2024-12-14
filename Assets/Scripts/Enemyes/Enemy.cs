@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -15,11 +16,19 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     [Header("HP")]
     [SerializeField] int hp;
     public int maxHP;
-    [SerializeField] TextMeshProUGUI HPText;
+
+    [Header("HealthBar")]
+    [SerializeField] SpriteRenderer[] strips = new SpriteRenderer[10];
+    [SerializeField] SpriteRenderer healthIcon;
+    [SerializeField] Sprite[] healthIcons = new Sprite[4];
+
+
 
     [Header("Protection")]
     public int protection;
-    public int shild;
+    [SerializeField] int shild;
+    private int maxShild = 10;
+
     public Tower.DamageTypes protectionType;
 
     [Header("Type")]
@@ -87,7 +96,8 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         }
 
         // Отображение здоровья
-        HPText.text = $"{hp}/{maxHP}"; 
+
+
     }
 
     private void Finish() // Действия врага когда он дошёл до конца
@@ -110,6 +120,39 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         {
             hp -= damage;
             shild = 0;
+        }
+    }
+    private void HealthBar()
+    {
+        if (shild > 0)
+        {
+            if (enemyType == EnemyTypes.Boss)
+            {
+                healthIcon.sprite = healthIcons[3];
+            }
+            else
+            {
+                healthIcon.sprite = healthIcons[1];
+            }
+            for (int i = 0; i < shild; i++)
+            {
+                strips[i].color = new Color(1f, 1f, 1f);
+            }
+        }
+        else 
+        {
+            if (enemyType == EnemyTypes.Boss)
+            {
+                healthIcon.sprite = healthIcons[2];
+            }
+            else
+            {
+                healthIcon.sprite = healthIcons[0];
+            }
+            for (int i = 10; i < shild; i++)
+            {
+                strips[i].color = new Color(1f, 1f, 1f);
+            }
         }
     }
 

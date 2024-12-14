@@ -988,8 +988,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 637176582278926882}
-  - {fileID: 4068339956060181698}
   - {fileID: 1822494377573555649}
+  - {fileID: 4068339956060181698}
   - {fileID: 8717945806912100822}
   - {fileID: 8775407730976315087}
   - {fileID: 8523343972925708278}
@@ -1057,6 +1057,8 @@ MonoBehaviour:
   kinghealth_icon: {fileID: 9194969689990085156}
   iron: 0
   king: 0
+  enemy: {fileID: 0}
+  script: {fileID: 0}
 --- !u!1 &3454513262106270435
 GameObject:
   m_ObjectHideFlags: 0
