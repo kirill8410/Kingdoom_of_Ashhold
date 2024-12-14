@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Big_turet
   m_EditorClassIdentifier: 
   TowerName: "\u0431\u043E\u043B\u044C\u0448\u0430\u044F \u0431\u0430\u043B\u043B\u0438\u0441\u0442\u0430"
-  description: "\u043F\u0440\u043E\u0441\u0442\u043E \u0411\u041E\u041B\u042C\u0448\u0430\u044F
-    \u0431\u0430\u043B\u043B\u0438\u0441\u0442\u0430"
+  description: "\u041F\u0440\u043E\u0441\u0442\u043E \u0411\u041E\u041B\u042C\u0448\u0430\u044F
+    \u0431\u0430\u043B\u043B\u0438\u0441\u0442\u0430."
   price: 70
-  tower: {fileID: 0}
+  tower: {fileID: 8807779418078994800, guid: ebbab020f0c97f244be645eba2544af0, type: 3}

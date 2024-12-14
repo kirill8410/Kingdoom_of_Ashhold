@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -13,6 +15,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     [Header("HP")]
     [SerializeField] int hp;
     public int maxHP;
+    [SerializeField] TextMeshProUGUI HPText;
 
     [Header("Protection")]
     public int protection;
@@ -26,6 +29,12 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         None, Boss
     }
 
+    public enum EnemyClass
+    {
+        Simple, Fast
+    }
+    public EnemyClass enemyClass;
+
     [Header("Move")]
     public float speed;
     public GameObject[] points;
@@ -35,12 +44,14 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     public float distanceToPoint; // дистанция до следующей точки
 
     // эфекты
-    [SerializeField] bool immunity;
-    bool potion;
+    [SerializeField] bool immunity = false;
+    int _potion = 0;
+    bool _ice = false;
 
     private void Start()
     {
         LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        hp = hp * PlayerPrefs.GetInt("Difficulty");
         maxHP = hp;
         point = points[numberPoint].transform.position;
         agent = GetComponent<NavMeshAgent>();
@@ -53,7 +64,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         // Определение дистанции до точки
         distanceToPoint = Vector3.Distance(point, gameObject.transform.position);
         // Переключение на следующую точку
-        if (distanceToPoint < 0.3f)
+        if (distanceToPoint < 0.35f)
         {
             numberPoint += 1;
             if (numberPoint >= points.Length)
@@ -74,10 +85,18 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         {
             Dead();
         }
+
+        // Отображение здоровья
+        HPText.text = $"{hp}/{maxHP}"; 
     }
 
     private void Finish() // Действия врага когда он дошёл до конца
     {
+        LM.HP -= 1;
+        if (enemyType == EnemyTypes.Boss)
+        {
+            LM.HP = 0;
+        }
         Destroy(gameObject);
     }
 
@@ -100,20 +119,50 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         Destroy(gameObject);
     }
 
-    public IEnumerator Potion()
+    IEnumerator _Potion(int potionDamage)
     {
-        if (!immunity)
+        if (_potion <= 5)
         {
-            if (!potion)
+            _potion += 1;
+            if (_potion > 5)
             {
-                potion = true;
-                for (float i = 2f; i > 0f; i -= 0.1f)
-                {
-                    yield return new WaitForSeconds(i);
-                    hp -= 1;
-                }
-                potion = false;
+                _potion = 5;
             }
+            for (int i = 0; i < 3; i++)
+            {
+                yield return new WaitForSeconds(2f);
+                if (!immunity)
+                {
+                    hp -= potionDamage;
+                    if (enemyType == EnemyTypes.Boss)
+                    {
+                        hp += potionDamage - 1;
+                    }
+                }
+            }
+            _potion -= 1;
         }
+    }
+    public void Potion(int potionDamage)
+    {
+        StartCoroutine(_Potion(potionDamage));
+    }
+
+    private IEnumerator _Ice()
+    {
+        if (!_ice)
+        {
+            _ice = true;
+            float SlowSpeed = speed * 0.6f;
+            speed -= SlowSpeed;
+            yield return new WaitForSeconds(10f);
+            speed += SlowSpeed;
+            _ice = false;
+        }
+    }
+
+    public void Ice()
+    {
+        StartCoroutine(_Ice());
     }
 }

@@ -5,10 +5,11 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Ballista : Tower, TowerFunctions // Баллиста
 {
+    [Header("Level")]
+
     public int PriceLevelUp { get; set; }
     public int Towerlevel { get; set; } = 1;
 
-    [Header("Level")]
     [SerializeField] LevelUp _levelUp;
     public LevelUp levelUp
     {
@@ -47,6 +48,15 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         {
             RotationTuret();
         }
+        Distance.transform.localScale = new Vector3(attackDistance * 2f, attackDistance * 2f, 1f);
+        if (Towerlevel == 1)
+        {
+            PriceLevelUp = levelUp.priceLevelUp_1;
+        }
+        else if (Towerlevel == 2)
+        {
+            PriceLevelUp = levelUp.priceLevelUp_2;
+        }
     }
     public void ArrowSpawn(int arrow)
     {
@@ -83,17 +93,19 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 GameObject attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                 attack.GetComponent<Arrow>().damage = trueDamage;
                 attack.GetComponent<Arrow>().target = target;
+                attack.GetComponent<Arrow>().tower = this;
                 _arrow1 = attack;
+
                 if (isDouble)
                 {
                     GameObject attack1 = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                     attack1.GetComponent<Arrow>().damage = trueDamage;
                     attack1.GetComponent<Arrow>().target = target;
-                    _arrow2 = attack;
+                    _arrow2 = attack1;
                 }
                 if (isSniper)
                 {
-                    attack.GetComponent<Arrow>().tower = gameObject.transform;
+                    attack.GetComponent<Arrow>().towerTransform = gameObject.transform;
                 }
             }
         }
@@ -123,14 +135,12 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         {
             damage += levelUp.damage_1;
             attackDistance += levelUp.distance_1;
-            PriceLevelUp = levelUp.priceLevelUp_1;
             Towerlevel = 2;
         }
         else if (Towerlevel == 2)
         {
             damage += levelUp.damage_2;
             attackDistance += levelUp.distance_2;
-            PriceLevelUp = levelUp.priceLevelUp_2;
             Towerlevel = 3;
         }
     }

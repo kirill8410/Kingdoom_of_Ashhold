@@ -7,8 +7,9 @@ public class Arrow : MonoBehaviour // Обычная стрела
 {
     public Enemy target; // Цель в которую летит стрела
     public int damage; // Урон стрелы
-    public float speed; // Скорость стрелы
-    public Transform tower;
+    public float speed = 2; // Скорость стрелы
+    public TowerFunctions tower;
+    public Transform towerTransform;
     [Header("Effects")]    
     [SerializeField] bool potion;
     [SerializeField] bool sniper;
@@ -46,14 +47,18 @@ public class Arrow : MonoBehaviour // Обычная стрела
         {
             if (sniper)
             {
-                damage += Convert.ToInt32(Vector3.Distance(gameObject.transform.position, tower.position) - 0.5f);
+                damage += Convert.ToInt32(Vector3.Distance(gameObject.transform.position, towerTransform.position) * 2);
+                if (target.enemyType == Enemy.EnemyTypes.Boss)
+                {
+                    damage += 5;
+                }
+            }
+            if (potion)
+            {
+                target.Potion(tower.Towerlevel + 2);
             }
             target.ReduceHP(damage);
             Destroy(gameObject);
-            if (potion)
-            {
-                target.Potion();
-            }
         }
     }
 }

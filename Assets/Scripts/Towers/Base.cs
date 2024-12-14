@@ -122,7 +122,7 @@ public class Base : MonoBehaviour
 
                 LM.coins -= selectTower.price;
                 Instantiate(selectTower.tower, _base.transform.position, Quaternion.identity);
-                Destroy(_base);
+                Destroy(_base, 0.8f);
             }
             else
             {
@@ -139,16 +139,16 @@ public class Base : MonoBehaviour
             Selection.transform.localPosition = new Vector3(-80f, 0f, 0f);
             if (_tower.Towerlevel == 1)
             {
-                DamageLeveUp.text = _tower.levelUp.damage_1.ToString();
+                DamageLeveUp.text = $"+ {_tower.levelUp.damage_1}";
                 TextLeveUp.text = "Улучшить до уроня 2";
-                DistanceLeveUp.text = _tower.levelUp.distance_1.ToString();
+                DistanceLeveUp.text = $"+ {(_tower.levelUp.distance_1 / 4)}";
                 PriceLeveUp.text = _tower.levelUp.priceLevelUp_1.ToString();
             }
             else if (_tower.Towerlevel == 2)
             {
-                DamageLeveUp.text = _tower.levelUp.damage_2.ToString();
+                DamageLeveUp.text = $"+ {_tower.levelUp.damage_2}";
                 TextLeveUp.text = "Улучшить до уроня 3";
-                DistanceLeveUp.text = _tower.levelUp.distance_2.ToString();
+                DistanceLeveUp.text = $"+ {(_tower.levelUp.distance_2 / 4) - 0.5f}";
                 PriceLeveUp.text = _tower.levelUp.priceLevelUp_2.ToString();
             }
 
@@ -171,7 +171,8 @@ public class Base : MonoBehaviour
             LM.coins -= _tower.PriceLevelUp;
             _tower.LevelUp();
 
-            ShowLevelUpInformation();
+            InformationLevelUp.SetActive(false);
+            Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
         else
         {
