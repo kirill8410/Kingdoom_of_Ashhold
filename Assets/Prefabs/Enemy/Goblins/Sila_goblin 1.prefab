@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropCoins: 10
-  hp: 80
+  hp: 150
   maxHP: 0
   HPText: {fileID: 2837979989286617527}
   protection: 0
@@ -1368,7 +1368,6 @@ MonoBehaviour:
   numberPoint: 0
   distanceToPoint: 0
   immunity: 0
-  _potion: 0
 --- !u!195 &4409400256639648170
 NavMeshAgent:
   m_ObjectHideFlags: 0
