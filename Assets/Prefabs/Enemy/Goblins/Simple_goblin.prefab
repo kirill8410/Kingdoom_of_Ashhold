@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropCoins: 5
-  hp: 50
+  hp: 100
   maxHP: 0
   HPText: {fileID: 5652649033834450793}
   protection: 0
