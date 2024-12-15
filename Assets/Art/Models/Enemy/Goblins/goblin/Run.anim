@@ -2212,7 +2212,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: telo/niz/levo/koleno
+    path: telo/niz/pravo/koleno
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2224,7 +2224,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: telo/niz/levo/koleno
+    path: telo/niz/pravo/koleno
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2236,7 +2236,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: telo/niz/levo/koleno
+    path: telo/niz/pravo/koleno
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2284,7 +2284,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: telo/niz/pravo/koleno
+    path: telo/niz/levo/koleno
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2296,7 +2296,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: telo/niz/pravo/koleno
+    path: telo/niz/levo/koleno
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2308,7 +2308,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: telo/niz/pravo/koleno
+    path: telo/niz/levo/koleno
     classID: 4
     script: {fileID: 0}
     flags: 0

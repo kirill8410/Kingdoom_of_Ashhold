@@ -115,7 +115,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.54922, y: 0.54922, z: 0.54922}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5659079095064111117}
@@ -310,7 +310,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.3019608, g: 0.16470589, b: 0.90588236, a: 0.7058824}
+      maxColor: {r: 0.16470589, g: 0.4068247, b: 0.90588236, a: 0.6039216}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1010,7 +1010,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 100
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5270,6 +5270,7 @@ MonoBehaviour:
   _levelUp: {fileID: 11400000, guid: 1617ded6860216e45bbf705ac1f196ad, type: 2}
   MageCrystal: {fileID: 1679191805525642958}
   mageType: 0
+  charge: 0
   target: {fileID: 0}
 --- !u!1001 &4816011033157135864
 PrefabInstance:
@@ -5411,10 +5412,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1738677108, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
+    - target: {fileID: 7040619723305010683, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 035e0a81bbe95cd43acac5ee6fbea72d, type: 2}
     - target: {fileID: 7586444265985291835, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_Name
       value: God_mage
       objectReference: {fileID: 0}
+    - target: {fileID: 8487294271860812273, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 7945351f27194d343b548ecf7c2384cc, type: 2}
     - target: {fileID: 8825054985526175431, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 

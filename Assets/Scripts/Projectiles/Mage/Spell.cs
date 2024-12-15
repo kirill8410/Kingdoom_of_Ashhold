@@ -34,7 +34,7 @@ public class Spell : MonoBehaviour
             (
             transform.localScale.x + 5f, transform.localScale.y + 5f, transform.localScale.z + 5f
             );
-            mage.MageCrystalRecharge();
+            mage.MageCrystalRecharge(true);
             Destroy(gameObject, 0.5f);
         }
     }
@@ -46,7 +46,7 @@ public class Spell : MonoBehaviour
             if (!isBang)
             {
                 target.ReduceHP(damage);
-                mage.MageCrystalRecharge();
+                mage.MageCrystalRecharge(true);
                 Destroy(gameObject);
             }
         }

@@ -34,7 +34,7 @@ public class Mage : Tower, TowerFunctions
         Simple, Fire, Ice, Death, God
     }
 
-    private int charge = 0;
+    [SerializeField] private int charge = 0;
     private Enemy target2;
 
     private int trueDamage;
@@ -105,22 +105,32 @@ public class Mage : Tower, TowerFunctions
                         break;
                     case MageType.Fire:
                         MageCrystal.SetActive(true);
-                        attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
-                        attack.GetComponent<FireSpell>().target = target;
                         if (target != target2)
                         {
                             charge = 0;
+                            attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
+                            attack.GetComponent<FireSpell>().target = target;
+                            attack.GetComponent <FireSpell>().mage = this;
                         }
                         trueDamage += damage * charge;
                         charge += 1;
                         target2 = target;
                         target.ReduceHP(trueDamage);
                         break;
+                    case MageType.Death:
+                        MageCrystal.SetActive(true);
+                        isAttack = false;
+                        attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
+                        attack.GetComponent<DeathSpell>().damage = trueDamage;
+                        attack.GetComponent<DeathSpell>().target = target;
+                        attack.GetComponent<DeathSpell>().mage = this;
+                        break;
                 }
             }
             else if (mageType == MageType.Fire)
             {
                 MageCrystal.SetActive(false);
+                target2 = null;
             }
         }
     }
@@ -129,6 +139,10 @@ public class Mage : Tower, TowerFunctions
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
+            if (target != null && Vector3.Distance(target.transform.position, gameObject.transform.position) > attackDistance)
+            {
+                target = null;
+            }
             Enemy[] enemyes = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
             {
@@ -158,9 +172,9 @@ public class Mage : Tower, TowerFunctions
             Towerlevel = 3;
         }
     }
-    public void MageCrystalRecharge()
+    public void MageCrystalRecharge(bool b)
     {
-        MageCrystal.SetActive(true);
+        MageCrystal.SetActive(b);
         isAttack = true;
     }
 }
