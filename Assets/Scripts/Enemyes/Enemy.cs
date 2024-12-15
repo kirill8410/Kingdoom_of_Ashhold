@@ -247,12 +247,15 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     {
         if (!_ice)
         {
-            _ice = true;
-            float SlowSpeed = speed * 0.6f;
-            speed -= SlowSpeed;
-            yield return new WaitForSeconds(10f);
-            speed += SlowSpeed;
-            _ice = false;
+            if (!immunity)
+            {
+                _ice = true;
+                float SlowSpeed = speed * 0.6f;
+                speed -= SlowSpeed;
+                yield return new WaitForSeconds(10f);
+                speed += SlowSpeed;
+                _ice = false;
+            }
         }
     }
     public void Ice()
@@ -262,10 +265,13 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     public void Curse(int curse)
     {
-        protection -= curse;
-        if (shield > 0)
+        if (!immunity)
         {
-            shield -= 1;
+            protection -= curse;
+            if (shield > 0)
+            {
+                shield -= 1;
+            }
         }
     }
 
