@@ -311,7 +311,6 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                     speed = s;
                     break;
                 case EnemySpell.SpeedBoost:
-                    yield return new WaitForSeconds(1f);
                     enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
                     foreach (Enemy enemy in enemyes)
                     {
@@ -324,7 +323,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                 case EnemySpell.SpawnEnemy:
                     s = speed;
                     speed = 0;
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(0.5f);
                     GameObject _enemy = Instantiate(enemySpawn, gameObject.transform.position, gameObject.transform.rotation);
                     _enemy.GetComponent<Enemy>().points = points;
                     speed = s;
