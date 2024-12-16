@@ -326,6 +326,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                     yield return new WaitForSeconds(0.5f);
                     GameObject _enemy = Instantiate(enemySpawn, gameObject.transform.position, gameObject.transform.rotation);
                     _enemy.GetComponent<Enemy>().points = points;
+                    _enemy.GetComponent<Enemy>().numberPoint = numberPoint;
                     speed = s;
                     break;
             }

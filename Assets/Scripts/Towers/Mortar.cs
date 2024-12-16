@@ -29,8 +29,9 @@ public class Mortar : Tower, TowerFunctions
     [SerializeField] MortarType mortarType;
     private enum MortarType
     {
-        Simple
+        Simple, Roket, Fire, Shrapnel
     }
+    public float bangDistance;
 
     private int trueDamage;
 
@@ -75,8 +76,30 @@ public class Mortar : Tower, TowerFunctions
                 switch (mortarType)
                 {
                     case MortarType.Simple:
-                        isAttack = false;
-                        GameObject attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
+                        GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x, 
+                            target.transform.position.y + 3f, target.transform.position.z), target.transform.rotation);
+                        attack.GetComponent<Bomb>().damage = damage;
+                        attack.GetComponent<Bomb>().bangDistance = bangDistance;
+                        break;
+                    case MortarType.Shrapnel:
+                        for (int i = 0; i < 5; i++)
+                        {
+                            float r = Random.Range(-5, 5);
+                            float r1 = Random.Range(-5, 5);
+                            attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x + r,
+                            target.transform.position.y + 3f, target.transform.position.z + r1), target.transform.rotation);
+                            attack.GetComponent<Bomb>().damage = damage;
+                            attack.GetComponent<Bomb>().bangDistance = bangDistance;
+                        }
+                        break;
+                    case MortarType.Roket:
+                        attack = Instantiate(attackPrefab, attackPoint);
+                        attack.GetComponent<Roket>().damage = damage;
+                        attack.GetComponent<Roket>().bangDistance = bangDistance;
+                        attack.GetComponent<Roket>().target = target;
+                        break;
+                    case MortarType.Fire:
+
                         break;
                 }
             }
