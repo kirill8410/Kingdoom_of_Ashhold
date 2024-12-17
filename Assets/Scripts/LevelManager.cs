@@ -48,6 +48,7 @@ public class LevelManager : MonoBehaviour
                 {
                     isWave = false;
                     wave += 1;
+                    if (wave < waves.Length)
                     waveButton.enabled = true;
                 }
             }
