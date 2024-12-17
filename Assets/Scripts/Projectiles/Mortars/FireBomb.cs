@@ -17,6 +17,6 @@ public class FireBomb : MonoBehaviour
             }
         }
         Instantiate(fireArea, new Vector3(gameObject.transform.position.x, 0f, gameObject.transform.position.z), gameObject.transform.rotation);
-        Destroy(gameObject);
+        Destroy(gameObject, 0.5f);
     }
 }

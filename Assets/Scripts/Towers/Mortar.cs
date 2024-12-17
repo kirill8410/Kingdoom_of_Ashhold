@@ -35,6 +35,8 @@ public class Mortar : Tower, TowerFunctions
 
     private int trueDamage;
 
+    [SerializeField] GameObject turet;
+
     public Enemy target;
 
     private void Start()
@@ -76,18 +78,20 @@ public class Mortar : Tower, TowerFunctions
                 switch (mortarType)
                 {
                     case MortarType.Simple:
+                        RotationTuret();
                         GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x, 
-                            target.transform.position.y + 3f, target.transform.position.z), target.transform.rotation);
+                            -0.3f, target.transform.position.z), target.transform.rotation);
                         attack.GetComponent<Bomb>().damage = damage;
                         attack.GetComponent<Bomb>().bangDistance = bangDistance;
                         break;
                     case MortarType.Shrapnel:
+                        RotationTuret();
                         for (int i = 0; i < 5; i++)
                         {
                             float r = Random.Range(-5, 5);
                             float r1 = Random.Range(-5, 5);
                             attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x + r,
-                            target.transform.position.y + 3f, target.transform.position.z + r1), target.transform.rotation);
+                                -0.3f, target.transform.position.z + r1), target.transform.rotation);
                             attack.GetComponent<Bomb>().damage = damage;
                             attack.GetComponent<Bomb>().bangDistance = bangDistance;
                         }
@@ -99,7 +103,11 @@ public class Mortar : Tower, TowerFunctions
                         attack.GetComponent<Roket>().target = target;
                         break;
                     case MortarType.Fire:
-
+                        RotationTuret();
+                        attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
+                            -0.3f, target.transform.position.z), target.transform.rotation);
+                        attack.GetComponent<FireBomb>().damage = damage;
+                        attack.GetComponent<FireBomb>().bangDistance = bangDistance;
                         break;
                 }
             }
@@ -142,5 +150,10 @@ public class Mortar : Tower, TowerFunctions
             attackDistance += levelUp.distance_2;
             Towerlevel = 3;
         }
+    }
+
+    private void RotationTuret()
+    {
+        turet.transform.LookAt(target.gameObject.transform.position);
     }
 }

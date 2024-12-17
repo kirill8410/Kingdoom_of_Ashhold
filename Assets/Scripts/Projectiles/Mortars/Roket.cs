@@ -39,6 +39,6 @@ public class Roket : MonoBehaviour
                 enemy.ReduceHP(damage);
             }
         }
-        Destroy(gameObject);
+        Destroy(gameObject, 0.5f);
     }
 }

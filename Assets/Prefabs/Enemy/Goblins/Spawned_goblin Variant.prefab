@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2056517704395375729, guid: b528aec4893dbc8439e3c204d9665cc0, type: 3}
       propertyPath: protection
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7113820742328863656, guid: b528aec4893dbc8439e3c204d9665cc0, type: 3}
       propertyPath: m_Name
