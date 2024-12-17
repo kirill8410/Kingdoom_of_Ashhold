@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 5
-  attackSpeed: 0.5
+  attackSpeed: 0.3
   damage: 10
   damageType: 0
   isAttack: 1
@@ -58,7 +58,7 @@ MonoBehaviour:
   attackPoint: {fileID: 0}
   _levelUp: {fileID: 11400000, guid: c02c1f6a2ff70494aa6ef106b50d60da, type: 2}
   mortarType: 0
-  bangDistance: 1.5
+  bangDistance: 2
   turet: {fileID: 3635388800366485009}
   target: {fileID: 0}
 --- !u!1 &2377762840048356862
