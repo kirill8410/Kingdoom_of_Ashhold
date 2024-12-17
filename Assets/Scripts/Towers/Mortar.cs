@@ -86,10 +86,10 @@ public class Mortar : Tower, TowerFunctions
                         break;
                     case MortarType.Shrapnel:
                         RotationTuret();
-                        for (int i = 0; i < 5; i++)
+                        for (int i = 0; i < 3; i++)
                         {
-                            float r = Random.Range(-5, 5);
-                            float r1 = Random.Range(-5, 5);
+                            float r = Random.Range(-2, 2);
+                            float r1 = Random.Range(-2, 2);
                             attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x + r,
                                 -0.3f, target.transform.position.z + r1), target.transform.rotation);
                             attack.GetComponent<Bomb>().damage = damage;
