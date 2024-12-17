@@ -5284,6 +5284,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1263281898854854782, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -229721775, guid: 019bfae16f7c3e64fa22b6df6517b44b, type: 3}
     - target: {fileID: 2471353989176054011, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_Name
       value: Death_mage
@@ -5292,6 +5296,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 11400000, guid: 23aa75b4220a2974cbf27831cb56f809, type: 2}
+    - target: {fileID: 4039348126353516720, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 661940080, guid: 019bfae16f7c3e64fa22b6df6517b44b, type: 3}
     - target: {fileID: 4128815436601867805, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_Name
       value: Fire_mage
@@ -5416,6 +5424,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 11400000, guid: 035e0a81bbe95cd43acac5ee6fbea72d, type: 2}
+    - target: {fileID: 7233894602148191119, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 992793120, guid: 019bfae16f7c3e64fa22b6df6517b44b, type: 3}
     - target: {fileID: 7586444265985291835, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_Name
       value: God_mage
@@ -5428,6 +5440,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 11400000, guid: dc9882b2c62285846ac2161d0aa5118d, type: 2}
+    - target: {fileID: 9209522345168934669, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1181359287, guid: 019bfae16f7c3e64fa22b6df6517b44b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

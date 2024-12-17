@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e0a8d35a293e894a9d2d9d946db8ebf, type: 3}
-  m_Name: Mortar_shrapnel
+  m_Name: Shrapnel_mortar
   m_EditorClassIdentifier: 
   TowerName: "\u0428\u0440\u0430\u043F\u043D\u0435\u043B\u044C\u043D\u0430\u044F
     \u043C\u043E\u0440\u0442\u0438\u0440\u0430"
