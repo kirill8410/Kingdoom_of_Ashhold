@@ -427,6 +427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3176561073724929901}
   - component: {fileID: 183079662627475310}
+  - component: {fileID: 2388778403106326794}
   m_Layer: 0
   m_Name: shrapnel_mortar
   m_TagString: Untagged
@@ -477,6 +478,28 @@ MonoBehaviour:
   bangDistance: 1.5
   turet: {fileID: 52727746386946459}
   target: {fileID: 0}
+--- !u!95 &2388778403106326794
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5473533594284353740}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8a4f56e76b11235428970aa1ce89e71c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5615186769635807770
 GameObject:
   m_ObjectHideFlags: 0

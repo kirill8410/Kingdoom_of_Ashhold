@@ -215,6 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4410821093972610293}
   - component: {fileID: 5149697752383452390}
+  - component: {fileID: 5118320487740474110}
   m_Layer: 0
   m_Name: roket
   m_TagString: Untagged
@@ -265,6 +266,28 @@ MonoBehaviour:
   bangDistance: 1.5
   turet: {fileID: 0}
   target: {fileID: 0}
+--- !u!95 &5118320487740474110
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4068055464819582158}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2de0684d178b85499cf8e17f9c1837e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6250474741971614264
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +442,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 399484860542512540}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &5902759964411537338
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -505,7 +528,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 399484860542512540}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
 --- !u!33 &2011976198644883603
 MeshFilter:
   m_ObjectHideFlags: 0

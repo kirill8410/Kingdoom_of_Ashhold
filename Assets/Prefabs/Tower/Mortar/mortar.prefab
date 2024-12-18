@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7707516281441183056}
   - component: {fileID: 6965295131051076649}
+  - component: {fileID: 814794453727286670}
   m_Layer: 0
   m_Name: mortar
   m_TagString: Untagged
@@ -61,6 +62,28 @@ MonoBehaviour:
   bangDistance: 2
   turet: {fileID: 3635388800366485009}
   target: {fileID: 0}
+--- !u!95 &814794453727286670
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82436681238511222}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d06e7ee3c58bab64981c3bcccde8d542, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2377762840048356862
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5031493360579136944}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.57900786, y: -0.33429033, z: -0.3718199, w: 0.6440108}
+  m_LocalRotation: {x: -0.57900846, y: -0.33429077, z: -0.37181944, w: 0.6440103}
   m_LocalPosition: {x: -0.0019779205, y: 0.37822267, z: 0.03241773}
   m_LocalScale: {x: 21.340319, y: 21.340322, z: 21.340315}
   m_ConstrainProportionsScale: 0
