@@ -409,7 +409,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: cb51ca672039ac940a874ca0d9a19edb, type: 2}
+=======
+  - {fileID: 2100000, guid: 43d6bc77ad350e240933a86154c77b07, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -495,7 +499,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: cb51ca672039ac940a874ca0d9a19edb, type: 2}
+=======
+  - {fileID: 2100000, guid: 43d6bc77ad350e240933a86154c77b07, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -839,7 +847,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: cb51ca672039ac940a874ca0d9a19edb, type: 2}
+=======
+  - {fileID: 2100000, guid: 43d6bc77ad350e240933a86154c77b07, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -925,7 +937,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: cb51ca672039ac940a874ca0d9a19edb, type: 2}
+=======
+  - {fileID: 2100000, guid: 43d6bc77ad350e240933a86154c77b07, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
