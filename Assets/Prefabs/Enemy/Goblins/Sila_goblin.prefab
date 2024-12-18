@@ -1046,7 +1046,7 @@ GameObject:
   - component: {fileID: 2058956103758463188}
   - component: {fileID: 6022106985612558636}
   m_Layer: 0
-  m_Name: Sila_goblin 1
+  m_Name: Sila_goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -24,7 +24,7 @@ public class Wave : ScriptableObject
                 enemy.GetComponent<Enemy>().points = LM.points; 
                 yield return new WaitForSeconds(1f);
             }
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
         }
         LM.StopSpawn();
     }
