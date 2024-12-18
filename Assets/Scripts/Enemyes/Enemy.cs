@@ -283,9 +283,9 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
             switch (enemySpell)
             {
                 case EnemySpell.Heal:
+                    GetComponentInChildren<Animator>().SetTrigger("Spell");
                     float s = speed;
                     speed = 0;
-                    GetComponentInChildren<Animator>().SetTrigger("Spell");
                     yield return new WaitForSeconds(1f);
                     Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
                     foreach (Enemy enemy in enemyes)
@@ -298,9 +298,9 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                     speed = s;
                     break;
                 case EnemySpell.CreateShield:
+                    GetComponentInChildren<Animator>().SetTrigger("Spell");
                     s = speed;
                     speed = 0;
-                    GetComponentInChildren<Animator>().SetTrigger("Spell");
                     yield return new WaitForSeconds(1f);
                     enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
                     foreach (Enemy enemy in enemyes)
@@ -313,9 +313,9 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                     speed = s;
                     break;
                 case EnemySpell.SpeedBoost:
+                    GetComponentInChildren<Animator>().SetTrigger("Spell");
                     s = speed;
                     speed = 0;
-                    GetComponentInChildren<Animator>().SetTrigger("Spell");
                     yield return new WaitForSeconds(1f);
                     enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
                     foreach (Enemy enemy in enemyes)

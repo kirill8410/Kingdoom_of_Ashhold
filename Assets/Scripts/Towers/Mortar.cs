@@ -97,10 +97,11 @@ public class Mortar : Tower, TowerFunctions
                         }
                         break;
                     case MortarType.Roket:
-                        attack = Instantiate(attackPrefab, attackPoint);
-                        attack.GetComponent<Roket>().damage = damage;
-                        attack.GetComponent<Roket>().bangDistance = bangDistance;
-                        attack.GetComponent<Roket>().target = target;
+                        attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
+                            -0.3f, target.transform.position.z), target.transform.rotation);
+                        attack.GetComponent<Bomb>().damage = damage;
+                        attack.GetComponent<Bomb>().bangDistance = bangDistance;
+                        break;
                         break;
                     case MortarType.Fire:
                         RotationTuret();

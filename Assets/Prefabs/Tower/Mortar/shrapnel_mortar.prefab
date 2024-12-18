@@ -274,7 +274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 70aa8c3317444bf44b00897d8882e1c4, type: 2}
+  - {fileID: 2100000, guid: e3628be1181c0194ab946052af80b055, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 7
   attackSpeed: 0.2
-  damage: 10
+  damage: 15
   damageType: 0
   isAttack: 1
   attackPrefab: {fileID: 2910632921531643326, guid: 0ec1d944743ddde42b716b3722822708, type: 3}
