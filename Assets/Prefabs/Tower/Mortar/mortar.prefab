@@ -53,8 +53,7 @@ MonoBehaviour:
   attackSpeed: 0.5
   damage: 15
   damageType: 0
-  isAttack: 1
-  attackPrefab: {fileID: 2910632921531643326, guid: 0ec1d944743ddde42b716b3722822708, type: 3}
+  attackPrefab: {fileID: 5019714670114416891, guid: dcf15a6aa2106dc4c812216a77ff07fd, type: 3}
   Distance: {fileID: 1852276821399486325}
   attackPoint: {fileID: 0}
   _levelUp: {fileID: 11400000, guid: c02c1f6a2ff70494aa6ef106b50d60da, type: 2}
