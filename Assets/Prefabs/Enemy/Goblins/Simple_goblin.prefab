@@ -76,7 +76,7 @@ MonoBehaviour:
   - {fileID: -448098536, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
   - {fileID: 990118371, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
   - {fileID: -403479227, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
-  protection: 0
+  protection: 5
   shield: 0
   protectionType: 0
   enemyType: 0

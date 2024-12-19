@@ -3,9 +3,13 @@ using System.Collections;
 using NUnit.Framework.Constraints;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.InputSystem.Switch;
+using System;
 
 public class Mage : Tower, TowerFunctions
 {
+    public bool isAttack {  get; set; } = true;
+    public GameObject gm { get; set; }
+
     [Header("Level")]
 
     public int PriceLevelUp { get; set; }
@@ -45,6 +49,7 @@ public class Mage : Tower, TowerFunctions
     {
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
+        gm = gameObject;
     }
     private void Update()
     {
@@ -80,8 +85,6 @@ public class Mage : Tower, TowerFunctions
                 switch (mageType)
                 {
                     case MageType.Simple:
-                        MageCrystal.SetActive(false);
-                        isAttack = false;
                         GameObject attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                         attack.GetComponent<Spell>().damage = trueDamage;
                         attack.GetComponent<Spell>().target = target;
@@ -96,8 +99,6 @@ public class Mage : Tower, TowerFunctions
                         Destroy(attack);
                         break;
                     case MageType.Ice:
-                        MageCrystal.SetActive(false);
-                        isAttack = false;
                         attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                         attack.GetComponent<IceSpell>().damage = trueDamage;
                         attack.GetComponent<IceSpell>().target = target;
@@ -108,10 +109,11 @@ public class Mage : Tower, TowerFunctions
                         if (target != target2)
                         {
                             charge = 0;
-                            attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
-                            attack.GetComponent<FireSpell>().target = target;
-                            attack.GetComponent <FireSpell>().mage = this;
                         }
+                        attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
+                        attack.GetComponent<FireSpell>().target = target;
+                        attack.GetComponent<FireSpell>().mage = this;
+                        Destroy(attack, (1f / attackSpeed) + 0.2f);
                         trueDamage += damage * charge;
                         charge += 1;
                         target2 = target;
@@ -143,7 +145,7 @@ public class Mage : Tower, TowerFunctions
             {
                 target = null;
             }
-            Enemy[] enemyes = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+            Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
             {
                 if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= attackDistance)

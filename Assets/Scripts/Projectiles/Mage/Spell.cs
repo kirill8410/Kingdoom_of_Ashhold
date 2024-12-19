@@ -45,7 +45,7 @@ public class Spell : MonoBehaviour
         {
             if (!isBang)
             {
-                target.ReduceHP(damage);
+                other.GetComponent<Enemy>().ReduceHP(damage);
                 mage.MageCrystalRecharge(true);
                 Destroy(gameObject);
             }

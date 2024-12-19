@@ -257,13 +257,12 @@ MonoBehaviour:
   attackSpeed: 0.05
   damage: 35
   damageType: 0
-  isAttack: 1
-  attackPrefab: {fileID: 0}
+  attackPrefab: {fileID: 850153657322736602, guid: e6c887242ffe93e4080c3e4e29c6a38d, type: 3}
   Distance: {fileID: 3096886583763505326}
   attackPoint: {fileID: 0}
   _levelUp: {fileID: 11400000, guid: 4455d52cfae2d184982a31ef6b5428c0, type: 2}
   mortarType: 1
-  bangDistance: 1.5
+  bangDistance: 2.5
   turet: {fileID: 0}
   target: {fileID: 0}
 --- !u!95 &5118320487740474110

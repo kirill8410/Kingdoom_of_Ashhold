@@ -1309,15 +1309,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 12
   attackSpeed: 1.2
-  damage: 5
+  damage: 10
   damageType: 1
-  isAttack: 1
   attackPrefab: {fileID: 2281577632927514834, guid: 621b34235c8bd1d48b5667e1d34faa25, type: 3}
   Distance: {fileID: 1494251555177675282}
   attackPoint: {fileID: 8818436502025318071}
   _levelUp: {fileID: 11400000, guid: 016186af9f1b8bb4a8699d9f2b198794, type: 2}
   MageCrystal: {fileID: 1260423622475639399}
   mageType: 2
+  charge: 0
   target: {fileID: 0}
 --- !u!1 &4873083173750725508
 GameObject:

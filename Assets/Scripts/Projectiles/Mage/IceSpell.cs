@@ -25,9 +25,9 @@ public class IceSpell : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            target.ReduceHP(damage);
+            other.GetComponent<Enemy>().ReduceHP(damage);
             mage.MageCrystalRecharge(true);
-            target.Ice();
+            other.GetComponent<Enemy>().Ice();
             Destroy(gameObject);
         }
     }

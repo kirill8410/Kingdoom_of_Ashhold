@@ -57,7 +57,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
             {
                 target.Potion(tower.Towerlevel + 2);
             }
-            target.ReduceHP(damage);
+            other.GetComponent<Enemy>().ReduceHP(damage);
             Destroy(gameObject);
         }
     }

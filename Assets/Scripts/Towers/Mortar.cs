@@ -6,6 +6,9 @@ using UnityEngine.InputSystem.Switch;
 
 public class Mortar : Tower, TowerFunctions
 {
+    public bool isAttack { get; set; } = true;
+    public GameObject gm { get; set; }
+
     [Header("Level")]
 
     public int PriceLevelUp { get; set; }
@@ -43,6 +46,7 @@ public class Mortar : Tower, TowerFunctions
     {
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
+        gm = gameObject;
     }
     private void Update()
     {
