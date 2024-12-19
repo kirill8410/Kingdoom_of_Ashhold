@@ -736,6 +736,7 @@ MonoBehaviour:
   enemySpawn: {fileID: 1588914392283011498}
   points: []
   waves: []
+  Freeze: {fileID: 1276666600077045591, guid: 8669e745047d5cb4493221d3b0dce41c, type: 3}
 --- !u!1 &7808800585217236591
 GameObject:
   m_ObjectHideFlags: 0
