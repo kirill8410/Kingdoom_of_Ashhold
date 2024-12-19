@@ -5261,7 +5261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 10
   attackSpeed: 0.8
-  damage: 20
+  damage: 25
   damageType: 1
   attackPrefab: {fileID: 493433929314315523, guid: f3e0aa24cd2668d4ba1a9356ca4f23c6, type: 3}
   Distance: {fileID: 3461634056693553470}

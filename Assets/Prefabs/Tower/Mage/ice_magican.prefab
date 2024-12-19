@@ -1309,7 +1309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 12
   attackSpeed: 1.2
-  damage: 10
+  damage: 15
   damageType: 1
   attackPrefab: {fileID: 2281577632927514834, guid: 621b34235c8bd1d48b5667e1d34faa25, type: 3}
   Distance: {fileID: 1494251555177675282}
