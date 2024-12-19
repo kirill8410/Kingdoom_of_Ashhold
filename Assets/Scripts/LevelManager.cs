@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     public GameObject[] points;
     public Wave[] waves;
     [SerializeField] GameObject Freeze;
+    [SerializeField] TextMeshProUGUI Text;
 
 
     private void Start()
@@ -73,11 +74,13 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetInt("Level", numberLevel + 1);
             PlayerPrefs.Save();
         }
+        Text.text = "Победа";
         UI.SetActive(true);
     }
 
     public void Lose()
     {
+        Text.text = "Поражение";
         UI.SetActive(true);
     }
 

@@ -7239,7 +7239,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1061187403847261391, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
       propertyPath: m_Name
-      value: MakeFast_goblin
+      value: MakeFast_goblin Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061187403847261391, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1824903828169656844, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7287,7 +7291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8109137814382695190, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
       propertyPath: cooldown
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8109137814382695190, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
       propertyPath: enemySpell

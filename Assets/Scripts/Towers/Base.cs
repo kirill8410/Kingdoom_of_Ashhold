@@ -66,7 +66,17 @@ public class Base : MonoBehaviour
             else
             {
                 if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) <= 5f)
-                GetComponent<Canvas>().enabled = true;
+                {
+                    GetComponent<Canvas>().enabled = true;
+                }
+            }
+            if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) > 5f)
+            {
+                selectTower = null;
+                Information.SetActive(false);
+                Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                InformationLevelUp.SetActive(false);
+                Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
             }
             if (_tower.Towerlevel != 3) // Отображение кнопок прокачки если уровень не максимальный
             {

@@ -113,11 +113,11 @@ public class Mage : Tower, TowerFunctions
                         attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                         attack.GetComponent<FireSpell>().target = target;
                         attack.GetComponent<FireSpell>().mage = this;
-                        Destroy(attack, (1f / attackSpeed) + 0.3f);
                         trueDamage += damage * charge;
                         charge += 1;
                         target2 = target;
                         target.ReduceHP(trueDamage);
+                        Destroy(attack, (1f / attackSpeed) + 0.35f);
                         break;
                     case MageType.Death:
                         MageCrystal.SetActive(true);

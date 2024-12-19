@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58713c2d5e5af804b9c6a9c6e0d1f488, type: 3}
   m_Name: LevelUp_roket
   m_EditorClassIdentifier: 
-  damage_1: 5
+  damage_1: 10
   distance_1: 0
   priceLevelUp_1: 165
   damage_2: 10

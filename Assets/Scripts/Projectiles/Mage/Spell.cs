@@ -7,7 +7,7 @@ public class Spell : MonoBehaviour
     public int damage; // Урон магии
     public float speed = 2; // Скорость магии
     public Mage mage;
-    bool isBang;
+    bool isBang = false;
 
     private void Update()
     {
@@ -16,7 +16,7 @@ public class Spell : MonoBehaviour
             transform.LookAt(target.gameObject.transform.position);
             transform.Translate(0, 0, speed * Time.deltaTime * 10f);
         }
-        else // Поиск цели если она отсутствует 
+        else 
         {
             if (!isBang)
             {
@@ -45,7 +45,7 @@ public class Spell : MonoBehaviour
         {
             if (!isBang)
             {
-                other.GetComponent<Enemy>().ReduceHP(damage);
+                other.gameObject.GetComponent<Enemy>().ReduceHP(damage);
                 mage.MageCrystalRecharge(true);
                 Destroy(gameObject);
             }
