@@ -83,6 +83,8 @@ public class Mortar : Tower, TowerFunctions
                 {
                     case MortarType.Simple:
                         RotationTuret();
+                        GetComponent<Animator>().SetTrigger("Attack");
+                        yield return new WaitForSeconds(5f / 60f);
                         GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x, 
                             -0.3f, target.transform.position.z), target.transform.rotation);
                         attack.GetComponent<Bomb>().damage = damage;
@@ -90,6 +92,8 @@ public class Mortar : Tower, TowerFunctions
                         break;
                     case MortarType.Shrapnel:
                         RotationTuret();
+                        GetComponent<Animator>().SetTrigger("Attack");
+                        yield return new WaitForSeconds(15f / 60f);
                         for (int i = 0; i < 3; i++)
                         {
                             float r = Random.Range(-2, 2);
@@ -101,6 +105,8 @@ public class Mortar : Tower, TowerFunctions
                         }
                         break;
                     case MortarType.Roket:
+                        GetComponent<Animator>().SetTrigger("Attack");
+                        yield return new WaitForSeconds(30f / 60f);
                         attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
                             -0.3f, target.transform.position.z), target.transform.rotation);
                         attack.GetComponent<Bomb>().damage = damage;
@@ -109,6 +115,8 @@ public class Mortar : Tower, TowerFunctions
                         break;
                     case MortarType.Fire:
                         RotationTuret();
+                        GetComponentInChildren<Animator>().SetTrigger("Attack");
+                        yield return new WaitForSeconds(5f / 60f);
                         attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
                             -0.3f, target.transform.position.z), target.transform.rotation);
                         attack.GetComponent<FireBomb>().damage = damage;
