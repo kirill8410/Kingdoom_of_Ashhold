@@ -53,12 +53,12 @@ MonoBehaviour:
   attackSpeed: 0.5
   damage: 15
   damageType: 0
-  attackPrefab: {fileID: 5019714670114416891, guid: dcf15a6aa2106dc4c812216a77ff07fd, type: 3}
+  attackPrefab: {fileID: 2056454902351534825, guid: a11d4ac664a4d3847aca2b65910910ac, type: 3}
   Distance: {fileID: 1852276821399486325}
   attackPoint: {fileID: 0}
   _levelUp: {fileID: 11400000, guid: c02c1f6a2ff70494aa6ef106b50d60da, type: 2}
   mortarType: 0
-  bangDistance: 2
+  bangDistance: 2.5
   turet: {fileID: 3635388800366485009}
   target: {fileID: 0}
 --- !u!95 &814794453727286670

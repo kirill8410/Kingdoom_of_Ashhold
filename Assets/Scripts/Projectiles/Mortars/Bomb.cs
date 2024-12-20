@@ -15,6 +15,6 @@ public class Bomb : MonoBehaviour
                 enemy.ReduceHP(damage);
             }
         }
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 1f);
     }
 }
