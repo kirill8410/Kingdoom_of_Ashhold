@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   bangDistance: 0
-  fireArea: {fileID: 3632594051901566537, guid: d9b93f34ae7f6c543a3849790ae6d4f7, type: 3}
+  fireArea: {fileID: 1860586463417314041, guid: d9b93f34ae7f6c543a3849790ae6d4f7, type: 3}
 --- !u!95 &274649221450576581
 Animator:
   serializedVersion: 7

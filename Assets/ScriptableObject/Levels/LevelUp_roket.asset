@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LevelUp_roket
   m_EditorClassIdentifier: 
   damage_1: 10
-  distance_1: 0
+  distance_1: 12
   priceLevelUp_1: 165
   damage_2: 10
-  distance_2: 0
+  distance_2: 12
   priceLevelUp_2: 200
