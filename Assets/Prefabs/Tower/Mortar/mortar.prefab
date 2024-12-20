@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7707516281441183056}
   - component: {fileID: 6965295131051076649}
+  - component: {fileID: 814794453727286670}
   m_Layer: 0
   m_Name: mortar
   m_TagString: Untagged
@@ -50,17 +51,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 5
   attackSpeed: 0.5
-  damage: 10
+  damage: 15
   damageType: 0
-  isAttack: 1
-  attackPrefab: {fileID: 2910632921531643326, guid: 0ec1d944743ddde42b716b3722822708, type: 3}
+  attackPrefab: {fileID: 5019714670114416891, guid: dcf15a6aa2106dc4c812216a77ff07fd, type: 3}
   Distance: {fileID: 1852276821399486325}
   attackPoint: {fileID: 0}
   _levelUp: {fileID: 11400000, guid: c02c1f6a2ff70494aa6ef106b50d60da, type: 2}
   mortarType: 0
-  bangDistance: 1.5
+  bangDistance: 2
   turet: {fileID: 3635388800366485009}
   target: {fileID: 0}
+--- !u!95 &814794453727286670
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82436681238511222}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d06e7ee3c58bab64981c3bcccde8d542, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2377762840048356862
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +353,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 70aa8c3317444bf44b00897d8882e1c4, type: 2}
+  - {fileID: 2100000, guid: e3628be1181c0194ab946052af80b055, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -379,7 +401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5031493360579136944}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.57900786, y: -0.33429033, z: -0.3718199, w: 0.6440108}
+  m_LocalRotation: {x: -0.57900846, y: -0.33429077, z: -0.37181944, w: 0.6440103}
   m_LocalPosition: {x: -0.0019779205, y: 0.37822267, z: 0.03241773}
   m_LocalScale: {x: 21.340319, y: 21.340322, z: 21.340315}
   m_ConstrainProportionsScale: 0
@@ -744,6 +766,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1263281898854854782, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 735173118, guid: bd7930286bbef88408940766f33111a4, type: 3}
     - target: {fileID: 2471353989176054011, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_Name
       value: Shrapnel_Mortar
@@ -860,6 +886,22 @@ PrefabInstance:
       propertyPath: 'EvolutionButtons.Array.data[2]'
       value: 
       objectReference: {fileID: 2207801247658959426}
+    - target: {fileID: 7040619723305010683, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: e3cd46b087405c14b977bbb220709114, type: 2}
+    - target: {fileID: 7233894602148191119, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -348372872, guid: bd7930286bbef88408940766f33111a4, type: 3}
+    - target: {fileID: 8487294271860812273, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f2e1dd8a31941740982d6a6d0aa65bd, type: 2}
+    - target: {fileID: 8825054985526175431, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 2789e9517d623824fbc389aba63fa09d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7586444265985291835, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}

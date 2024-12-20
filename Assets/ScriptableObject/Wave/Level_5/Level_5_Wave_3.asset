@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ca9a104f33adf4990fa9779cf6a4e6, type: 3}
+  m_Name: Level_5_Wave_3
+  m_EditorClassIdentifier: 
+  Enemies:
+  - {fileID: 2549975141322653981, guid: 8fe451835d26e254f8c26318f384f143, type: 3}
+  - {fileID: 2616731409952585168, guid: 2bdb6e135afb9ff45a1f3c8e0237b633, type: 3}
+  - {fileID: 1359496541875955073, guid: 0c7a9f3aba785dd479daabba0fb70bf7, type: 3}
+  NumberOfEnemies: 030000000100000003000000

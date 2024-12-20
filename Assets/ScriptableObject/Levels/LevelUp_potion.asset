@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LevelUp_potion
   m_EditorClassIdentifier: 
   damage_1: 5
-  distance_1: 5
+  distance_1: 2
   priceLevelUp_1: 100
   damage_2: 5
-  distance_2: 5
+  distance_2: 2
   priceLevelUp_2: 150

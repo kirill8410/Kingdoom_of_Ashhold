@@ -170,15 +170,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 6
   attackSpeed: 0.2
-  damage: 100
+  damage: 120
   damageType: 1
-  isAttack: 1
   attackPrefab: {fileID: 1687053405057314714, guid: ddbc7664c14aa46438d6c06e0140bf3b, type: 3}
   Distance: {fileID: 511826300944604679}
   attackPoint: {fileID: 0}
   _levelUp: {fileID: 11400000, guid: bb251aa8fb30d6c41ae3ff069c81e70b, type: 2}
   MageCrystal: {fileID: 2140141339997557452}
   mageType: 4
+  charge: 0
   target: {fileID: 0}
 --- !u!1 &6342619993449477328
 GameObject:

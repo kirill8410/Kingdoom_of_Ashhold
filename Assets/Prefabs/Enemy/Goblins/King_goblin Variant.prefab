@@ -2605,6 +2605,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: King_goblin Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1061187403847261391, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1824903828169656844, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

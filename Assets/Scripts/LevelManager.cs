@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,9 @@ public class LevelManager : MonoBehaviour
     public Transform enemySpawn;
     public GameObject[] points;
     public Wave[] waves;
+    [SerializeField] GameObject Freeze;
+    [SerializeField] TextMeshProUGUI Text;
+
 
     private void Start()
     {
@@ -30,7 +34,7 @@ public class LevelManager : MonoBehaviour
         }
     }
     private void Update()
-    {
+    { 
         if (wave >= waves.Length)
         {
             Win();
@@ -49,7 +53,15 @@ public class LevelManager : MonoBehaviour
                     isWave = false;
                     wave += 1;
                     if (wave < waves.Length)
-                    waveButton.enabled = true;
+                    {
+                        waveButton.enabled = true;
+                        TowerFunctions[] t = Object.FindObjectsOfType<MonoBehaviour>().OfType<TowerFunctions>().ToArray();
+                        foreach (TowerFunctions tower in t)
+                        {
+                            tower.isAttack = true;
+                            Freeze.SetActive(false);
+                        }
+                    }
                 }
             }
         }
@@ -62,11 +74,13 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetInt("Level", numberLevel + 1);
             PlayerPrefs.Save();
         }
+        Text.text = "Победа";
         UI.SetActive(true);
     }
 
     public void Lose()
     {
+        Text.text = "Поражение";
         UI.SetActive(true);
     }
 
@@ -86,5 +100,18 @@ public class LevelManager : MonoBehaviour
     public void StopSpawn()
     {
         isSpawn = true;
+    }
+
+    public void FreezeTower()
+    {
+        TowerFunctions[] t = FindObjectsOfType<MonoBehaviour>().OfType<TowerFunctions>().ToArray();
+        int r = Random.Range(0, t.Length);
+
+        if (t.Length != 0 && wave != 0)
+        {  
+            t[r].isAttack = false;
+            Freeze.transform.position = t[r].gm.transform.position;
+            Freeze.SetActive(true);
+        }
     }
 }

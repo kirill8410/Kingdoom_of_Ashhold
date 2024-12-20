@@ -59,6 +59,25 @@ public class Base : MonoBehaviour
     {
         if (_tower != null)
         {
+            if (!_tower.isAttack)
+            {
+                GetComponent<Canvas>().enabled = false;
+            }
+            else
+            {
+                if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) <= 5f)
+                {
+                    GetComponent<Canvas>().enabled = true;
+                }
+            }
+            if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) > 5f)
+            {
+                selectTower = null;
+                Information.SetActive(false);
+                Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                InformationLevelUp.SetActive(false);
+                Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+            }
             if (_tower.Towerlevel != 3) // Отображение кнопок прокачки если уровень не максимальный
             {
                 LevelUpButton.gameObject.SetActive(true);
@@ -73,6 +92,7 @@ public class Base : MonoBehaviour
                 foreach (Button EvolutionButton in EvolutionButtons)
                 {
                     EvolutionButton.gameObject.SetActive(true);
+
                 }
             }
         }

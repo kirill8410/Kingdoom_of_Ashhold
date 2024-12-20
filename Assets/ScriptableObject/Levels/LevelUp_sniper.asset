@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LevelUp_sniper
   m_EditorClassIdentifier: 
   damage_1: 5
-  distance_1: 10
+  distance_1: 8
   priceLevelUp_1: 65
-  damage_2: 20
-  distance_2: 15
+  damage_2: 15
+  distance_2: 10
   priceLevelUp_2: 130

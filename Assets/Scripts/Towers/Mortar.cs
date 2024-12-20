@@ -6,6 +6,9 @@ using UnityEngine.InputSystem.Switch;
 
 public class Mortar : Tower, TowerFunctions
 {
+    public bool isAttack { get; set; } = true;
+    public GameObject gm { get; set; }
+
     [Header("Level")]
 
     public int PriceLevelUp { get; set; }
@@ -43,6 +46,7 @@ public class Mortar : Tower, TowerFunctions
     {
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
+        gm = gameObject;
     }
     private void Update()
     {
@@ -79,6 +83,8 @@ public class Mortar : Tower, TowerFunctions
                 {
                     case MortarType.Simple:
                         RotationTuret();
+                        GetComponent<Animator>().SetTrigger("Attack");
+                        yield return new WaitForSeconds(5f / 60f);
                         GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x, 
                             -0.3f, target.transform.position.z), target.transform.rotation);
                         attack.GetComponent<Bomb>().damage = damage;
@@ -86,10 +92,12 @@ public class Mortar : Tower, TowerFunctions
                         break;
                     case MortarType.Shrapnel:
                         RotationTuret();
-                        for (int i = 0; i < 5; i++)
+                        GetComponent<Animator>().SetTrigger("Attack");
+                        yield return new WaitForSeconds(15f / 60f);
+                        for (int i = 0; i < 3; i++)
                         {
-                            float r = Random.Range(-5, 5);
-                            float r1 = Random.Range(-5, 5);
+                            float r = Random.Range(-2, 2);
+                            float r1 = Random.Range(-2, 2);
                             attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x + r,
                                 -0.3f, target.transform.position.z + r1), target.transform.rotation);
                             attack.GetComponent<Bomb>().damage = damage;
@@ -97,13 +105,18 @@ public class Mortar : Tower, TowerFunctions
                         }
                         break;
                     case MortarType.Roket:
-                        attack = Instantiate(attackPrefab, attackPoint);
-                        attack.GetComponent<Roket>().damage = damage;
-                        attack.GetComponent<Roket>().bangDistance = bangDistance;
-                        attack.GetComponent<Roket>().target = target;
+                        GetComponent<Animator>().SetTrigger("Attack");
+                        yield return new WaitForSeconds(30f / 60f);
+                        attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
+                            -0.3f, target.transform.position.z), target.transform.rotation);
+                        attack.GetComponent<Bomb>().damage = damage;
+                        attack.GetComponent<Bomb>().bangDistance = bangDistance;
+                        break;
                         break;
                     case MortarType.Fire:
                         RotationTuret();
+                        GetComponentInChildren<Animator>().SetTrigger("Attack");
+                        yield return new WaitForSeconds(5f / 60f);
                         attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
                             -0.3f, target.transform.position.z), target.transform.rotation);
                         attack.GetComponent<FireBomb>().damage = damage;

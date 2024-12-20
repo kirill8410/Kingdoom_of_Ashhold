@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Projectiles/Mortars/bomb_model.prefab.meta
+guid: 25e3ad753d0786f499260c058e3b597d
+========
+guid: 6cf459ec1bc6a004bb971ea78001aa9a
+>>>>>>>> c60ae13c7f21314b195a92fcdd959b76b1ac846a:Assets/Prefabs/EventSystem.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

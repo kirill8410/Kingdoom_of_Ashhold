@@ -5,6 +5,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Ballista : Tower, TowerFunctions // Баллиста
 {
+    public bool isAttack { get; set; } = true;
+    public GameObject gm { get; set; }
+
     [Header("Level")]
 
     public int PriceLevelUp { get; set; }
@@ -41,6 +44,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
     {
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
+        gm = gameObject;
     }
     private void Update()
     {

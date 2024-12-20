@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58713c2d5e5af804b9c6a9c6e0d1f488, type: 3}
   m_Name: LevelUp_big
   m_EditorClassIdentifier: 
-  damage_1: 75
+  damage_1: 50
   distance_1: 0
   priceLevelUp_1: 105
-  damage_2: 100
+  damage_2: 50
   distance_2: 5
   priceLevelUp_2: 175
