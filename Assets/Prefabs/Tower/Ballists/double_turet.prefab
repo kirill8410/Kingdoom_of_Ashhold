@@ -625,8 +625,6 @@ MonoBehaviour:
   attackDistance: 10
   attackSpeed: 0.8
   damage: 10
-  damageType: 0
-  isAttack: 1
   attackPrefab: {fileID: 5652138828623769678, guid: c44ac3293e4625f4e9cd5c92d8cf49a1, type: 3}
   Distance: {fileID: 2285907057744123}
   attackPoint: {fileID: 3150454543140692013}
@@ -1175,6 +1173,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5953431494423288546}
     m_Modifications:
+    - target: {fileID: 78503977763885340, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7485313489859528703, guid: 9e7b2e80e2281274ba94b922835bc498, type: 2}
+    - target: {fileID: 2854501269373375585, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7485313489859528703, guid: 9e7b2e80e2281274ba94b922835bc498, type: 2}
     - target: {fileID: 4478355760606884413, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_Name
       value: TowerUI
@@ -1259,6 +1265,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5801323226003177109, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: _base
       value: 
@@ -1267,10 +1277,19 @@ PrefabInstance:
       propertyPath: EvolutionButtons.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6729419557867802422, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7485313489859528703, guid: 9e7b2e80e2281274ba94b922835bc498, type: 2}
+    - target: {fileID: 8479762433009032305, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4722707181882706710, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
     - {fileID: 6208717102098136353, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+    - {fileID: 8974167425915901144, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}

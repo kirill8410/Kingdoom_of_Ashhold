@@ -85,17 +85,8 @@ public class Ballista : Tower, TowerFunctions // Баллиста
             {
                 GetComponent<Animator>().SetTrigger("Attack");
 
-                trueDamage = damage;
-                if (damageType == target.protectionType)
-                {
-                    trueDamage -= target.protection;
-                }
-                if (trueDamage < 0)
-                {
-                    trueDamage = 0;
-                }
                 GameObject attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
-                attack.GetComponent<Arrow>().damage = trueDamage;
+                attack.GetComponent<Arrow>().damage = damage;
                 attack.GetComponent<Arrow>().target = target;
                 attack.GetComponent<Arrow>().tower = this;
                 _arrow1 = attack;
@@ -103,7 +94,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 if (isDouble)
                 {
                     GameObject attack1 = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
-                    attack1.GetComponent<Arrow>().damage = trueDamage;
+                    attack1.GetComponent<Arrow>().damage = damage;
                     attack1.GetComponent<Arrow>().target = target;
                     _arrow2 = attack1;
                 }

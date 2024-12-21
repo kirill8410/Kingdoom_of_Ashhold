@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bangDistance: 2.5
-  damage: 15
-  seconds: 6
+  damage: 5
+  seconds: 5
 --- !u!1 &2914840592449636435
 GameObject:
   m_ObjectHideFlags: 0

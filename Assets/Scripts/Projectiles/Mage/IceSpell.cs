@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Tower;
 
 public class IceSpell : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class IceSpell : MonoBehaviour
     public int damage; // Урон магии
     public float speed = 2; // Скорость магии
     public Mage mage;
+    private int trueDamage;
 
     private void Update()
     {
@@ -25,7 +27,16 @@ public class IceSpell : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().ReduceHP(damage);
+            trueDamage = damage;
+            if (other.GetComponent<Enemy>().protectionType == DamageTypes.Magic)
+            {
+                trueDamage -= target.protection;
+            }
+            if (trueDamage < 0)
+            {
+                trueDamage = 0;
+            }
+            other.gameObject.GetComponent<Enemy>().ReduceHP(trueDamage);
             mage.MageCrystalRecharge(true);
             other.GetComponent<Enemy>().Ice();
             Destroy(gameObject);

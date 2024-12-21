@@ -52,7 +52,6 @@ MonoBehaviour:
   attackDistance: 5
   attackSpeed: 0.5
   damage: 20
-  damageType: 0
   attackPrefab: {fileID: 2056454902351534825, guid: a11d4ac664a4d3847aca2b65910910ac, type: 3}
   Distance: {fileID: 1852276821399486325}
   attackPoint: {fileID: 0}
@@ -909,6 +908,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7586444265985291835, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+    - {fileID: 8974167425915901144, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}

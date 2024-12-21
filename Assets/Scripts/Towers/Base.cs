@@ -29,10 +29,6 @@ public class Base : MonoBehaviour
     [SerializeField] TextMeshProUGUI DistanceLeveUp;
     [SerializeField] TextMeshProUGUI PriceLeveUp;
 
-    [Header("Images")]
-    [SerializeField] Image MageDamage;
-    [SerializeField] Image PhysicalDamage;
-
     [Header("Button")]
     [SerializeField] Button BuildButton;
     [SerializeField] Button[] EvolutionButtons;
@@ -113,16 +109,6 @@ public class Base : MonoBehaviour
             Damage.text = tower.tower.GetComponent<Tower>().damage.ToString();
             Distance.text = ((tower.tower.GetComponent<Tower>().attackDistance / 4) - 0.5f).ToString();
             AttackSpeed.text = tower.tower.GetComponent<Tower>().attackSpeed.ToString();
-            if (tower.tower.GetComponent<Tower>().damageType == Tower.DamageTypes.Physical)
-            {
-                MageDamage.enabled = false;
-                PhysicalDamage.enabled = true;
-            }
-            else
-            {
-                MageDamage.enabled = true;
-                PhysicalDamage.enabled = false;
-            }
         }
         else if ((Information.activeSelf == true && selectTower == tower) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
         {

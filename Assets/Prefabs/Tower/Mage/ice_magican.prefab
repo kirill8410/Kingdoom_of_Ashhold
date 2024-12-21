@@ -1310,7 +1310,6 @@ MonoBehaviour:
   attackDistance: 12
   attackSpeed: 1.2
   damage: 15
-  damageType: 1
   attackPrefab: {fileID: 2281577632927514834, guid: 621b34235c8bd1d48b5667e1d34faa25, type: 3}
   Distance: {fileID: 1494251555177675282}
   attackPoint: {fileID: 8818436502025318071}
@@ -2359,10 +2358,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4860106687072794787}
     m_Modifications:
+    - target: {fileID: 78503977763885340, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7485313489859528703, guid: 9e7b2e80e2281274ba94b922835bc498, type: 2}
     - target: {fileID: 846876675959447638, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2854501269373375585, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7485313489859528703, guid: 9e7b2e80e2281274ba94b922835bc498, type: 2}
     - target: {fileID: 4478355760606884413, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_Name
       value: TowerUI
@@ -2447,6 +2454,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5801323226003177109, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: _base
       value: 
@@ -2455,9 +2466,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1738677108, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
+    - target: {fileID: 6729419557867802422, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7485313489859528703, guid: 9e7b2e80e2281274ba94b922835bc498, type: 2}
+    - target: {fileID: 8479762433009032305, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6208717102098136353, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+    - {fileID: 3398777377441899453, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static Tower;
 
 public class Spell : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Spell : MonoBehaviour
     public float speed = 2; // Скорость магии
     public Mage mage;
     bool isBang = false;
+    private int trueDamage;
 
     private void Update()
     {
@@ -45,7 +47,16 @@ public class Spell : MonoBehaviour
         {
             if (!isBang)
             {
-                other.gameObject.GetComponent<Enemy>().ReduceHP(damage);
+                trueDamage = damage;
+                if (other.GetComponent<Enemy>().protectionType == DamageTypes.Magic)
+                {
+                    trueDamage -= target.protection;
+                }
+                if (trueDamage < 0)
+                {
+                    trueDamage = 0;
+                }
+                other.gameObject.GetComponent<Enemy>().ReduceHP(trueDamage);
                 mage.MageCrystalRecharge(true);
                 Destroy(gameObject);
             }

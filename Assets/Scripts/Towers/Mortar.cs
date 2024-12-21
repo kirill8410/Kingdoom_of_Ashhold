@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using NUnit.Framework.Constraints;
 using static UnityEngine.GraphicsBuffer;
-using UnityEngine.InputSystem.Switch;
 
 public class Mortar : Tower, TowerFunctions
 {
@@ -36,8 +35,6 @@ public class Mortar : Tower, TowerFunctions
     }
     public float bangDistance;
 
-    private int trueDamage;
-
     [SerializeField] GameObject turet;
 
     public Enemy target;
@@ -69,16 +66,6 @@ public class Mortar : Tower, TowerFunctions
             if ((target != null) && (isAttack) && Vector3.Distance(gameObject.transform.position,
                 target.gameObject.transform.position) <= attackDistance)
             {
-                trueDamage = damage;
-                if (damageType == target.protectionType)
-                {
-                    trueDamage -= target.protection;
-                }
-                if (trueDamage < 0)
-                {
-                    trueDamage = 0;
-                }
-
                 switch (mortarType)
                 {
                     case MortarType.Simple:

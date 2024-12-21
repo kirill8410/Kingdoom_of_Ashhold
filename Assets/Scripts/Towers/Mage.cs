@@ -1,9 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using NUnit.Framework.Constraints;
-using static UnityEngine.GraphicsBuffer;
-using UnityEngine.InputSystem.Switch;
-using System;
 
 public class Mage : Tower, TowerFunctions
 {
@@ -72,25 +68,24 @@ public class Mage : Tower, TowerFunctions
             if ((target != null) && (isAttack) && Vector3.Distance(gameObject.transform.position,
                 target.gameObject.transform.position) <= attackDistance)
             {
-                trueDamage = damage;
-                if (damageType == target.protectionType)
-                {
-                    trueDamage -= target.protection;
-                }
-                if (trueDamage < 0)
-                {
-                    trueDamage = 0;
-                }
-
                 switch (mageType)
                 {
                     case MageType.Simple:
                         GameObject attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
-                        attack.GetComponent<Spell>().damage = trueDamage;
+                        attack.GetComponent<Spell>().damage = damage;
                         attack.GetComponent<Spell>().target = target;
                         attack.GetComponent<Spell>().mage = this;
                         break;
                     case MageType.God:
+                        trueDamage = damage;
+                        if (target.protectionType == DamageTypes.Magic)
+                        {
+                            trueDamage -= target.protection;
+                        }
+                        if (trueDamage < 0)
+                        {
+                            trueDamage = 0;
+                        }
                         MageCrystal.SetActive(true);
                         attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x, target.transform.position.y + 3f, target.transform.position.z), target.transform.rotation);
                         yield return new WaitForSeconds(0.5f);
@@ -100,11 +95,20 @@ public class Mage : Tower, TowerFunctions
                         break;
                     case MageType.Ice:
                         attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
-                        attack.GetComponent<IceSpell>().damage = trueDamage;
+                        attack.GetComponent<IceSpell>().damage = damage;
                         attack.GetComponent<IceSpell>().target = target;
                         attack.GetComponent<IceSpell>().mage = this;
                         break;
                     case MageType.Fire:
+                        trueDamage = damage;
+                        if (target.protectionType == DamageTypes.Magic)
+                        {
+                            trueDamage -= target.protection;
+                        }
+                        if (trueDamage < 0)
+                        {
+                            trueDamage = 0;
+                        }
                         MageCrystal.SetActive(true);
                         if (target != target2)
                         {
@@ -123,7 +127,7 @@ public class Mage : Tower, TowerFunctions
                         MageCrystal.SetActive(true);
                         isAttack = false;
                         attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
-                        attack.GetComponent<DeathSpell>().damage = trueDamage;
+                        attack.GetComponent<DeathSpell>().damage = damage;
                         attack.GetComponent<DeathSpell>().target = target;
                         attack.GetComponent<DeathSpell>().mage = this;
                         break;

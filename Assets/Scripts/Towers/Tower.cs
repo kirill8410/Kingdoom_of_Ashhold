@@ -12,8 +12,6 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
     {
         Physical, Magic
     }
-    public DamageTypes damageType;
-
     public GameObject attackPrefab; // Объект которым стреляет башня
     public GameObject Distance;
     public Transform attackPoint; // Точка появления снаряда
