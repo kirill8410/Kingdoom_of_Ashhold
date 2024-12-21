@@ -9,6 +9,11 @@ public class LevelSelect : MonoBehaviour
     private void Start()
     {
         GetComponentInChildren<TextMeshProUGUI>().text = numberLevel.ToString();
+        if (PlayerPrefs.GetInt("Level") < 1)
+        {
+            PlayerPrefs.SetInt("Level", 1);
+            PlayerPrefs.Save();
+        }
     }
 
     private void Update()
