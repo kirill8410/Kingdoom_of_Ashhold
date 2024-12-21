@@ -5261,9 +5261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 10
   attackSpeed: 0.8
-  damage: 15
-  damageType: 1
-  isAttack: 1
+  damage: 25
   attackPrefab: {fileID: 493433929314315523, guid: f3e0aa24cd2668d4ba1a9356ca4f23c6, type: 3}
   Distance: {fileID: 3461634056693553470}
   attackPoint: {fileID: 5659079095064111117}
@@ -5280,6 +5278,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1251519358497445184}
     m_Modifications:
+    - target: {fileID: 78503977763885340, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7485313489859528703, guid: 9e7b2e80e2281274ba94b922835bc498, type: 2}
     - target: {fileID: 846876675959447638, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -5292,6 +5294,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Death_mage
       objectReference: {fileID: 0}
+    - target: {fileID: 2854501269373375585, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7485313489859528703, guid: 9e7b2e80e2281274ba94b922835bc498, type: 2}
     - target: {fileID: 3683258409655869336, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -5392,6 +5398,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5801323226003177109, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: _base
       value: 
@@ -5420,6 +5430,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1738677108, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
+    - target: {fileID: 6729419557867802422, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7485313489859528703, guid: 9e7b2e80e2281274ba94b922835bc498, type: 2}
     - target: {fileID: 7040619723305010683, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -5431,6 +5445,10 @@ PrefabInstance:
     - target: {fileID: 7586444265985291835, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_Name
       value: God_mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479762433009032305, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8487294271860812273, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -5445,7 +5463,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1181359287, guid: 019bfae16f7c3e64fa22b6df6517b44b, type: 3}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3398777377441899453, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}

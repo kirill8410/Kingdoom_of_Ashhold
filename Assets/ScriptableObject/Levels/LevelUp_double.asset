@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LevelUp_double
   m_EditorClassIdentifier: 
   damage_1: 10
-  distance_1: 5
+  distance_1: 0
   priceLevelUp_1: 115
-  damage_2: 15
+  damage_2: 10
   distance_2: 5
   priceLevelUp_2: 160

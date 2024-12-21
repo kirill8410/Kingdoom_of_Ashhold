@@ -12,9 +12,6 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
     {
         Physical, Magic
     }
-    public DamageTypes damageType;
-    public bool isAttack = true; // Может ли башня атакавать
-
     public GameObject attackPrefab; // Объект которым стреляет башня
     public GameObject Distance;
     public Transform attackPoint; // Точка появления снаряда
@@ -27,5 +24,7 @@ public interface TowerFunctions // Общие функции башен
     public void LevelUp(); // Увеничение параметров при повышении уровня
     public int PriceLevelUp { get; set; }
     public int Towerlevel { get; set; }
+    public bool isAttack { get; set; }
     public LevelUp levelUp { get; set; }
+    public GameObject gm { get; set; }
 }

@@ -467,15 +467,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 7
   attackSpeed: 0.2
-  damage: 15
-  damageType: 0
-  isAttack: 1
-  attackPrefab: {fileID: 2910632921531643326, guid: 0ec1d944743ddde42b716b3722822708, type: 3}
+  damage: 20
+  attackPrefab: {fileID: 2056454902351534825, guid: a11d4ac664a4d3847aca2b65910910ac, type: 3}
   Distance: {fileID: 171548969653625598}
   attackPoint: {fileID: 0}
   _levelUp: {fileID: 11400000, guid: 154d7f1017f8e3348b6904859900faab, type: 2}
   mortarType: 3
-  bangDistance: 1.5
+  bangDistance: 2.5
   turet: {fileID: 52727746386946459}
   target: {fileID: 0}
 --- !u!95 &2388778403106326794
@@ -1034,6 +1032,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6208717102098136353, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+    - {fileID: 8974167425915901144, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}

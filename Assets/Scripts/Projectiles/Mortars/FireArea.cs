@@ -15,9 +15,9 @@ public class FireArea : MonoBehaviour
 
     IEnumerator Fire()
     {
-        for (int i = 0; i < seconds; i++)
+        for (int i = 0; i < seconds * 2; i++)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
             {

@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 8615802866727016572}
   - component: {fileID: 3571103214581380524}
   m_Layer: 0
-  m_Name: ROKET
+  m_Name: roket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  bangDistance: 1.5
+  bangDistance: 2.5
 --- !u!1 &1348735146369629689
 GameObject:
   m_ObjectHideFlags: 0

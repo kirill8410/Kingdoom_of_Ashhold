@@ -29,10 +29,6 @@ public class Base : MonoBehaviour
     [SerializeField] TextMeshProUGUI DistanceLeveUp;
     [SerializeField] TextMeshProUGUI PriceLeveUp;
 
-    [Header("Images")]
-    [SerializeField] Image MageDamage;
-    [SerializeField] Image PhysicalDamage;
-
     [Header("Button")]
     [SerializeField] Button BuildButton;
     [SerializeField] Button[] EvolutionButtons;
@@ -59,6 +55,25 @@ public class Base : MonoBehaviour
     {
         if (_tower != null)
         {
+            if (!_tower.isAttack)
+            {
+                GetComponent<Canvas>().enabled = false;
+            }
+            else
+            {
+                if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) <= 6.5f)
+                {
+                    GetComponent<Canvas>().enabled = true;
+                }
+            }
+            if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) > 6.5f)
+            {
+                selectTower = null;
+                Information.SetActive(false);
+                Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                InformationLevelUp.SetActive(false);
+                Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+            }
             if (_tower.Towerlevel != 3) // Отображение кнопок прокачки если уровень не максимальный
             {
                 LevelUpButton.gameObject.SetActive(true);
@@ -73,6 +88,7 @@ public class Base : MonoBehaviour
                 foreach (Button EvolutionButton in EvolutionButtons)
                 {
                     EvolutionButton.gameObject.SetActive(true);
+
                 }
             }
         }
@@ -93,16 +109,6 @@ public class Base : MonoBehaviour
             Damage.text = tower.tower.GetComponent<Tower>().damage.ToString();
             Distance.text = ((tower.tower.GetComponent<Tower>().attackDistance / 4) - 0.5f).ToString();
             AttackSpeed.text = tower.tower.GetComponent<Tower>().attackSpeed.ToString();
-            if (tower.tower.GetComponent<Tower>().damageType == Tower.DamageTypes.Physical)
-            {
-                MageDamage.enabled = false;
-                PhysicalDamage.enabled = true;
-            }
-            else
-            {
-                MageDamage.enabled = true;
-                PhysicalDamage.enabled = false;
-            }
         }
         else if ((Information.activeSelf == true && selectTower == tower) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
         {
