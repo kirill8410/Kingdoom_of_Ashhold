@@ -3749,7 +3749,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 908322806901673145, guid: b8a1183cdf3051e4ea9f1a5fec54295c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8a1183cdf3051e4ea9f1a5fec54295c, type: 3}
@@ -3763,11 +3764,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1121770569815749180, guid: 302407637fdc4144a943ffdc8be811ad, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1227517129053615552, guid: 302407637fdc4144a943ffdc8be811ad, type: 3}
       propertyPath: m_Name
       value: Teleport Area
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872465387458192459, guid: 302407637fdc4144a943ffdc8be811ad, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7682252988659381763, guid: 302407637fdc4144a943ffdc8be811ad, type: 3}
       propertyPath: m_LocalScale.x
