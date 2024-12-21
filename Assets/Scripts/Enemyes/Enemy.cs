@@ -138,6 +138,11 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         }
         HealthBar();
     }
+    public void ReduceHP(int damage, int reduceProtection)
+    {
+        hp -= damage;
+        Curse(reduceProtection);
+    }
     public void Heal(int health)
     {
         hp += health;
@@ -270,7 +275,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
             protection -= curse;
             if (shield > 0)
             {
-                shield -= 1;
+                shield -= 2;
             }
         }
     }
