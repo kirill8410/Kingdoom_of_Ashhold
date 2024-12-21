@@ -26,7 +26,7 @@ public class UIBehavior : MonoBehaviour // Поведение UI
         // Появление UI при приблежении игрока
         if (isHiding)
         {
-            if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= 5f)
+            if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= 6.5f)
             {
                 GetComponent<Canvas>().enabled = true;
             }

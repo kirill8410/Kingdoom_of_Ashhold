@@ -61,12 +61,12 @@ public class Base : MonoBehaviour
             }
             else
             {
-                if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) <= 5f)
+                if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) <= 6.5f)
                 {
                     GetComponent<Canvas>().enabled = true;
                 }
             }
-            if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) > 5f)
+            if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) > 6.5f)
             {
                 selectTower = null;
                 Information.SetActive(false);

@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     public Wave[] waves;
     [SerializeField] GameObject Freeze;
     [SerializeField] TextMeshProUGUI Text;
+    bool lose = false;
 
 
     private void Start()
@@ -48,7 +49,7 @@ public class LevelManager : MonoBehaviour
             if (isWave)
             {
                 Enemy[] e = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-                if (e.Length == 0)
+                if (e.Length == 0 && !lose)
                 {
                     isWave = false;
                     wave += 1;
@@ -80,7 +81,13 @@ public class LevelManager : MonoBehaviour
 
     public void Lose()
     {
+        Enemy[] enemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        foreach (Enemy enemy in enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
         Text.text = "Поражение";
+        lose = true;
         UI.SetActive(true);
     }
 
