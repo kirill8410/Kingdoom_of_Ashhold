@@ -12,10 +12,28 @@ public class PlayerUI : MonoBehaviour
     {
         LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
     }
+
     private void Update()
     {
         coins.text = LM.coins.ToString();
         HP.text = LM.HP.ToString();
         wave.text = $"{LM.wave}/{LM.waves.Length}";
+    }
+
+    public void NormalButtonClick()
+    {
+        LM.NormalTime();
+    }
+    public void FastlButtonClick()
+    {
+        LM.FastTime();
+    }
+    public void PauselButtonClick()
+    {
+        LM.Pause();
+    }
+    public void StartlButtonClick()
+    {
+        LM.StartWave();
     }
 }
