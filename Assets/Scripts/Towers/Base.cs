@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Base : MonoBehaviour
@@ -16,6 +17,7 @@ public class Base : MonoBehaviour
     [SerializeField] GameObject Information;
     [SerializeField] GameObject Selection;
     [SerializeField] GameObject InformationLevelUp;
+    [SerializeField] GameObject Base_;
 
     [Header("Texts")]
     [SerializeField] TextMeshProUGUI Name;
@@ -185,6 +187,11 @@ public class Base : MonoBehaviour
             GetComponent<AudioSource>().clip = Error; 
             SM.PlaySound(GetComponent<AudioSource>());
         }   
+    }
+    public void Destroy()
+    {
+        Instantiate(Base_, _base.transform.position, Quaternion.identity);
+        Destroy(_base, 0.8f);
     }
 
 }
