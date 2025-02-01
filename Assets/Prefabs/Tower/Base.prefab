@@ -1088,6 +1088,7 @@ MonoBehaviour:
   Information: {fileID: 507446172443004419}
   Selection: {fileID: 2448089475846341327}
   InformationLevelUp: {fileID: 0}
+  Base_: {fileID: 0}
   Name: {fileID: 6391672030226177240}
   Description: {fileID: 7365488375876644558}
   Price: {fileID: 3088833240877169332}
@@ -1098,8 +1099,6 @@ MonoBehaviour:
   DamageLeveUp: {fileID: 0}
   DistanceLeveUp: {fileID: 0}
   PriceLeveUp: {fileID: 0}
-  MageDamage: {fileID: 6207061841433592569}
-  PhysicalDamage: {fileID: 1558519469977594200}
   BuildButton: {fileID: 1824590216124534944}
   EvolutionButtons: []
   LevelUpButton: {fileID: 0}
