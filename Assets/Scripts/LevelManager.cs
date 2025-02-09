@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
     public int coins;
     public int HP = 10;
     public int wave = 0;
-    private bool isWave = false;
+    public bool isWave = false;
     private bool isSpawn = false;
     [SerializeField] int numberLevel;
     [SerializeField] GameObject UI;

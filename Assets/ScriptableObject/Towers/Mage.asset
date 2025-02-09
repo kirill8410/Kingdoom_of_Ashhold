@@ -19,3 +19,4 @@ MonoBehaviour:
     \u0431\u0440\u043E\u043D\u044E."
   price: 50
   tower: {fileID: 8717043387531534098, guid: a23ef485a91e40c4f9e078b062eea1a5, type: 3}
+  sell: 0

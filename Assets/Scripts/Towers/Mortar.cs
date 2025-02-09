@@ -13,6 +13,9 @@ public class Mortar : Tower, TowerFunctions
     public int PriceLevelUp { get; set; }
     public int Towerlevel { get; set; } = 1;
 
+    private GameObject atk;
+
+
     [SerializeField] LevelUp _levelUp;
     public LevelUp levelUp
     {
@@ -57,6 +60,10 @@ public class Mortar : Tower, TowerFunctions
             PriceLevelUp = levelUp.priceLevelUp_2;
         }
     }
+    public void WKL()
+    {
+        atk.SetActive(true);
+    }
 
     public IEnumerator Attack()
     {
@@ -74,6 +81,7 @@ public class Mortar : Tower, TowerFunctions
                         yield return new WaitForSeconds(5f / 60f);
                         GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x, 
                             -0.3f, target.transform.position.z), target.transform.rotation);
+
                         attack.GetComponent<Bomb>().damage = damage;
                         attack.GetComponent<Bomb>().bangDistance = bangDistance;
                         break;
@@ -87,6 +95,8 @@ public class Mortar : Tower, TowerFunctions
                             float r1 = Random.Range(-2, 2);
                             attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x + r,
                                 -0.3f, target.transform.position.z + r1), target.transform.rotation);
+                            atk = attack;
+                            WKL();
                             attack.GetComponent<Bomb>().damage = damage;
                             attack.GetComponent<Bomb>().bangDistance = bangDistance;
                         }
@@ -96,6 +106,7 @@ public class Mortar : Tower, TowerFunctions
                         yield return new WaitForSeconds(30f / 60f);
                         attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
                             -0.3f, target.transform.position.z), target.transform.rotation);
+                        atk = attack;
                         attack.GetComponent<Bomb>().damage = damage;
                         attack.GetComponent<Bomb>().bangDistance = bangDistance;
                         break;
@@ -106,6 +117,7 @@ public class Mortar : Tower, TowerFunctions
                         yield return new WaitForSeconds(5f / 60f);
                         attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
                             -0.3f, target.transform.position.z), target.transform.rotation);
+                        atk = attack;
                         attack.GetComponent<FireBomb>().damage = damage;
                         attack.GetComponent<FireBomb>().bangDistance = bangDistance;
                         break;

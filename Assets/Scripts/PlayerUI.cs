@@ -7,6 +7,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI coins;
     [SerializeField] TextMeshProUGUI HP;
     [SerializeField] TextMeshProUGUI wave;
+    [SerializeField] GameObject but;
+    private int wave1;
 
     private void Start()
     {
@@ -18,6 +20,7 @@ public class PlayerUI : MonoBehaviour
         coins.text = LM.coins.ToString();
         HP.text = LM.HP.ToString();
         wave.text = $"{LM.wave}/{LM.waves.Length}";
+        but.SetActive(!LM.isWave);
     }
 
     public void NormalButtonClick()
