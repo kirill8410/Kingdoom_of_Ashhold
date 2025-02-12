@@ -7,5 +7,4 @@ public class TowerData : ScriptableObject
     [TextArea] public string description;
     public int price;
     public GameObject tower;
-    public bool sell;
 }

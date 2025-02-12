@@ -121,7 +121,7 @@ public class Base : MonoBehaviour
     }
     public void Build() // Построить башню
     {
-        if (_base != null&&selectTower.sell)
+        if (_base != null)
         {
             if (LM.coins >= selectTower.price)
             {
@@ -138,11 +138,6 @@ public class Base : MonoBehaviour
                 GetComponent<AudioSource>().clip = Error;
                 SM.PlaySound(GetComponent<AudioSource>());
             }
-        }
-        else if (!selectTower.sell)
-        {
-            GetComponent<AudioSource>().clip = Error;
-            SM.PlaySound(GetComponent<AudioSource>());
         }
     }
     public void ShowLevelUpInformation() // Показать информацию о улучшении башни
