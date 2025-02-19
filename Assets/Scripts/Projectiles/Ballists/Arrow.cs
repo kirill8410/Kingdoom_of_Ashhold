@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using static Tower;
 
 public class Arrow : MonoBehaviour // Обычная стрела
 {
@@ -13,6 +12,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
     [SerializeField] bool potion;
     [SerializeField] bool sniper;
     private int trueDamage;
+
 
     private void Update()
     {
@@ -58,7 +58,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
                 target.Potion(tower.Towerlevel + 2);
             }
             trueDamage = damage;
-            if (other.GetComponent<Enemy>().protectionType == DamageTypes.Physical)
+            if (other.GetComponent<Enemy>().protectionType == Tower.DamageTypes.Physical)
             {
                 trueDamage -= target.protection;
             }
