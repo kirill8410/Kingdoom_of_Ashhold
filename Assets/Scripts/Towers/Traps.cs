@@ -79,10 +79,10 @@ public class Traps : Tower, TowerFunctions
                 switch (trapType)
                 {
                     case TrapType.Simple:
-                        {
-                            attackEffect = true;
-                            attackPrefab.SetActive(!attackPrefab.active); break; 
-                        }
+                        
+                        attackEffect = true;
+                        attackPrefab.SetActive(!attackPrefab.active); break; 
+                        
                         
                 }
             }

@@ -60,10 +60,6 @@ public class Mortar : Tower, TowerFunctions
             PriceLevelUp = levelUp.priceLevelUp_2;
         }
     }
-    public void WKL()
-    {
-        atk.SetActive(true);
-    }
 
     public IEnumerator Attack()
     {
@@ -96,7 +92,6 @@ public class Mortar : Tower, TowerFunctions
                             attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x + r,
                                 -0.3f, target.transform.position.z + r1), target.transform.rotation);
                             atk = attack;
-                            WKL();
                             attack.GetComponent<Bomb>().damage = damage;
                             attack.GetComponent<Bomb>().bangDistance = bangDistance;
                         }

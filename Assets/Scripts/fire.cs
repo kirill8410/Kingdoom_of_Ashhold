@@ -22,10 +22,9 @@ public class fire : MonoBehaviour
         if (other.GetComponent<Enemy>() != null)
         {
             trueDamage = damage;
-            if (other.GetComponent<Enemy>().protectionType == Tower.DamageTypes.Physical)
-            {
-                trueDamage -= other.GetComponent<Enemy>().protection;
-            }
+            
+            trueDamage -= other.GetComponent<Enemy>().protection;
+         
             if (trueDamage < 0)
             {
                 trueDamage = 0;
