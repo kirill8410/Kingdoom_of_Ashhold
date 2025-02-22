@@ -4,6 +4,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Traps : Tower, TowerFunctions
 {
+    [SerializeField] GameObject effect;
+    public bool attackEffect;
     public bool isAttack { get; set; } = true;
     public GameObject gm { get; set; }
 
@@ -44,11 +46,15 @@ public class Traps : Tower, TowerFunctions
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
         gm = gameObject;
+
     }
     private void Update()
     {
+        if (trapType == TrapType.Simple)
+        {
+            effect.SetActive(attackEffect);
+        }
         RotationTuret();
-        print(1);
         Distance.transform.localScale = new Vector3(attackDistance * 2f, attackDistance * 2f, 1f);
         if (Towerlevel == 1)
         {
@@ -58,6 +64,7 @@ public class Traps : Tower, TowerFunctions
         {
             PriceLevelUp = levelUp.priceLevelUp_2;
         }
+        
 
     }
 
@@ -72,8 +79,16 @@ public class Traps : Tower, TowerFunctions
                 switch (trapType)
                 {
                     case TrapType.Simple:
-                        attackPrefab.SetActive(!attackPrefab.active); break;
+                        {
+                            attackEffect = true;
+                            attackPrefab.SetActive(!attackPrefab.active); break; 
+                        }
+                        
                 }
+            }
+            else
+            {
+                attackEffect = false;
             }
         }
     }

@@ -871,6 +871,10 @@ PrefabInstance:
       propertyPath: 'EvolutionButtons.Array.data[2]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8559420874195830315, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6208717102098136353, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
