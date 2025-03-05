@@ -98,7 +98,7 @@ public class UIMenu : MonoBehaviour // Все функции меню
     /// </summary>
     public void Tourney()
     {
-        if (isTourney) // Открытие окна турнира
+        if (!isTourney) // Открытие окна турнира
         {
             ShowButtons(TourneyButtons);
             HideButtons(StartButtons);
@@ -114,5 +114,9 @@ public class UIMenu : MonoBehaviour // Все функции меню
             HideButtons(TourneyButtons);
             isTourney = false;
         }
+    }
+    public void TourneyLobby()
+    {
+        SceneManager.LoadScene("TourneyLobby");
     }
 }
