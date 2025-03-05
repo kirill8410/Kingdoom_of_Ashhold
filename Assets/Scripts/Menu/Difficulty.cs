@@ -8,6 +8,7 @@ public class Difficulty : MonoBehaviour // Сохранение сложности игры
     public void SetDifficulty()
     {
         PlayerPrefs.SetInt("Difficulty", difficulty); 
+
         PlayerPrefs.Save();
         SceneManager.LoadScene("GameLobby");
     }

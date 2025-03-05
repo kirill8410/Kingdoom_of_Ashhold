@@ -8,13 +8,13 @@ public class Screensaver : MonoBehaviour
     [SerializeField] GameObject text;
     private void Start()
     {
-        sword.transform.localPosition = new Vector3(0f, 350f, 0f);
-        text.transform.localPosition = new Vector3(0f, 300f, 0f);
         StartCoroutine(Animation());
     }
 
     IEnumerator Animation()
     {
+        sword.transform.localPosition = new Vector3(0f, 700f, 0f);
+        text.transform.localPosition = new Vector3(0f, 30000f, 0f);
         yield return new WaitForSeconds(2f);
         while (sword.transform.localPosition.y != 0f)
         {

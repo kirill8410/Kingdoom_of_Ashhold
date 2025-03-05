@@ -1,21 +1,35 @@
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIMenu : MonoBehaviour // Все функции меню
 {
     // Окна меню (начальное, настройки и быбор сложности)
-    [SerializeField] GameObject StartButtons;
-    [SerializeField] GameObject SettingsButtons;
-    [SerializeField] GameObject PlayButtons;
+    private GameObject StartButtons;
+    private GameObject SettingsButtons;
+    private GameObject PlayButtons;
+    private GameObject TourneyButtons;
     // Переменные нужные для проверки того какое окно сейчас открыто
     private bool isSettings = false;
     private bool isStarting = false;
+    private bool isTourney = false;
 
     private void Start()
     {
+        // Получаем окна
+        StartButtons = gameObject.GetNamedChild("StartButtons");
+        SettingsButtons = gameObject.GetNamedChild("SettingsButtons");
+        PlayButtons = gameObject.GetNamedChild("PlayButtons");
+        TourneyButtons = gameObject.GetNamedChild("TourneyButtons");
+        // Сброс позиций окон
+        StartButtons.transform.localPosition = new Vector3(0, 0, 0);
+        SettingsButtons.transform.localPosition = new Vector3(0, 0, 0);
+        PlayButtons.transform.localPosition = new Vector3(0, 0, 0);
+        TourneyButtons.transform.localPosition = new Vector3(0, 0, 0);
         // открываем нужные и закрываем ненужные окна (на всякий случай)
         HideButtons(SettingsButtons);
         HideButtons(PlayButtons);
+        HideButtons(TourneyButtons);
         ShowButtons(StartButtons);
     }
 
@@ -28,12 +42,16 @@ public class UIMenu : MonoBehaviour // Все функции меню
         if (!isSettings) // Открытие окна настроек
         {
             HideButtons(StartButtons);
+            HideButtons(TourneyButtons);
+            HideButtons(PlayButtons);
             ShowButtons(SettingsButtons);
             isSettings = true;
         }
         else // Закрытие окна настроек
         {
             HideButtons(SettingsButtons);
+            HideButtons(TourneyButtons);
+            HideButtons(PlayButtons);
             ShowButtons(StartButtons);
             isSettings = false;
         }
@@ -49,6 +67,8 @@ public class UIMenu : MonoBehaviour // Все функции меню
             else // Выбор сложности
             {
                 HideButtons(StartButtons);
+                HideButtons(SettingsButtons);
+                HideButtons(TourneyButtons);
                 ShowButtons(PlayButtons);
                 isStarting = true;
             }
@@ -56,6 +76,8 @@ public class UIMenu : MonoBehaviour // Все функции меню
         else // Закрытие окна выбора сложности
         {
             HideButtons(PlayButtons);
+            HideButtons(SettingsButtons);
+            HideButtons(TourneyButtons);
             ShowButtons(StartButtons);
             isStarting = false;
         }
@@ -69,5 +91,28 @@ public class UIMenu : MonoBehaviour // Все функции меню
     private void ShowButtons(GameObject Buttons) // Закрытие окна (таже причина)
     {
         Buttons.SetActive(true);
+    }
+
+    /// <summary>
+    /// Открытие окна турнира
+    /// </summary>
+    public void Tourney()
+    {
+        if (isTourney) // Открытие окна турнира
+        {
+            ShowButtons(TourneyButtons);
+            HideButtons(StartButtons);
+            HideButtons(SettingsButtons);
+            HideButtons(PlayButtons);
+            isTourney = true;
+        }
+        else // Закрытие окна турнира
+        {
+            ShowButtons(StartButtons);
+            HideButtons(PlayButtons);
+            HideButtons(SettingsButtons);
+            HideButtons(TourneyButtons);
+            isTourney = false;
+        }
     }
 }
