@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using Unity.XR.CoreUtils;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -39,12 +38,12 @@ public class RecordsCanvas : MonoBehaviour
         {
             int[] records = new int[10];
             
-            foreach (string key in _tourney.PublicRecords.Keys)
+            foreach (string key in _tourney.GetSaveData().PublicRecords.Keys)
             {
                 int[] recs = records;
                 foreach (int rec in recs)
                 {
-                    if (rec == 0 || _tourney.PublicRecords[key] > rec)
+                    if (rec == 0 || _tourney.GetSaveData().PublicRecords[key] > rec)
                     {
                         int recI = Array.IndexOf(recs, rec);
                         CreatePlace(records, key, recI);
@@ -57,12 +56,12 @@ public class RecordsCanvas : MonoBehaviour
         {
             int[] records = new int[10];
 
-            foreach (string key in _tourney.LocalRecords.Keys)
+            foreach (string key in _tourney.GetSaveData().LocalRecords.Keys)
             {
                 int[] recs = records;
                 foreach (int rec in recs)
                 {
-                    if (rec == 0 || _tourney.LocalRecords[key] > rec)
+                    if (rec == 0 || _tourney.GetSaveData().LocalRecords[key] > rec)
                     {
                         int recI = Array.IndexOf(recs, rec);
                         CreatePlace(records, key, recI);
@@ -85,8 +84,8 @@ public class RecordsCanvas : MonoBehaviour
         TextMeshProUGUI name = place.GetNamedChild("Name").GetComponent<TextMeshProUGUI>();
         name.text = key;
         TextMeshProUGUI record = place.GetNamedChild("Record").GetComponent<TextMeshProUGUI>();
-        record.text = _tourney.PublicRecords[key].ToString();
-        records[recI] = _tourney.PublicRecords[key];
+        record.text = _tourney.GetSaveData().PublicRecords[key].ToString();
+        records[recI] = _tourney.GetSaveData().PublicRecords[key];
         places[recI] = place;
     }
 }

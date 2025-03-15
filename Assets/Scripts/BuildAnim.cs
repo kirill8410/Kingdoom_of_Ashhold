@@ -8,28 +8,20 @@ public class BuildAnim : MonoBehaviour
     [SerializeField] GameObject[] doscs;
     private int i;
     [SerializeField] GameObject[] tower;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         StartCoroutine(Anim());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    
-    }
     IEnumerator Anim()
     {
         
         while(i < doscs.Length)
         {
-            
-            print("a");
             doscs[i].SetActive(true);
             i++;
             yield return new WaitForSeconds(0.1f);
-
         }
         yield return new WaitForSeconds(2f);
         tower[0].SetActive(true);

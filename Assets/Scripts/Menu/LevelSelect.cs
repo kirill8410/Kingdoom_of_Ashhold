@@ -30,7 +30,6 @@ public class LevelSelect : MonoBehaviour
 
     public void StartLevel()
     {
-        PlayerPrefs.SetInt("Level", 6);
         SceneManager.LoadScene($"Level_{numberLevel}");
     }
 }

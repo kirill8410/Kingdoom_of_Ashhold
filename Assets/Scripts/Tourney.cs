@@ -1,20 +1,28 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor.Overlays;
 using UnityEngine;
 
 public class Tourney : MonoBehaviour
 {
-    private Dictionary<string, int> _localRecords = new Dictionary<string, int>();
-    public Dictionary <string, int> LocalRecords {  get { return _localRecords; } }
+    private SaveDataTourney _saveData;
 
-    private Dictionary<string, int> _publicRecords = new Dictionary<string, int>();
-    public Dictionary<string, int> PublicRecords { get { return _publicRecords; } }
+    private void Start()
+    {
+        _saveData = LoadTourney();
+    }
 
-    private int _tourneyDifficulty = 0;
-    private int _gameDifficulty = 1;
+    public SaveDataTourney GetSaveData()
+    {
+        _saveData = LoadTourney();
+        return _saveData;
+    }
+
+    public SaveDataTourney GetSaveData(string fileName)
+    {
+        _saveData = LoadTourney(fileName);
+        return _saveData;
+    }
 
     public static Tourney CreateTourney()
     {
@@ -31,39 +39,33 @@ public class Tourney : MonoBehaviour
 
     private void StartTourney()
     {
-        SaveTourney();
+        
     }
 
     #region Сохранение файлов
 
-    private void SaveTourney()
+    private void SaveTourney(SaveDataTourney saveData)
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/Tourney.dat");
-        SaveDataTourney data = new SaveDataTourney();
-        data.LocalRecords = _localRecords;
-        data.PublicRecords = _publicRecords;
-        data.TourneyDifficulty = _tourneyDifficulty;
+        SaveDataTourney data = saveData;
         bf.Serialize(file, data);
         file.Close();;
     }
-    private void SaveTourney(string fileName)
+    private void SaveTourney(SaveDataTourney saveData, string fileName)
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + $"/{fileName}.dat");
-        SaveDataTourney data = new SaveDataTourney();
-        data.LocalRecords = _localRecords;
-        data.PublicRecords = _publicRecords;
-        data.TourneyDifficulty = _tourneyDifficulty;
+        SaveDataTourney data = saveData;
         bf.Serialize(file, data);
-        file.Close(); ;
+        file.Close();
     }
 
     #endregion
 
     #region Загрузка файлов
 
-    private void LoadTourney()
+    private SaveDataTourney LoadTourney()
     {
         if (File.Exists(Application.persistentDataPath + "/Tourney.dat"))
         {
@@ -71,12 +73,14 @@ public class Tourney : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/Tourney.dat", FileMode.Open);
             SaveDataTourney data = (SaveDataTourney)bf.Deserialize(file);
             file.Close();
-            _localRecords = data.LocalRecords;
-            _publicRecords = data.PublicRecords;
-            _tourneyDifficulty = data.TourneyDifficulty;
+            return data;
+        }
+        else
+        {
+            return null;
         }
     }
-    private void LoadTourney(string fileName)
+    private SaveDataTourney LoadTourney(string fileName)
     {
         if (File.Exists(Application.persistentDataPath + $"/{fileName}.dat"))
         {
@@ -84,19 +88,21 @@ public class Tourney : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + $"/{fileName}.dat", FileMode.Open);
             SaveDataTourney data = (SaveDataTourney)bf.Deserialize(file);
             file.Close();
-            _localRecords = data.LocalRecords;
-            _publicRecords = data.PublicRecords;
-            _tourneyDifficulty = data.TourneyDifficulty;
-            Debug.Log($"{_localRecords}, {_publicRecords}, {_tourneyDifficulty}");
+            return data;
+        }
+        else
+        {
+            return null;
         }
     }
 
     #endregion
 }
-[SerializeField]
-class SaveDataTourney
+[System.Serializable]
+public class SaveDataTourney
 {
     public Dictionary<string, int> LocalRecords;
     public Dictionary<string, int> PublicRecords;
     public int TourneyDifficulty;
+    public int GameDifficulty;
 }

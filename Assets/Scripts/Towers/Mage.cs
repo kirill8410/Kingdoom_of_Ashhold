@@ -64,7 +64,10 @@ public class Mage : Tower, TowerFunctions
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f / attackSpeed);
+            for (float i = 1 / attackSpeed; i > 0; i -= 0.1f)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
             if ((target != null) && (isAttack) && Vector3.Distance(gameObject.transform.position,
                 target.gameObject.transform.position) <= attackDistance)
             {
@@ -169,12 +172,14 @@ public class Mage : Tower, TowerFunctions
         {
             damage += levelUp.damage_1;
             attackDistance += levelUp.distance_1;
+            attackSpeed += levelUp.attackSpeed_1;
             Towerlevel = 2;
         }
         else if (Towerlevel == 2)
         {
             damage += levelUp.damage_2;
             attackDistance += levelUp.distance_2;
+            attackSpeed += levelUp.attackSpeed_2;
             Towerlevel = 3;
         }
     }

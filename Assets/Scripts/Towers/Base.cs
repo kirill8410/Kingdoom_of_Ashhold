@@ -26,10 +26,11 @@ public class Base : MonoBehaviour
     [SerializeField] TextMeshProUGUI Damage;
     [SerializeField] TextMeshProUGUI Distance;
     [SerializeField] TextMeshProUGUI AttackSpeed;
-    [SerializeField] TextMeshProUGUI TextLeveUp;
-    [SerializeField] TextMeshProUGUI DamageLeveUp;
-    [SerializeField] TextMeshProUGUI DistanceLeveUp;
-    [SerializeField] TextMeshProUGUI PriceLeveUp;
+    [SerializeField] TextMeshProUGUI TextLevelUp;
+    [SerializeField] TextMeshProUGUI DamageLevelUp;
+    [SerializeField] TextMeshProUGUI DistanceLevelUp;
+    [SerializeField] TextMeshProUGUI AttackSpeedLevelUp;
+    [SerializeField] TextMeshProUGUI PriceLevelUp;
 
     [Header("Button")]
     [SerializeField] Button BuildButton;
@@ -46,8 +47,14 @@ public class Base : MonoBehaviour
     private void Start() 
     {
         // Нахождение менеджеров
-        LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-        SM = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        if (GameObject.Find("LevelManager") != null)
+        {
+            LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        }
+        if (GameObject.Find("SoundManager"))
+        {
+            SM = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        }
 
         // Нахождение башни на которой находится этот UI
         _tower = GetComponentInParent<TowerFunctions>();
@@ -148,17 +155,19 @@ public class Base : MonoBehaviour
             Selection.transform.localPosition = new Vector3(-80f, 0f, 0f);
             if (_tower.Towerlevel == 1)
             {
-                DamageLeveUp.text = $"+ {_tower.levelUp.damage_1}";
-                TextLeveUp.text = "Улучшить до уроня 2";
-                DistanceLeveUp.text = $"+ {(_tower.levelUp.distance_1 / 4)}";
-                PriceLeveUp.text = _tower.levelUp.priceLevelUp_1.ToString();
+                DamageLevelUp.text = $"+ {_tower.levelUp.damage_1}";
+                TextLevelUp.text = "Улучшить до уроня 2";
+                DistanceLevelUp.text = $"+ {(_tower.levelUp.distance_1 / 4)}";
+                AttackSpeedLevelUp.text = $"+ {_tower.levelUp.attackSpeed_1}";
+                PriceLevelUp.text = _tower.levelUp.priceLevelUp_1.ToString();
             }
             else if (_tower.Towerlevel == 2)
             {
-                DamageLeveUp.text = $"+ {_tower.levelUp.damage_2}";
-                TextLeveUp.text = "Улучшить до уроня 3";
-                DistanceLeveUp.text = $"+ {(_tower.levelUp.distance_2 / 4)}";
-                PriceLeveUp.text = _tower.levelUp.priceLevelUp_2.ToString();
+                DamageLevelUp.text = $"+ {_tower.levelUp.damage_2}";
+                TextLevelUp.text = "Улучшить до уроня 3";
+                DistanceLevelUp.text = $"+ {(_tower.levelUp.distance_2 / 4)}";
+                AttackSpeedLevelUp.text = $"+ {_tower.levelUp.attackSpeed_2}";
+                PriceLevelUp.text = _tower.levelUp.priceLevelUp_2.ToString();
             }
 
         }
@@ -189,6 +198,7 @@ public class Base : MonoBehaviour
             SM.PlaySound(GetComponent<AudioSource>());
         }   
     }
+
     public void Destroy()
     {
         Instantiate(Base_, _base.transform.position, Quaternion.identity);

@@ -1227,10 +1227,11 @@ MonoBehaviour:
   Damage: {fileID: 1019704365453834405}
   Distance: {fileID: 775196846917778567}
   AttackSpeed: {fileID: 10649881367803778}
-  TextLeveUp: {fileID: 0}
-  DamageLeveUp: {fileID: 0}
-  DistanceLeveUp: {fileID: 0}
-  PriceLeveUp: {fileID: 0}
+  TextLevelUp: {fileID: 0}
+  DamageLevelUp: {fileID: 0}
+  DistanceLevelUp: {fileID: 0}
+  AttackSpeedLevelUp: {fileID: 0}
+  PriceLevelUp: {fileID: 0}
   BuildButton: {fileID: 1824590216124534944}
   EvolutionButtons: []
   LevelUpButton: {fileID: 0}
@@ -2547,7 +2548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25, y: 0}
+  m_AnchoredPosition: {x: -24.999998, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7624793963544215127

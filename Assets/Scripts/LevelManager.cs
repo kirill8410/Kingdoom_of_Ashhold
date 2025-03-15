@@ -22,7 +22,10 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        enemySpawn = GameObject.FindGameObjectWithTag("EnemySpawnPoint").transform;
+        if (GameObject.FindGameObjectWithTag("EnemySpawnPoint") != null)
+        {
+            enemySpawn = GameObject.FindGameObjectWithTag("EnemySpawnPoint").transform;
+        }
     }
 
     private void Start()
