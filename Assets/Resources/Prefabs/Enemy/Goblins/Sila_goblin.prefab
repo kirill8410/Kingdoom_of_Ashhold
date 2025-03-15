@@ -1081,8 +1081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75826a3bd60e8e348a5ffd37739b1733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropCoins: 10
-  hp: 150
+  dropCoins: 15
+  hp: 200
   maxHP: 0
   strips:
   - {fileID: 1150048409117245944}
@@ -1109,11 +1109,16 @@ MonoBehaviour:
   - {fileID: 990118371, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
   - {fileID: -403479227, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
   protection: 0
-  shild: 0
+  shield: 0
   protectionType: 0
   enemyType: 0
   enemySpell: 0
-  speed: 0.7
+  spellDistance: 0
+  enemySpawn: {fileID: 0}
+  heal: 0
+  speedBoost: 0
+  cooldown: 0
+  speed: 0.8
   points: []
   numberPoint: 0
   distanceToPoint: 0

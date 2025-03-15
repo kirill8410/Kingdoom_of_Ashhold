@@ -629,7 +629,6 @@ MonoBehaviour:
   coins: {fileID: 7404596256828322239}
   HP: {fileID: 506869730071077834}
   wave: {fileID: 922128248603400929}
-  but: {fileID: 0}
 --- !u!1 &1096997260283907000
 GameObject:
   m_ObjectHideFlags: 0

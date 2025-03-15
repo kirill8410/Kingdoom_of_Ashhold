@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58713c2d5e5af804b9c6a9c6e0d1f488, type: 3}
-  m_Name: LevelUp_simple
+  m_Script: {fileID: 11500000, guid: 56ca9a104f33adf4990fa9779cf6a4e6, type: 3}
+  m_Name: BetaTest_4
   m_EditorClassIdentifier: 
-  damage_1: 5
-  distance_1: 0
-  attackSpeed_1: 0.1
-  priceLevelUp_1: 25
-  damage_2: 10
-  distance_2: 0
-  attackSpeed_2: 0
-  priceLevelUp_2: 50
+  Enemies:
+  - {fileID: 7411764290573314256, guid: cf044930f0957ae41845abf654843f04, type: 3}
+  NumberOfEnemies: 01000000

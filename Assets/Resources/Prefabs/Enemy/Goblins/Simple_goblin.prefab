@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75826a3bd60e8e348a5ffd37739b1733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropCoins: 5
+  dropCoins: 10
   hp: 80
   maxHP: 0
   strips:
@@ -86,7 +86,7 @@ MonoBehaviour:
   heal: 0
   speedBoost: 0
   cooldown: 0
-  speed: 1
+  speed: 0.9
   points: []
   numberPoint: 0
   distanceToPoint: 0

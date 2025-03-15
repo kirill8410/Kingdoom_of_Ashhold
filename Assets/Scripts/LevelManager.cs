@@ -67,7 +67,10 @@ public class LevelManager : MonoBehaviour
                         foreach (TowerFunctions tower in t)
                         {
                             tower.isAttack = true;
-                            Freeze.SetActive(false);
+                            if (Freeze != null)
+                            {
+                                Freeze.SetActive(false);
+                            }
                         }
                     }
                 }
