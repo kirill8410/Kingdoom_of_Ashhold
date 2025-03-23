@@ -145,7 +145,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     }
     public void Heal(int health)
     {
-        hp += health;
+        hp += health * PlayerPrefs.GetInt("Difficulty");
         if (hp > maxHP)
         {
             hp = maxHP;
@@ -154,7 +154,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     }
     public void CreateShield()
     {
-        shield += 1;
+        shield += PlayerPrefs.GetInt("Difficulty");
         if (shield > maxShield)
         {
             shield = maxShield;
