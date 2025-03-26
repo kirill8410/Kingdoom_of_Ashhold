@@ -1,0 +1,1 @@
+C:\Users\MasterKlass\Documents\unity\Kingdoom_of_Ashhold\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\5kg2y4w1\obj\arm64-v8a

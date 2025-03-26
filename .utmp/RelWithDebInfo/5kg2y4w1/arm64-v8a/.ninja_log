@@ -1,0 +1,10 @@
+# ninja log v5
+35	1683	7646840328329999	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	cb49daca36e2b12a
+92	1745	7646840330001515	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	52f94d8e6ab02b2f
+59	1767	7646840329390968	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	4e31326d4d77faee
+0	1929	7646840332003336	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	7d0e1d24ffe81d98
+77	2199	7646840334825908	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	a14859343d8bcba6
+11	2371	7646840336573752	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	b014d572febe4efb
+46	2383	7646840336723884	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	c159a1163c2176f4
+20	2433	7646840337241249	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	ec95202ad5fb2186
+2434	2633	7646840339204411	C:/Users/MasterKlass/Documents/unity/Kingdoom_of_Ashhold/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5kg2y4w1/obj/arm64-v8a/libgame.so	17a2bd07e6a8547f

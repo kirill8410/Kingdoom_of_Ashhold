@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BetaTest_1
   m_EditorClassIdentifier: 
   Enemies:
-  - {fileID: 2616731409952585168, guid: 2bdb6e135afb9ff45a1f3c8e0237b633, type: 3}
+  - {fileID: 3902759999657986325, guid: 0a521e902329ebe43ade092eb5c34536, type: 3}
   NumberOfEnemies: 02000000

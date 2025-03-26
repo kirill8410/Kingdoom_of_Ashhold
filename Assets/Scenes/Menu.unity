@@ -611,6 +611,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tourney
       objectReference: {fileID: 0}
+    - target: {fileID: 5497867594757696336, guid: e952b2834a178c845af18c9c6b46c062, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5497867594757696337, guid: e952b2834a178c845af18c9c6b46c062, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
