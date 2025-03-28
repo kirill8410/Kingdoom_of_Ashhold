@@ -86,18 +86,23 @@ public class Base : MonoBehaviour
             if (_tower.Towerlevel != 3) // Отображение кнопок прокачки если уровень не максимальный
             {
                 LevelUpButton.gameObject.SetActive(true);
-                foreach (Button EvolutionButton in EvolutionButtons)
+                if (EvolutionButtons.Length > 0)
                 {
-                    EvolutionButton.gameObject.SetActive(false);
-                }
+                    foreach (Button EvolutionButton in EvolutionButtons)
+                    {
+                        EvolutionButton.gameObject.SetActive(false);
+                    }
+                }  
             }
             else // Отображение кнопок эволюции если уровень максимальный
             {
                 LevelUpButton.gameObject.SetActive(false);
-                foreach (Button EvolutionButton in EvolutionButtons)
+                if (EvolutionButtons.Length > 0)
                 {
-                    EvolutionButton.gameObject.SetActive(true);
-
+                    foreach (Button EvolutionButton in EvolutionButtons)
+                    {
+                        EvolutionButton.gameObject.SetActive(true);
+                    }
                 }
             }
         }

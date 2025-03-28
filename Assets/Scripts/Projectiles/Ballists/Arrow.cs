@@ -13,7 +13,6 @@ public class Arrow : MonoBehaviour // Обычная стрела
     [SerializeField] bool sniper;
     private int trueDamage;
 
-
     private void Update()
     {
         if (target != null) // Движение стрелы к цели

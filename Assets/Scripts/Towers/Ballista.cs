@@ -96,9 +96,11 @@ public class Ballista : Tower, TowerFunctions // Баллиста
 
                 if (isDouble)
                 {
+                    GetComponent<Animator>().speed = attackSpeed;
                     GameObject attack1 = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                     attack1.GetComponent<Arrow>().damage = damage;
                     attack1.GetComponent<Arrow>().target = target;
+                    attack1.GetComponent<Arrow>().tower = this;
                     _arrow2 = attack1;
                 }
                 if (isSniper)
