@@ -130,7 +130,10 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     {
         if (shield > 0)
         {
-            shield -= 1;
+            if (damage > 0)
+            {
+                shield -= 1;
+            }
         }
         else
         {
@@ -155,7 +158,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     }
     public void CreateShield()
     {
-        shield += PlayerPrefs.GetInt("Difficulty");
+        shield += 1;
         if (shield > maxShield)
         {
             shield = maxShield;
@@ -292,7 +295,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                     GetComponentInChildren<Animator>().SetTrigger("Spell");
                     float s = speed;
                     speed = 0;
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(0.5f);
                     Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
                     foreach (Enemy enemy in enemyes)
                     {
@@ -307,7 +310,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                     GetComponentInChildren<Animator>().SetTrigger("Spell");
                     s = speed;
                     speed = 0;
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(0.5f);
                     enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
                     foreach (Enemy enemy in enemyes)
                     {
@@ -322,7 +325,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                     GetComponentInChildren<Animator>().SetTrigger("Spell");
                     s = speed;
                     speed = 0;
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(0.5f);
                     enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
                     foreach (Enemy enemy in enemyes)
                     {
@@ -334,13 +337,10 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                     speed = s;
                     break;
                 case EnemySpell.SpawnEnemy:
-                    s = speed;
-                    speed = 0;
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.2f);
                     GameObject _enemy = Instantiate(enemySpawn, gameObject.transform.position, gameObject.transform.rotation);
                     _enemy.GetComponent<Enemy>().points = points;
                     _enemy.GetComponent<Enemy>().numberPoint = numberPoint;
-                    speed = s;
                     break;
             }
         }

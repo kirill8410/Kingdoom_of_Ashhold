@@ -21,7 +21,8 @@ public class FireArea : MonoBehaviour
             Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
             {
-                if (Vector3.Distance(gameObject.transform.position, enemy.gameObject.transform.position) <= bangDistance)
+                if (Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z),
+                new Vector2(enemy.transform.position.x, enemy.transform.position.z)) <= bangDistance)
                 {
                     enemy.ReduceHP(damage);
                 }
