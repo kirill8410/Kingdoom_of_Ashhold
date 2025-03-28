@@ -11,7 +11,7 @@ public class Wave : ScriptableObject
 
     public IEnumerator SpawnEnemies(LevelManager LM)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < Enemies.Length; i++)
         {
             if (NumberOfEnemies[i] == 0)
@@ -22,9 +22,8 @@ public class Wave : ScriptableObject
             {
                 GameObject enemy = Instantiate(Enemies[i].gameObject, LM.enemySpawn.position, LM.enemySpawn.rotation);
                 enemy.GetComponent<Enemy>().points = LM.points; 
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
             }
-            yield return new WaitForSeconds(1f);
         }
         LM.StopSpawn();
     }

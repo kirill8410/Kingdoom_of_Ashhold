@@ -68,8 +68,8 @@ public class Mage : Tower, TowerFunctions
             {
                 yield return new WaitForSeconds(0.1f);
             }
-            if ((target != null) && (isAttack) && Vector3.Distance(gameObject.transform.position,
-                target.gameObject.transform.position) <= attackDistance)
+            if ((target != null) && (isAttack) && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
+                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
             {
                 switch (mageType)
                 {
@@ -148,14 +148,16 @@ public class Mage : Tower, TowerFunctions
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
-            if (target != null && Vector3.Distance(target.transform.position, gameObject.transform.position) > attackDistance)
+            if (target != null && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
+                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) > attackDistance)
             {
                 target = null;
             }
             Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
             {
-                if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= attackDistance)
+                if (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
+                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
                 {
                     if ((target == null) || (enemy.numberPoint > target.numberPoint) ||
                         ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))

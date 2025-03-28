@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     public float speed = 1;
     public GameObject[] points;
     public int numberPoint = 0;
-    private Vector3 point;
+    private Vector2 point;
 
     public float distanceToPoint; // дистанция до следующей точки
 
@@ -70,10 +70,9 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         hp = hp * PlayerPrefs.GetInt("Difficulty");
         maxHP = hp;
-        point = points[numberPoint].transform.position;
+        point = new Vector2(points[numberPoint].transform.position.x, points[numberPoint].transform.position.z);
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = point;
-        agent.SetDestination(point);
+        agent.SetDestination(new Vector3(point.x, 0, point.y));
         HealthBar();
         if (enemySpell != EnemySpell.None)
         {
@@ -84,9 +83,10 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     private void Update()
     {
         // Определение дистанции до точки
-        distanceToPoint = Vector3.Distance(point, gameObject.transform.position);
+        distanceToPoint = Vector2.Distance(point, 
+            new Vector2(gameObject.transform.position.x, gameObject.transform.position.z));
         // Переключение на следующую точку
-        if (distanceToPoint < 0.35f)
+        if (distanceToPoint < 0.1f)
         {
             numberPoint += 1;
             if (numberPoint >= points.Length)
@@ -95,14 +95,15 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
             }
             else
             {
-                point = points[numberPoint].transform.position;
-                agent.SetDestination(point);
+                point = new Vector2(points[numberPoint].transform.position.x, points[numberPoint].transform.position.z);
+                agent.SetDestination(new Vector3(point.x, 0, point.y));
             }
         }
         // NawMesh
         if (speedBooster != null)
         {
-            if (Vector3.Distance(speedBooster.transform.position, gameObject.transform.position) > speedBooster.spellDistance)
+            if (Vector2.Distance(new Vector2(speedBooster.transform.position.x, speedBooster.transform.position.z)
+                , new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) > speedBooster.spellDistance)
             {
                 _speed = 0;
             }
