@@ -393,8 +393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0800573cb8b8e2f4d9a8046501a8112b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 10
-  attackSpeed: 0.8
+  attackDistance: 6
+  attackSpeed: 1
   damage: 10
   attackPrefab: {fileID: 3015978801689264161, guid: ff5905b75bb9f7047bcdc9b5e212bc51, type: 3}
   Distance: {fileID: 2150182433977331067}
@@ -404,6 +404,7 @@ MonoBehaviour:
   Turet_osnov2: {fileID: 9177087419181517071}
   isSniper: 0
   isDouble: 0
+  isPoison: 1
   target: {fileID: 0}
 --- !u!95 &5314755489533630041
 Animator:

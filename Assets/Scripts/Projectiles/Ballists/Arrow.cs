@@ -42,22 +42,27 @@ public class Arrow : MonoBehaviour // Обычная стрела
 
     private void OnTriggerEnter(Collider other) // Нанесение урона при поподании по врагу
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && other.GetComponent<Enemy>() == target)
         {
             if (sniper)
             {
-                damage += Convert.ToInt32(Vector3.Distance(gameObject.transform.position, towerTransform.position) * 2);
-                if (target.enemyType == Enemy.EnemyTypes.Boss)
+                if (Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
+                    new Vector2(towerTransform.position.x, towerTransform.position.z)) > 6)
                 {
-                    damage += 5;
+                    damage += Convert.ToInt32(Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
+                    new Vector2(towerTransform.position.x, towerTransform.position.z)) * 2);
+                    if (target.enemyType == Enemy.EnemyTypes.Boss)
+                    {
+                        damage += 5;
+                    }
                 }
             }
             if (potion)
             {
-                target.Potion(tower.Towerlevel + 2);
+                target.Potion(tower.Towerlevel * 10);
             }
             trueDamage = damage;
-            if (other.GetComponent<Enemy>().protectionType == Tower.DamageTypes.Physical)
+            if (target.protectionType == Tower.DamageTypes.Physical)
             {
                 trueDamage -= target.protection;
             }
@@ -65,7 +70,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
             {
                 trueDamage = 0;
             }
-            other.gameObject.GetComponent<Enemy>().ReduceHP(trueDamage);
+            target.ReduceHP(trueDamage);
             Destroy(gameObject);
         }
     }

@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     // эфекты
     [SerializeField] bool immunity = false;
-    int _potion = 0;
+    public int _potion = 0;
     bool _ice = false;
     private float _speed = 0;
     private Enemy speedBooster;
@@ -225,25 +225,26 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     IEnumerator _Potion(int potionDamage)
     {
-        if (_potion <= 5)
+        if (_potion < 5)
         {
             _potion += 1;
             if (_potion > 5)
             {
                 _potion = 5;
             }
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 5; i++)
             {
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(5f);
                 if (!immunity)
                 {
                     if (enemyType == EnemyTypes.Boss)
                     {
-                        hp += potionDamage - 1;
+                        hp -= potionDamage / 5;
                     }
                     ReduceHP(potionDamage);
                 }
             }
+            yield return new WaitForSeconds(1f);
             _potion -= 1;
         }
     }

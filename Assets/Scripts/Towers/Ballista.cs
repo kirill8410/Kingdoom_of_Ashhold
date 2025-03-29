@@ -33,6 +33,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
     [Header("TowerType")]
     [SerializeField] bool isSniper;
     [SerializeField] bool isDouble;
+    [SerializeField] bool isPoison;
 
     private GameObject _arrow1;
     private GameObject _arrow2;
@@ -126,10 +127,31 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 if (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
                 new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
                 {
-                    if ((target == null) || (enemy.numberPoint > target.numberPoint) || 
-                        ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                    if (isPoison)
                     {
-                        target = enemy;
+                        if ((target == null) || (enemy.numberPoint > target.numberPoint) || (enemy._potion < target._potion))
+                        {
+                            target = enemy;
+                        }
+                    }
+                    else if (isSniper)
+                    {
+                        if ((target == null) || (enemy.numberPoint > target.numberPoint) ||
+                        (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
+                    new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) >
+                    Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
+                    new Vector2(gameObject.transform.position.x, gameObject.transform.position.z))))
+                        {
+                            target = enemy;
+                        }
+                    }
+                    else
+                    {
+                        if ((target == null) || (enemy.numberPoint > target.numberPoint) ||
+                        ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                        {
+                            target = enemy;
+                        }
                     }
                 }
             }

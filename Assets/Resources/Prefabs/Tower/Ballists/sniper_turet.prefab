@@ -841,9 +841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0800573cb8b8e2f4d9a8046501a8112b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 20
-  attackSpeed: 0.3
-  damage: 10
+  attackDistance: 16
+  attackSpeed: 0.5
+  damage: 20
   attackPrefab: {fileID: 5652138828623769678, guid: cfc5b5670cffec146820fa83fb172ebb, type: 3}
   Distance: {fileID: 2259337979186975989}
   attackPoint: {fileID: 3362765351518806872}
@@ -852,6 +852,7 @@ MonoBehaviour:
   Turet_osnov2: {fileID: 1820460836565675839}
   isSniper: 1
   isDouble: 0
+  isPoison: 0
   target: {fileID: 0}
 --- !u!1 &8031815149762029757
 GameObject:
@@ -1219,6 +1220,10 @@ PrefabInstance:
       propertyPath: _base
       value: 
       objectReference: {fileID: 7842681586933842562}
+    - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: EvolutionButtons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: 'EvolutionButtons.Array.data[0]'
       value: 
