@@ -5,18 +5,20 @@ public class DeathSpell : MonoBehaviour
 {
     public Enemy target; 
     public int damage; 
-    public float speed = 4f; 
+    private float speed = 15f; 
     public Mage mage;
 
     private void Start()
     {
-        transform.LookAt(target.gameObject.transform.position);
+        transform.LookAt(new Vector3(target.gameObject.transform.position.x, gameObject.transform.position.y,
+            target.gameObject.transform.position.z));
     }
     private void Update()
     {
-        if (Vector3.Distance(gameObject.transform.position, mage.transform.position) < mage.attackDistance)
+        if (Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z),
+            new Vector2(mage.transform.position.x, mage.transform.position.z)) < mage.attackDistance)
         {
-            transform.Translate(0, 0, speed * Time.deltaTime * 10f);
+            transform.Translate(0, 0, speed * Time.deltaTime);
         }
         else
         {
@@ -29,7 +31,7 @@ public class DeathSpell : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().ReduceHP(damage, damage/5);
+            other.GetComponent<Enemy>().ReduceHP(damage, damage);
         }
     }
 }

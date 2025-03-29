@@ -64,16 +64,9 @@ public class Base : MonoBehaviour
     {
         if (_tower != null)
         {
-            if (!_tower.isAttack)
+            if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) <= 6.5f)
             {
-                GetComponent<Canvas>().enabled = false;
-            }
-            else
-            {
-                if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) <= 6.5f)
-                {
-                    GetComponent<Canvas>().enabled = true;
-                }
+                GetComponent<Canvas>().enabled = true;
             }
             if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) > 6.5f)
             {

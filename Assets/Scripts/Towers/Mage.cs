@@ -90,7 +90,7 @@ public class Mage : Tower, TowerFunctions
                             trueDamage = 0;
                         }
                         MageCrystal.SetActive(true);
-                        attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x, target.transform.position.y + 3f, target.transform.position.z), target.transform.rotation);
+                        attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x, target.transform.position.y + 2f, target.transform.position.z), target.transform.rotation);
                         yield return new WaitForSeconds(0.5f);
                         target.ReduceHP(trueDamage);
                         MageCrystal.SetActive(false);
@@ -128,7 +128,6 @@ public class Mage : Tower, TowerFunctions
                         break;
                     case MageType.Death:
                         MageCrystal.SetActive(true);
-                        isAttack = false;
                         attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                         attack.GetComponent<DeathSpell>().damage = damage;
                         attack.GetComponent<DeathSpell>().target = target;
@@ -159,10 +158,24 @@ public class Mage : Tower, TowerFunctions
                 if (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
                 new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
                 {
-                    if ((target == null) || (enemy.numberPoint > target.numberPoint) ||
-                        ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                    if (mageType == MageType.Death)
                     {
-                        target = enemy;
+                        if ((target == null) || (enemy.numberPoint > target.numberPoint) ||
+                        (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
+                    new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <
+                    Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
+                    new Vector2(gameObject.transform.position.x, gameObject.transform.position.z))))
+                        {
+                            target = enemy;
+                        }
+                    }
+                    else
+                    {
+                        if ((target == null) || (enemy.numberPoint > target.numberPoint) ||
+                        ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                        {
+                            target = enemy;
+                        }
                     }
                 }
             }
@@ -188,6 +201,5 @@ public class Mage : Tower, TowerFunctions
     public void MageCrystalRecharge(bool b)
     {
         MageCrystal.SetActive(b);
-        isAttack = true;
     }
 }

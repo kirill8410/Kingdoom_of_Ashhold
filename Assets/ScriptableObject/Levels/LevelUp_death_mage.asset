@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58713c2d5e5af804b9c6a9c6e0d1f488, type: 3}
   m_Name: LevelUp_death_mage
   m_EditorClassIdentifier: 
-  damage_1: 5
+  damage_1: 0
   distance_1: 2
-  attackSpeed_1: 0
-  priceLevelUp_1: 115
-  damage_2: 5
-  distance_2: 2
+  attackSpeed_1: 0.1
+  priceLevelUp_1: 120
+  damage_2: 0
+  distance_2: 4
   attackSpeed_2: 0.2
-  priceLevelUp_2: 145
+  priceLevelUp_2: 190

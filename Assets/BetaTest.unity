@@ -5293,10 +5293,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  attackSpeed: 0.5
-  distance: 20
+  attackSpeed: 1
+  distance: 10
   goblinHP: 160
-  goblinDefence: 5
+  goblinDefence: 0
   goblinShild: 0
   goblinSpeed: 0.9
   dps: 0

@@ -853,9 +853,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd4e686b86a9f946a77371b6e97f885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 10
-  attackSpeed: 0.6
-  damage: 20
+  attackDistance: 8
+  attackSpeed: 0.5
+  damage: 5
   attackPrefab: {fileID: 3498218476027231028, guid: 47e5a477fd94c23439079258802b5135, type: 3}
   Distance: {fileID: 7738511115707217395}
   attackPoint: {fileID: 5462850715459378268}
@@ -1818,6 +1818,10 @@ PrefabInstance:
       propertyPath: _base
       value: 
       objectReference: {fileID: 4008271540279057600}
+    - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: EvolutionButtons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: 'EvolutionButtons.Array.data[0]'
       value: 
