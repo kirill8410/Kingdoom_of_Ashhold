@@ -123,8 +123,15 @@ public class Mage : Tower, TowerFunctions
                         trueDamage += damage * charge;
                         charge += 1;
                         target2 = target;
-                        target.ReduceHP(trueDamage);
-                        Destroy(attack, (1f / attackSpeed) + 0.35f);
+                        if (target.enemyType != Enemy.EnemyTypes.Boss)
+                        {
+                            target.ReduceHP(trueDamage);
+                        }
+                        else
+                        {
+                            target.ReduceHP(1);
+                        }
+                            Destroy(attack, (1f / attackSpeed) + 0.35f);
                         break;
                     case MageType.Death:
                         MageCrystal.SetActive(true);
@@ -165,6 +172,13 @@ public class Mage : Tower, TowerFunctions
                     new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <
                     Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
                     new Vector2(gameObject.transform.position.x, gameObject.transform.position.z))))
+                        {
+                            target = enemy;
+                        }
+                    }
+                    else if (mageType == MageType.Fire)
+                    {
+                        if (target == null)
                         {
                             target = enemy;
                         }
