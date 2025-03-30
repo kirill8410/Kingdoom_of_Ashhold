@@ -80,10 +80,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
     {
         while (true)
         {
-            for (float i = 1/attackSpeed; i > 0; i -= 0.1f)
-            {
-                yield return new WaitForSeconds(0.1f);
-            }
+            yield return new WaitForSeconds(0.1f);
             if ((target != null) && (isAttack) && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
                 new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
             {
@@ -107,6 +104,10 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 if (isSniper)
                 {
                     attack.GetComponent<Arrow>().towerTransform = gameObject.transform;
+                }
+                for (float i = 1 / attackSpeed; i > 0; i -= 0.1f)
+                {
+                    yield return new WaitForSeconds(0.1f);
                 }
             }
         }

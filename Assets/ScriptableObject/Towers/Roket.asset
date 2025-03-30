@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: "\u0420\u043E\u043A\u0435\u0442\u0430"
   description: "\u0411\u043E\u043B\u044C\u0448\u043E\u0439\u043E\u0439 \u0411\u0423\u0423\u0423\u041C."
-  price: 200
+  price: 150
   tower: {fileID: 4068055464819582158, guid: 8ce289f24982b604186273f19c0a2cff, type: 3}

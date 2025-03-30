@@ -6,7 +6,7 @@ public class IceSpell : MonoBehaviour
     public Enemy target; // Цель в которую летит магия
     public int damage; // Урон магии
     public float speed = 2; // Скорость магии
-    public Mage mage;
+    public float slow = 0.4f;
     private int trueDamage;
 
     private void Update()
@@ -18,17 +18,16 @@ public class IceSpell : MonoBehaviour
         }
         else // Поиск цели если она отсутствует 
         {
-            mage.MageCrystalRecharge(true);
             Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter(Collider other) // Нанесение урона при поподании по врагу
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && other.GetComponent<Enemy>() == target)
         {
             trueDamage = damage;
-            if (other.GetComponent<Enemy>().protectionType == DamageTypes.Magic)
+            if (target.protectionType == DamageTypes.Magic)
             {
                 trueDamage -= target.protection;
             }
@@ -36,9 +35,8 @@ public class IceSpell : MonoBehaviour
             {
                 trueDamage = 0;
             }
-            other.gameObject.GetComponent<Enemy>().ReduceHP(trueDamage);
-            mage.MageCrystalRecharge(true);
-            other.GetComponent<Enemy>().Ice();
+            target.ReduceHP(trueDamage);
+            target.Ice(slow);
             Destroy(gameObject);
         }
     }

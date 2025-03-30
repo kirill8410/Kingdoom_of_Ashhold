@@ -49,15 +49,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9250660e6c434468c6c3dabf149a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 5
+  attackDistance: 6
   attackSpeed: 0.5
-  damage: 35
+  damage: 30
   attackPrefab: {fileID: 2056454902351534825, guid: a11d4ac664a4d3847aca2b65910910ac, type: 3}
   Distance: {fileID: 1852276821399486325}
   attackPoint: {fileID: 0}
   _levelUp: {fileID: 11400000, guid: c02c1f6a2ff70494aa6ef106b50d60da, type: 2}
   mortarType: 0
-  bangDistance: 2.5
+  bangDistance: 1.2
   turet: {fileID: 3635388800366485009}
   target: {fileID: 0}
 --- !u!95 &814794453727286670

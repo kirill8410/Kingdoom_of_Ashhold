@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage_1: 0
   distance_1: 4
-  priceLevelUp_1: 90
+  attackSpeed_1: 0.2
+  priceLevelUp_1: 120
   damage_2: 5
-  distance_2: 4
+  distance_2: 0
+  attackSpeed_2: 0.2
   priceLevelUp_2: 125

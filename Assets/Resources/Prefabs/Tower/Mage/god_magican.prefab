@@ -276,9 +276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd4e686b86a9f946a77371b6e97f885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 6
-  attackSpeed: 0.2
-  damage: 120
+  attackDistance: 8
+  attackSpeed: 0.1
+  damage: 160
   attackPrefab: {fileID: 1687053405057314714, guid: ddbc7664c14aa46438d6c06e0140bf3b, type: 3}
   Distance: {fileID: 511826300944604679}
   attackPoint: {fileID: 0}

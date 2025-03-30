@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     [Header("Protection")]
     public int protection;
-    [SerializeField] int shield;
+    public int shield;
     private int maxShield = 10;
 
     public Tower.DamageTypes protectionType;
@@ -254,24 +254,25 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         StartCoroutine(_Potion(potionDamage));
     }
 
-    private IEnumerator _Ice()
+    private IEnumerator _Ice(float slow)
     {
         if (!_ice)
         {
             if (!immunity)
             {
                 _ice = true;
-                float SlowSpeed = speed * 0.6f;
+                float SlowSpeed = speed * slow;
                 speed -= SlowSpeed;
-                yield return new WaitForSeconds(10f);
+                yield return new WaitForSeconds(slow * 10f + 1f);
                 speed += SlowSpeed;
+                yield return new WaitForSeconds(0.5f);
                 _ice = false;
             }
         }
     }
-    public void Ice()
+    public void Ice(float slow)
     {
-        StartCoroutine(_Ice());
+        StartCoroutine(_Ice(slow));
     }
 
     public void Curse(int curse)
@@ -279,6 +280,10 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         if (!immunity)
         {
             protection -= curse;
+            if (protection < -10)
+            {
+                protection = -10;
+            }
             if (shield > 0)
             {
                 shield -= 2;

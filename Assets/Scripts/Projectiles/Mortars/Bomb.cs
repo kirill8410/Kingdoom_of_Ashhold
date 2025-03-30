@@ -19,6 +19,10 @@ public class Bomb : MonoBehaviour
                 trueDamage = damage;
                 if (enemy.protectionType == DamageTypes.Physical)
                 {
+                    trueDamage -= enemy.protection * 2;
+                }
+                else
+                {
                     trueDamage -= enemy.protection;
                 }
                 if (trueDamage < 0)

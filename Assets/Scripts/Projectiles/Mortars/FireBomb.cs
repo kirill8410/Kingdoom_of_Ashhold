@@ -1,8 +1,11 @@
 using UnityEngine;
+using static Tower;
 
 public class FireBomb : MonoBehaviour
 {
     public int damage;
+    public int fireDamage;
+    public int fireSeconds;
     public float bangDistance;
     [SerializeField] GameObject fireArea;
     private int trueDamage;
@@ -16,7 +19,11 @@ public class FireBomb : MonoBehaviour
                 new Vector2(enemy.transform.position.x, enemy.transform.position.z)) <= bangDistance)
             {
                 trueDamage = damage;
-                if (enemy.protectionType == Tower.DamageTypes.Physical)
+                if (enemy.protectionType == DamageTypes.Physical)
+                {
+                    trueDamage -= enemy.protection * 2;
+                }
+                else
                 {
                     trueDamage -= enemy.protection;
                 }
@@ -27,7 +34,9 @@ public class FireBomb : MonoBehaviour
                 enemy.ReduceHP(trueDamage);
             }
         }
-        Instantiate(fireArea, new Vector3(gameObject.transform.position.x, 0f, gameObject.transform.position.z), gameObject.transform.rotation);
+        GameObject Fire = Instantiate(fireArea, new Vector3(gameObject.transform.position.x, 0f, gameObject.transform.position.z), gameObject.transform.rotation);
+        Fire.GetComponent<FireArea>().damage = fireDamage;
+        Fire.GetComponent<FireArea>().seconds = fireSeconds;
         Destroy(gameObject, 1f);
     }
 }

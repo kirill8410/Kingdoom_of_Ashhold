@@ -15,5 +15,5 @@ MonoBehaviour:
   TowerName: "\u041B\u0435\u0434\u044F\u043D\u043E\u0439 \u043C\u0430\u0433"
   description: "\u0415\u0433\u043E \u0430\u0442\u0430\u043A\u0438 \u0437\u0430\u043C\u0435\u0434\u043B\u044F\u044F\u044F\u044E\u0442
     \u0432\u0440\u0430\u0433\u043E\u0432."
-  price: 90
+  price: 65
   tower: {fileID: 3570106119244801292, guid: 3c9a06b3cb0a30e4d9c6cb66baffd32a, type: 3}

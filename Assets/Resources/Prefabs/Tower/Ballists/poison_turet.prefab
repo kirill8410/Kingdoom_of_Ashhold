@@ -1205,6 +1205,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2413611965157275777}
     - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: EvolutionButtons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: 'EvolutionButtons.Array.data[0]'
       value: 
       objectReference: {fileID: 0}

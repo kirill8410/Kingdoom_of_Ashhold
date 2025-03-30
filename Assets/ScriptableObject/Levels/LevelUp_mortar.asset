@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58713c2d5e5af804b9c6a9c6e0d1f488, type: 3}
   m_Name: LevelUp_mortar
   m_EditorClassIdentifier: 
-  damage_1: 10
-  distance_1: 1
-  priceLevelUp_1: 95
-  damage_2: 10
-  distance_2: 3
-  priceLevelUp_2: 130
+  damage_1: 5
+  distance_1: 0
+  attackSpeed_1: 0
+  priceLevelUp_1: 30
+  damage_2: 5
+  distance_2: 0
+  attackSpeed_2: 0
+  priceLevelUp_2: 30

@@ -254,15 +254,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9250660e6c434468c6c3dabf149a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 22
+  attackDistance: 20
   attackSpeed: 0.05
-  damage: 40
+  damage: 70
   attackPrefab: {fileID: 850153657322736602, guid: e6c887242ffe93e4080c3e4e29c6a38d, type: 3}
   Distance: {fileID: 3096886583763505326}
   attackPoint: {fileID: 0}
   _levelUp: {fileID: 11400000, guid: 4455d52cfae2d184982a31ef6b5428c0, type: 2}
   mortarType: 1
-  bangDistance: 2.5
+  bangDistance: 1.6
   turet: {fileID: 0}
   target: {fileID: 0}
 --- !u!95 &5118320487740474110
@@ -779,6 +779,10 @@ PrefabInstance:
       propertyPath: _base
       value: 
       objectReference: {fileID: 4068055464819582158}
+    - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: EvolutionButtons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: 'EvolutionButtons.Array.data[0]'
       value: 

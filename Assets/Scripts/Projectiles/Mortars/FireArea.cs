@@ -5,8 +5,8 @@ using UnityEngine.UIElements;
 public class FireArea : MonoBehaviour
 {
     [SerializeField] float bangDistance;
-    [SerializeField] int damage;
-    [SerializeField] int seconds;
+    public int damage;
+    public int seconds;
 
     private void Start()
     {
@@ -24,7 +24,16 @@ public class FireArea : MonoBehaviour
                 if (Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z),
                 new Vector2(enemy.transform.position.x, enemy.transform.position.z)) <= bangDistance)
                 {
-                    enemy.ReduceHP(damage);
+                    int trueDamage = damage;
+                    if (enemy.protectionType == Tower.DamageTypes.Magic)
+                    {
+                        trueDamage -= enemy.protection;
+                    }
+                    if (enemy.enemyType == Enemy.EnemyTypes.Boss)
+                    {
+                        trueDamage /= 2;
+                    }
+                    enemy.ReduceHP(trueDamage);
                 }
             }
         }
