@@ -474,7 +474,7 @@ MonoBehaviour:
   attackPoint: {fileID: 0}
   _levelUp: {fileID: 11400000, guid: 154d7f1017f8e3348b6904859900faab, type: 2}
   mortarType: 3
-  bangDistance: 2.5
+  bangDistance: 1
   turet: {fileID: 52727746386946459}
   target: {fileID: 0}
 --- !u!95 &2388778403106326794
