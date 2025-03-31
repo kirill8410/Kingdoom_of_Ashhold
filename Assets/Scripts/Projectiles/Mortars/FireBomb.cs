@@ -4,7 +4,6 @@ using static Tower;
 public class FireBomb : MonoBehaviour
 {
     public int damage;
-    public int fireDamage;
     public int fireSeconds;
     public float bangDistance;
     [SerializeField] GameObject fireArea;
@@ -21,11 +20,11 @@ public class FireBomb : MonoBehaviour
                 trueDamage = damage;
                 if (enemy.protectionType == DamageTypes.Physical)
                 {
-                    trueDamage -= enemy.protection * 2;
+                    trueDamage -= enemy.protection;
                 }
                 else
                 {
-                    trueDamage -= enemy.protection;
+                    trueDamage -= enemy.protection * 2;
                 }
                 if (trueDamage < 0)
                 {
@@ -34,8 +33,8 @@ public class FireBomb : MonoBehaviour
                 enemy.ReduceHP(trueDamage);
             }
         }
-        GameObject Fire = Instantiate(fireArea, new Vector3(gameObject.transform.position.x, 0f, gameObject.transform.position.z), gameObject.transform.rotation);
-        Fire.GetComponent<FireArea>().damage = fireDamage;
+        GameObject Fire = Instantiate(fireArea, new Vector3(gameObject.transform.position.x, 0f, 
+            gameObject.transform.position.z), gameObject.transform.rotation);
         Fire.GetComponent<FireArea>().seconds = fireSeconds;
         Destroy(gameObject, 1f);
     }

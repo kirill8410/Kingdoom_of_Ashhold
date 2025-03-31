@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb40449e8861cf44907bf2235a0569f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bangDistance: 2.5
   damage: 5
   seconds: 5
 --- !u!1 &2914840592449636435
@@ -799,7 +798,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 2.5
+      value: 4
       mode: 0
       spread: 0
       speed:

@@ -4,8 +4,8 @@ using UnityEngine.UIElements;
 
 public class FireArea : MonoBehaviour
 {
-    [SerializeField] float bangDistance;
-    public int damage;
+    float bangDistance = 4f;
+    int damage = 10;
     public int seconds;
 
     private void Start()
@@ -29,9 +29,9 @@ public class FireArea : MonoBehaviour
                     {
                         trueDamage -= enemy.protection;
                     }
-                    if (enemy.enemyType == Enemy.EnemyTypes.Boss)
+                    if (trueDamage < 0)
                     {
-                        trueDamage /= 2;
+                        trueDamage = 0;
                     }
                     enemy.ReduceHP(trueDamage);
                 }

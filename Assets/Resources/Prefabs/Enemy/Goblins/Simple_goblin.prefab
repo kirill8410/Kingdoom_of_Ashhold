@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75826a3bd60e8e348a5ffd37739b1733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropCoins: 10
+  dropCoins: 5
   hp: 80
   maxHP: 0
   strips:
@@ -91,6 +91,7 @@ MonoBehaviour:
   numberPoint: 0
   distanceToPoint: 0
   immunity: 0
+  _potion: 0
 --- !u!195 &5785045042091345980
 NavMeshAgent:
   m_ObjectHideFlags: 0

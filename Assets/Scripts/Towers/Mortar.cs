@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
-using NUnit.Framework.Constraints;
-using static UnityEngine.GraphicsBuffer;
+using System.Collections.Generic;
+using UnityEditor.ShaderKeywordFilter;
 
 public class Mortar : Tower, TowerFunctions
 {
@@ -66,59 +66,126 @@ public class Mortar : Tower, TowerFunctions
             if ((target != null) && (isAttack) && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
                 new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
             {
+                bool _isCooldown = true;
                 switch (mortarType)
                 {
                     case MortarType.Simple:
                         RotationTuret();
                         GetComponent<Animator>().SetTrigger("Attack");
                         yield return new WaitForSeconds(5f / 60f);
-                        bangDistance = 1.2f + 0.4f * (Towerlevel - 1);
+                        if (target != null)
+                        {
+                            bangDistance = 1.2f + 0.4f * (Towerlevel - 1);
                             GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
                                 -0.3f, target.transform.position.z), target.transform.rotation);
 
-                        attack.GetComponent<Bomb>().damage = damage;
-                        attack.GetComponent<Bomb>().bangDistance = bangDistance;
-                        attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
-                        break;
+                            attack.GetComponent<Bomb>().damage = damage;
+                            attack.GetComponent<Bomb>().bangDistance = bangDistance;
+                            attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
+                        }
+                        else
+                        {
+                            _isCooldown = false;
+                        }
+                            break;
                     case MortarType.Shrapnel:
                         RotationTuret();
                         GetComponent<Animator>().SetTrigger("Attack");
                         yield return new WaitForSeconds(15f / 60f);
-                        for (int i = 0; i < 3; i++)
+                        if (target != null)
                         {
-                            float r = Random.Range(-2, 2);
-                            float r1 = Random.Range(-2, 2);
-                            attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x + r,
-                                -0.3f, target.transform.position.z + r1), target.transform.rotation);
+                            List<Enemy> targets = new List<Enemy>();
+                            Enemy[] enemyes = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+                            foreach (Enemy enemy in enemyes)
+                            {
+                                if (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
+                                new Vector2(target.transform.position.x, target.transform.position.z)) <= 2f)
+                                {
+                                    targets.Add(enemy);
+                                }
+                            }
+                            int numberOfShots = 2;
+                            yield return new WaitForSeconds(0.1f);
+                            GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
+                                    -0.3f, target.transform.position.z), target.transform.rotation);
                             attack.GetComponent<Bomb>().damage = damage;
                             attack.GetComponent<Bomb>().bangDistance = bangDistance;
                             attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
+                            if (targets.Count > 1)
+                            {
+                                for (int i = 0; i < numberOfShots; i++)
+                                {
+                                    yield return new WaitForSeconds(0.1f);
+                                    int random = Random.Range(0, targets.Count);
+                                    attack = Instantiate(attackPrefab, new Vector3(targets[random].transform.position.x,
+                                        -0.3f, targets[random].transform.position.z), targets[random].transform.rotation);
+                                    attack.GetComponent<Bomb>().damage = damage;
+                                    attack.GetComponent<Bomb>().bangDistance = bangDistance;
+                                    attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
+                                }
+                            }
+                            else
+                            {
+                                for (int i = 0; i < numberOfShots; i++)
+                                {
+                                    yield return new WaitForSeconds(0.1f);
+                                    float random1 = Random.Range(-3, 3);
+                                    float random2 = Random.Range(-3, 3);
+                                    attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x + random1,
+                                        -0.3f, target.transform.position.z + random2), target.transform.rotation);
+                                    attack.GetComponent<Bomb>().damage = damage;
+                                    attack.GetComponent<Bomb>().bangDistance = bangDistance;
+                                    attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            _isCooldown = false;
                         }
                         break;
                     case MortarType.Roket:
                         GetComponent<Animator>().SetTrigger("Attack");
                         yield return new WaitForSeconds(30f / 60f);
-                        attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
+                        if (target != null)
+                        {
+                            GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
                             -0.3f, target.transform.position.z), target.transform.rotation);
-                        attack.GetComponent<Bomb>().damage = damage;
-                        attack.GetComponent<Bomb>().bangDistance = bangDistance;
-                        attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
-                        attack.SetActive(true);
+                            attack.GetComponent<Bomb>().damage = damage;
+                            attack.GetComponent<Bomb>().bangDistance = bangDistance;
+                            attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
+                            attack.SetActive(true);
+                        }
+                        else
+                        {
+                            _isCooldown = false;
+                        }
                         break;
                     case MortarType.Fire:
                         RotationTuret();
                         GetComponentInChildren<Animator>().SetTrigger("Attack");
                         yield return new WaitForSeconds(5f / 60f);
-                        attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
+                        if (target != null)
+                        {
+                            GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
                             -0.3f, target.transform.position.z), target.transform.rotation);
-                        attack.GetComponent<FireBomb>().damage = damage;
-                        attack.GetComponent<FireBomb>().bangDistance = bangDistance;
-                        attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
+                            attack.GetComponent<FireBomb>().damage = damage;
+                            attack.GetComponent<FireBomb>().bangDistance = bangDistance;
+                            attack.GetComponent<FireBomb>().fireSeconds = 4 + Towerlevel * 2;
+                            attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
+                        }
+                        else
+                        {
+                            _isCooldown = false;
+                        }
                         break;
                 }
-                for (float i = 1 / attackSpeed; i > 0; i -= 0.1f)
+                if (_isCooldown)
                 {
-                    yield return new WaitForSeconds(0.1f);
+                    for (float i = 1 / attackSpeed; i > 0; i -= 0.1f)
+                    {
+                        yield return new WaitForSeconds(0.1f);
+                    }
                 }
             }
         }

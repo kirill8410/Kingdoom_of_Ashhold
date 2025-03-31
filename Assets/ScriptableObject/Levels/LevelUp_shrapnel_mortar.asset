@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: LevelUp_shrapnel_mortar
   m_EditorClassIdentifier: 
   damage_1: 5
-  distance_1: 2
-  priceLevelUp_1: 110
+  distance_1: 0
+  attackSpeed_1: 0
+  priceLevelUp_1: 360
   damage_2: 5
-  distance_2: 1
-  priceLevelUp_2: 145
+  distance_2: -2
+  attackSpeed_2: 0
+  priceLevelUp_2: 180
