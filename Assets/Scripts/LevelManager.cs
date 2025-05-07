@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public int coins;
-    public int HP = 10;
+    public float HP = 1000;
     public int wave = 0;
     public bool isWave = false;
     private bool isSpawn = false;
@@ -30,9 +30,9 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("Difficulty") == 0)
+        if (PlayerPrefs.GetFloat("Difficulty") == 0)
         {
-            PlayerPrefs.SetInt("Difficulty", 2);
+            PlayerPrefs.SetFloat("Difficulty", 2);
             PlayerPrefs.Save();
         }
         if (PlayerPrefs.GetString("Music") != "true" && PlayerPrefs.GetString("Music") != "false")

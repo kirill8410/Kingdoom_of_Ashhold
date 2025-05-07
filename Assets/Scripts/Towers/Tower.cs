@@ -7,7 +7,7 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
     [Header("Attack")]
     public float attackDistance;
     public float attackSpeed;
-    public int damage;
+    public float damage;
     public enum DamageTypes
     {
         Physical, Magic

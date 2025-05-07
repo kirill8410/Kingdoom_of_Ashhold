@@ -37,7 +37,7 @@ public class Mage : Tower, TowerFunctions
     [SerializeField] private int charge = 0;
     private Enemy target2;
 
-    private int trueDamage;
+    private float trueDamage;
 
     public Enemy target;
 

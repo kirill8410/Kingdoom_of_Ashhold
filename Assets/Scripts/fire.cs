@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class fire : MonoBehaviour
 {
-    int trueDamage;
-    int damage;
+    float trueDamage;
+    float damage;
     public Traps fireTrap;
      // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

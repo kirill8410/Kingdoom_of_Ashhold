@@ -14,8 +14,8 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     [SerializeField] int dropCoins;
 
     [Header("HP")]
-    [SerializeField] int hp;
-    public int maxHP;
+    [SerializeField] float hp;
+    public float maxHP;
 
     [Header("HealthBar")]
     [SerializeField] SpriteRenderer[] strips = new SpriteRenderer[10];
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     [SerializeField] Sprite[] stripIcons = new Sprite[6];
 
     [Header("Protection")]
-    public int protection;
+    public float protection;
     public int shield;
     private int maxShield = 10;
 
@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     }
     [SerializeField] float spellDistance;
     [SerializeField] GameObject enemySpawn;
-    [SerializeField] int heal;
+    [SerializeField] float heal;
     [SerializeField] float speedBoost;
     [SerializeField] float cooldown;
 
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     private void Start()
     {
         LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-        hp = hp * PlayerPrefs.GetInt("Difficulty");
+        hp = hp * PlayerPrefs.GetFloat("Difficulty");
         maxHP = hp;
         point = new Vector2(points[numberPoint].transform.position.x, points[numberPoint].transform.position.z);
         agent = GetComponent<NavMeshAgent>();
@@ -126,7 +126,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         Destroy(gameObject);
     }
 
-    public void ReduceHP(int damage)
+    public void ReduceHP(float damage)
     {
         if (shield > 0)
         {
@@ -142,15 +142,15 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         }
         HealthBar();
     }
-    public void ReduceHP(int damage, int reduceProtection)
+    public void ReduceHP(float damage, float reduceProtection)
     {
         hp -= damage;
         Curse(reduceProtection);
         HealthBar();
     }
-    public void Heal(int health)
+    public void Heal(float health)
     {
-        hp += health * PlayerPrefs.GetInt("Difficulty");
+        hp += health * PlayerPrefs.GetFloat("Difficulty");
         if (hp > maxHP)
         {
             hp = maxHP;
@@ -224,7 +224,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         Destroy(gameObject);
     }
 
-    IEnumerator _Potion(int potionDamage)
+    IEnumerator _Potion(float potionDamage)
     {
         if (_potion < 5)
         {
@@ -249,7 +249,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
             _potion -= 1;
         }
     }
-    public void Potion(int potionDamage)
+    public void Potion(float potionDamage)
     {
         StartCoroutine(_Potion(potionDamage));
     }
@@ -275,7 +275,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         StartCoroutine(_Ice(slow));
     }
 
-    public void Curse(int curse)
+    public void Curse(float curse)
     {
         if (!immunity)
         {

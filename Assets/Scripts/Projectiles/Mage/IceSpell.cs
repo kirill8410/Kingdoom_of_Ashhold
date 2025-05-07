@@ -4,10 +4,10 @@ using static Tower;
 public class IceSpell : MonoBehaviour
 {
     public Enemy target; // Цель в которую летит магия
-    public int damage; // Урон магии
+    public float damage; // Урон магии
     public float speed = 2; // Скорость магии
     public float slow = 0.4f;
-    private int trueDamage;
+    private float trueDamage;
 
     private void Update()
     {

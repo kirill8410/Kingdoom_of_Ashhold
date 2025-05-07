@@ -4,7 +4,7 @@ using UnityEngine;
 public class DeathSpell : MonoBehaviour
 {
     public Enemy target; 
-    public int damage; 
+    public float damage; 
     private float speed = 15f; 
     public Mage mage;
 

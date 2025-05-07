@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 public class FireArea : MonoBehaviour
 {
     float bangDistance = 4f;
-    int damage = 10;
+    float damage = 10;
     public int seconds;
 
     private void Start()
@@ -24,7 +24,7 @@ public class FireArea : MonoBehaviour
                 if (Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z),
                 new Vector2(enemy.transform.position.x, enemy.transform.position.z)) <= bangDistance)
                 {
-                    int trueDamage = damage;
+                    float trueDamage = damage;
                     if (enemy.protectionType == Tower.DamageTypes.Magic)
                     {
                         trueDamage -= enemy.protection;

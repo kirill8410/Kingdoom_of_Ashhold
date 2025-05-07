@@ -3,11 +3,11 @@ using static Tower;
 
 public class FireBomb : MonoBehaviour
 {
-    public int damage;
+    public float damage;
     public int fireSeconds;
     public float bangDistance;
     [SerializeField] GameObject fireArea;
-    private int trueDamage;
+    private float trueDamage;
 
     public void Bang()
     {

@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class Difficulty : MonoBehaviour // Сохранение сложности игры
 {
-    [SerializeField] int difficulty; // 0.5, 1, 2
+    [SerializeField] float difficulty; // 1, 1.5, 2
 
     public void SetDifficulty()
     {
-        PlayerPrefs.SetInt("Difficulty", difficulty); 
+        PlayerPrefs.SetFloat("Difficulty", difficulty); 
 
         PlayerPrefs.Save();
         SceneManager.LoadScene("GameLobby");

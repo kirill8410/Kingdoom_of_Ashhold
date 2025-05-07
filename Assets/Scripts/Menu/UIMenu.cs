@@ -60,7 +60,7 @@ public class UIMenu : MonoBehaviour // Все функции меню
     {
         if (!isStarting) // Открытие выбора сложности
         {
-            if (PlayerPrefs.GetInt("Difficulty") > 0) // Запуск игры если сложность выброна
+            if (PlayerPrefs.GetFloat("Difficulty") > 0) // Запуск игры если сложность выброна
             {
                 SceneManager.LoadScene("GameLobby");
             }

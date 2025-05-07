@@ -4,9 +4,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Bomb : MonoBehaviour
 {
-    public int damage;
+    public float damage;
     public float bangDistance;
-    private int trueDamage;
+    private float trueDamage;
 
     public void Bang()
     {

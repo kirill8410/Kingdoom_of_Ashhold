@@ -4,14 +4,14 @@ using UnityEngine;
 public class Arrow : MonoBehaviour // Обычная стрела
 {
     public Enemy target; // Цель в которую летит стрела
-    public int damage; // Урон стрелы
+    public float damage; // Урон стрелы
     public float speed = 2; // Скорость стрелы
     public TowerFunctions tower;
     public Transform towerTransform;
     [Header("Effects")]    
     [SerializeField] bool potion;
     [SerializeField] bool sniper;
-    private int trueDamage;
+    private float trueDamage;
 
     private void Update()
     {

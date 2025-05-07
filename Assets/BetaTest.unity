@@ -4388,7 +4388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1886207371268302276, guid: feee75ce24b66fd48a8e436f71b060e2, type: 3}
       propertyPath: HP
-      value: 2147483647
+      value: 2.1474836e+9
       objectReference: {fileID: 0}
     - target: {fileID: 1886207371268302276, guid: feee75ce24b66fd48a8e436f71b060e2, type: 3}
       propertyPath: coins
@@ -4417,7 +4417,7 @@ PrefabInstance:
     - target: {fileID: 1886207371268302276, guid: feee75ce24b66fd48a8e436f71b060e2, type: 3}
       propertyPath: 'waves.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 1a0fad362b47a624498da00d0adfa791, type: 2}
+      objectReference: {fileID: 11400000, guid: a6edaa3446bb094408f0da07900a5cc4, type: 2}
     - target: {fileID: 1886207371268302276, guid: feee75ce24b66fd48a8e436f71b060e2, type: 3}
       propertyPath: 'waves.Array.data[1]'
       value: 
