@@ -133,20 +133,4 @@ public class LevelManager : MonoBehaviour
             Freeze.SetActive(true);
         }
     }
-    public void FastTime()
-    {
-        Time.timeScale = 2.0f;
-    }
-    public void NormalTime()
-    {
-        Time.timeScale = 1.0f;
-    }
-    public void SlowTime()
-    {
-        Time.timeScale = 0.5f;
-    }
-    public void Pause()
-    {
-        Time.timeScale = 0.0f;
-    }
 }
