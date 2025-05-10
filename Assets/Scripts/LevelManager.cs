@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public int coins;
     public float HP = 1000;
     public int wave = 0;
+    public int MaxWave;
     public bool isWave = false;
     private bool isSpawn = false;
     [SerializeField] int numberLevel;
@@ -22,6 +23,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        MaxWave = waves.Length;
         if (GameObject.FindGameObjectWithTag("EnemySpawnPoint") != null)
         {
             enemySpawn = GameObject.FindGameObjectWithTag("EnemySpawnPoint").transform;
