@@ -16,7 +16,7 @@ public class UIBehavior : MonoBehaviour // Поведение UI
         // Поиск игрока на сцене
         player = GameObject.Find("Player");
     }
-    private void Update()
+    private void LateUpdate()
     {
         // Поворот UI к игроку
         var direction = (player.transform.position - transform.position).normalized;

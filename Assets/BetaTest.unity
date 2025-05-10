@@ -3208,6 +3208,7 @@ GameObject:
   - component: {fileID: 743655622}
   - component: {fileID: 743655621}
   - component: {fileID: 743655620}
+  - component: {fileID: 743655624}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -3319,6 +3320,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &743655624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743655618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f513a72674ad8124996de36a8d8a6b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  isHiding: 0
 --- !u!1001 &757187170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7221,7 +7236,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1974060381}
   - component: {fileID: 1974060380}
-  - component: {fileID: 1974060382}
   m_Layer: 0
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -7241,7 +7255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7792cff02bd4c3f488134782bfdcee58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _btn: {fileID: 48474114}
 --- !u!4 &1974060381
 Transform:
   m_ObjectHideFlags: 0
@@ -7258,20 +7271,6 @@ Transform:
   - {fileID: 743655619}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1974060382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974060379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f513a72674ad8124996de36a8d8a6b75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  isHiding: 0
 --- !u!4 &1986577479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3625838319317513278, guid: 714b53358f9ddb7448c1e067f64e01d1, type: 3}
