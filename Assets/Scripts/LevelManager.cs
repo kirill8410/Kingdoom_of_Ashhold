@@ -21,6 +21,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI Text;
     bool lose = false;
 
+    private bool _isTourney = false;
+
     private void Awake()
     {
         MaxWave = waves.Length;
@@ -34,7 +36,7 @@ public class LevelManager : MonoBehaviour
     {
         if (PlayerPrefs.GetFloat("Difficulty") == 0)
         {
-            PlayerPrefs.SetFloat("Difficulty", 2);
+            PlayerPrefs.SetFloat("Difficulty", 1);
             PlayerPrefs.Save();
         }
         if (PlayerPrefs.GetString("Music") != "true" && PlayerPrefs.GetString("Music") != "false")
@@ -105,7 +107,14 @@ public class LevelManager : MonoBehaviour
 
     public void ReturtToLobby()
     {
-        SceneManager.LoadScene("GameLobby");
+        if (_isTourney)
+        {
+            SceneManager.LoadSceneAsync("TourneyLobby");
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync("GameLobby");
+        }   
     }
 
     public void StartWave()

@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
@@ -20,6 +21,25 @@ public class PlayerUI : MonoBehaviour
     private Button _waveInformationButton;
     private Button _startWaveButton;
     private Button _exitButton;
+
+    #endregion
+
+    #region Разделы
+
+    private GameObject _sectionMenu;
+    private GameObject _sectionSpell;
+
+    private GameObject _subsectionMenu;
+    private GameObject _subsectionWaveInformation;
+    private GameObject _subsectionQuestion;
+
+    #endregion
+
+    #region Question
+
+    private TextMeshProUGUI _questionText;
+    private Button _noButton;
+    private Button _yesButton;
 
     #endregion
 
@@ -46,9 +66,31 @@ public class PlayerUI : MonoBehaviour
         _skipWaveButton.onClick.AddListener(FastTime);
         _waveInformationButton.onClick.AddListener(FastTime);
         _startWaveButton.onClick.AddListener(StartWave);
-        _exitButton.onClick.AddListener(FastTime);
+        _exitButton.onClick.AddListener(Exit);
 
         #endregion
+
+        #region Разделы
+
+        _sectionMenu = gameObject.GetNamedChild("Menu");
+        _sectionSpell = gameObject.GetNamedChild("Spell");
+
+        _subsectionMenu = _sectionMenu.GetNamedChild("SubMenu");
+        _subsectionWaveInformation = _sectionMenu.GetNamedChild("Wave Information");
+        _subsectionQuestion = _sectionMenu.GetNamedChild("Question");
+
+        #endregion
+
+        #region Question
+
+        _questionText = _subsectionQuestion.GetComponentInChildren<TextMeshProUGUI>();
+        _yesButton = _subsectionQuestion.GetNamedChild("Yes Button").GetComponent<Button>();
+        _noButton = _subsectionQuestion.GetNamedChild("No Button").GetComponent<Button>();
+
+        _noButton.onClick.AddListener(StabilizeMenu);
+        #endregion
+
+        StabilizeMenu();
     }
 
     private void Update()
@@ -94,5 +136,28 @@ public class PlayerUI : MonoBehaviour
     private void StartWave()
     {
         LM.StartWave();
+    }
+    private void Exit()
+    {
+        _subsectionMenu.transform.localPosition = new Vector3(-80, 0, 0);
+
+        _subsectionQuestion.SetActive(true);
+        _subsectionQuestion.transform.localPosition = new Vector3(50, 0, 0);
+
+        _questionText.text = "Вы уверены что хотите выйти?";
+        _yesButton.onClick.AddListener(LM.ReturtToLobby);
+    }
+
+    private void StabilizeMenu()
+    {
+        _subsectionMenu.SetActive(true);
+        _subsectionMenu.transform.localPosition = Vector3.zero;
+
+        _subsectionQuestion.transform.localPosition = new Vector3(130, 0, 0);
+        _subsectionQuestion.SetActive(false);
+
+        _subsectionWaveInformation.transform.localPosition = new Vector3(-130, 0, 0);
+        _subsectionWaveInformation.SetActive(false);
+        
     }
 }
