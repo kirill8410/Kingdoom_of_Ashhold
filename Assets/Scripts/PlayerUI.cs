@@ -1,11 +1,14 @@
 using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
+    [SerializeField] InputAction _openMenu;
+
     private LevelManager LM;
     private GameObject _player;
 
@@ -120,6 +123,15 @@ public class PlayerUI : MonoBehaviour
             {
                 transform.eulerAngles = _player.transform.eulerAngles;
             }
+        }
+
+        #endregion
+
+        #region ”правление
+
+        if (_openMenu.triggered || _openMenu.IsPressed() || _openMenu.inProgress)
+        {
+            print("5");
         }
 
         #endregion
