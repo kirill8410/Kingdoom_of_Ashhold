@@ -112,9 +112,9 @@ public class PlayerUI : MonoBehaviour
 
     private void Update()
     {
-        _coinsText.text = LM.coins.ToString();
+        /*_coinsText.text = LM.coins.ToString();
         _HPText.text = LM.HP.ToString();
-        _WaveText.text = $"{LM.wave}/{LM.MaxWave}";
+        _WaveText.text = $"{LM.wave}/{LM.MaxWave}";*/
 
         #region Движение
 
