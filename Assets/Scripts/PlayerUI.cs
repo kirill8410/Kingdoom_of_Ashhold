@@ -2,12 +2,18 @@ using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
-    [SerializeField] InputAction _openMenu;
+    private InputActionAsset _inputActions;
+
+    #region Actions
+
+    private InputAction _openMenuAction;
+
+
+    #endregion
 
     private LevelManager LM;
     private GameObject _player;
@@ -48,6 +54,14 @@ public class PlayerUI : MonoBehaviour
 
     private void Start()
     {
+        _inputActions = Resources.Load<InputActionAsset>("InputActions");
+
+        #region Actions
+
+        _openMenuAction = _inputActions.FindAction("Open Menu");
+
+        #endregion
+
         LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         _player = FindFirstObjectByType<XROrigin>().gameObject;
 
@@ -129,9 +143,18 @@ public class PlayerUI : MonoBehaviour
 
         #region ”правление
 
-        if (_openMenu.triggered || _openMenu.IsPressed() || _openMenu.inProgress)
+        if (_openMenuAction.triggered)
         {
-            print("5");
+            if (!_sectionMenu.activeSelf)
+            {
+                _sectionMenu.SetActive(true);
+                _sectionSpell.SetActive(false);
+                StabilizeMenu();
+            }
+            else
+            {
+                _sectionMenu.SetActive(false);
+            }
         }
 
         #endregion
