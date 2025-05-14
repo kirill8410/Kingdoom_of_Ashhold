@@ -118,10 +118,10 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     private void Finish() // Действия врага когда он дошёл до конца
     {
-        LM.HP -= hp;
+        LM.ReduceHP(hp);
         if (enemyType == EnemyTypes.Boss)
         {
-            LM.HP = 0;
+            LM.ReduceHP(10000);
         }
         Destroy(gameObject);
     }
@@ -220,7 +220,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     private void Dead() // Действия врага при смерти
     {
-        LM.coins += dropCoins;
+        LM._coins += dropCoins;
         Destroy(gameObject);
     }
 

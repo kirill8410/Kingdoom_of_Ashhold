@@ -1,34 +1,51 @@
+using System.Collections;
 using System.Linq;
-using TMPro;
+using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public int coins;
-    public float HP = 1000;
-    public int wave = 0;
-    public int MaxWave;
-    public bool isWave = false;
-    private bool isSpawn = false;
-    [SerializeField] int numberLevel;
-    [SerializeField] GameObject UI;
-    [SerializeField] Canvas waveButton;
-    public Transform enemySpawn;
-    public GameObject[] points;
-    public Wave[] waves;
-    [SerializeField] GameObject Freeze;
-    [SerializeField] TextMeshProUGUI Text;
-    bool lose = false;
+    public int _coins;
+    private float _HP = 1000;
+    private int _numberWave = 0;
+    private int _maxWave;
 
+    private bool _isSpawn = true;
+    private bool _lose = false;
+
+    private TowerFunctions _frozenTower;
+
+    public GameObject[] points;
+    [SerializeField] int _numberLevel;
+    [SerializeField] GameObject _freeze;
+    [SerializeField] bool _isTestMode = false;
+
+    private Transform _enemySpawn;
+    private Wave[] _waves;
+    
     private bool _isTourney = false;
 
     private void Awake()
     {
-        MaxWave = waves.Length;
-        if (GameObject.FindGameObjectWithTag("EnemySpawnPoint") != null)
+        if (!_isTourney)
         {
-            enemySpawn = GameObject.FindGameObjectWithTag("EnemySpawnPoint").transform;
+            if (_numberLevel == 0)
+            {
+                _waves = Resources.LoadAll<Wave>($"ScriptableObject/Wave/Level_{_numberLevel + 1}");
+            }
+            else
+            {
+                _waves = Resources.LoadAll<Wave>($"ScriptableObject/Wave/Level_{_numberLevel}");
+            }
+
+            _maxWave = _waves.Length;
+
+            if (GameObject.FindGameObjectWithTag("EnemySpawnPoint") != null)
+            {
+                _enemySpawn = GameObject.FindGameObjectWithTag("EnemySpawnPoint").transform;
+            }
         }
     }
 
@@ -47,50 +64,64 @@ public class LevelManager : MonoBehaviour
     }
     private void Update()
     { 
-        if (wave >= waves.Length)
+        if (_numberWave >= _waves.Length)
         {
             Win();
         }
-        if (HP <= 0)
+        if (_HP <= 0)
         {
+            _HP = 0;
             Lose();
         }
-        if (isSpawn)
+        if (!_isSpawn)
         {
-            if (isWave)
+            Enemy[] e = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+            if (e.Length == 0 && !_lose)
             {
-                Enemy[] e = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-                if (e.Length == 0 && !lose)
+                _numberWave += 1;
+                _isSpawn = true;
+
+                if (_freeze != null)
                 {
-                    isWave = false;
-                    wave += 1;
-                    if (wave < waves.Length)
-                    {
-                        waveButton.enabled = true;
-                        TowerFunctions[] t = Object.FindObjectsOfType<MonoBehaviour>().OfType<TowerFunctions>().ToArray();
-                        foreach (TowerFunctions tower in t)
-                        {
-                            tower.isAttack = true;
-                            if (Freeze != null)
-                            {
-                                Freeze.SetActive(false);
-                            }
-                        }
-                    }
+                    _frozenTower.isAttack = true;
+                    _freeze.SetActive(false);
                 }
             }
+        }
+
+        #region TEST MODE
+
+        if (_isTestMode)
+        {
+            if (_coins < 10000)
+            {
+                _coins = 10000;
+            }
+            if (_HP < 100000)
+            {
+                _HP = 100000;
+            }
+        }
+
+        #endregion
+    }
+
+    public void ReduceHP(float hp)
+    {
+        _HP -= hp;
+        if (hp < 0)
+        {
+            _HP = 0;
         }
     }
 
     public void Win()
     {
-        if (PlayerPrefs.GetInt("Level") < numberLevel + 1)
+        if (PlayerPrefs.GetInt("Level") < _numberLevel + 1)
         {
-            PlayerPrefs.SetInt("Level", numberLevel + 1);
+            PlayerPrefs.SetInt("Level", _numberLevel + 1);
             PlayerPrefs.Save();
         }
-        Text.text = "Победа";
-        UI.SetActive(true);
     }
 
     public void Lose()
@@ -100,9 +131,6 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(enemy.gameObject);
         }
-        Text.text = "Поражение";
-        lose = true;
-        UI.SetActive(true);
     }
 
     public void ReturtToLobby()
@@ -119,27 +147,45 @@ public class LevelManager : MonoBehaviour
 
     public void StartWave()
     {
-        isWave = true;
-        isSpawn = false;
-        StartCoroutine(waves[wave].SpawnEnemies(this));
-        waveButton.enabled = false;
+        if (_isSpawn)
+        {
+            if (_freeze != null)
+            {
+                FreezeTower();
+            }
+            StartCoroutine(SpawnEnemies());
+        }
+        
     }
 
-    public void StopSpawn()
-    {
-        isSpawn = true;
-    }
-
-    public void FreezeTower()
+    private void FreezeTower()
     {
         TowerFunctions[] t = FindObjectsOfType<MonoBehaviour>().OfType<TowerFunctions>().ToArray();
         int r = Random.Range(0, t.Length);
 
-        if (t.Length != 0 && wave != 0)
+        if (t.Length != 0 && _numberWave != 0)
         {  
+            _frozenTower = t[r];
             t[r].isAttack = false;
-            Freeze.transform.position = t[r].gm.transform.position;
-            Freeze.SetActive(true);
+            _freeze.transform.position = t[r].gm.transform.position;
+            _freeze.SetActive(true);
+        }
+    }
+
+    public IEnumerator SpawnEnemies()
+    {
+        Wave wave = _waves[_numberWave];
+        
+        for (int i = 0; i < wave.Enemies.Length; i++)
+        {
+            for (int j = 0; j < wave.NumberOfEnemies[i]; j++)
+            {
+                print(wave.Enemies[i].gameObject);
+                GameObject enemy = Instantiate(wave.Enemies[i].gameObject, _enemySpawn.position, _enemySpawn.rotation);
+                enemy.GetComponent<Enemy>().points = points;
+                _isSpawn = false;
+                yield return new WaitForSeconds(0.5f);
+            }
         }
     }
 }

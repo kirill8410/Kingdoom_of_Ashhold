@@ -128,12 +128,12 @@ public class Base : MonoBehaviour
     {
         if (_base != null)
         {
-            if (LM.coins >= selectTower.price)
+            if (LM._coins >= selectTower.price)
             {
                 GetComponent<AudioSource>().clip = Buy;
                 SM.PlaySound(GetComponent<AudioSource>());
 
-                LM.coins -= selectTower.price;
+                LM._coins -= selectTower.price;
                 Instantiate(selectTower.tower, _base.transform.position, Quaternion.identity);
                 Destroy(Information, 0.1f);
                 Destroy(_base, 4f);
@@ -179,12 +179,12 @@ public class Base : MonoBehaviour
     public void LevelUp() // Повышение уровня башни
     {
 
-        if (LM.coins >= _tower.PriceLevelUp)
+        if (LM._coins >= _tower.PriceLevelUp)
         {
             GetComponent<AudioSource>().clip = Buy;
             SM.PlaySound(GetComponent<AudioSource>());
 
-            LM.coins -= _tower.PriceLevelUp;
+            LM._coins -= _tower.PriceLevelUp;
             _tower.LevelUp();
 
             InformationLevelUp.SetActive(false);

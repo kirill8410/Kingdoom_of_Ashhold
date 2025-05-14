@@ -55,6 +55,8 @@ public class PlayerUI : MonoBehaviour
     private void Start()
     {
         _inputActions = Resources.Load<InputActionAsset>("InputActions");
+        LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        _player = FindFirstObjectByType<XROrigin>().gameObject;
 
         #region Actions
 
@@ -62,32 +64,15 @@ public class PlayerUI : MonoBehaviour
 
         #endregion
 
-        LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-        _player = FindFirstObjectByType<XROrigin>().gameObject;
-
-        _coinsText = gameObject.GetNamedChild("Coins").GetComponent<TextMeshProUGUI>();
-        _HPText = gameObject.GetNamedChild("HP").GetComponent<TextMeshProUGUI>();
-        _WaveText = gameObject.GetNamedChild("Wave").GetComponent<TextMeshProUGUI>();
-
-        #region Кнопки
-
-        _normalTimeButton = gameObject.GetNamedChild("Normal Time Button").GetComponent<Button>();
-        _fastTimeButton = gameObject.GetNamedChild("Fast Time Button").GetComponent<Button>();
-        _skipWaveButton = gameObject.GetNamedChild("Skip Wave Button").GetComponent<Button>();
-        _waveInformationButton = gameObject.GetNamedChild("Wave Information Button").GetComponent<Button>();
-        _startWaveButton = gameObject.GetNamedChild("Start Wave Button").GetComponent<Button>();
-        _exitButton = gameObject.GetNamedChild("Exit Button").GetComponent<Button>();
-
-        _normalTimeButton.onClick.AddListener(NormalTime);
-        _fastTimeButton.onClick.AddListener(FastTime);
-        _skipWaveButton.onClick.AddListener(FastTime);
-        _waveInformationButton.onClick.AddListener(FastTime);
-        _startWaveButton.onClick.AddListener(StartWave);
-        _exitButton.onClick.AddListener(Exit);
-
-        #endregion
-
         #region Разделы
+
+        Canvas[] selections = gameObject.GetComponentsInChildren<Canvas>(includeInactive: true);
+
+
+        foreach (Canvas selection in selections)
+        {
+            selection.gameObject.SetActive(true);
+        }
 
         _sectionMenu = gameObject.GetNamedChild("Menu");
         _sectionSpell = gameObject.GetNamedChild("Spell");
@@ -95,6 +80,33 @@ public class PlayerUI : MonoBehaviour
         _subsectionMenu = _sectionMenu.GetNamedChild("SubMenu");
         _subsectionWaveInformation = _sectionMenu.GetNamedChild("Wave Information");
         _subsectionQuestion = _sectionMenu.GetNamedChild("Question");
+
+        foreach (Canvas selection in selections)
+        {
+            selection.gameObject.SetActive(false);
+        }
+
+        #endregion
+
+        _coinsText = _sectionMenu.GetNamedChild("Coins").GetComponent<TextMeshProUGUI>();
+        _HPText = _sectionMenu.GetNamedChild("HP").GetComponent<TextMeshProUGUI>();
+        _WaveText = _sectionMenu.GetNamedChild("Wave").GetComponent<TextMeshProUGUI>();
+
+        #region Кнопки
+
+        _normalTimeButton = _sectionMenu.GetNamedChild("Normal Time Button").GetComponent<Button>();
+        _fastTimeButton = _sectionMenu.GetNamedChild("Fast Time Button").GetComponent<Button>();
+        _skipWaveButton = _sectionMenu.GetNamedChild("Skip Wave Button").GetComponent<Button>();
+        _waveInformationButton = _sectionMenu.GetNamedChild("Wave Information Button").GetComponent<Button>();
+        _startWaveButton = _sectionMenu.GetNamedChild("Start Wave Button").GetComponent<Button>();
+        _exitButton = _sectionMenu.GetNamedChild("Exit Button").GetComponent<Button>();
+
+        _normalTimeButton.onClick.AddListener(NormalTime);
+        _fastTimeButton.onClick.AddListener(FastTime);
+        _skipWaveButton.onClick.AddListener(FastTime);
+        _waveInformationButton.onClick.AddListener(FastTime);
+        _startWaveButton.onClick.AddListener(StartWave);
+        _exitButton.onClick.AddListener(Exit);
 
         #endregion
 
@@ -118,24 +130,27 @@ public class PlayerUI : MonoBehaviour
 
         #region Движение
 
-        if (transform.position != _player.transform.position)
+        if (_player != null)
         {
-            transform.position = new Vector3(
-                transform.position.x + (_player.transform.position.x - transform.position.x) * Time.deltaTime, 
-                transform.position.y + (_player.transform.position.y - transform.position.y) * Time.deltaTime, 
-                transform.position.z + (_player.transform.position.z - transform.position.z) * Time.deltaTime);
-            if (Vector3.Distance(transform.position, _player.transform.position) <= 0.1f)
+            if (transform.position != _player.transform.position)
             {
-                transform .position = _player.transform.position;
+                transform.position = new Vector3(
+                    transform.position.x + (_player.transform.position.x - transform.position.x) * Time.deltaTime,
+                    transform.position.y + (_player.transform.position.y - transform.position.y) * Time.deltaTime,
+                    transform.position.z + (_player.transform.position.z - transform.position.z) * Time.deltaTime);
+                if (Vector3.Distance(transform.position, _player.transform.position) <= 0.1f)
+                {
+                    transform.position = _player.transform.position;
+                }
             }
-        }
-        if (transform.eulerAngles.y != _player.transform.eulerAngles.y)
-        {
-            transform.eulerAngles = new Vector3(
-                0, transform.eulerAngles.y + (_player.transform.eulerAngles.y - transform.eulerAngles.y) * Time.deltaTime, 0);
-            if (Mathf.Abs(transform.eulerAngles.y - _player.transform.eulerAngles.y) <= 2)
+            if (transform.eulerAngles.y != _player.transform.eulerAngles.y)
             {
-                transform.eulerAngles = _player.transform.eulerAngles;
+                transform.eulerAngles = new Vector3(
+                    0, transform.eulerAngles.y + (_player.transform.eulerAngles.y - transform.eulerAngles.y) * Time.deltaTime, 0);
+                if (Mathf.Abs(transform.eulerAngles.y - _player.transform.eulerAngles.y) <= 2)
+                {
+                    transform.eulerAngles = _player.transform.eulerAngles;
+                }
             }
         }
 
