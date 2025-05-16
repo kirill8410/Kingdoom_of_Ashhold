@@ -13166,23 +13166,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675115637}
   m_Mesh: {fileID: 3388978981983429597, guid: 73cc8381f7daba34d9528e71e6422790, type: 3}
---- !u!1 &1682515676 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5696790355355874824, guid: b8a1183cdf3051e4ea9f1a5fec54295c, type: 3}
-  m_PrefabInstance: {fileID: 1809214608}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1682515678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682515676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17443add7d713f940b8e546c197bebf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1692782758 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3625838319317513278, guid: 714b53358f9ddb7448c1e067f64e01d1, type: 3}
@@ -13490,11 +13473,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 457f61ca1248b074e878cb81d1816c48, type: 3}
---- !u!1 &1751815217 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 530553760021984549, guid: b8a1183cdf3051e4ea9f1a5fec54295c, type: 3}
-  m_PrefabInstance: {fileID: 1809214608}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1758427369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3625838319317513278, guid: 714b53358f9ddb7448c1e067f64e01d1, type: 3}
@@ -14074,14 +14052,11 @@ PrefabInstance:
     - target: {fileID: 8234451315605647942, guid: b8a1183cdf3051e4ea9f1a5fec54295c, type: 3}
       propertyPath: but
       value: 
-      objectReference: {fileID: 1751815217}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5696790355355874824, guid: b8a1183cdf3051e4ea9f1a5fec54295c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1682515678}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8a1183cdf3051e4ea9f1a5fec54295c, type: 3}
 --- !u!20 &1809214609 stripped
 Camera:
@@ -18768,9 +18743,17 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1886207371268302276, guid: feee75ce24b66fd48a8e436f71b060e2, type: 3}
+      propertyPath: _coins
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886207371268302276, guid: feee75ce24b66fd48a8e436f71b060e2, type: 3}
       propertyPath: enemySpawn
       value: 
       objectReference: {fileID: 722399255}
+    - target: {fileID: 1886207371268302276, guid: feee75ce24b66fd48a8e436f71b060e2, type: 3}
+      propertyPath: _numberLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1886207371268302276, guid: feee75ce24b66fd48a8e436f71b060e2, type: 3}
       propertyPath: waves.Array.size
       value: 6

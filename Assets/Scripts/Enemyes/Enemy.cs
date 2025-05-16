@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     private NavMeshAgent agent; // NavMeshAgent
     private LevelManager LM;
 
+    public string Name;
+
     [SerializeField] int dropCoins;
 
     [Header("HP")]
@@ -116,7 +118,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         }
     }
 
-    private void Finish() // Действия врага когда он дошёл до конца
+    public void Finish() // Действия врага когда он дошёл до конца
     {
         LM.ReduceHP(hp);
         if (enemyType == EnemyTypes.Boss)

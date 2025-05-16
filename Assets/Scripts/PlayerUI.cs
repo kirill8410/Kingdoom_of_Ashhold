@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
@@ -20,7 +21,9 @@ public class PlayerUI : MonoBehaviour
 
     private TextMeshProUGUI _coinsText;
     private TextMeshProUGUI _HPText;
-    private TextMeshProUGUI _WaveText;
+    private TextMeshProUGUI _waveText;
+
+    private TextMeshProUGUI _informationText;
 
     #region Кнопки
 
@@ -90,7 +93,9 @@ public class PlayerUI : MonoBehaviour
 
         _coinsText = _sectionMenu.GetNamedChild("Coins").GetComponent<TextMeshProUGUI>();
         _HPText = _sectionMenu.GetNamedChild("HP").GetComponent<TextMeshProUGUI>();
-        _WaveText = _sectionMenu.GetNamedChild("Wave").GetComponent<TextMeshProUGUI>();
+        _waveText = _sectionMenu.GetNamedChild("Wave").GetComponent<TextMeshProUGUI>();
+
+        _informationText = _subsectionWaveInformation.GetNamedChild("Information Text").GetComponent<TextMeshProUGUI>();
 
         #region Кнопки
 
@@ -103,8 +108,8 @@ public class PlayerUI : MonoBehaviour
 
         _normalTimeButton.onClick.AddListener(NormalTime);
         _fastTimeButton.onClick.AddListener(FastTime);
-        _skipWaveButton.onClick.AddListener(FastTime);
-        _waveInformationButton.onClick.AddListener(FastTime);
+        _skipWaveButton.onClick.AddListener(SkipWave);
+        _waveInformationButton.onClick.AddListener(InformationWave);
         _startWaveButton.onClick.AddListener(StartWave);
         _exitButton.onClick.AddListener(Exit);
 
@@ -124,9 +129,9 @@ public class PlayerUI : MonoBehaviour
 
     private void Update()
     {
-        /*_coinsText.text = LM.coins.ToString();
-        _HPText.text = LM.HP.ToString();
-        _WaveText.text = $"{LM.wave}/{LM.MaxWave}";*/
+        _coinsText.text = LM._coins.ToString();
+        _HPText.text = LM.GetHP().ToString();
+        _waveText.text = $"{LM.GetWave()}/{LM.GetWaves().Length}";
 
         #region Движение
 
@@ -173,20 +178,81 @@ public class PlayerUI : MonoBehaviour
         }
 
         #endregion
+
+        #region Кнопки
+
+        if (LM.GetWaveContinues())
+        {
+            _startWaveButton.enabled = false;
+        }
+        else
+        {
+            _startWaveButton.enabled = true;
+        }
+
+        #endregion
+
     }
+
+    #region Menu 
 
     private void FastTime()
     {
         Time.timeScale = 2.0f;
     }
+
     private void NormalTime()
     {
         Time.timeScale = 1.0f;
     }
+
+    private void SkipWave()
+    {
+        if (LM.GetWaveContinues())
+        {
+            _subsectionMenu.transform.localPosition = new Vector3(-80, 0, 0);
+
+            _subsectionQuestion.SetActive(true);
+            _subsectionQuestion.transform.localPosition = new Vector3(50, 0, 0);
+
+            _questionText.text = "Вы уверены что хотите закончить волну?";
+            _yesButton.onClick.AddListener(LM.SkipWave);
+        }
+    }
+
+    private void InformationWave()
+    {
+        if (LM.GetWave() < LM.GetWaves().Length)
+        {
+            Wave nextWave = LM.GetWaves()[LM.GetWave()];
+            Dictionary<string, int> enemyes = new Dictionary<string, int>();
+            for (int i = 0; i < nextWave.Enemies.Length; i++)
+            {
+                foreach (KeyValuePair<string, int> kvp in enemyes)
+                {
+                    if (kvp.Key == nextWave.Enemies[i].name)
+                    {
+                        enemyes[kvp.Key] += nextWave.NumberOfEnemies[i];
+                        break;
+                    }
+                    else
+                    {
+                        enemyes.Add(nextWave.Enemies[i].name, nextWave.NumberOfEnemies[i]);
+                    }
+                }
+            }
+            foreach (KeyValuePair<string, int> kvp in enemyes)
+            {
+
+            }
+        }
+    }
+
     private void StartWave()
     {
         LM.StartWave();
     }
+
     private void Exit()
     {
         _subsectionMenu.transform.localPosition = new Vector3(-80, 0, 0);
@@ -210,4 +276,6 @@ public class PlayerUI : MonoBehaviour
         _subsectionWaveInformation.SetActive(false);
         
     }
+
+    #endregion
 }

@@ -6,6 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Wave")]
 public class Wave : ScriptableObject
 {
-    public Enemy[] Enemies;
+    public GameObject[] Enemies;
     public int[] NumberOfEnemies;
 }

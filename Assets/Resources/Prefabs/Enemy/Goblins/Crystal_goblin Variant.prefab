@@ -8160,6 +8160,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8109137814382695190, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
+      propertyPath: Name
+      value: "\u0417\u0430\u0449\u0438\u0449\u0430\u044E\u0449\u0438\u0439"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109137814382695190, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
       propertyPath: speed
       value: 0.9
       objectReference: {fileID: 0}

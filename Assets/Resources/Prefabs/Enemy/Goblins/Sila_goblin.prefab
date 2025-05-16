@@ -1081,6 +1081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75826a3bd60e8e348a5ffd37739b1733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: "\u0421\u0438\u043B\u044C\u043D\u044B\u0439"
   dropCoins: 7
   hp: 200
   maxHP: 0

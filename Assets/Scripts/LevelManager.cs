@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     private int _numberWave = 0;
     private int _maxWave;
 
-    private bool _isSpawn = true;
+    private bool _isWaveContinues = false;
     private bool _lose = false;
 
     private TowerFunctions _frozenTower;
@@ -73,13 +73,13 @@ public class LevelManager : MonoBehaviour
             _HP = 0;
             Lose();
         }
-        if (!_isSpawn)
+        if (_isWaveContinues)
         {
             Enemy[] e = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             if (e.Length == 0 && !_lose)
             {
                 _numberWave += 1;
-                _isSpawn = true;
+                _isWaveContinues = false;
 
                 if (_freeze != null)
                 {
@@ -106,12 +106,41 @@ public class LevelManager : MonoBehaviour
         #endregion
     }
 
+    public bool GetWaveContinues()
+    {
+        return _isWaveContinues;
+    }
+
+    public float GetHP()
+    {
+        return _HP;
+    }
+    
+    public int GetWave()
+    {
+        return _numberWave;
+    }
+
+    public Wave[] GetWaves()
+    {
+        return _waves;
+    }
+
     public void ReduceHP(float hp)
     {
         _HP -= hp;
         if (hp < 0)
         {
             _HP = 0;
+        }
+    }
+
+    public void SkipWave()
+    {
+        Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        foreach (Enemy enemy in enemyes)
+        {
+            enemy.Finish();
         }
     }
 
@@ -147,13 +176,21 @@ public class LevelManager : MonoBehaviour
 
     public void StartWave()
     {
-        if (_isSpawn)
+        if (!_isWaveContinues)
         {
             if (_freeze != null)
             {
                 FreezeTower();
             }
-            StartCoroutine(SpawnEnemies());
+            if (_enemySpawn != null)
+            {
+                StartCoroutine(SpawnEnemies());
+            }
+            else
+            {
+                Debug.LogError("Укажите на каком-нибудь объекте тег EnemySpawnPoint чтобы враги могли спавниться в его позиции.");
+            }
+            
         }
         
     }
@@ -178,13 +215,29 @@ public class LevelManager : MonoBehaviour
         
         for (int i = 0; i < wave.Enemies.Length; i++)
         {
-            for (int j = 0; j < wave.NumberOfEnemies[i]; j++)
+            if (wave.Enemies[i] != null)
             {
-                print(wave.Enemies[i].gameObject);
-                GameObject enemy = Instantiate(wave.Enemies[i].gameObject, _enemySpawn.position, _enemySpawn.rotation);
-                enemy.GetComponent<Enemy>().points = points;
-                _isSpawn = false;
-                yield return new WaitForSeconds(0.5f);
+                if (wave.NumberOfEnemies.Length > i)
+                {
+                    for (int j = 0; j < wave.NumberOfEnemies[i]; j++)
+                    {
+                        GameObject enemy = Instantiate(wave.Enemies[i], _enemySpawn.position, _enemySpawn.rotation);
+                        if (enemy.GetComponent<Enemy>())
+                        {
+                            enemy.GetComponent<Enemy>().points = points;
+                        }
+                        _isWaveContinues = true;
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                }
+                else
+                {
+                    Debug.LogError($"В Wave {wave} необходимо добавить {wave.NumberOfEnemies.Length - i - 1} элементов NumberOfEnemyes");
+                }
+            }
+            else
+            {
+                Debug.LogErrorFormat("В Wave {0} элемент Enemy под номером {1} является пустым.", wave, i);
             }
         }
     }
