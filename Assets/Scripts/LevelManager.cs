@@ -44,6 +44,11 @@ public class LevelManager : MonoBehaviour
                 _enemySpawn = GameObject.FindGameObjectWithTag("EnemySpawnPoint").transform;
             }
         }
+        PlayerUI pui = FindFirstObjectByType<PlayerUI>();
+        if (pui == null)
+        {
+            Instantiate(Resources.Load<GameObject>("Prefabs/PlayerUI"), Vector3.zero, Quaternion.identity);
+        }
     }
 
     private void Start()
