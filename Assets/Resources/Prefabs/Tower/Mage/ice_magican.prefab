@@ -361,7 +361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8818436502025318071
 Transform:
   m_ObjectHideFlags: 0
@@ -445,7 +445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3662260567435124708
 Transform:
   m_ObjectHideFlags: 0
@@ -1293,7 +1293,6 @@ Transform:
   - {fileID: 3058004861014655540}
   - {fileID: 8818436502025318071}
   - {fileID: 3662260567435124708}
-  - {fileID: 4596796478321496245}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4619332905705178951
@@ -2426,84 +2425,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &691986700060849102
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 4860106687072794787}
-    m_Modifications:
-    - target: {fileID: 548631190906149128, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_Name
-      value: Create_anim
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7739862370772200173, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: tower.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7739862370772200173, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: 'tower.Array.data[0]'
-      value: 
-      objectReference: {fileID: 6360538805963914473}
-    - target: {fileID: 7739862370772200173, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: 'tower.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1260423622475639399}
-    - target: {fileID: 7739862370772200173, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-      propertyPath: 'tower.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1341114140958688680}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
---- !u!4 &4596796478321496245 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3914037326664524667, guid: b80eb9ecaa9ed4a489295b4da5163139, type: 3}
-  m_PrefabInstance: {fileID: 691986700060849102}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7377877565725003476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2524,13 +2445,17 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 7485313489859528703, guid: 9e7b2e80e2281274ba94b922835bc498, type: 2}
+    - target: {fileID: 3682227997728079898, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: icons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4478355760606884413, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_Name
       value: TowerUI
       objectReference: {fileID: 0}
     - target: {fileID: 4478355760606884413, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5481808418566999264, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       propertyPath: m_Pivot.x
@@ -2672,10 +2597,5 @@ GameObject:
 --- !u!224 &3058004861014655540 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5481808418566999264, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
-  m_PrefabInstance: {fileID: 7377877565725003476}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6360538805963914473 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4478355760606884413, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
   m_PrefabInstance: {fileID: 7377877565725003476}
   m_PrefabAsset: {fileID: 0}
