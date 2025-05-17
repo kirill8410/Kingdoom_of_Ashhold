@@ -10,7 +10,6 @@ public class LevelManager : MonoBehaviour
     public int _coins;
     private float _HP = 1000;
     private int _numberWave = 0;
-    private int _maxWave;
 
     private bool _isWaveContinues = false;
     private bool _lose = false;
@@ -39,8 +38,6 @@ public class LevelManager : MonoBehaviour
             {
                 _waves = Resources.LoadAll<Wave>($"ScriptableObject/Wave/Level_{_numberLevel}");
             }
-
-            _maxWave = _waves.Length;
 
             if (GameObject.FindGameObjectWithTag("EnemySpawnPoint") != null)
             {

@@ -23,7 +23,7 @@ public class PlayerUI : MonoBehaviour
     private TextMeshProUGUI _HPText;
     private TextMeshProUGUI _waveText;
 
-    private TextMeshProUGUI _informationText;
+    private TextMeshProUGUI _waveInformationText;
 
     #region Кнопки
 
@@ -95,7 +95,7 @@ public class PlayerUI : MonoBehaviour
         _HPText = _sectionMenu.GetNamedChild("HP").GetComponent<TextMeshProUGUI>();
         _waveText = _sectionMenu.GetNamedChild("Wave").GetComponent<TextMeshProUGUI>();
 
-        _informationText = _subsectionWaveInformation.GetNamedChild("Information Text").GetComponent<TextMeshProUGUI>();
+        _waveInformationText = _subsectionWaveInformation.GetNamedChild("Information Text").GetComponent<TextMeshProUGUI>();
 
         #region Кнопки
 
@@ -222,35 +222,47 @@ public class PlayerUI : MonoBehaviour
 
     private void InformationWave()
     {
-        if (LM.GetWave() < LM.GetWaves().Length)
+        if (!_subsectionWaveInformation.activeSelf)
         {
-            Wave nextWave = LM.GetWaves()[LM.GetWave()];
-            Dictionary<string, int> enemyes = new Dictionary<string, int>();
-            for (int i = 0; i < nextWave.Enemies.Length; i++)
+            if (LM.GetWave() < LM.GetWaves().Length)
             {
-                foreach (KeyValuePair<string, int> kvp in enemyes)
+                Wave nextWave = LM.GetWaves()[LM.GetWave()];
+                Dictionary<string, int> enemyes = new Dictionary<string, int>();
+                for (int i = 0; i < nextWave.Enemies.Length; i++)
                 {
-                    if (kvp.Key == nextWave.Enemies[i].name)
+                    if (enemyes.ContainsKey(nextWave.Enemies[i].GetComponent<Enemy>().Name))
                     {
-                        enemyes[kvp.Key] += nextWave.NumberOfEnemies[i];
-                        break;
+                        enemyes[nextWave.Enemies[i].GetComponent<Enemy>().Name] += nextWave.NumberOfEnemies[i];
                     }
                     else
                     {
-                        enemyes.Add(nextWave.Enemies[i].name, nextWave.NumberOfEnemies[i]);
+                        enemyes.Add(nextWave.Enemies[i].GetComponent<Enemy>().Name, nextWave.NumberOfEnemies[i]);
                     }
                 }
-            }
-            foreach (KeyValuePair<string, int> kvp in enemyes)
-            {
+                string text = "";
+                foreach (KeyValuePair<string, int> kvp in enemyes)
+                {
+                    text += $"{kvp.Key}: {kvp.Value}\n";
+                }
 
+                _subsectionMenu.transform.localPosition = new Vector3(80, 0, 0);
+
+                _subsectionWaveInformation.SetActive(true);
+                _subsectionWaveInformation.transform.localPosition = new Vector3(-50, 0, 0);
+
+                _waveInformationText.text = text;
             }
+        }
+        else
+        {
+            StabilizeMenu();
         }
     }
 
     private void StartWave()
     {
         LM.StartWave();
+        StabilizeMenu();
     }
 
     private void Exit()
