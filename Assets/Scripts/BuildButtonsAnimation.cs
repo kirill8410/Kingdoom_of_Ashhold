@@ -24,13 +24,14 @@ public class BuildButtonsAnimation : MonoBehaviour
                 corect = 45;
                 break;
         }
-        angle=360/icons.Length;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+       
+        angle = 360 / icons.Length;
         if (animation)
         {
             for (int i = 0; i < icons.Length; i++)
@@ -51,7 +52,11 @@ public class BuildButtonsAnimation : MonoBehaviour
         {
             started = true;
             if (icons.Length > 1)
-                StartCoroutine(RotateIcons(icons.Length));
+                for(int i = 0; i < icons.Length; i++)
+                {
+                    StartCoroutine(RotateIcons(icons.Length - i));
+                }
+                
         }
         else if(GetComponent<Canvas>().enabled == false)
         {
@@ -67,11 +72,7 @@ public class BuildButtonsAnimation : MonoBehaviour
     
     IEnumerator RotateIcons(int num)
     {
-        if (num > 0)
-        {
-            yield return new WaitForSeconds(0.5f);
-            StartCoroutine(RotateIcons(num-1));
-        }
+        
         for (int i = 0; i < num*360/icons.Length-90+corect; i++)
         {
             animation = true;
