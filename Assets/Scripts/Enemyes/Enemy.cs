@@ -298,65 +298,104 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         }
     }
 
+    public bool SpellCd = true;
+
     private IEnumerator Spell()
     {
         while (true)
         {
-            yield return new WaitForSeconds(cooldown);
-            switch (enemySpell)
+            yield return new WaitForSeconds(0.1f);
+            if (!SpellCd)
             {
-                case EnemySpell.Heal:
-                    GetComponentInChildren<Animator>().SetTrigger("Spell");
-                    float s = speed;
-                    speed = 0;
-                    yield return new WaitForSeconds(0.5f);
-                    Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-                    foreach (Enemy enemy in enemyes)
-                    {
-                        if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= spellDistance && enemy != this)
-                        {
-                            enemy.Heal(heal);
-                        }
-                    }
-                    speed = s;
-                    break;
-                case EnemySpell.CreateShield:
-                    GetComponentInChildren<Animator>().SetTrigger("Spell");
-                    s = speed;
-                    speed = 0;
-                    yield return new WaitForSeconds(0.5f);
-                    enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-                    foreach (Enemy enemy in enemyes)
-                    {
-                        if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= spellDistance && enemy != this)
-                        {
-                            enemy.CreateShield();
-                        }
-                    }
-                    speed = s;
-                    break;
-                case EnemySpell.SpeedBoost:
-                    GetComponentInChildren<Animator>().SetTrigger("Spell");
-                    s = speed;
-                    speed = 0;
-                    yield return new WaitForSeconds(0.5f);
-                    enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-                    foreach (Enemy enemy in enemyes)
-                    {
-                        if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= spellDistance && enemy != this)
-                        {
-                            enemy.SpeedBoost(speedBoost, this);
-                        }
-                    }
-                    speed = s;
-                    break;
-                case EnemySpell.SpawnEnemy:
-                    yield return new WaitForSeconds(0.2f);
-                    GameObject _enemy = Instantiate(enemySpawn, gameObject.transform.position, gameObject.transform.rotation);
-                    _enemy.GetComponent<Enemy>().points = points;
-                    _enemy.GetComponent<Enemy>().numberPoint = numberPoint;
-                    break;
+                yield return new WaitForSeconds(cooldown);
+                SpellCd = true;
             }
+            else
+            {
+                switch (enemySpell)
+                {
+                    case EnemySpell.Heal:
+                        Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+                        float s = speed;
+                        foreach (Enemy enemy in enemyes)
+                        {
+                            if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= spellDistance && enemy != this && enemy.hp < enemy.maxHP && SpellCd)
+                            {
+                                GetComponentInChildren<Animator>().SetTrigger("Spell");
+                                SpellCd = false;
+                                speed = 0;
+                                yield return new WaitForSeconds(0.5f);
+
+                                foreach (Enemy enemy1 in enemyes)
+                                {
+                                    if (Vector3.Distance(gameObject.transform.position, enemy1.transform.position) <= spellDistance && enemy1 != this)
+                                    {
+                                        enemy1.Heal(heal);
+                                    }
+                                }
+                                speed = s;
+                                break;
+                            }
+                        }
+
+                        break;
+                    case EnemySpell.CreateShield:
+                        enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+                        s = speed;
+                        foreach (Enemy enemy in enemyes)
+                        {
+                            if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= spellDistance && enemy != this && enemy.shield < enemy.maxShield && SpellCd)
+                            {
+                                GetComponentInChildren<Animator>().SetTrigger("Spell");
+                                SpellCd = false;
+                                speed = 0;
+                                yield return new WaitForSeconds(0.5f);
+
+                                foreach (Enemy enemy1 in enemyes)
+                                {
+                                    if (Vector3.Distance(gameObject.transform.position, enemy1.transform.position) <= spellDistance && enemy1 != this)
+                                    {
+                                        enemy1.CreateShield();
+                                    }
+                                }
+                                speed = s;
+                                break;
+                            }
+                        }
+
+                        break;
+                    case EnemySpell.SpeedBoost:
+                        enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+                        s = speed;
+                        foreach (Enemy enemy in enemyes)
+                        {
+                            if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= spellDistance && enemy != this && enemy.shield < enemy.maxShield && SpellCd)
+                            {
+                                GetComponentInChildren<Animator>().SetTrigger("Spell");
+                                SpellCd = false;
+                                speed = 0;
+                                yield return new WaitForSeconds(0.5f);
+                                foreach (Enemy enemy1 in enemyes)
+                                {
+                                    if (Vector3.Distance(gameObject.transform.position, enemy1.transform.position) <= spellDistance && enemy1 != this)
+                                    {
+                                        enemy1.SpeedBoost(speedBoost, this);
+                                    }
+                                }
+                                speed = s;
+                                break;
+                            }
+                        }
+                        break;
+                    case EnemySpell.SpawnEnemy:
+                        yield return new WaitForSeconds(0.2f);
+                        GameObject _enemy = Instantiate(enemySpawn, gameObject.transform.position, gameObject.transform.rotation);
+                        _enemy.GetComponent<Enemy>().points = points;
+                        _enemy.GetComponent<Enemy>().numberPoint = numberPoint;
+                        break;
+                }
+            }
+            
         }
     }
 }
