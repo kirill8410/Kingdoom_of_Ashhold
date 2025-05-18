@@ -12,6 +12,7 @@ public class BuildButtonsAnimation : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animation = true;
         switch (icons.Length)
         {
             case 2:

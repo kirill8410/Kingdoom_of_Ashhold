@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     [SerializeField] SpriteRenderer healthIcon;
     [SerializeField] Sprite[] healthIcons = new Sprite[4];
     [SerializeField] Sprite[] stripIcons = new Sprite[6];
+    [SerializeField] GameObject effect;
 
     [Header("Protection")]
     public float protection;
@@ -222,6 +223,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     private void Dead() // Действия врага при смерти
     {
+        Instantiate(effect, this.transform.position, Quaternion.identity);
         LM._coins += dropCoins;
         Destroy(gameObject);
     }
@@ -245,10 +247,12 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                         hp -= potionDamage / 5;
                     }
                     ReduceHP(potionDamage);
+                    print("1");
                 }
             }
             yield return new WaitForSeconds(1f);
             _potion -= 1;
+            print("2");
         }
     }
     public void Potion(float potionDamage)

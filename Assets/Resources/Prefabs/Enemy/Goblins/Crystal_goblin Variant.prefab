@@ -8168,6 +8168,10 @@ PrefabInstance:
       value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 8109137814382695190, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 6107052878214037252, guid: 7a888f4f4f1f36a4eacb5f503846fa0b, type: 3}
+    - target: {fileID: 8109137814382695190, guid: 2a7b42fd385cffb4881826e4b2b764d1, type: 3}
       propertyPath: shield
       value: 1
       objectReference: {fileID: 0}
