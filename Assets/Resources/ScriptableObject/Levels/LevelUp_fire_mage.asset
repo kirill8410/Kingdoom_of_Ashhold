@@ -15,8 +15,8 @@ MonoBehaviour:
   damage_1: 0
   distance_1: 2
   attackSpeed_1: 0.6
-  priceLevelUp_1: 80
+  priceLevelUp_1: 120
   damage_2: 1
   distance_2: 2
   attackSpeed_2: 0
-  priceLevelUp_2: 190
+  priceLevelUp_2: 210

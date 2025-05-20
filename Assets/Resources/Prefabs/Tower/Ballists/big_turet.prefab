@@ -1187,7 +1187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 10
   attackSpeed: 0.4
-  damage: 90
+  penetrability: 25
+  damage: 65
   attackPrefab: {fileID: 5652138828623769678, guid: 7e8f9455dff28cd42a3164a802e5fdfc, type: 3}
   Distance: {fileID: 3164204386401253774}
   attackPoint: {fileID: 3429923566732738596}

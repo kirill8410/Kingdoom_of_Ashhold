@@ -392,6 +392,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                         GameObject _enemy = Instantiate(enemySpawn, gameObject.transform.position, gameObject.transform.rotation);
                         _enemy.GetComponent<Enemy>().points = points;
                         _enemy.GetComponent<Enemy>().numberPoint = numberPoint;
+                        SpellCd = false ;
                         break;
                 }
             }
