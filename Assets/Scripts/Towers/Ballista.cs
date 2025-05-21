@@ -37,7 +37,6 @@ public class Ballista : Tower, TowerFunctions // Баллиста
 
     private GameObject _arrow1;
     private GameObject _arrow2;
-    private int trueDamage;
 
     public Enemy target;
 

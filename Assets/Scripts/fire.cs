@@ -21,10 +21,7 @@ public class fire : MonoBehaviour
 
         if (other.GetComponent<Enemy>() != null)
         {
-            trueDamage = damage;
             
-            trueDamage -= other.GetComponent<Enemy>().protection;
-         
             if (trueDamage < 0)
             {
                 trueDamage = 0;

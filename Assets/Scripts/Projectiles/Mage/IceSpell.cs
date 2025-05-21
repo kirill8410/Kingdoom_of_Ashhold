@@ -7,7 +7,6 @@ public class IceSpell : MonoBehaviour
     public float damage; // Урон магии
     public float speed = 2; // Скорость магии
     public float slow = 0.4f;
-    private float trueDamage;
 
     private void Update()
     {
@@ -26,16 +25,7 @@ public class IceSpell : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && other.GetComponent<Enemy>() == target)
         {
-            trueDamage = damage;
-            if (target.protectionType == DamageTypes.Magic)
-            {
-                trueDamage -= target.protection;
-            }
-            if (trueDamage < 0)
-            {
-                trueDamage = 0;
-            }
-            target.ReduceHP(trueDamage);
+            target.ReduceHP(damage);
             target.Ice(slow);
             Destroy(gameObject);
         }

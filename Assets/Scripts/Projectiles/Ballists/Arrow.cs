@@ -11,7 +11,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
     [Header("Effects")]    
     [SerializeField] bool potion;
     [SerializeField] bool sniper;
-    private float trueDamage;
+
 
     private void Update()
     {
@@ -61,16 +61,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
             {
                 target.Potion(tower.Towerlevel * 10);
             }
-            trueDamage = damage;
-            if (target.protectionType == Tower.DamageTypes.Physical)
-            {
-                trueDamage -= target.protection;
-            }
-            if (trueDamage < 0)
-            {
-                trueDamage = 0;
-            }
-            target.ReduceHP(trueDamage);
+            target.ReduceHP(damage);
             Destroy(gameObject);
         }
     }

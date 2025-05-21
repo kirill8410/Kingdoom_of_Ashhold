@@ -37,8 +37,6 @@ public class Mage : Tower, TowerFunctions
     [SerializeField] private int charge = 0;
     private Enemy target2;
 
-    private float trueDamage;
-
     public Enemy target;
 
     private void Start()
@@ -78,24 +76,18 @@ public class Mage : Tower, TowerFunctions
                         break;
                     case MageType.God:
                         Enemy _target = target;
-                        trueDamage = damage;
-                        if (target.protectionType == DamageTypes.Magic)
-                        {
-                            trueDamage -= target.protection * 2;
-                        }
-                        if (trueDamage < 0)
-                        {
-                            trueDamage = 0;
-                        }
-                        if (target.enemyType == Enemy.EnemyTypes.Boss)
-                        {
-                            trueDamage /= 2;
-                        }
                         MageCrystal.SetActive(true);
                         yield return new WaitForSeconds(2f);
                         if (target != null && target == _target)
                         {
-                            target.ReduceHP(trueDamage);
+                            if (target.enemyType == Enemy.EnemyTypes.Boss)
+                            {
+                                target.ReduceHP(damage / 2);
+                            }
+                            else
+                            {
+                                target.ReduceHP(damage);
+                            }
                         } 
                         MageCrystal.SetActive(false);
                         break;
@@ -109,7 +101,6 @@ public class Mage : Tower, TowerFunctions
                         }
                         break;
                     case MageType.Fire:
-                        trueDamage = damage;
                         MageCrystal.SetActive(true);
                         if (target != target2)
                         {
@@ -118,31 +109,15 @@ public class Mage : Tower, TowerFunctions
                         attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
                         attack.GetComponent<FireSpell>().target = target;
                         attack.GetComponent<FireSpell>().mage = this;
-                        trueDamage += damage * charge;
-                        if (target.protectionType == DamageTypes.Magic)
-                        {
-                            trueDamage -= target.protection;
-                        }
-                        if (trueDamage < 0)
-                        {
-                            trueDamage = 0;
-                        }
                         charge += 1;
-                        if (charge > 10)
-                        {
-                            charge = 10;
-                        }
                         target2 = target;
-                        if (target.shield <= 0)
+                        if (target.enemyType != Enemy.EnemyTypes.Boss)
                         {
-                            if (target.enemyType != Enemy.EnemyTypes.Boss)
-                            {
-                                target.ReduceHP(trueDamage);
-                            }
-                            else
-                            {
-                                target.ReduceHP(1);
-                            }
+                            target.ReduceHP(damage + charge);
+                        }
+                        else
+                        {
+                            target.ReduceHP(charge);
                         }
                         Destroy(attack, 2f);
                         break;

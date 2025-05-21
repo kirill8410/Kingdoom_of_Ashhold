@@ -24,16 +24,7 @@ public class FireArea : MonoBehaviour
                 if (Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z),
                 new Vector2(enemy.transform.position.x, enemy.transform.position.z)) <= bangDistance)
                 {
-                    float trueDamage = damage;
-                    if (enemy.protectionType == Tower.DamageTypes.Magic)
-                    {
-                        trueDamage -= enemy.protection;
-                    }
-                    if (trueDamage < 0)
-                    {
-                        trueDamage = 0;
-                    }
-                    enemy.ReduceHP(trueDamage);
+                    enemy.ReduceHP(damage);
                 }
             }
         }

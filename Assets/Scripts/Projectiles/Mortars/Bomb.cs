@@ -6,7 +6,6 @@ public class Bomb : MonoBehaviour
 {
     public float damage;
     public float bangDistance;
-    private float trueDamage;
 
     public void Bang()
     {
@@ -16,20 +15,7 @@ public class Bomb : MonoBehaviour
             if (Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z), 
                 new Vector2(enemy.transform.position.x, enemy.transform.position.z)) <= bangDistance)
             {
-                trueDamage = damage;
-                if (enemy.protectionType == DamageTypes.Physical)
-                {
-                    trueDamage -= enemy.protection * 2;
-                }
-                else
-                {
-                    trueDamage -= enemy.protection;
-                }
-                if (trueDamage < 0)
-                {
-                    trueDamage = 0;
-                }
-                enemy.ReduceHP(trueDamage);
+                enemy.ReduceHP(damage);
             }
         }
         Destroy(gameObject, 1f);

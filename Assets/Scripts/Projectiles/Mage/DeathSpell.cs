@@ -31,7 +31,7 @@ public class DeathSpell : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().ReduceHP(damage, damage);
+            other.GetComponent<Enemy>().Curse(damage, damage);
         }
     }
 }

@@ -7,7 +7,6 @@ public class FireBomb : MonoBehaviour
     public int fireSeconds;
     public float bangDistance;
     [SerializeField] GameObject fireArea;
-    private float trueDamage;
 
     public void Bang()
     {
@@ -17,20 +16,7 @@ public class FireBomb : MonoBehaviour
             if (Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z), 
                 new Vector2(enemy.transform.position.x, enemy.transform.position.z)) <= bangDistance)
             {
-                trueDamage = damage;
-                if (enemy.protectionType == DamageTypes.Physical)
-                {
-                    trueDamage -= enemy.protection;
-                }
-                else
-                {
-                    trueDamage -= enemy.protection * 2;
-                }
-                if (trueDamage < 0)
-                {
-                    trueDamage = 0;
-                }
-                enemy.ReduceHP(trueDamage);
+                enemy.ReduceHP(damage);
             }
         }
         GameObject Fire = Instantiate(fireArea, new Vector3(gameObject.transform.position.x, 0f, 

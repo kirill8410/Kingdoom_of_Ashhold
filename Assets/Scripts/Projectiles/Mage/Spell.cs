@@ -8,7 +8,6 @@ public class Spell : MonoBehaviour
     public float damage; // Урон магии
     public float speed = 2; // Скорость магии
     public Mage mage;
-    private float trueDamage;
 
     private void Update()
     {
@@ -23,16 +22,7 @@ public class Spell : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && other.GetComponent<Enemy>() == target)
         {
-            trueDamage = damage;
-            if (target.protectionType == DamageTypes.Magic)
-            {
-                trueDamage -= target.protection;
-            }
-            if (trueDamage < 0)
-            {
-                trueDamage = 0;
-            }
-            target.ReduceHP(trueDamage);
+            target.ReduceHP(damage);
             mage.MageCrystalRecharge(true);
             Destroy(gameObject);
         }
