@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Level_1_Wave_1
   m_EditorClassIdentifier: 
   Enemies:
-  - {fileID: 1086017424731070327, guid: 997a8adf83e33e046b1cc43e24f4323f, type: 3}
+  - {fileID: 5258343284947722639, guid: 9e6dbef1e09e40549a84d0087df74945, type: 3}
   NumberOfEnemies: 01000000
