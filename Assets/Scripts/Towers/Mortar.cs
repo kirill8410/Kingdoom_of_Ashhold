@@ -206,8 +206,8 @@ public class Mortar : Tower, TowerFunctions
                 if (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
                 new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
                 {
-                    if ((target == null) || (enemy.numberPoint > target.numberPoint) ||
-                        ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                    if ((target == null) || (enemy._numberPoint > target._numberPoint) ||
+                        ((enemy._distanceToPoint < target._distanceToPoint) && (enemy._numberPoint >= target._numberPoint)))
                     {
                         target = enemy;
                     }

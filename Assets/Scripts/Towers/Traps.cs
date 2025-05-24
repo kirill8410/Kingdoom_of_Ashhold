@@ -106,8 +106,8 @@ public class Traps : Tower, TowerFunctions
             {
                 if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= attackDistance)
                 {
-                    if ((target == null) || (enemy.numberPoint > target.numberPoint) ||
-                        ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                    if ((target == null) || (enemy._numberPoint > target._numberPoint) ||
+                        ((enemy._distanceToPoint < target._distanceToPoint) && (enemy._numberPoint >= target._numberPoint)))
                     {
                         target = enemy;
                     }

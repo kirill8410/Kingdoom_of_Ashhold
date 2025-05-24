@@ -129,14 +129,14 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 {
                     if (isPoison)
                     {
-                        if ((target == null) || (enemy.numberPoint > target.numberPoint) || (enemy._potion < target._potion))
+                        if ((target == null) || (enemy._numberPoint > target._numberPoint) || (enemy._poison < target._poison))
                         {
                             target = enemy;
                         }
                     }
                     else if (isSniper)
                     {
-                        if ((target == null) || (enemy.numberPoint > target.numberPoint) ||
+                        if ((target == null) || (enemy._numberPoint > target._numberPoint) ||
                         (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
                     new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) >
                     Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
@@ -147,8 +147,8 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                     }
                     else
                     {
-                        if ((target == null) || (enemy.numberPoint > target.numberPoint) ||
-                        ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                        if ((target == null) || (enemy._numberPoint > target._numberPoint) ||
+                        ((enemy._distanceToPoint < target._distanceToPoint) && (enemy._numberPoint >= target._numberPoint)))
                         {
                             target = enemy;
                         }

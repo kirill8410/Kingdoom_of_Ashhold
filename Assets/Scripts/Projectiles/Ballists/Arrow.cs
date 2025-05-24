@@ -27,7 +27,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
             {
                 if (Vector3.Distance(gameObject.transform.position, enemy.gameObject.transform.position) <= 3f)
                 {
-                    if ((enemy.numberPoint > target.numberPoint) || ((enemy.distanceToPoint < target.distanceToPoint) && (enemy.numberPoint >= target.numberPoint)))
+                    if ((enemy.GetNumberPoint() > target.GetNumberPoint()) || ((enemy.GetDistanceToPoint() < target.GetDistanceToPoint()) && (enemy.GetNumberPoint() >= target.GetNumberPoint())))
                     {
                         target = enemy;
                     }
@@ -51,7 +51,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
                 {
                     damage += Convert.ToInt32(Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
                     new Vector2(towerTransform.position.x, towerTransform.position.z)) * 2);
-                    if (target.enemyType == Enemy.EnemyTypes.Boss)
+                    if (target.GetEnemyType() == Enemy.EnemyTypes.Boss)
                     {
                         damage += 5;
                     }

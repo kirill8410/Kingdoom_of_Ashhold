@@ -226,7 +226,7 @@ public class LevelManager : MonoBehaviour
                         GameObject enemy = Instantiate(wave.Enemies[i], _enemySpawn.position, _enemySpawn.rotation);
                         if (enemy.GetComponent<Enemy>())
                         {
-                            enemy.GetComponent<Enemy>().points = points;
+                            enemy.GetComponent<Enemy>().SetPoints(points);
                         }
                         _isWaveContinues = true;
                         yield return new WaitForSeconds(0.5f);
