@@ -10,7 +10,6 @@ public class Base : MonoBehaviour
     private LevelManager LM;
     private SoundManager SM;
 
-    private TowerData selectTower;
     private TowerFunctions _tower;
 
     [Header("Windows")]
