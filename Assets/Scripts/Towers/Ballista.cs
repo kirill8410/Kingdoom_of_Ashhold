@@ -129,14 +129,14 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 {
                     if (isPoison)
                     {
-                        if ((target == null) || (enemy._numberPoint > target._numberPoint) || (enemy._poison < target._poison))
+                        if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) || (enemy.GetPoison() < target.GetPoison()))
                         {
                             target = enemy;
                         }
                     }
                     else if (isSniper)
                     {
-                        if ((target == null) || (enemy._numberPoint > target._numberPoint) ||
+                        if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) ||
                         (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
                     new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) >
                     Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
@@ -147,8 +147,8 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                     }
                     else
                     {
-                        if ((target == null) || (enemy._numberPoint > target._numberPoint) ||
-                        ((enemy._distanceToPoint < target._distanceToPoint) && (enemy._numberPoint >= target._numberPoint)))
+                        if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) ||
+                        ((enemy.GetDistanceToPoint() < target.GetDistanceToPoint()) && (enemy.GetNumberPoint() >= target.GetNumberPoint())))
                         {
                             target = enemy;
                         }

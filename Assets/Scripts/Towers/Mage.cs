@@ -80,7 +80,7 @@ public class Mage : Tower, TowerFunctions
                         yield return new WaitForSeconds(2f);
                         if (target != null && target == _target)
                         {
-                            if (target._enemyType == Enemy.EnemyTypes.Boss)
+                            if (target.GetEnemyType() == Enemy.EnemyTypes.Boss)
                             {
                                 target.ReduceHP(damage / 2);
                             }
@@ -111,7 +111,7 @@ public class Mage : Tower, TowerFunctions
                         attack.GetComponent<FireSpell>().mage = this;
                         charge += 1;
                         target2 = target;
-                        if (target._enemyType != Enemy.EnemyTypes.Boss)
+                        if (target.GetEnemyType() != Enemy.EnemyTypes.Boss)
                         {
                             target.ReduceHP(damage + charge);
                         }
@@ -159,7 +159,7 @@ public class Mage : Tower, TowerFunctions
                 {
                     if (mageType == MageType.Death)
                     {
-                        if ((target == null) || (enemy._numberPoint > target._numberPoint) ||
+                        if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) ||
                         (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
                     new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <
                     Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
@@ -177,8 +177,8 @@ public class Mage : Tower, TowerFunctions
                     }
                     else
                     {
-                        if ((target == null) || (enemy._numberPoint > target._numberPoint) ||
-                        ((enemy._distanceToPoint < target._distanceToPoint) && (enemy._numberPoint >= target._numberPoint)))
+                        if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) ||
+                        ((enemy.GetDistanceToPoint() < target.GetDistanceToPoint()) && (enemy.GetNumberPoint() >= target.GetNumberPoint())))
                         {
                             target = enemy;
                         }

@@ -81,7 +81,7 @@ public class Traps : Tower, TowerFunctions
                     case TrapType.Simple:
                         
                         attackEffect = true;
-                        attackPrefab.SetActive(!attackPrefab.active); break; 
+                        attackPrefab.SetActive(!attackPrefab.activeSelf); break; 
                         
                         
                 }
@@ -106,8 +106,8 @@ public class Traps : Tower, TowerFunctions
             {
                 if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= attackDistance)
                 {
-                    if ((target == null) || (enemy._numberPoint > target._numberPoint) ||
-                        ((enemy._distanceToPoint < target._distanceToPoint) && (enemy._numberPoint >= target._numberPoint)))
+                    if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) ||
+                        ((enemy.GetDistanceToPoint() < target.GetDistanceToPoint()) && (enemy.GetNumberPoint() >= target.GetNumberPoint())))
                     {
                         target = enemy;
                     }
