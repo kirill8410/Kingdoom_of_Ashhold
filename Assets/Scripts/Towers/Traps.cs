@@ -55,7 +55,7 @@ public class Traps : Tower, TowerFunctions
             effect.SetActive(attackEffect);
         }
         RotationTuret();
-        Distance.transform.localScale = new Vector3(attackDistance * 2f, attackDistance * 2f, 1f);
+        _distancePrefab.transform.localScale = new Vector3(_attackDistance * 2f, _attackDistance * 2f, 1f);
         if (Towerlevel == 1)
         {
             PriceLevelUp = levelUp.priceLevelUp_1;
@@ -72,16 +72,16 @@ public class Traps : Tower, TowerFunctions
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f / attackSpeed);
+            yield return new WaitForSeconds(1f / _attackSpeed);
             if ((target != null) && (isAttack) && Vector3.Distance(gameObject.transform.position,
-                target.gameObject.transform.position) <= attackDistance)
+                target.gameObject.transform.position) <= _attackDistance)
             {
                 switch (trapType)
                 {
                     case TrapType.Simple:
                         
                         attackEffect = true;
-                        attackPrefab.SetActive(!attackPrefab.activeSelf); break; 
+                        _attackPrefab.SetActive(!_attackPrefab.activeSelf); break; 
                         
                         
                 }
@@ -97,14 +97,14 @@ public class Traps : Tower, TowerFunctions
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
-            if (target != null && Vector3.Distance(target.transform.position, gameObject.transform.position) > attackDistance)
+            if (target != null && Vector3.Distance(target.transform.position, gameObject.transform.position) > _attackDistance)
             {
                 target = null;
             }
             Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
             {
-                if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= attackDistance)
+                if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= _attackDistance)
                 {
                     if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) ||
                         ((enemy.GetDistanceToPoint() < target.GetDistanceToPoint()) && (enemy.GetNumberPoint() >= target.GetNumberPoint())))
@@ -119,14 +119,14 @@ public class Traps : Tower, TowerFunctions
     {
         if (Towerlevel == 1)
         {
-            damage += levelUp.damage_1;
-            attackDistance += levelUp.distance_1;
+            _damage += levelUp.damage_1;
+            _attackDistance += levelUp.distance_1;
             Towerlevel = 2;
         }
         else if (Towerlevel == 2)
         {
-            damage += levelUp.damage_2;
-            attackDistance += levelUp.distance_2;
+            _damage += levelUp.damage_2;
+            _attackDistance += levelUp.distance_2;
             Towerlevel = 3;
         }
     }

@@ -16,7 +16,7 @@ public class DeathSpell : MonoBehaviour
     private void Update()
     {
         if (Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z),
-            new Vector2(mage.transform.position.x, mage.transform.position.z)) < mage.attackDistance)
+            new Vector2(mage.transform.position.x, mage.transform.position.z)) < mage._attackDistance)
         {
             transform.Translate(0, 0, speed * Time.deltaTime);
         }

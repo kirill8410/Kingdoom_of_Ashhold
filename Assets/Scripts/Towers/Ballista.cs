@@ -13,19 +13,6 @@ public class Ballista : Tower, TowerFunctions // Баллиста
     public int PriceLevelUp { get; set; }
     public int Towerlevel { get; set; } = 1;
 
-    [SerializeField] LevelUp _levelUp;
-    public LevelUp levelUp
-    {
-        get
-        {
-            return _levelUp;
-        }
-        set
-        {
-            _levelUp = value;
-        }
-    }
-
     [Header("Turets")]
     [SerializeField] GameObject Turet_osnov;
     [SerializeField] GameObject Turet_osnov2;
@@ -52,16 +39,17 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         {
             RotationTuret();
         }
-        Distance.transform.localScale = new Vector3(attackDistance * 2f, attackDistance * 2f, 1f);
-        if (Towerlevel == 1)
-        {
-            PriceLevelUp = levelUp.priceLevelUp_1;
-        }
-        else if (Towerlevel == 2)
-        {
-            PriceLevelUp = levelUp.priceLevelUp_2;
-        }
+        _distancePrefab.GetComponent<ParticleSystem>().emissionRate = _attackDistance * 3;
+        var shape = _distancePrefab.GetComponent<ParticleSystem>().shape;
+        shape.radius = _attackDistance;
+
     }
+
+    public TowerParameters GetParameters()
+    {
+        return _parameters;
+    }
+
     public void ArrowSpawn(int arrow)
     {
         
@@ -81,21 +69,21 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         {
             yield return new WaitForSeconds(0.1f);
             if ((target != null) && (isAttack) && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
-                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
+                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= _attackDistance)
             {
                 GetComponent<Animator>().SetTrigger("Attack");
 
-                GameObject attack = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
-                attack.GetComponent<Arrow>().damage = damage;
+                GameObject attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Ballists/Arrow"), _attackPoint.position, _attackPoint.rotation);
+                attack.GetComponent<Arrow>().damage = _damage;
                 attack.GetComponent<Arrow>().target = target;
                 attack.GetComponent<Arrow>().tower = this;
                 _arrow1 = attack;
 
                 if (isDouble)
                 {
-                    GetComponent<Animator>().speed = attackSpeed;
-                    GameObject attack1 = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
-                    attack1.GetComponent<Arrow>().damage = damage;
+                    GetComponent<Animator>().speed = _attackSpeed;
+                    GameObject attack1 = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Ballists/Arrow"), _attackPoint.position, _attackPoint.rotation);
+                    attack1.GetComponent<Arrow>().damage = _damage;
                     attack1.GetComponent<Arrow>().target = target;
                     attack1.GetComponent<Arrow>().tower = this;
                     _arrow2 = attack1;
@@ -104,7 +92,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 {
                     attack.GetComponent<Arrow>().towerTransform = gameObject.transform;
                 }
-                for (float i = 1 / attackSpeed; i > 0; i -= 0.1f)
+                for (float i = 1 / _attackSpeed; i > 0; i -= 0.1f)
                 {
                     yield return new WaitForSeconds(0.1f);
                 }
@@ -117,7 +105,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         {
             yield return new WaitForSeconds(0.5f);
             if (target != null && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
-                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) > attackDistance)
+                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) > _attackDistance)
             {
                 target = null;
             }
@@ -125,7 +113,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
             foreach (Enemy enemy in enemyes)
             {
                 if (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
-                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
+                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= _attackDistance)
                 {
                     if (isPoison)
                     {
@@ -159,20 +147,7 @@ public class Ballista : Tower, TowerFunctions // Баллиста
     }
     public void LevelUp()
     {
-        if (Towerlevel == 1)
-        {
-            damage += levelUp.damage_1;
-            attackDistance += levelUp.distance_1;
-            attackSpeed += levelUp.attackSpeed_1;
-            Towerlevel = 2;
-        }
-        else if (Towerlevel == 2)
-        {
-            damage += levelUp.damage_2;
-            attackDistance += levelUp.distance_2;
-            attackSpeed += levelUp.attackSpeed_2;
-            Towerlevel = 3;
-        }
+        
     }
 
     private void RotationTuret()

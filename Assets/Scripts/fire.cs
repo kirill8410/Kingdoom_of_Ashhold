@@ -14,7 +14,7 @@ public class fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        damage = fireTrap.damage;   
+        damage = fireTrap._damage;   
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -12,18 +12,6 @@ public class Mortar : Tower, TowerFunctions
     public int PriceLevelUp { get; set; }
     public int Towerlevel { get; set; } = 1;
 
-    [SerializeField] LevelUp _levelUp;
-    public LevelUp levelUp
-    {
-        get
-        {
-            return _levelUp;
-        }
-        set
-        {
-            _levelUp = value;
-        }
-    }
 
     [Header("MortarType")]
 
@@ -46,15 +34,14 @@ public class Mortar : Tower, TowerFunctions
     }
     private void Update()
     {
-        Distance.transform.localScale = new Vector3(attackDistance * 2f, attackDistance * 2f, 1f);
-        if (Towerlevel == 1)
-        {
-            PriceLevelUp = levelUp.priceLevelUp_1;
-        }
-        else if (Towerlevel == 2)
-        {
-            PriceLevelUp = levelUp.priceLevelUp_2;
-        }
+        _distancePrefab.GetComponent<ParticleSystem>().emissionRate = _attackDistance * 3;
+        var shape = _distancePrefab.GetComponent<ParticleSystem>().shape;
+        shape.radius = _attackDistance;
+    }
+
+    public TowerParameters GetParameters()
+    {
+        return _parameters;
     }
 
     public IEnumerator Attack()
@@ -63,7 +50,7 @@ public class Mortar : Tower, TowerFunctions
         {
             yield return new WaitForSeconds(0.1f);
             if ((target != null) && (isAttack) && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
-                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
+                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= _attackDistance)
             {
                 bool _isCooldown = true;
                 switch (mortarType)
@@ -75,10 +62,11 @@ public class Mortar : Tower, TowerFunctions
                         if (target != null)
                         {
                             bangDistance = 1.2f + 0.4f * (Towerlevel - 1);
-                            GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
+                            GameObject attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mortars/bom_prefab"), 
+                                new Vector3(target.transform.position.x,
                                 -0.3f, target.transform.position.z), target.transform.rotation);
 
-                            attack.GetComponent<Bomb>().damage = damage;
+                            attack.GetComponent<Bomb>().damage = _damage;
                             attack.GetComponent<Bomb>().bangDistance = bangDistance;
                             attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
                         }
@@ -105,9 +93,10 @@ public class Mortar : Tower, TowerFunctions
                             }
                             int numberOfShots = 2;
                             yield return new WaitForSeconds(0.1f);
-                            GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
+                            GameObject attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mortars/bom_prefab"), 
+                                new Vector3(target.transform.position.x,
                                     -0.3f, target.transform.position.z), target.transform.rotation);
-                            attack.GetComponent<Bomb>().damage = damage;
+                            attack.GetComponent<Bomb>().damage = _damage;
                             attack.GetComponent<Bomb>().bangDistance = bangDistance;
                             attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
                             if (targets.Count > 1)
@@ -116,9 +105,10 @@ public class Mortar : Tower, TowerFunctions
                                 {
                                     yield return new WaitForSeconds(0.1f);
                                     int random = Random.Range(0, targets.Count);
-                                    attack = Instantiate(attackPrefab, new Vector3(targets[random].transform.position.x,
+                                    attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mortars/bom_prefab"), 
+                                        new Vector3(targets[random].transform.position.x,
                                         -0.3f, targets[random].transform.position.z), targets[random].transform.rotation);
-                                    attack.GetComponent<Bomb>().damage = damage;
+                                    attack.GetComponent<Bomb>().damage = _damage;
                                     attack.GetComponent<Bomb>().bangDistance = bangDistance;
                                     attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
                                 }
@@ -130,9 +120,10 @@ public class Mortar : Tower, TowerFunctions
                                     yield return new WaitForSeconds(0.1f);
                                     float random1 = Random.Range(-3, 3);
                                     float random2 = Random.Range(-3, 3);
-                                    attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x + random1,
+                                    attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mortars/bom_prefab"), 
+                                        new Vector3(target.transform.position.x + random1,
                                         -0.3f, target.transform.position.z + random2), target.transform.rotation);
-                                    attack.GetComponent<Bomb>().damage = damage;
+                                    attack.GetComponent<Bomb>().damage = _damage;
                                     attack.GetComponent<Bomb>().bangDistance = bangDistance;
                                     attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
                                 }
@@ -148,9 +139,10 @@ public class Mortar : Tower, TowerFunctions
                         yield return new WaitForSeconds(30f / 60f);
                         if (target != null)
                         {
-                            GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
+                            GameObject attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mortars/roket"), 
+                                new Vector3(target.transform.position.x,
                             -0.3f, target.transform.position.z), target.transform.rotation);
-                            attack.GetComponent<Bomb>().damage = damage;
+                            attack.GetComponent<Bomb>().damage = _damage;
                             attack.GetComponent<Bomb>().bangDistance = bangDistance;
                             attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
                             attack.SetActive(true);
@@ -166,9 +158,10 @@ public class Mortar : Tower, TowerFunctions
                         yield return new WaitForSeconds(5f / 60f);
                         if (target != null)
                         {
-                            GameObject attack = Instantiate(attackPrefab, new Vector3(target.transform.position.x,
+                            GameObject attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mortars/fire_bom_prefab"), 
+                                new Vector3(target.transform.position.x,
                             -0.3f, target.transform.position.z), target.transform.rotation);
-                            attack.GetComponent<FireBomb>().damage = damage;
+                            attack.GetComponent<FireBomb>().damage = _damage;
                             attack.GetComponent<FireBomb>().bangDistance = bangDistance;
                             attack.GetComponent<FireBomb>().fireSeconds = 4 + Towerlevel * 2;
                             attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
@@ -181,7 +174,7 @@ public class Mortar : Tower, TowerFunctions
                 }
                 if (_isCooldown)
                 {
-                    for (float i = 1 / attackSpeed; i > 0; i -= 0.1f)
+                    for (float i = 1 / _attackSpeed; i > 0; i -= 0.1f)
                     {
                         yield return new WaitForSeconds(0.1f);
                     }
@@ -195,7 +188,7 @@ public class Mortar : Tower, TowerFunctions
         {
             yield return new WaitForSeconds(0.5f);
             if (target != null && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z), 
-                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) > attackDistance)
+                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) > _attackDistance)
                 
             {
                 target = null;
@@ -204,7 +197,7 @@ public class Mortar : Tower, TowerFunctions
             foreach (Enemy enemy in enemyes)
             {
                 if (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
-                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= attackDistance)
+                new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= _attackDistance)
                 {
                     if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) ||
                         ((enemy.GetDistanceToPoint() < target.GetDistanceToPoint()) && (enemy.GetNumberPoint() >= target.GetNumberPoint())))
@@ -217,20 +210,7 @@ public class Mortar : Tower, TowerFunctions
     }
     public void LevelUp()
     {
-        if (Towerlevel == 1)
-        {
-            damage += levelUp.damage_1;
-            attackDistance += levelUp.distance_1;
-            attackSpeed += levelUp.attackSpeed_1;
-            Towerlevel = 2;
-        }
-        else if (Towerlevel == 2)
-        {
-            damage += levelUp.damage_2;
-            attackDistance += levelUp.distance_2;
-            attackSpeed += levelUp.attackSpeed_2;
-            Towerlevel = 3;
-        }
+        
     }
 
     private void RotationTuret()

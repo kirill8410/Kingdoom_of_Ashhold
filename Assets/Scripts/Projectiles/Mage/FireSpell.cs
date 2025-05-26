@@ -13,7 +13,7 @@ public class FireSpell : MonoBehaviour
             transform.LookAt(target.gameObject.transform.position);
             GetComponentInChildren<ParticleSystem>().startSpeed = Vector3.Distance(gameObject.transform.position, target.transform.position);
         }
-        if (target == null || Vector3.Distance(gameObject.transform.position, target.transform.position) > mage.attackDistance)
+        if (target == null || Vector3.Distance(gameObject.transform.position, target.transform.position) > mage._attackDistance)
         {
             Destroy(gameObject);
         }

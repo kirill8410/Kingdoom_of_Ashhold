@@ -114,7 +114,7 @@ public class Base : MonoBehaviour
             Name.text = tower.TowerName;
             Price.text = tower.price.ToString();
             Damage.text = tower.tower.GetComponent<Tower>().damage.ToString();
-            Distance.text = ((tower.tower.GetComponent<Tower>().attackDistance / 4) - 0.5f).ToString();
+            Distance.text = ((tower.tower.GetComponent<Tower>()._attackDistance / 4) - 0.5f).ToString();
             AttackSpeed.text = tower.tower.GetComponent<Tower>().attackSpeed.ToString();
         }
         else if ((Information.activeSelf == true && selectTower == tower) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
