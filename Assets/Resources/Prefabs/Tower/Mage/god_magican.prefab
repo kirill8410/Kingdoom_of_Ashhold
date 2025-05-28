@@ -275,15 +275,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd4e686b86a9f946a77371b6e97f885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 8
-  attackSpeed: 0.1
-  damage: 160
-  attackPrefab: {fileID: 1687053405057314714, guid: ddbc7664c14aa46438d6c06e0140bf3b, type: 3}
-  Distance: {fileID: 511826300944604679}
-  attackPoint: {fileID: 0}
-  _levelUp: {fileID: 11400000, guid: bb251aa8fb30d6c41ae3ff069c81e70b, type: 2}
+  _parameters: {fileID: 11400000, guid: 5e98acdccc7e36048b6587c9bd519176, type: 2}
+  _attackPoint: {fileID: 0}
   MageCrystal: {fileID: 2140141339997557452}
-  mageType: 4
   charge: 0
   target: {fileID: 0}
 --- !u!1 &6342619993449477328
@@ -706,11 +700,6 @@ PrefabInstance:
       addedObject: {fileID: 9147845171159623283}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
---- !u!1 &511826300944604679 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8277573582887613638, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
-  m_PrefabInstance: {fileID: 8486336536872037057}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1427885463988250232 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7355882724988259513, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}

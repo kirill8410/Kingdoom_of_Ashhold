@@ -37,7 +37,7 @@ public class BuildButtonsAnimation : MonoBehaviour
         {
             for (int i = 0; i < icons.Length; i++)
             {
-                icons[i].GetComponentInChildren<Button>().transform.eulerAngles = new Vector3(0, icons[i].GetComponentInChildren<Button>().transform.eulerAngles.y, -0);
+                icons[i].GetComponentInChildren<Button>(includeInactive: true).transform.eulerAngles = new Vector3(0, icons[i].GetComponentInChildren<Button>(includeInactive: true).transform.eulerAngles.y, -0);
             }
         }
         StartAnim();

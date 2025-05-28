@@ -30,21 +30,9 @@ public class Mortar : Tower, TowerFunctions
 
     public Enemy target;
 
-    private void Awake()
-    {
-        _distancePrefab = gameObject.GetNamedChild("Distance");
-
-        _damage = Parameters.Damage_1;
-        _attackSpeed = Parameters.AttackSpeed_1;
-        _attackDistance = Parameters.AttackDistance_1;
-        _breakingProtection = Parameters.BreakingProtection_1;
-
-        _damageType = Parameters.DamageType;
-        _towerType = Parameters.TowerType;
-    }
-
     private void Start()
     {
+        Parameters = _parameters;
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
         gm = gameObject;

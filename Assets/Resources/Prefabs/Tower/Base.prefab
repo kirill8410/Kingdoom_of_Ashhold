@@ -512,8 +512,8 @@ MonoBehaviour:
         m_MethodName: ShowInformation
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: bf22de9e9c9d4cb459c9d7d5dd89ff39, type: 2}
-          m_ObjectArgumentAssemblyTypeName: TowerData, Assembly-CSharp
+          m_ObjectArgument: {fileID: 11400000, guid: da9b6c2c8d38b9c46b5da1e28167f5cd, type: 2}
+          m_ObjectArgumentAssemblyTypeName: TowerParameters, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1980,8 +1980,8 @@ MonoBehaviour:
         m_MethodName: ShowInformation
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: d7d950887310ea84cbd808ebec390254, type: 2}
-          m_ObjectArgumentAssemblyTypeName: TowerData, Assembly-CSharp
+          m_ObjectArgument: {fileID: 11400000, guid: 008ceb73c52cbd046b003cd5d87ad84e, type: 2}
+          m_ObjectArgumentAssemblyTypeName: TowerParameters, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2112,8 +2112,8 @@ MonoBehaviour:
         m_MethodName: ShowInformation
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 1467d94c2915ddd49965129b69ca21dd, type: 2}
-          m_ObjectArgumentAssemblyTypeName: TowerData, Assembly-CSharp
+          m_ObjectArgument: {fileID: 11400000, guid: a697d55fbbf67fb4da020d4d1d7a4abe, type: 2}
+          m_ObjectArgumentAssemblyTypeName: TowerParameters, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

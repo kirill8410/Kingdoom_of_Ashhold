@@ -25,21 +25,9 @@ public class Ballista : Tower, TowerFunctions // Баллиста
 
     private Enemy _target;
 
-    private void Awake()
-    {
-        _distancePrefab = gameObject.GetNamedChild("Distance");
-
-        _damage = Parameters.Damage_1;
-        _attackSpeed = Parameters.AttackSpeed_1;
-        _attackDistance = Parameters.AttackDistance_1;
-        _breakingProtection = Parameters.BreakingProtection_1;
-
-        _damageType = Parameters.DamageType;
-        _towerType = Parameters.TowerType;
-    }
-
     private void Start()
     {
+        Parameters = _parameters;
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
         gm = gameObject;
@@ -145,14 +133,14 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 if (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
                 new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= _attackDistance)
                 {
-                    if (isPoison)
+                    if (_towerType == TowerTypes.PoisonBallist)
                     {
                         if ((_target == null) || (enemy.GetNumberPoint() > _target.GetNumberPoint()) || (enemy.GetPoison() < _target.GetPoison()))
                         {
                             _target = enemy;
                         }
                     }
-                    else if (isSniper)
+                    else if (_towerType == TowerTypes.SniperBallist)
                     {
                         if ((_target == null) || (enemy.GetNumberPoint() > _target.GetNumberPoint()) ||
                         (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),

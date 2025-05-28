@@ -1,10 +1,13 @@
 using System.Collections;
 using System.IO;
+using System.Security.Cryptography;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class Tower : MonoBehaviour// Общие пораметры всех башен
 {
+    [SerializeField] protected TowerParameters _parameters;
+
     protected float _attackDistance;
     protected float _attackSpeed;
     protected float _damage;
@@ -27,6 +30,20 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
     protected GameObject _distancePrefab;
 
     [SerializeField] protected Transform _attackPoint; // Точка появления снаряда
+
+
+    private void Awake()
+    {
+        _distancePrefab = gameObject.GetNamedChild("Distance");
+
+        _damage = _parameters.Damage_1;
+        _attackSpeed = _parameters.AttackSpeed_1;
+        _attackDistance = _parameters.AttackDistance_1;
+        _breakingProtection = _parameters.BreakingProtection_1;
+
+        _damageType = _parameters.DamageType;
+        _towerType = _parameters.TowerType;
+    }
 
     public float GetAttackDistance()
     {

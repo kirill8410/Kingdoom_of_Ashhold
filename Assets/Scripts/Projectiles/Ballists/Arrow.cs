@@ -31,16 +31,16 @@ public class Arrow : MonoBehaviour // Обычная стрела
                 {
                     if (Target.GetEnemyType() == Enemy.EnemyTypes.Boss)
                     {
-                        Target.ReduceHP((5 + Ballista.GetDamage() + 
+                        Target.ReduceHP((5 + Ballista.GetDamage() +
                             Vector2.Distance(new Vector2(Target.transform.position.x, Target.transform.position.z),
-                            new Vector2(Ballista.transform.position.x, Ballista.transform.position.z)) * 2), 
+                            new Vector2(Ballista.transform.position.x, Ballista.transform.position.z)) * 2),
                             Ballista.GetDamageType(), Ballista.GetBreakingProtection());
                     }
                     else
                     {
-                        Target.ReduceHP((Ballista.GetDamage() + 
+                        Target.ReduceHP((Ballista.GetDamage() +
                             Vector2.Distance(new Vector2(Target.transform.position.x, Target.transform.position.z),
-                            new Vector2(Ballista.transform.position.x, Ballista.transform.position.z)) * 2), 
+                            new Vector2(Ballista.transform.position.x, Ballista.transform.position.z)) * 2),
                             Ballista.GetDamageType(), Ballista.GetBreakingProtection());
                     }
                 }
@@ -48,7 +48,11 @@ public class Arrow : MonoBehaviour // Обычная стрела
             else if (Ballista.GetTowerType() == Tower.TowerTypes.PoisonBallist)
             {
                 Target.Potion(Ballista.TowerLevel * 10);
-                Target.ReduceHP(Ballista.GetDamage(), Ballista.GetDamageType());
+                Target.ReduceHP(Ballista.GetDamage(), Ballista.GetDamageType(), Ballista.GetBreakingProtection());
+            }
+            else
+            {
+                Target.ReduceHP(Ballista.GetDamage(), Ballista.GetDamageType(), Ballista.GetBreakingProtection());
             }
             Destroy(gameObject);
         }

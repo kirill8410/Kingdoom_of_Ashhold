@@ -68,6 +68,7 @@ public class Base : MonoBehaviour
             if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) <= 6.5f)
             {
                 GetComponent<Canvas>().enabled = true;
+                Distance.gameObject.SetActive(true);
             }
             if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) > 6.5f)
             {
@@ -76,6 +77,7 @@ public class Base : MonoBehaviour
                 Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
                 InformationLevelUp.SetActive(false);
                 Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                Distance.gameObject.SetActive(false);
             }
             if (_tower.TowerLevel != 3) // Отображение кнопок прокачки если уровень не максимальный
             {
@@ -154,22 +156,22 @@ public class Base : MonoBehaviour
             Selection.transform.localPosition = new Vector3(-80f, 0f, 0f);
             if (_tower.TowerLevel == 1)
             {
-                DamageLevelUp.text = $"{_tower.Parameters.Damage_2}(+{_tower.Parameters.Damage_2 - _tower.Parameters.Damage_1})";
+                DamageLevelUp.text = $"{_tower.Parameters.Damage_2}\n(+{_tower.Parameters.Damage_2 - _tower.Parameters.Damage_1})";
                 TextLevelUp.text = "Улучшить до уроня 2";
                 DistanceLevelUp.text = $"{_tower.Parameters.AttackDistance_2 / 4}" +
-                    $"({(_tower.Parameters.AttackDistance_2 - _tower.Parameters.AttackDistance_1) / 4})";
+                    $"\n(+{(_tower.Parameters.AttackDistance_2 - _tower.Parameters.AttackDistance_1) / 4})";
                 AttackSpeedLevelUp.text = $"{_tower.Parameters.AttackSpeed_2}" +
-                    $"({_tower.Parameters.AttackSpeed_2 - _tower.Parameters.AttackSpeed_1})";
+                    $"\n(+{_tower.Parameters.AttackSpeed_2 - _tower.Parameters.AttackSpeed_1})";
                 PriceLevelUp.text = _tower.Parameters.Price_2.ToString();
             }
             else if (_tower.TowerLevel == 2)
             {
-                DamageLevelUp.text = $"{_tower.Parameters.Damage_3}(+{_tower.Parameters.Damage_3 - _tower.Parameters.Damage_2})";
+                DamageLevelUp.text = $"{_tower.Parameters.Damage_3}\n(+{_tower.Parameters.Damage_3 - _tower.Parameters.Damage_2})";
                 TextLevelUp.text = "Улучшить до уроня 3";
                 DistanceLevelUp.text = $"{_tower.Parameters.AttackDistance_3 / 4}" +
-                    $"(+{(_tower.Parameters.AttackDistance_3 - _tower.Parameters.AttackDistance_2) / 4})";
+                    $"\n(+{(_tower.Parameters.AttackDistance_3 - _tower.Parameters.AttackDistance_2) / 4})";
                 AttackSpeedLevelUp.text = $"{_tower.Parameters.AttackSpeed_3}" +
-                    $"(+{_tower.Parameters.AttackSpeed_3 - _tower.Parameters.AttackSpeed_2})";
+                    $"\n(+{_tower.Parameters.AttackSpeed_3 - _tower.Parameters.AttackSpeed_2})";
                 PriceLevelUp.text = _tower.Parameters.Price_3.ToString();
             }
 

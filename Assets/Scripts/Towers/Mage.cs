@@ -20,21 +20,9 @@ public class Mage : Tower, TowerFunctions
     private Enemy target2;
     public Enemy target;
 
-    private void Awake()
-    {
-        _distancePrefab = gameObject.GetNamedChild("Distance");
-
-        _damage = Parameters.Damage_1;
-        _attackSpeed = Parameters.AttackSpeed_1;
-        _attackDistance = Parameters.AttackDistance_1;
-        _breakingProtection = Parameters.BreakingProtection_1;
-
-        _damageType = Parameters.DamageType;
-        _towerType = Parameters.TowerType;
-    }
-
     private void Start()
     {
+        Parameters = _parameters;
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
         gm = gameObject;
@@ -45,7 +33,6 @@ public class Mage : Tower, TowerFunctions
         _distancePrefab.GetComponent<ParticleSystem>().emissionRate = _attackDistance * 3;
         var shape = _distancePrefab.GetComponent<ParticleSystem>().shape;
         shape.radius = _attackDistance;
-
     }
 
 
@@ -63,32 +50,33 @@ public class Mage : Tower, TowerFunctions
                     case TowerTypes.SimpleMage:
                         GameObject attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mage/Spell"), 
                             _attackPoint.position, _attackPoint.rotation);
-                        attack.GetComponent<Spell>().damage = _damage;
-                        attack.GetComponent<Spell>().target = target;
-                        attack.GetComponent<Spell>().mage = this;
+                        attack.GetComponent<Spell>().Target = target;
+                        attack.GetComponent<Spell>().Mage = this;
                         break;
                     case TowerTypes.GodMage:
                         Enemy _target = target;
                         MageCrystal.SetActive(true);
-                        yield return new WaitForSeconds(2f);
+                        GameObject spell = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mage/GodSpell"), _target.transform);
                         if (target != null && target == _target)
                         {
                             if (target.GetEnemyType() == Enemy.EnemyTypes.Boss)
                             {
-                                target.ReduceHP(_damage / 2);
+                                target.ReduceHP(_damage / 2, _damageType, _breakingProtection);
                             }
                             else
                             {
-                                target.ReduceHP(_damage);
+                                target.ReduceHP(_damage, _damageType, _breakingProtection);
                             }
-                        } 
+                        }
+                        yield return new WaitForSeconds(2f);
                         MageCrystal.SetActive(false);
+                        Destroy(spell);
                         break;
                     case TowerTypes.IceMage:
                         attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mage/IceSpell"), 
                             _attackPoint.position, _attackPoint.rotation);
-                        attack.GetComponent<IceSpell>().damage = _damage;
-                        attack.GetComponent<IceSpell>().target = target;
+                        attack.GetComponent<IceSpell>().Mage = this;
+                        attack.GetComponent<IceSpell>().Target = target;
                         if (TowerLevel == 3)
                         {
                             attack.GetComponent<IceSpell>().slow = 0.6f;
@@ -121,7 +109,7 @@ public class Mage : Tower, TowerFunctions
                         attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mage/DeathSpell"), 
                             _attackPoint.position, _attackPoint.rotation);
                         attack.GetComponent<DeathSpell>().damage = _damage;
-                        attack.GetComponent<DeathSpell>().target = target;
+                        attack.GetComponent<DeathSpell>().Target = target;
                         attack.GetComponent<DeathSpell>().mage = this;
                         break;
                 }
