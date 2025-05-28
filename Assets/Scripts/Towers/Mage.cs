@@ -108,9 +108,8 @@ public class Mage : Tower, TowerFunctions
                         MageCrystal.SetActive(true);
                         attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mage/DeathSpell"), 
                             _attackPoint.position, _attackPoint.rotation);
-                        attack.GetComponent<DeathSpell>().damage = _damage;
                         attack.GetComponent<DeathSpell>().Target = target;
-                        attack.GetComponent<DeathSpell>().mage = this;
+                        attack.GetComponent<DeathSpell>().Mage = this;
                         break;
                 }
                 for (float i = 1 / _attackSpeed; i > 0; i -= 0.1f)

@@ -4,7 +4,7 @@ using UnityEngine;
 public class DeathSpell : MonoBehaviour
 {
     public Enemy Target; 
-    public Mage mage;
+    public Mage Mage;
 
     private void Start()
     {
@@ -14,13 +14,13 @@ public class DeathSpell : MonoBehaviour
     private void Update()
     {
         if (Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z),
-            new Vector2(mage.transform.position.x, mage.transform.position.z)) < mage.GetAttackDistance())
+            new Vector2(Mage.transform.position.x, Mage.transform.position.z)) < Mage.GetAttackDistance())
         {
             transform.Translate(0, 0, 15 * Time.deltaTime);
         }
         else
         {
-            mage.MageCrystalRecharge(false);
+            Mage.MageCrystalRecharge(false);
             Destroy(gameObject);
         }
     }
@@ -29,7 +29,7 @@ public class DeathSpell : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().Curse(, damage);
+            other.GetComponent<Enemy>().Curse(Mage.GetDamage(), Mage.GetDamage());
         }
     }
 }
