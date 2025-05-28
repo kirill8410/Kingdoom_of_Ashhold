@@ -2,30 +2,41 @@ using UnityEngine;
 using System.Collections;
 using NUnit.Framework.Constraints;
 using static UnityEngine.GraphicsBuffer;
+using System.Security.Cryptography;
+using Unity.XR.CoreUtils;
 
 public class Ballista : Tower, TowerFunctions // Баллиста
 {
+    public TowerParameters Parameters { get; set; }
+
     public bool isAttack { get; set; } = true;
     public GameObject gm { get; set; }
 
-    [Header("Level")]
-
-    public int PriceLevelUp { get; set; }
-    public int Towerlevel { get; set; } = 1;
+    public int TowerLevel { get; set; } = 1;
 
     [Header("Turets")]
     [SerializeField] GameObject Turet_osnov;
     [SerializeField] GameObject Turet_osnov2;
 
     [Header("TowerType")]
-    [SerializeField] bool isSniper;
-    [SerializeField] bool isDouble;
-    [SerializeField] bool isPoison;
 
     private GameObject _arrow1;
     private GameObject _arrow2;
 
-    public Enemy target;
+    private Enemy _target;
+
+    private void Awake()
+    {
+        _distancePrefab = gameObject.GetNamedChild("Distance");
+
+        _damage = Parameters.Damage_1;
+        _attackSpeed = Parameters.AttackSpeed_1;
+        _attackDistance = Parameters.AttackDistance_1;
+        _breakingProtection = Parameters.BreakingProtection_1;
+
+        _damageType = Parameters.DamageType;
+        _towerType = Parameters.TowerType;
+    }
 
     private void Start()
     {
@@ -33,9 +44,10 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         StartCoroutine(Attack());
         gm = gameObject;
     }
+
     private void Update()
     {
-        if (target != null)
+        if (_target != null)
         {
             RotationTuret();
         }
@@ -43,11 +55,6 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         var shape = _distancePrefab.GetComponent<ParticleSystem>().shape;
         shape.radius = _attackDistance;
 
-    }
-
-    public TowerParameters GetParameters()
-    {
-        return _parameters;
     }
 
     public void ArrowSpawn(int arrow)
@@ -68,29 +75,51 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         while (true)
         {
             yield return new WaitForSeconds(0.1f);
-            if ((target != null) && (isAttack) && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
+            if ((_target != null) && (isAttack) && Vector2.Distance(new Vector2(_target.transform.position.x, _target.transform.position.z),
                 new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= _attackDistance)
             {
                 GetComponent<Animator>().SetTrigger("Attack");
 
-                GameObject attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Ballists/Arrow"), _attackPoint.position, _attackPoint.rotation);
-                attack.GetComponent<Arrow>().damage = _damage;
-                attack.GetComponent<Arrow>().target = target;
-                attack.GetComponent<Arrow>().tower = this;
-                _arrow1 = attack;
+                GameObject attack;
 
-                if (isDouble)
+                switch (_towerType)
                 {
-                    GetComponent<Animator>().speed = _attackSpeed;
-                    GameObject attack1 = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Ballists/Arrow"), _attackPoint.position, _attackPoint.rotation);
-                    attack1.GetComponent<Arrow>().damage = _damage;
-                    attack1.GetComponent<Arrow>().target = target;
-                    attack1.GetComponent<Arrow>().tower = this;
-                    _arrow2 = attack1;
-                }
-                if (isSniper)
-                {
-                    attack.GetComponent<Arrow>().towerTransform = gameObject.transform;
+                    case TowerTypes.SimpleBallist:
+                        attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Ballists/Arrow"), _attackPoint.position, _attackPoint.rotation);
+                        attack.GetComponent<Arrow>().Ballista = this;
+                        attack.GetComponent<Arrow>().Target = _target;
+                        _arrow1 = attack;
+                        break;
+                    case TowerTypes.DoubleBallist:
+                        attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Ballists/Arrow"), _attackPoint.position, _attackPoint.rotation);
+                        attack.GetComponent<Arrow>().Ballista = this;
+                        attack.GetComponent<Arrow>().Target = _target;
+                        _arrow1 = attack;
+
+                        GetComponent<Animator>().speed = _attackSpeed;
+                        GameObject attack1 = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Ballists/Arrow"), _attackPoint.position, _attackPoint.rotation);
+                        attack.GetComponent<Arrow>().Ballista = this;
+                        attack.GetComponent<Arrow>().Target = _target;
+                        _arrow2 = attack1;
+                        break;
+                    case TowerTypes.BigBallist:
+                        attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Ballists/Big_arrow"), _attackPoint.position, _attackPoint.rotation);
+                        attack.GetComponent<Arrow>().Ballista = this;
+                        attack.GetComponent<Arrow>().Target = _target;
+                        _arrow1 = attack;
+                        break;
+                    case TowerTypes.SniperBallist:
+                        attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Ballists/Arrow1"), _attackPoint.position, _attackPoint.rotation);
+                        attack.GetComponent<Arrow>().Ballista = this;
+                        attack.GetComponent<Arrow>().Target = _target;
+                        _arrow1 = attack;
+                        break;
+                    case TowerTypes.PoisonBallist:
+                        attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Ballists/Poison_arrow"), _attackPoint.position, _attackPoint.rotation);
+                        attack.GetComponent<Arrow>().Ballista = this;
+                        attack.GetComponent<Arrow>().Target = _target;
+                        _arrow1 = attack;
+                        break;
                 }
                 for (float i = 1 / _attackSpeed; i > 0; i -= 0.1f)
                 {
@@ -99,15 +128,16 @@ public class Ballista : Tower, TowerFunctions // Баллиста
             }
         }
     }
+
     public IEnumerator SearchTarget()
     {
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
-            if (target != null && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
+            if (_target != null && Vector2.Distance(new Vector2(_target.transform.position.x, _target.transform.position.z),
                 new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) > _attackDistance)
             {
-                target = null;
+                _target = null;
             }
             Enemy[] enemyes = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             foreach (Enemy enemy in enemyes)
@@ -117,42 +147,58 @@ public class Ballista : Tower, TowerFunctions // Баллиста
                 {
                     if (isPoison)
                     {
-                        if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) || (enemy.GetPoison() < target.GetPoison()))
+                        if ((_target == null) || (enemy.GetNumberPoint() > _target.GetNumberPoint()) || (enemy.GetPoison() < _target.GetPoison()))
                         {
-                            target = enemy;
+                            _target = enemy;
                         }
                     }
                     else if (isSniper)
                     {
-                        if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) ||
+                        if ((_target == null) || (enemy.GetNumberPoint() > _target.GetNumberPoint()) ||
                         (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
                     new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) >
-                    Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
+                    Vector2.Distance(new Vector2(_target.transform.position.x, _target.transform.position.z),
                     new Vector2(gameObject.transform.position.x, gameObject.transform.position.z))))
                         {
-                            target = enemy;
+                            _target = enemy;
                         }
                     }
                     else
                     {
-                        if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) ||
-                        ((enemy.GetDistanceToPoint() < target.GetDistanceToPoint()) && (enemy.GetNumberPoint() >= target.GetNumberPoint())))
+                        if ((_target == null) || (enemy.GetNumberPoint() > _target.GetNumberPoint()) ||
+                        ((enemy.GetDistanceToPoint() < _target.GetDistanceToPoint()) && (enemy.GetNumberPoint() >= _target.GetNumberPoint())))
                         {
-                            target = enemy;
+                            _target = enemy;
                         }
                     }
                 }
             }
         }
     }
+
     public void LevelUp()
     {
-        
+        if (TowerLevel == 1)
+        {
+            _damage = Parameters.Damage_2;
+            _attackDistance = Parameters.AttackDistance_2;
+            _attackSpeed = Parameters.AttackSpeed_2;
+            _breakingProtection = Parameters.BreakingProtection_2;
+            TowerLevel = 2;
+        }
+        else if (TowerLevel == 2)
+        {
+            _damage = Parameters.Damage_3;
+            _attackDistance = Parameters.AttackDistance_3;
+            _attackSpeed = Parameters.AttackSpeed_3;
+            _breakingProtection = Parameters.BreakingProtection_3;
+            TowerLevel = 3;
+        }
     }
 
     private void RotationTuret()
     {
-        Turet_osnov.transform.LookAt(target.gameObject.transform.position);
-        Turet_osnov2.transform.LookAt(new Vector3(target.gameObject.transform.position.x, Turet_osnov2.transform.position.y, target.gameObject.transform.position.z));
+        Turet_osnov.transform.LookAt(_target.gameObject.transform.position);
+        Turet_osnov2.transform.LookAt(new Vector3(_target.gameObject.transform.position.x, Turet_osnov2.transform.position.y, _target.gameObject.transform.position.z));
     }
 }

@@ -1,30 +1,37 @@
 using UnityEngine;
 using System.Collections;
+using System.Security.Cryptography;
+using Unity.XR.CoreUtils;
 
 public class Mage : Tower, TowerFunctions
 {
+    public TowerParameters Parameters { get; set; }
+
     public bool isAttack {  get; set; } = true;
     public GameObject gm { get; set; }
 
     [Header("Level")]
-
-    public int PriceLevelUp { get; set; }
-    public int Towerlevel { get; set; } = 1;
+    public int TowerLevel { get; set; } = 1;
 
     [SerializeField] GameObject MageCrystal;
 
-    [Header("MageType")]
-
-    [SerializeField] MageType mageType;
-    private enum MageType
-    {
-        Simple, Fire, Ice, Death, God
-    }
-
     [SerializeField] private int charge = 0;
-    private Enemy target2;
 
+    private Enemy target2;
     public Enemy target;
+
+    private void Awake()
+    {
+        _distancePrefab = gameObject.GetNamedChild("Distance");
+
+        _damage = Parameters.Damage_1;
+        _attackSpeed = Parameters.AttackSpeed_1;
+        _attackDistance = Parameters.AttackDistance_1;
+        _breakingProtection = Parameters.BreakingProtection_1;
+
+        _damageType = Parameters.DamageType;
+        _towerType = Parameters.TowerType;
+    }
 
     private void Start()
     {
@@ -32,6 +39,7 @@ public class Mage : Tower, TowerFunctions
         StartCoroutine(Attack());
         gm = gameObject;
     }
+
     private void Update()
     {
         _distancePrefab.GetComponent<ParticleSystem>().emissionRate = _attackDistance * 3;
@@ -40,10 +48,7 @@ public class Mage : Tower, TowerFunctions
 
     }
 
-    public TowerParameters GetParameters()
-    {
-        return _parameters;
-    }
+
 
     public IEnumerator Attack()
     {
@@ -53,16 +58,16 @@ public class Mage : Tower, TowerFunctions
             if ((target != null) && (isAttack) && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.z),
                 new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= _attackDistance)
             {
-                switch (mageType)
+                switch (_towerType)
                 {
-                    case MageType.Simple:
+                    case TowerTypes.SimpleMage:
                         GameObject attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mage/Spell"), 
                             _attackPoint.position, _attackPoint.rotation);
                         attack.GetComponent<Spell>().damage = _damage;
                         attack.GetComponent<Spell>().target = target;
                         attack.GetComponent<Spell>().mage = this;
                         break;
-                    case MageType.God:
+                    case TowerTypes.GodMage:
                         Enemy _target = target;
                         MageCrystal.SetActive(true);
                         yield return new WaitForSeconds(2f);
@@ -79,17 +84,17 @@ public class Mage : Tower, TowerFunctions
                         } 
                         MageCrystal.SetActive(false);
                         break;
-                    case MageType.Ice:
+                    case TowerTypes.IceMage:
                         attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mage/IceSpell"), 
                             _attackPoint.position, _attackPoint.rotation);
                         attack.GetComponent<IceSpell>().damage = _damage;
                         attack.GetComponent<IceSpell>().target = target;
-                        if (Towerlevel == 3)
+                        if (TowerLevel == 3)
                         {
                             attack.GetComponent<IceSpell>().slow = 0.6f;
                         }
                         break;
-                    case MageType.Fire:
+                    case TowerTypes.FireMage:
                         MageCrystal.SetActive(true);
                         if (target != target2)
                         {
@@ -111,7 +116,7 @@ public class Mage : Tower, TowerFunctions
                         }
                         Destroy(attack, 2f);
                         break;
-                    case MageType.Death:
+                    case TowerTypes.DeathMage:
                         MageCrystal.SetActive(true);
                         attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mage/DeathSpell"), 
                             _attackPoint.position, _attackPoint.rotation);
@@ -125,13 +130,14 @@ public class Mage : Tower, TowerFunctions
                     yield return new WaitForSeconds(0.1f);
                 }
             }
-            else if (mageType == MageType.Fire)
+            else if (_towerType == TowerTypes.FireMage)
             {
                 MageCrystal.SetActive(false);
                 target2 = null;
             }
         }
     }
+
     public IEnumerator SearchTarget()
     {
         while (true)
@@ -148,7 +154,7 @@ public class Mage : Tower, TowerFunctions
                 if (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
                 new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) <= _attackDistance)
                 {
-                    if (mageType == MageType.Death)
+                    if (_towerType == TowerTypes.DeathMage)
                     {
                         if ((target == null) || (enemy.GetNumberPoint() > target.GetNumberPoint()) ||
                         (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
@@ -159,7 +165,7 @@ public class Mage : Tower, TowerFunctions
                             target = enemy;
                         }
                     }
-                    else if (mageType == MageType.Fire)
+                    else if (_towerType == TowerTypes.FireMage)
                     {
                         if (target == null)
                         {
@@ -178,10 +184,25 @@ public class Mage : Tower, TowerFunctions
             }
         }
     }
+
     public void LevelUp()
     {
-        
+        if (TowerLevel == 1)
+        {
+            _damage = Parameters.Damage_2;
+            _attackDistance = Parameters.AttackDistance_2;
+            _attackSpeed = Parameters.AttackSpeed_2;
+            TowerLevel = 2;
+        }
+        else if (TowerLevel == 2)
+        {
+            _damage = Parameters.Damage_3;
+            _attackDistance = Parameters.AttackDistance_3;
+            _attackSpeed = Parameters.AttackSpeed_3;
+            TowerLevel = 3;
+        }
     }
+
     public void MageCrystalRecharge(bool b)
     {
         MageCrystal.SetActive(b);

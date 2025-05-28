@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TowerParameters", menuName = "Parameters/TowerParameters")]
 public class TowerParameters : ScriptableObject
 {
+    public GameObject TowerPrefab;
+
     public string TowerName;
     [TextArea] public string TowerDescription;
 
@@ -10,18 +12,21 @@ public class TowerParameters : ScriptableObject
     public float Damage_1;
     public float AttackSpeed_1;
     public float AttackDistance_1;
+    public float BreakingProtection_1;
     public int Price_1;
 
     [Header("Level 2")]
     public float Damage_2;
     public float AttackSpeed_2;
     public float AttackDistance_2;
+    public float BreakingProtection_2;
     public int Price_2;
 
     [Header("Level 3")]
     public float Damage_3;
     public float AttackSpeed_3;
     public float AttackDistance_3;
+    public float BreakingProtection_3;
     public int Price_3;
 
     [Space]

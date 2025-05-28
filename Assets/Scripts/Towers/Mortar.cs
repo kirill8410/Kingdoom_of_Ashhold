@@ -1,16 +1,20 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.XR.CoreUtils;
 
 public class Mortar : Tower, TowerFunctions
 {
+    public TowerParameters Parameters { get; set; }
+
     public bool isAttack { get; set; } = true;
     public GameObject gm { get; set; }
 
     [Header("Level")]
 
     public int PriceLevelUp { get; set; }
-    public int Towerlevel { get; set; } = 1;
+    public int TowerLevel { get; set; } = 1;
 
 
     [Header("MortarType")]
@@ -26,12 +30,26 @@ public class Mortar : Tower, TowerFunctions
 
     public Enemy target;
 
+    private void Awake()
+    {
+        _distancePrefab = gameObject.GetNamedChild("Distance");
+
+        _damage = Parameters.Damage_1;
+        _attackSpeed = Parameters.AttackSpeed_1;
+        _attackDistance = Parameters.AttackDistance_1;
+        _breakingProtection = Parameters.BreakingProtection_1;
+
+        _damageType = Parameters.DamageType;
+        _towerType = Parameters.TowerType;
+    }
+
     private void Start()
     {
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
         gm = gameObject;
     }
+
     private void Update()
     {
         _distancePrefab.GetComponent<ParticleSystem>().emissionRate = _attackDistance * 3;
@@ -39,10 +57,6 @@ public class Mortar : Tower, TowerFunctions
         shape.radius = _attackDistance;
     }
 
-    public TowerParameters GetParameters()
-    {
-        return _parameters;
-    }
 
     public IEnumerator Attack()
     {
@@ -61,7 +75,7 @@ public class Mortar : Tower, TowerFunctions
                         yield return new WaitForSeconds(5f / 60f);
                         if (target != null)
                         {
-                            bangDistance = 1.2f + 0.4f * (Towerlevel - 1);
+                            bangDistance = 1.2f + 0.4f * (TowerLevel - 1);
                             GameObject attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mortars/bom_prefab"), 
                                 new Vector3(target.transform.position.x,
                                 -0.3f, target.transform.position.z), target.transform.rotation);
@@ -163,7 +177,7 @@ public class Mortar : Tower, TowerFunctions
                             -0.3f, target.transform.position.z), target.transform.rotation);
                             attack.GetComponent<FireBomb>().damage = _damage;
                             attack.GetComponent<FireBomb>().bangDistance = bangDistance;
-                            attack.GetComponent<FireBomb>().fireSeconds = 4 + Towerlevel * 2;
+                            attack.GetComponent<FireBomb>().fireSeconds = 4 + TowerLevel * 2;
                             attack.transform.localScale = new Vector3(bangDistance, bangDistance, bangDistance);
                         }
                         else
@@ -182,6 +196,7 @@ public class Mortar : Tower, TowerFunctions
             }
         }
     }
+
     public IEnumerator SearchTarget()
     {
         while (true)
@@ -208,9 +223,23 @@ public class Mortar : Tower, TowerFunctions
             }
         }
     }
+
     public void LevelUp()
     {
-        
+        if (TowerLevel == 1)
+        {
+            _damage = Parameters.Damage_2;
+            _attackDistance = Parameters.AttackDistance_2;
+            _attackSpeed = Parameters.AttackSpeed_2;
+            TowerLevel = 2;
+        }
+        else if (TowerLevel == 2)
+        {
+            _damage = Parameters.Damage_3;
+            _attackDistance = Parameters.AttackDistance_3;
+            _attackSpeed = Parameters.AttackSpeed_3;
+            TowerLevel = 3;
+        }
     }
 
     private void RotationTuret()
