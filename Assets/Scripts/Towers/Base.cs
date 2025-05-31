@@ -1,8 +1,8 @@
-using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Base : MonoBehaviour
@@ -44,17 +44,16 @@ public class Base : MonoBehaviour
     Image _imageDamage;
     Image _imageDamageLevelUp;
 
-    [SerializeField] Sprite _physicalDamageSprite;
-    [SerializeField] Sprite _mageDamageSprite;
-    [SerializeField] Sprite _trueDamageSprite;
+    Sprite _physicalDamageSprite;
+    Sprite _mageDamageSprite;
+    Sprite _trueDamageSprite;
 
     #endregion
 
     #region Кнопки
 
-    [SerializeField] Button _buildButton;
-    [SerializeField] Button[] _evolutionButtons;
-    [SerializeField] Button _levelUpButton;
+    GameObject[] _evolutionButtons;
+    Button _levelUpButton;
 
     #endregion
 
@@ -119,6 +118,9 @@ public class Base : MonoBehaviour
         _imageDamage = _information.GetNamedChild("Damage").GetComponent<Image>();
         _imageDamageLevelUp = _informationLevelUp.GetNamedChild("Damage").GetComponent<Image>();
 
+        _physicalDamageSprite = Resources.LoadAll<Sprite>("Sprites/Tower/BaseIcon")[1];
+        _mageDamageSprite = Resources.LoadAll<Sprite>("Sprites/Tower/BaseIcon")[0];
+
         #endregion
 
         #region Нахождение менеджеров
@@ -134,10 +136,29 @@ public class Base : MonoBehaviour
 
         #endregion
 
+        #region Кнопки
+
+        _levelUpButton = _selection.GetNamedChild("Level_Up").GetComponent<Button>();
+
+        RectTransform[] children = _selection.GetComponentsInChildren<RectTransform>();
+        List<GameObject> evolutionButtons = new List<GameObject>();
+        foreach (RectTransform child in children)
+        {
+            if (child.gameObject.tag == "EvolutionButton")
+            {
+                evolutionButtons.Add(child.gameObject);
+            }
+        }
+        _evolutionButtons = evolutionButtons.ToArray<GameObject>();
+
+        GetComponent<BuildButtonsAnimation>().SetIcons(_evolutionButtons);
+
+        #endregion
+
         // Нахождение башни на которой находится этот UI
         _tower = GetComponentInParent<TowerFunctions>();
 
-        _distance = gameObject.GetNamedChild("Distance");
+        _distance = GetComponentInChildren<ParticleSystem>(true).gameObject;
     }
 
     private void Update() 
@@ -163,7 +184,7 @@ public class Base : MonoBehaviour
                 _levelUpButton.gameObject.SetActive(true);
                 if (_evolutionButtons.Length > 0)
                 {
-                    foreach (Button EvolutionButton in _evolutionButtons)
+                    foreach (GameObject EvolutionButton in _evolutionButtons)
                     {
                         EvolutionButton.gameObject.SetActive(false);
                     }
@@ -174,7 +195,7 @@ public class Base : MonoBehaviour
                 _levelUpButton.gameObject.SetActive(false);
                 if (_evolutionButtons.Length > 0)
                 {
-                    foreach (Button EvolutionButton in _evolutionButtons)
+                    foreach (GameObject EvolutionButton in _evolutionButtons)
                     {
                         EvolutionButton.gameObject.SetActive(true);
                     }

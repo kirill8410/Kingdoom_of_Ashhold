@@ -5,15 +5,36 @@ using UnityEngine.UI;
 
 public class BuildButtonsAnimation : MonoBehaviour
 {
-    [SerializeField] GameObject[] icons;
+    GameObject[] _icons;
     int angle;
     int corect;
-    public bool animation=false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    bool animation = false;
+
+    // Update is called once per frame
+    void Update()
     {
+        if (_icons.Length > 0)
+        {
+            angle = 360 / _icons.Length;
+            if (animation)
+            {
+                for (int i = 0; i < _icons.Length; i++)
+                {
+                    _icons[i].GetComponentInChildren<Button>(includeInactive: true).transform.eulerAngles =
+                        new Vector3(0, _icons[i].GetComponentInChildren<Button>(includeInactive: true).transform.eulerAngles.y, -0);
+                }
+            }
+            StartAnim();
+        }
+        
+        // new Vector3(0, 0, (angle * (1) - 120))
+    }
+
+    public void SetIcons(GameObject[] icons)
+    {
+        _icons = icons;
         animation = true;
-        switch (icons.Length)
+        switch (_icons.Length)
         {
             case 2:
                 corect = -90;
@@ -25,25 +46,6 @@ public class BuildButtonsAnimation : MonoBehaviour
                 corect = 45;
                 break;
         }
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-        angle = 360 / icons.Length;
-        if (animation)
-        {
-            for (int i = 0; i < icons.Length; i++)
-            {
-                icons[i].GetComponentInChildren<Button>(includeInactive: true).transform.eulerAngles = new Vector3(0, icons[i].GetComponentInChildren<Button>(includeInactive: true).transform.eulerAngles.y, -0);
-            }
-        }
-        StartAnim();
-        
-        
-        // new Vector3(0, 0, (angle * (1) - 120))
     }
 
     bool started = false;
@@ -52,20 +54,20 @@ public class BuildButtonsAnimation : MonoBehaviour
         if (GetComponent<Canvas>().enabled == true&& !started)
         {
             started = true;
-            if (icons.Length > 1)
-                for(int i = 0; i < icons.Length; i++)
+            if (_icons.Length > 1)
+                for(int i = 0; i < _icons.Length; i++)
                 {
-                    StartCoroutine(RotateIcons(icons.Length - i));
+                    StartCoroutine(RotateIcons(_icons.Length - i));
                 }
                 
         }
         else if(GetComponent<Canvas>().enabled == false)
         {
             started = false;
-            for (int i = 0; i < icons.Length; i++)
+            for (int i = 0; i < _icons.Length; i++)
             {
-                icons[i].transform.eulerAngles = new Vector3(icons[i].transform.eulerAngles.x, icons[i].transform.eulerAngles.y, 90);
-                icons[i].GetComponentInChildren<Button>().transform.eulerAngles = new Vector3(0, icons[i].GetComponentInChildren<Button>().transform.eulerAngles.y, -0);
+                _icons[i].transform.eulerAngles = new Vector3(_icons[i].transform.eulerAngles.x, _icons[i].transform.eulerAngles.y, 90);
+                _icons[i].GetComponentInChildren<Button>().transform.eulerAngles = new Vector3(0, _icons[i].GetComponentInChildren<Button>().transform.eulerAngles.y, -0);
             }
         }
 
@@ -73,15 +75,15 @@ public class BuildButtonsAnimation : MonoBehaviour
     
     IEnumerator RotateIcons(int num)
     {
-        
-        for (int i = 0; i < num*360/icons.Length-90+corect; i++)
+        if (_icons.Length > 0)
         {
-            animation = true;
-            icons[num - 1].transform.Rotate(0, 0, 1);
-            yield return new WaitForSeconds(0.005f);
+            for (int i = 0; i < num * 360 / _icons.Length - 90 + corect; i++)
+            {
+                animation = true;
+                _icons[num - 1].transform.Rotate(0, 0, 1);
+                yield return new WaitForSeconds(0.005f);
+            }
+            animation = false;
         }
-        animation = false;
-        
-        
     }
 }
