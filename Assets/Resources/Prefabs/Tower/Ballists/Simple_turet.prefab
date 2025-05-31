@@ -1123,19 +1123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0800573cb8b8e2f4d9a8046501a8112b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 10
-  attackSpeed: 0.9
-  damage: 15
-  attackPrefab: {fileID: 5652138828623769678, guid: c44ac3293e4625f4e9cd5c92d8cf49a1, type: 3}
-  Distance: {fileID: 2977622866563331958}
-  attackPoint: {fileID: 7706607923824448461}
-  _levelUp: {fileID: 11400000, guid: 33ed10af125d6ad4db997fb011a309c4, type: 2}
+  _parameters: {fileID: 11400000, guid: a697d55fbbf67fb4da020d4d1d7a4abe, type: 2}
+  _attackPoint: {fileID: 0}
   Turet_osnov: {fileID: 4421778034366791578}
   Turet_osnov2: {fileID: 6522714019000063619}
-  isSniper: 0
-  isDouble: 0
-  isPoison: 0
-  target: {fileID: 0}
 --- !u!82 &6070740391949129863
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1353,11 +1344,6 @@ PrefabInstance:
 --- !u!224 &1701858044319928144 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5481808418566999264, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
-  m_PrefabInstance: {fileID: 6597066921889891248}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2977622866563331958 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8277573582887613638, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
   m_PrefabInstance: {fileID: 6597066921889891248}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4757761500220391582 stripped

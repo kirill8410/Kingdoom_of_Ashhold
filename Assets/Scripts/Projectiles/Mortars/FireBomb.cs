@@ -3,9 +3,8 @@ using static Tower;
 
 public class FireBomb : MonoBehaviour
 {
-    public float damage;
+    public Mortar Mortar;
     public int fireSeconds;
-    public float bangDistance;
     [SerializeField] GameObject fireArea;
 
     public void Bang()
@@ -14,9 +13,9 @@ public class FireBomb : MonoBehaviour
         foreach (Enemy enemy in enemyes)
         {
             if (Vector2.Distance(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z), 
-                new Vector2(enemy.transform.position.x, enemy.transform.position.z)) <= bangDistance)
+                new Vector2(enemy.transform.position.x, enemy.transform.position.z)) <= transform.localScale.x)
             {
-                enemy.ReduceHP(damage);
+                enemy.ReduceHP(Mortar.GetDamage(), Mortar.GetDamageType(), Mortar.GetBreakingProtection());
             }
         }
         GameObject Fire = Instantiate(fireArea, new Vector3(gameObject.transform.position.x, 0f, 

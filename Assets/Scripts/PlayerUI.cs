@@ -230,13 +230,13 @@ public class PlayerUI : MonoBehaviour
                 Dictionary<string, int> enemyes = new Dictionary<string, int>();
                 for (int i = 0; i < nextWave.Enemies.Length; i++)
                 {
-                    if (enemyes.ContainsKey(nextWave.Enemies[i].GetComponent<Enemy>().Name))
+                    if (enemyes.ContainsKey(nextWave.Enemies[i].GetComponent<Enemy>().GetName()))
                     {
-                        enemyes[nextWave.Enemies[i].GetComponent<Enemy>().Name] += nextWave.NumberOfEnemies[i];
+                        enemyes[nextWave.Enemies[i].GetComponent<Enemy>().GetName()] += nextWave.NumberOfEnemies[i];
                     }
                     else
                     {
-                        enemyes.Add(nextWave.Enemies[i].GetComponent<Enemy>().Name, nextWave.NumberOfEnemies[i]);
+                        enemyes.Add(nextWave.Enemies[i].GetComponent<Enemy>().GetName(), nextWave.NumberOfEnemies[i]);
                     }
                 }
                 string text = "";

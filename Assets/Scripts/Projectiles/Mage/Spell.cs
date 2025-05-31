@@ -4,26 +4,24 @@ using static Tower;
 
 public class Spell : MonoBehaviour
 {
-    public Enemy target; // Цель в которую летит магия
-    public float damage; // Урон магии
-    public float speed = 2; // Скорость магии
-    public Mage mage;
+    public Enemy Target;
+    public Mage Mage;
 
     private void Update()
     {
-        if (target != null) // Движение магии к цели
+        if (Target != null) // Движение магии к цели
         {
-            transform.LookAt(target.gameObject.transform.position);
-            transform.Translate(0, 0, speed * Time.deltaTime * 10f);
+            transform.LookAt(Target.gameObject.transform.position);
+            transform.Translate(0, 0, Time.deltaTime * 30f);
         }
     }
 
     private void OnTriggerEnter(Collider other) // Нанесение урона при поподании по врагу
     {
-        if (other.gameObject.tag == "Enemy" && other.GetComponent<Enemy>() == target)
+        if (other.gameObject.tag == "Enemy")
         {
-            target.ReduceHP(damage);
-            mage.MageCrystalRecharge(true);
+            Target.ReduceHP(Mage.GetDamage(), Mage.GetDamageType(), Mage.GetBreakingProtection());
+            Mage.MageCrystalRecharge(true);
             Destroy(gameObject);
         }
     }

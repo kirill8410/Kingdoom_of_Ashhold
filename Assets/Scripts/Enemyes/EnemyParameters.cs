@@ -16,7 +16,8 @@ public class EnemyParameters : ScriptableObject
 
     [Space]
 
-    public Enemy.EnemyTypes EnemyTypes;
+    public Enemy.EnemyTypes EnemyType;
+    public Tower.DamageTypes ProtectionType;
     public Enemy.EnemySpell EnemySpell;
 
     [Space]
@@ -24,5 +25,9 @@ public class EnemyParameters : ScriptableObject
     public float SpellColldown;
     public float SpellDistance;
     public float SpellModifier;
+
+    [Space]
+
+    public bool Immunity;
 
 }

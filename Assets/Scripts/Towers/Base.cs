@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using TMPro;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -10,43 +11,118 @@ public class Base : MonoBehaviour
     private LevelManager LM;
     private SoundManager SM;
 
-    private TowerData selectTower;
     private TowerFunctions _tower;
 
-    [Header("Windows")]
-    [SerializeField] GameObject Information;
-    [SerializeField] GameObject Selection;
-    [SerializeField] GameObject InformationLevelUp;
-    [SerializeField] GameObject Base_;
+    private TowerParameters _selectTower;
 
-    [Header("Texts")]
-    [SerializeField] TextMeshProUGUI Name;
-    [SerializeField] TextMeshProUGUI Description;
-    [SerializeField] TextMeshProUGUI Price;
-    [SerializeField] TextMeshProUGUI Damage;
-    [SerializeField] TextMeshProUGUI Distance;
-    [SerializeField] TextMeshProUGUI AttackSpeed;
-    [SerializeField] TextMeshProUGUI TextLevelUp;
-    [SerializeField] TextMeshProUGUI DamageLevelUp;
-    [SerializeField] TextMeshProUGUI DistanceLevelUp;
-    [SerializeField] TextMeshProUGUI AttackSpeedLevelUp;
-    [SerializeField] TextMeshProUGUI PriceLevelUp;
+    #region Разделы
 
-    [Header("Button")]
-    [SerializeField] Button BuildButton;
-    [SerializeField] Button[] EvolutionButtons;
-    [SerializeField] Button LevelUpButton;
+    GameObject _information;
+    GameObject _selection;
+    GameObject _informationLevelUp;
 
-    [Header("Audio")]
-    [SerializeField] AudioClip Buy;
-    [SerializeField] AudioClip Error;
+    #endregion
 
-    [Header("GameObject")]
-    [SerializeField] GameObject _base;
+    #region Тексты
+
+    TextMeshProUGUI _name;
+    TextMeshProUGUI _price;
+    TextMeshProUGUI _damage;
+    TextMeshProUGUI _attackDistance;
+    TextMeshProUGUI _attackSpeed;
+
+    TextMeshProUGUI _textLevelUp;
+    TextMeshProUGUI _damageLevelUp;
+    TextMeshProUGUI _AttackDistanceLevelUp;
+    TextMeshProUGUI _attackSpeedLevelUp;
+    TextMeshProUGUI _priceLevelUp;
+
+    #endregion
+
+    #region Иконки
+
+    Image _imageDamage;
+    Image _imageDamageLevelUp;
+
+    [SerializeField] Sprite _physicalDamageSprite;
+    [SerializeField] Sprite _mageDamageSprite;
+    [SerializeField] Sprite _trueDamageSprite;
+
+    #endregion
+
+    #region Кнопки
+
+    [SerializeField] Button _buildButton;
+    [SerializeField] Button[] _evolutionButtons;
+    [SerializeField] Button _levelUpButton;
+
+    #endregion
+
+    #region Звуки
+
+    AudioClip _soundBuy;
+    AudioClip _soundError;
+
+    #endregion
+
+    GameObject _distance;
+    GameObject _base;
 
     private void Start() 
     {
-        // Нахождение менеджеров
+        #region Звуки
+
+        _soundBuy = Resources.Load<AudioClip>("Sounds/Buy");
+        _soundError = Resources.Load<AudioClip>("Sounds/Error");
+
+        #endregion
+
+        #region Разделы
+
+        RectTransform[] gameObjects = gameObject.GetComponentsInChildren<RectTransform>(true);
+        foreach (RectTransform gm in gameObjects)
+        {
+            gm.gameObject.SetActive(true);
+        }
+
+        _information = gameObject.GetNamedChild("Information");
+        _selection = gameObject.GetNamedChild("Selection");
+        _informationLevelUp = gameObject.GetNamedChild("InformationLevelUp");
+
+        _information.SetActive(false);
+        if (_informationLevelUp != null)
+        {
+            _informationLevelUp.SetActive(false);
+        }
+        _selection.SetActive(true);
+
+        #endregion
+
+        #region Тексты
+
+        _name = _information.GetNamedChild("Name").GetComponent<TextMeshProUGUI>();
+        _price = _information.GetNamedChild("PriceText").GetComponent<TextMeshProUGUI>();
+        _damage = _information.GetNamedChild("DamageText").GetComponent<TextMeshProUGUI>();
+        _attackSpeed = _information.GetNamedChild("AttackSpeedText").GetComponent<TextMeshProUGUI>();
+        _attackDistance = _information.GetNamedChild("AttackDistanceText").GetComponent<TextMeshProUGUI>();
+
+        _textLevelUp = _informationLevelUp.GetNamedChild("Text").GetComponent<TextMeshProUGUI>();
+        _priceLevelUp = _informationLevelUp.GetNamedChild("PriceText").GetComponent<TextMeshProUGUI>();
+        _damageLevelUp = _informationLevelUp.GetNamedChild("DamageText").GetComponent<TextMeshProUGUI>();
+        _attackSpeedLevelUp = _informationLevelUp.GetNamedChild("AttackSpeedText").GetComponent<TextMeshProUGUI>();
+        _AttackDistanceLevelUp = _informationLevelUp.GetNamedChild("AttackDistanceText").GetComponent<TextMeshProUGUI>();
+
+        #endregion
+
+        #region Иконки
+
+        _imageDamage = _information.GetNamedChild("Damage").GetComponent<Image>();
+        _imageDamageLevelUp = _informationLevelUp.GetNamedChild("Damage").GetComponent<Image>();
+
+        #endregion
+
+        #region Нахождение менеджеров
+
         if (GameObject.Find("LevelManager") != null)
         {
             LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
@@ -56,8 +132,12 @@ public class Base : MonoBehaviour
             SM = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         }
 
+        #endregion
+
         // Нахождение башни на которой находится этот UI
         _tower = GetComponentInParent<TowerFunctions>();
+
+        _distance = gameObject.GetNamedChild("Distance");
     }
 
     private void Update() 
@@ -67,21 +147,23 @@ public class Base : MonoBehaviour
             if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) <= 6.5f)
             {
                 GetComponent<Canvas>().enabled = true;
+                _distance.gameObject.SetActive(true);
             }
             if (Vector3.Distance(GameObject.Find("Player").transform.position, gameObject.transform.position) > 6.5f)
             {
-                selectTower = null;
-                Information.SetActive(false);
-                Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
-                InformationLevelUp.SetActive(false);
-                Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                _selectTower = null;
+                _information.SetActive(false);
+                _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                _informationLevelUp.SetActive(false);
+                _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                _distance.gameObject.SetActive(false);
             }
-            if (_tower.Towerlevel != 3) // Отображение кнопок прокачки если уровень не максимальный
+            if (_tower.TowerLevel != 3 && _tower != null) // Отображение кнопок прокачки если уровень не максимальный
             {
-                LevelUpButton.gameObject.SetActive(true);
-                if (EvolutionButtons.Length > 0)
+                _levelUpButton.gameObject.SetActive(true);
+                if (_evolutionButtons.Length > 0)
                 {
-                    foreach (Button EvolutionButton in EvolutionButtons)
+                    foreach (Button EvolutionButton in _evolutionButtons)
                     {
                         EvolutionButton.gameObject.SetActive(false);
                     }
@@ -89,118 +171,152 @@ public class Base : MonoBehaviour
             }
             else // Отображение кнопок эволюции если уровень максимальный
             {
-                LevelUpButton.gameObject.SetActive(false);
-                if (EvolutionButtons.Length > 0)
+                _levelUpButton.gameObject.SetActive(false);
+                if (_evolutionButtons.Length > 0)
                 {
-                    foreach (Button EvolutionButton in EvolutionButtons)
+                    foreach (Button EvolutionButton in _evolutionButtons)
                     {
                         EvolutionButton.gameObject.SetActive(true);
                     }
                 }
             }
         }
+        else
+        {
+            _distance.gameObject.SetActive(false);
+            _levelUpButton.gameObject.SetActive(false);
+        }
     }
 
-    public void ShowInformation(TowerData tower) // Паказываем информацию о башне
+    public void ShowInformation(TowerParameters tower) // Паказываем информацию о башне
     {
-        if (Information.activeSelf == false || selectTower != tower) // Показать информацию если информация не показана или показана о другой башне
+        if (_information.activeSelf == false || _selectTower != tower) // Показать информацию если информация не показана или показана о другой башне
         {
-            selectTower = tower;
+            _selectTower = tower;
 
-            Information.SetActive(true);
-            Selection.transform.localPosition = new Vector3(-80f, 0f, 0f);
+            _information.SetActive(true);
+            _selection.transform.localPosition = new Vector3(-80f, 0f, 0f);
 
-            Description.text = tower.description;
-            Name.text = tower.TowerName;
-            Price.text = tower.price.ToString();
-            Damage.text = tower.tower.GetComponent<Tower>().damage.ToString();
-            Distance.text = ((tower.tower.GetComponent<Tower>().attackDistance / 4) - 0.5f).ToString();
-            AttackSpeed.text = tower.tower.GetComponent<Tower>().attackSpeed.ToString();
+            _name.text = tower.TowerName;
+            _price.text = tower.Price_1.ToString();
+            _damage.text = tower.Damage_1.ToString();
+            if (tower.DamageType == Tower.DamageTypes.Physical)
+            {
+                _imageDamage.sprite = _physicalDamageSprite;
+            }
+            else if (tower.DamageType == Tower.DamageTypes.Magic)
+            {
+                _imageDamage.sprite = _mageDamageSprite;
+            }
+            else if (tower.DamageType == Tower.DamageTypes.True)
+            {
+                _imageDamage.sprite = _trueDamageSprite;
+            }
+            _attackDistance.text = ((tower.AttackDistance_1 / 4) - 0.5f).ToString();
+            _attackSpeed.text = tower.AttackSpeed_1.ToString();
         }
-        else if ((Information.activeSelf == true && selectTower == tower) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
+        else if ((_information.activeSelf == true && _selectTower == tower) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
         {
-            selectTower = null;
-            Information.SetActive(false);
-            Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+            _selectTower = null;
+            _information.SetActive(false);
+            _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
     }
     public void Build() // Построить башню
     {
         if (_base != null)
         {
-            if (LM._coins >= selectTower.price)
+            if (LM._coins >= _selectTower.Price_1)
             {
-                GetComponent<AudioSource>().clip = Buy;
+                GetComponent<AudioSource>().clip = _soundBuy;
                 SM.PlaySound(GetComponent<AudioSource>());
 
-                LM._coins -= selectTower.price;
-                Instantiate(selectTower.tower, _base.transform.position, Quaternion.identity);
-                Destroy(Information, 0.1f);
+                LM._coins -= _selectTower.Price_1;
+                Instantiate(_selectTower.TowerPrefab, _base.transform.position, Quaternion.identity);
+                Destroy(_information, 0.1f);
                 Destroy(_base, 4f);
             }
             else
             {
-                GetComponent<AudioSource>().clip = Error;
+                GetComponent<AudioSource>().clip = _soundError;
                 SM.PlaySound(GetComponent<AudioSource>());
             }
         }
     }
     public void ShowLevelUpInformation() // Показать информацию о улучшении башни
     {
-        if (InformationLevelUp.activeSelf == false) // Показать информацию если информация не показана
+        if (_informationLevelUp.activeSelf == false) // Показать информацию если информация не показана
         {
-            InformationLevelUp.SetActive(true);
-            Selection.transform.localPosition = new Vector3(-80f, 0f, 0f);
-            if (_tower.Towerlevel == 1)
+            _informationLevelUp.SetActive(true);
+            _selection.transform.localPosition = new Vector3(-80f, 0f, 0f);
+            if (_tower.TowerLevel == 1)
             {
-                DamageLevelUp.text = $"+ {_tower.levelUp.damage_1}";
-                TextLevelUp.text = "Улучшить до уроня 2";
-                DistanceLevelUp.text = $"+ {(_tower.levelUp.distance_1 / 4)}";
-                AttackSpeedLevelUp.text = $"+ {_tower.levelUp.attackSpeed_1}";
-                PriceLevelUp.text = _tower.levelUp.priceLevelUp_1.ToString();
+                _damageLevelUp.text = $"{_tower.Parameters.Damage_2}\n(+{_tower.Parameters.Damage_2 - _tower.Parameters.Damage_1})";
+                _textLevelUp.text = "Улучшить до уроня 2";
+                _AttackDistanceLevelUp.text = $"{_tower.Parameters.AttackDistance_2 / 4}" +
+                    $"\n(+{(_tower.Parameters.AttackDistance_2 - _tower.Parameters.AttackDistance_1) / 4})";
+                _attackSpeedLevelUp.text = $"{_tower.Parameters.AttackSpeed_2}" +
+                    $"\n(+{_tower.Parameters.AttackSpeed_2 - _tower.Parameters.AttackSpeed_1})";
+                _priceLevelUp.text = _tower.Parameters.Price_2.ToString();
             }
-            else if (_tower.Towerlevel == 2)
+            else if (_tower.TowerLevel == 2)
             {
-                DamageLevelUp.text = $"+ {_tower.levelUp.damage_2}";
-                TextLevelUp.text = "Улучшить до уроня 3";
-                DistanceLevelUp.text = $"+ {(_tower.levelUp.distance_2 / 4)}";
-                AttackSpeedLevelUp.text = $"+ {_tower.levelUp.attackSpeed_2}";
-                PriceLevelUp.text = _tower.levelUp.priceLevelUp_2.ToString();
+                _damageLevelUp.text = $"{_tower.Parameters.Damage_3}\n(+{_tower.Parameters.Damage_3 - _tower.Parameters.Damage_2})";
+                _textLevelUp.text = "Улучшить до уроня 3";
+                _AttackDistanceLevelUp.text = $"{_tower.Parameters.AttackDistance_3 / 4}" +
+                    $"\n(+{(_tower.Parameters.AttackDistance_3 - _tower.Parameters.AttackDistance_2) / 4})";
+                _attackSpeedLevelUp.text = $"{_tower.Parameters.AttackSpeed_3}" +
+                    $"\n(+{_tower.Parameters.AttackSpeed_3 - _tower.Parameters.AttackSpeed_2})";
+                _priceLevelUp.text = _tower.Parameters.Price_3.ToString();
             }
 
         }
-        else if ((InformationLevelUp.activeSelf == true) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
+        else if ((_informationLevelUp.activeSelf == true) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
         {
-            InformationLevelUp.SetActive(false);
-            Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+            _informationLevelUp.SetActive(false);
+            _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
     }
 
     public void LevelUp() // Повышение уровня башни
     {
-
-        if (LM._coins >= _tower.PriceLevelUp)
+        if (_tower.TowerLevel == 1)
         {
-            GetComponent<AudioSource>().clip = Buy;
-            SM.PlaySound(GetComponent<AudioSource>());
+            if (LM._coins >= _tower.Parameters.Price_2)
+            {
+                GetComponent<AudioSource>().clip = _soundBuy;
+                SM.PlaySound(GetComponent<AudioSource>());
 
-            LM._coins -= _tower.PriceLevelUp;
-            _tower.LevelUp();
+                LM._coins -= _tower.Parameters.Price_2;
+                _tower.LevelUp();
 
-            InformationLevelUp.SetActive(false);
-            Selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                _informationLevelUp.SetActive(false);
+                _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+            }
+            else
+            {
+                GetComponent<AudioSource>().clip = _soundError;
+                SM.PlaySound(GetComponent<AudioSource>());
+            }
         }
-        else
+        else if (_tower.TowerLevel == 2)
         {
-            GetComponent<AudioSource>().clip = Error; 
-            SM.PlaySound(GetComponent<AudioSource>());
-        }   
-    }
+            if (LM._coins >= _tower.Parameters.Price_2)
+            {
+                GetComponent<AudioSource>().clip = _soundBuy;
+                SM.PlaySound(GetComponent<AudioSource>());
 
-    public void Destroy()
-    {
-        Instantiate(Base_, _base.transform.position, Quaternion.identity);
-        Destroy(_base, 0.8f);
-    }
+                LM._coins -= _tower.Parameters.Price_2;
+                _tower.LevelUp();
 
+                _informationLevelUp.SetActive(false);
+                _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+            }
+            else
+            {
+                GetComponent<AudioSource>().clip = _soundError;
+                SM.PlaySound(GetComponent<AudioSource>());
+            }
+        }
+    }
 }

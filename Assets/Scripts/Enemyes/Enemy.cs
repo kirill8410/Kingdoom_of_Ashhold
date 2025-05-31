@@ -8,96 +8,133 @@ using UnityEngine.Rendering;
 
 public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 {
-    [SerializeField] EnemyParameters parameters;
+    [SerializeField] private EnemyParameters _parameters;
 
-    private NavMeshAgent agent; // NavMeshAgent
-    private LevelManager LM;
+    private NavMeshAgent _agent; // NavMeshAgent
+    private LevelManager _LM;
 
-    public string Name;
+    private string _name;
 
-    int dropCoins;
+    private int _dropCoins;
+    private GameObject _deathEffect;
 
-    [Header("HP")]
-    float _hp;
-    float _maxHP;
+    #region HP
+
+    private float _hp;
+    private float _maxHP;
+
+    #endregion
 
     [Header("HealthBar")]
     [SerializeField] SpriteRenderer[] strips = new SpriteRenderer[10];
-    [SerializeField] SpriteRenderer healthIcon;
+    [SerializeField] private SpriteRenderer healthIcon;
     [SerializeField] Sprite[] healthIcons = new Sprite[4];
     [SerializeField] Sprite[] stripIcons = new Sprite[6];
-    [SerializeField] GameObject effect;
 
-    [Header("Protection")]
-    float protection;
-    int shield;
-    private int maxShield = 10;
+    #region Protection
 
-    public Tower.DamageTypes protectionType;
+    private float _protection;
+    private int _shield;
+    private const int MAXSHIELD = 10;
 
-    [Header("Type")]
-    public EnemyTypes enemyType;
+    private Tower.DamageTypes _protectionType;
+
+    #endregion
+
+    #region Type
+
+    private EnemyTypes _enemyType;
     public enum EnemyTypes
     {
         None, Boss
     }
 
-    [Header("Spell")]
-    EnemySpell enemySpell;
+    #endregion
+
+    #region Spell
+
+    private EnemySpell _enemySpell;
     public enum EnemySpell
     {
         None, Heal, CreateShield, SpeedBoost, SpawnEnemy
     }
-    float _spellDistance;
-    GameObject enemySpawn;
-    float _modifier;
-    float _cooldown;
 
+    private float _spellDistance;
+    private GameObject _enemySpawn;
+    private float _modifier;
+    private float _cooldown;
 
-    [Header("Move")]
-    public float speed = 1;
-    public GameObject[] points;
-    public int numberPoint = 0;
-    private Vector2 point;
+    #endregion
 
-    public float distanceToPoint; // дистанция до следующей точки
+    #region Move
 
-    // эфекты
-    [SerializeField] bool immunity = false;
-    public int _potion = 0;
-    bool _ice = false;
-    private float _speed = 0;
-    private Enemy speedBooster;
+    private float _speed;
+
+    private GameObject[] _points;
+    private int _numberPoint = 0;
+
+    private Vector2 _nextPoint;
+
+    private float _distanceToPoint;
+
+    #endregion
+
+    #region Effects
+
+    private bool _immunity;
+
+    private int _poison = 0;
+
+    private bool _ice = false;
+
+    private float _speedBoost;
+    private Enemy _speedBooster;
+
+    #endregion
 
     private void Start()
     {
         #region Parameters
 
-        Name = parameters.name;
+        _name = _parameters.name;
 
-        _maxHP = parameters.MaxHP;
-        protection = parameters.Protection;
-        shield = parameters.Shield;
-        speed = parameters.Speed;
-        dropCoins = parameters.DropCoins;
+        _maxHP = _parameters.MaxHP;
+        _protection = _parameters.Protection;
+        _shield = _parameters.Shield;
+        _speed = _parameters.Speed;
+        _dropCoins = _parameters.DropCoins;
 
-        enemyType = parameters.EnemyTypes; 
-        enemySpell = parameters.EnemySpell;
+        _enemyType = _parameters.EnemyType; 
+        _protectionType = _parameters.ProtectionType;
+        _enemySpell = _parameters.EnemySpell;
 
-        _cooldown = parameters.SpellColldown;
-        _spellDistance = parameters.SpellDistance;
-        _modifier = parameters.SpellModifier;
+        _cooldown = _parameters.SpellColldown;
+        _spellDistance = _parameters.SpellDistance;
+        _modifier = _parameters.SpellModifier;
+
+        _immunity = _parameters.Immunity;
 
         #endregion
 
-        LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        #region Resources
+
+        _deathEffect = Resources.Load<GameObject>("Prefabs/Projectiles/DeafEffect");
+
+        #endregion
+
+        _LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.SetDestination(new Vector3(_nextPoint.x, 0, _nextPoint.y));
+
         _maxHP = _maxHP * PlayerPrefs.GetFloat("Difficulty");
         _hp = _maxHP;
-        point = new Vector2(points[numberPoint].transform.position.x, points[numberPoint].transform.position.z);
-        agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(new Vector3(point.x, 0, point.y));
+
+        _nextPoint = new Vector2(_points[_numberPoint].transform.position.x, _points[_numberPoint].transform.position.z);
+        
         HealthBar();
-        if (enemySpell != EnemySpell.None)
+
+        if (_enemySpell != EnemySpell.None)
         {
             StartCoroutine(Spell());
         }
@@ -105,33 +142,41 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     private void Update()
     {
-        // Определение дистанции до точки
-        distanceToPoint = Vector2.Distance(point, 
+        #region Distance
+
+        _distanceToPoint = Vector2.Distance(_nextPoint, 
             new Vector2(gameObject.transform.position.x, gameObject.transform.position.z));
-        // Переключение на следующую точку
-        if (distanceToPoint < 0.1f)
+        
+        if (_distanceToPoint < 0.1f)
         {
-            numberPoint += 1;
-            if (numberPoint >= points.Length)
+            _numberPoint += 1;
+            if (_numberPoint >= _points.Length)
             {
                 Finish();
             }
             else
             {
-                point = new Vector2(points[numberPoint].transform.position.x, points[numberPoint].transform.position.z);
-                agent.SetDestination(new Vector3(point.x, 0, point.y));
+                _nextPoint = new Vector2(_points[_numberPoint].transform.position.x, _points[_numberPoint].transform.position.z);
+                _agent.SetDestination(new Vector3(_nextPoint.x, 0, _nextPoint.y));
             }
         }
-        // NawMesh
-        if (speedBooster != null)
+
+        #endregion
+
+        #region Speed
+
+        if (_speedBooster != null)
         {
-            if (Vector2.Distance(new Vector2(speedBooster.transform.position.x, speedBooster.transform.position.z)
-                , new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) > speedBooster._spellDistance)
+            if (Vector2.Distance(new Vector2(_speedBooster.transform.position.x, _speedBooster.transform.position.z)
+                , new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)) > _speedBooster._spellDistance)
             {
-                _speed = 0;
+                _speedBoost = 0;
             }
         }
-        agent.speed = speed + _speed;       
+
+        _agent.speed = _speed + _speedBoost;
+
+        #endregion
 
         if (_hp <= 0)
         {
@@ -139,107 +184,147 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         }
     }
 
-    public void Finish() // Действия врага когда он дошёл до конца
+    #region GetFunction
+
+    public string GetName()
     {
-        LM.ReduceHP(_hp);
-        if (enemyType == EnemyTypes.Boss)
+        return _name;
+    }
+
+    public Enemy.EnemyTypes GetEnemyType()
+    {
+        return _enemyType;
+    }
+
+    public int GetNumberPoint()
+    {
+        return _numberPoint;
+    }
+
+    public float GetDistanceToPoint()
+    {
+        return _distanceToPoint;
+    }
+
+    public int GetPoison()
+    {
+        return _poison;
+    }
+
+    #endregion
+
+    #region SetFunction
+
+    public void SetPoints(GameObject[] points)
+    {
+        _points = points;
+    }
+
+    #endregion
+
+    #region WaveFunctions
+
+    public void Finish()
+    {
+        _LM.ReduceHP(_hp);
+        if (_enemyType == EnemyTypes.Boss)
         {
-            LM.ReduceHP(10000);
+            _LM.ReduceHP(10000);
         }
         Destroy(gameObject);
     }
 
+    #endregion
+
+    #region HPFunction
+
     public void ReduceHP(float damage)
     {
-        if (shield > 0)
+        if (_shield > 0)
         {
             if (damage > 0)
             {
-                shield -= 1;
+                _shield -= 1;
             }
         }
         else
         {
             _hp -= damage;
-            shield = 0;
+            _shield = 0;
+        }
+        HealthBar();
+    }
+    public void ReduceHP(float damage, Tower.DamageTypes damageType)
+    {
+        float trueDamage;
+
+        if (damageType == _protectionType)
+        {
+            trueDamage = damage - _protection;
+            if (trueDamage < 0)
+            {
+                trueDamage = 0;
+            }
+        }
+        else
+        {
+            trueDamage = damage;
+        }
+
+        if (_shield > 0)
+        {
+            if (trueDamage > 0)
+            {
+                _shield -= 1;
+            }
+        }
+        else
+        {
+            _hp -= trueDamage;
+            _shield = 0;
         }
         HealthBar();
     }
     public void ReduceHP(float damage, Tower.DamageTypes damageType, float breakingProtection)
     {
-        if (shield > 0)
+        float trueDamage;
+
+        if (damageType == _protectionType)
         {
-            if (damage > 0)
+            trueDamage = damage - _protection * (1 - breakingProtection); 
+            if (trueDamage < 0)
             {
-                shield -= 1;
+                trueDamage = 0;
             }
         }
         else
         {
-            _hp -= damage;
-            shield = 0;
+            trueDamage = damage;
         }
-        HealthBar();
-    }
-    public void Curse(float damage, float reduceProtection)
-    {
-        _hp -= damage;
-        Curse(reduceProtection);
-        HealthBar();
-    }
-    private void Curse(float curse)
-    {
-        if (!immunity)
-        {
-            protection -= curse;
-            if (protection < 0)
-            {
-                protection = 0;
-            }
-            if (shield > 0)
-            {
-                shield -= 2;
-                if (shield < 0)
-                {
-                    shield = 0;
-                }
-            }
-            HealthBar();
-        }
-    }
 
-    public void Heal(float health)
-    {
-        _hp += health * PlayerPrefs.GetFloat("Difficulty");
-        if (_hp > _maxHP)
+        if (_shield > 0)
         {
-            _hp = _maxHP;
+            if (trueDamage > 0)
+            {
+                _shield -= 1;
+            }
+        }
+        else
+        {
+            _hp -= trueDamage;
+            _shield = 0;
         }
         HealthBar();
-    }
-    public void CreateShield()
-    {
-        shield += 1;
-        if (shield > maxShield)
-        {
-            shield = maxShield;
-        }
-        HealthBar();
-    }
-    public void SpeedBoost(float speed, Enemy e)
-    {
-        _speed = speed;
-        speedBooster = e;
     }
 
     private void HealthBar()
     {
         int a = 0;
-        if (shield > 0)
+        if (_shield > 0)
         {
             a = 1;
         }
-        if (enemyType == EnemyTypes.Boss)
+        if (_enemyType == EnemyTypes.Boss)
         {
             healthIcon.sprite = healthIcons[2 + a];
         }
@@ -249,12 +334,12 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         }
         foreach (SpriteRenderer strip in strips)
         {
-            if (Array.IndexOf(strips, strip) < Convert.ToInt32((Convert.ToSingle(_hp)/ Convert.ToSingle(_maxHP))*10f) 
-                || Array.IndexOf(strips, strip) < shield)
+            if (Array.IndexOf(strips, strip) < Convert.ToInt32((Convert.ToSingle(_hp) / Convert.ToSingle(_maxHP)) * 10f)
+                || Array.IndexOf(strips, strip) < _shield)
             {
                 strip.gameObject.SetActive(true);
                 a = 0;
-                if (Array.IndexOf(strips, strip) < shield)
+                if (Array.IndexOf(strips, strip) < _shield)
                 {
                     a = 3;
                 }
@@ -275,69 +360,17 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
             {
                 strip.gameObject.SetActive(false);
             }
-        } 
+        }
     }
 
-    private void Dead() // Действия врага при смерти
+    private void Dead()
     {
-        Instantiate(effect, this.transform.position, Quaternion.identity);
-        LM._coins += dropCoins;
+        Instantiate(_deathEffect, this.transform.position, Quaternion.identity);
+        _LM._coins += _dropCoins;
         Destroy(gameObject);
     }
 
-    IEnumerator _Potion(float potionDamage)
-    {
-        if (_potion < 5)
-        {
-            _potion += 1;
-            if (_potion > 5)
-            {
-                _potion = 5;
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                yield return new WaitForSeconds(5f);
-                if (!immunity)
-                {
-                    if (enemyType == EnemyTypes.Boss)
-                    {
-                        ReduceHP(potionDamage / 5);
-                    }
-                    else
-                    {
-                        ReduceHP(potionDamage);
-                    }
-                }
-            }
-            yield return new WaitForSeconds(1f);
-            _potion -= 1;
-        }
-    }
-    public void Potion(float potionDamage)
-    {
-        StartCoroutine(_Potion(potionDamage));
-    }
-
-    private IEnumerator _Ice(float slow)
-    {
-        if (!_ice)
-        {
-            if (!immunity)
-            {
-                _ice = true;
-                float SlowSpeed = speed * slow;
-                speed -= SlowSpeed;
-                yield return new WaitForSeconds(slow * 10f + 1f);
-                speed += SlowSpeed;
-                yield return new WaitForSeconds(0.5f);
-                _ice = false;
-            }
-        }
-    }
-    public void Ice(float slow)
-    {
-        StartCoroutine(_Ice(slow));
-    }
+    #endregion
 
     bool SpellCd = true;
 
@@ -356,18 +389,16 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
             }
             else
             {
-                switch (enemySpell)
+                switch (_enemySpell)
                 {
                     case EnemySpell.Heal:
                         Enemy[] enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-                        float s = speed;
                         foreach (Enemy enemy in enemyes)
                         {
                             if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= _spellDistance && enemy != this && enemy._hp < enemy._maxHP && SpellCd)
                             {
                                 GetComponentInChildren<Animator>().SetTrigger("Spell");
                                 SpellCd = false;
-                                speed = 0;
                                 yield return new WaitForSeconds(0.5f);
 
                                 foreach (Enemy enemy1 in enemyes)
@@ -377,7 +408,6 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                                         enemy1.Heal(_modifier);
                                     }
                                 }
-                                speed = s;
                                 break;
                             }
                         }
@@ -385,14 +415,12 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                         break;
                     case EnemySpell.CreateShield:
                         enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-                        s = speed;
                         foreach (Enemy enemy in enemyes)
                         {
-                            if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= _spellDistance && enemy != this && enemy.shield < enemy.maxShield && SpellCd)
+                            if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= _spellDistance && enemy != this && enemy._shield < Enemy.MAXSHIELD && SpellCd)
                             {
                                 GetComponentInChildren<Animator>().SetTrigger("Spell");
                                 SpellCd = false;
-                                speed = 0;
                                 yield return new WaitForSeconds(0.5f);
 
                                 foreach (Enemy enemy1 in enemyes)
@@ -402,7 +430,6 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                                         enemy1.CreateShield();
                                     }
                                 }
-                                speed = s;
                                 break;
                             }
                         }
@@ -410,14 +437,12 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                         break;
                     case EnemySpell.SpeedBoost:
                         enemyes = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-                        s = speed;
                         foreach (Enemy enemy in enemyes)
                         {
-                            if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= _spellDistance && enemy != this && enemy.shield < enemy.maxShield && SpellCd)
+                            if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) <= _spellDistance && enemy != this && enemy._shield < Enemy.MAXSHIELD && SpellCd)
                             {
                                 GetComponentInChildren<Animator>().SetTrigger("Spell");
                                 SpellCd = false;
-                                speed = 0;
                                 yield return new WaitForSeconds(0.5f);
                                 foreach (Enemy enemy1 in enemyes)
                                 {
@@ -426,16 +451,15 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
                                         enemy1.SpeedBoost(_modifier, this);
                                     }
                                 }
-                                speed = s;
                                 break;
                             }
                         }
                         break;
                     case EnemySpell.SpawnEnemy:
                         yield return new WaitForSeconds(0.2f);
-                        GameObject _enemy = Instantiate(enemySpawn, gameObject.transform.position, gameObject.transform.rotation);
-                        _enemy.GetComponent<Enemy>().points = points;
-                        _enemy.GetComponent<Enemy>().numberPoint = numberPoint;
+                        GameObject _enemy = Instantiate(_enemySpawn, gameObject.transform.position, gameObject.transform.rotation);
+                        _enemy.GetComponent<Enemy>()._points = _points;
+                        _enemy.GetComponent<Enemy>()._numberPoint = _numberPoint;
                         SpellCd = false ;
                         break;
                 }
@@ -443,4 +467,115 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
             
         }
     }
+
+    #region EffectsFunction
+
+    public void Heal(float health)
+    {
+        _hp += health * PlayerPrefs.GetFloat("Difficulty");
+        if (_hp > _maxHP)
+        {
+            _hp = _maxHP;
+        }
+        HealthBar();
+    }
+
+    public void CreateShield()
+    {
+        _shield += 1;
+        if (_shield > MAXSHIELD)
+        {
+            _shield = MAXSHIELD;
+        }
+        HealthBar();
+    }
+
+    public void SpeedBoost(float speed, Enemy e)
+    {
+        _speedBoost = speed;
+        _speedBooster = e;
+    }
+
+    IEnumerator _Potion(float potionDamage)
+    {
+        if (_poison < 5)
+        {
+            _poison += 1;
+            if (_poison > 5)
+            {
+                _poison = 5;
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                yield return new WaitForSeconds(5f);
+                if (!_immunity)
+                {
+                    if (_enemyType == EnemyTypes.Boss)
+                    {
+                        ReduceHP(potionDamage / 5);
+                    }
+                    else
+                    {
+                        ReduceHP(potionDamage);
+                    }
+                }
+            }
+            yield return new WaitForSeconds(1f);
+            _poison -= 1;
+        }
+    }
+    public void Potion(float potionDamage)
+    {
+        StartCoroutine(_Potion(potionDamage));
+    }
+
+    private IEnumerator _Ice(float slow)
+    {
+        if (!_ice)
+        {
+            if (!_immunity)
+            {
+                _ice = true;
+                float SlowSpeed = _speed * slow;
+                _speed -= SlowSpeed;
+                yield return new WaitForSeconds(slow * 10f + 1f);
+                _speed += SlowSpeed;
+                yield return new WaitForSeconds(0.5f);
+                _ice = false;
+            }
+        }
+    }
+    public void Ice(float slow)
+    {
+        StartCoroutine(_Ice(slow));
+    }
+
+    public void Curse(float damage, float reduceProtection)
+    {
+        _hp -= damage;
+        Curse(reduceProtection);
+        HealthBar();
+    }
+    private void Curse(float curse)
+    {
+        if (!_immunity)
+        {
+            _protection -= curse;
+            if (_protection < 0)
+            {
+                _protection = 0;
+            }
+            if (_shield > 0)
+            {
+                _shield -= 2;
+                if (_shield < 0)
+                {
+                    _shield = 0;
+                }
+            }
+            HealthBar();
+        }
+    }
+
+    #endregion 
 }
