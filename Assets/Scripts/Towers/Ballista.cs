@@ -31,6 +31,10 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
         gm = gameObject;
+
+        _distancePrefab.GetComponent<ParticleSystem>().emissionRate = _attackDistance * 3;
+        var shape = _distancePrefab.GetComponent<ParticleSystem>().shape;
+        shape.radius = _attackDistance;
     }
 
     private void Update()
@@ -39,10 +43,6 @@ public class Ballista : Tower, TowerFunctions // Баллиста
         {
             RotationTuret();
         }
-        _distancePrefab.GetComponent<ParticleSystem>().emissionRate = _attackDistance * 3;
-        var shape = _distancePrefab.GetComponent<ParticleSystem>().shape;
-        shape.radius = _attackDistance;
-
     }
 
     public void ArrowSpawn(int arrow)

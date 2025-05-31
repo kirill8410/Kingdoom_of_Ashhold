@@ -26,15 +26,11 @@ public class Mortar : Tower, TowerFunctions
         StartCoroutine(SearchTarget());
         StartCoroutine(Attack());
         gm = gameObject;
-    }
 
-    private void Update()
-    {
         _distancePrefab.GetComponent<ParticleSystem>().emissionRate = _attackDistance * 3;
         var shape = _distancePrefab.GetComponent<ParticleSystem>().shape;
         shape.radius = _attackDistance;
     }
-
 
     public IEnumerator Attack()
     {

@@ -28,12 +28,12 @@ public class Base : MonoBehaviour
     TextMeshProUGUI _name;
     TextMeshProUGUI _price;
     TextMeshProUGUI _damage;
-    TextMeshProUGUI _distance;
+    TextMeshProUGUI _attackDistance;
     TextMeshProUGUI _attackSpeed;
 
     TextMeshProUGUI _textLevelUp;
     TextMeshProUGUI _damageLevelUp;
-    TextMeshProUGUI _distanceLevelUp;
+    TextMeshProUGUI _AttackDistanceLevelUp;
     TextMeshProUGUI _attackSpeedLevelUp;
     TextMeshProUGUI _priceLevelUp;
 
@@ -41,16 +41,22 @@ public class Base : MonoBehaviour
 
     #region Иконки
 
-
     Image _imageDamage;
     Image _imageDamageLevelUp;
 
+    [SerializeField] Sprite _physicalDamageSprite;
+    [SerializeField] Sprite _mageDamageSprite;
+    [SerializeField] Sprite _trueDamageSprite;
+
     #endregion
 
-    [Header("Button")]
+    #region Кнопки
+
     [SerializeField] Button _buildButton;
     [SerializeField] Button[] _evolutionButtons;
     [SerializeField] Button _levelUpButton;
+
+    #endregion
 
     #region Звуки
 
@@ -59,8 +65,8 @@ public class Base : MonoBehaviour
 
     #endregion
 
-    
-    [SerializeField] GameObject _base_1;
+    GameObject _distance;
+    GameObject _base;
 
     private void Start() 
     {
@@ -84,7 +90,10 @@ public class Base : MonoBehaviour
         _informationLevelUp = gameObject.GetNamedChild("InformationLevelUp");
 
         _information.SetActive(false);
-        _informationLevelUp.SetActive(false);
+        if (_informationLevelUp != null)
+        {
+            _informationLevelUp.SetActive(false);
+        }
         _selection.SetActive(true);
 
         #endregion
@@ -92,6 +101,23 @@ public class Base : MonoBehaviour
         #region Тексты
 
         _name = _information.GetNamedChild("Name").GetComponent<TextMeshProUGUI>();
+        _price = _information.GetNamedChild("PriceText").GetComponent<TextMeshProUGUI>();
+        _damage = _information.GetNamedChild("DamageText").GetComponent<TextMeshProUGUI>();
+        _attackSpeed = _information.GetNamedChild("AttackSpeedText").GetComponent<TextMeshProUGUI>();
+        _attackDistance = _information.GetNamedChild("AttackDistanceText").GetComponent<TextMeshProUGUI>();
+
+        _textLevelUp = _informationLevelUp.GetNamedChild("Text").GetComponent<TextMeshProUGUI>();
+        _priceLevelUp = _informationLevelUp.GetNamedChild("PriceText").GetComponent<TextMeshProUGUI>();
+        _damageLevelUp = _informationLevelUp.GetNamedChild("DamageText").GetComponent<TextMeshProUGUI>();
+        _attackSpeedLevelUp = _informationLevelUp.GetNamedChild("AttackSpeedText").GetComponent<TextMeshProUGUI>();
+        _AttackDistanceLevelUp = _informationLevelUp.GetNamedChild("AttackDistanceText").GetComponent<TextMeshProUGUI>();
+
+        #endregion
+
+        #region Иконки
+
+        _imageDamage = _information.GetNamedChild("Damage").GetComponent<Image>();
+        _imageDamageLevelUp = _informationLevelUp.GetNamedChild("Damage").GetComponent<Image>();
 
         #endregion
 
@@ -110,6 +136,8 @@ public class Base : MonoBehaviour
 
         // Нахождение башни на которой находится этот UI
         _tower = GetComponentInParent<TowerFunctions>();
+
+        _distance = gameObject.GetNamedChild("Distance");
     }
 
     private void Update() 
@@ -130,7 +158,7 @@ public class Base : MonoBehaviour
                 _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
                 _distance.gameObject.SetActive(false);
             }
-            if (_tower.TowerLevel != 3) // Отображение кнопок прокачки если уровень не максимальный
+            if (_tower.TowerLevel != 3 && _tower != null) // Отображение кнопок прокачки если уровень не максимальный
             {
                 _levelUpButton.gameObject.SetActive(true);
                 if (_evolutionButtons.Length > 0)
@@ -153,6 +181,11 @@ public class Base : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            _distance.gameObject.SetActive(false);
+            _levelUpButton.gameObject.SetActive(false);
+        }
     }
 
     public void ShowInformation(TowerParameters tower) // Паказываем информацию о башне
@@ -167,7 +200,19 @@ public class Base : MonoBehaviour
             _name.text = tower.TowerName;
             _price.text = tower.Price_1.ToString();
             _damage.text = tower.Damage_1.ToString();
-            _distance.text = ((tower.AttackDistance_1 / 4) - 0.5f).ToString();
+            if (tower.DamageType == Tower.DamageTypes.Physical)
+            {
+                _imageDamage.sprite = _physicalDamageSprite;
+            }
+            else if (tower.DamageType == Tower.DamageTypes.Magic)
+            {
+                _imageDamage.sprite = _mageDamageSprite;
+            }
+            else if (tower.DamageType == Tower.DamageTypes.True)
+            {
+                _imageDamage.sprite = _trueDamageSprite;
+            }
+            _attackDistance.text = ((tower.AttackDistance_1 / 4) - 0.5f).ToString();
             _attackSpeed.text = tower.AttackSpeed_1.ToString();
         }
         else if ((_information.activeSelf == true && _selectTower == tower) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
@@ -179,7 +224,7 @@ public class Base : MonoBehaviour
     }
     public void Build() // Построить башню
     {
-        if (_base_1 != null)
+        if (_base != null)
         {
             if (LM._coins >= _selectTower.Price_1)
             {
@@ -187,9 +232,9 @@ public class Base : MonoBehaviour
                 SM.PlaySound(GetComponent<AudioSource>());
 
                 LM._coins -= _selectTower.Price_1;
-                Instantiate(_selectTower.TowerPrefab, _base_1.transform.position, Quaternion.identity);
+                Instantiate(_selectTower.TowerPrefab, _base.transform.position, Quaternion.identity);
                 Destroy(_information, 0.1f);
-                Destroy(_base_1, 4f);
+                Destroy(_base, 4f);
             }
             else
             {
@@ -208,7 +253,7 @@ public class Base : MonoBehaviour
             {
                 _damageLevelUp.text = $"{_tower.Parameters.Damage_2}\n(+{_tower.Parameters.Damage_2 - _tower.Parameters.Damage_1})";
                 _textLevelUp.text = "Улучшить до уроня 2";
-                _distanceLevelUp.text = $"{_tower.Parameters.AttackDistance_2 / 4}" +
+                _AttackDistanceLevelUp.text = $"{_tower.Parameters.AttackDistance_2 / 4}" +
                     $"\n(+{(_tower.Parameters.AttackDistance_2 - _tower.Parameters.AttackDistance_1) / 4})";
                 _attackSpeedLevelUp.text = $"{_tower.Parameters.AttackSpeed_2}" +
                     $"\n(+{_tower.Parameters.AttackSpeed_2 - _tower.Parameters.AttackSpeed_1})";
@@ -218,7 +263,7 @@ public class Base : MonoBehaviour
             {
                 _damageLevelUp.text = $"{_tower.Parameters.Damage_3}\n(+{_tower.Parameters.Damage_3 - _tower.Parameters.Damage_2})";
                 _textLevelUp.text = "Улучшить до уроня 3";
-                _distanceLevelUp.text = $"{_tower.Parameters.AttackDistance_3 / 4}" +
+                _AttackDistanceLevelUp.text = $"{_tower.Parameters.AttackDistance_3 / 4}" +
                     $"\n(+{(_tower.Parameters.AttackDistance_3 - _tower.Parameters.AttackDistance_2) / 4})";
                 _attackSpeedLevelUp.text = $"{_tower.Parameters.AttackSpeed_3}" +
                     $"\n(+{_tower.Parameters.AttackSpeed_3 - _tower.Parameters.AttackSpeed_2})";
