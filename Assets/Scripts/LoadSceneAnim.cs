@@ -1,4 +1,3 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,7 +31,7 @@ public class LoadSceneAnim : MonoBehaviour
             yield return new WaitForSeconds(time);
             image.fillAmount = i/100;
         }
-        for i = 0;i < 100; i++)
+        for (i = 0;i < 100; i++)
         {
 
         }
