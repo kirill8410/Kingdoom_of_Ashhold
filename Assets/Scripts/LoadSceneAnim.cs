@@ -1,10 +1,13 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadSceneAnim : MonoBehaviour
 {
     [SerializeField] float time;
     [SerializeField]GameObject[] sprites;
+    [SerializeField] Image image;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,16 +27,14 @@ public class LoadSceneAnim : MonoBehaviour
     int i;
     IEnumerator Animation()
     {
-        for(i = 0; i < sprites.Length; i++)
+        for( i = 0;i < 100; i+=3)
         {
-            sprites[i].gameObject.SetActive(true);
             yield return new WaitForSeconds(time);
-            print("1");
+            image.fillAmount = i/100;
         }
-        for (i = 0; i < sprites.Length; i++)
+        for i = 0;i < 100; i++)
         {
-            sprites[i].gameObject.SetActive(false);
+
         }
-        StopCoroutine(Animation());
     }
 }
