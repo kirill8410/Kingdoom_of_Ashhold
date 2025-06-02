@@ -465,17 +465,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9250660e6c434468c6c3dabf149a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 8
-  attackSpeed: 0.5
-  damage: 20
-  attackPrefab: {fileID: 2056454902351534825, guid: a11d4ac664a4d3847aca2b65910910ac, type: 3}
-  Distance: {fileID: 171548969653625598}
-  attackPoint: {fileID: 0}
-  _levelUp: {fileID: 11400000, guid: 154d7f1017f8e3348b6904859900faab, type: 2}
-  mortarType: 3
-  bangDistance: 2
+  _parameters: {fileID: 11400000, guid: 20e485899b13893489b4877688ba54f3, type: 2}
+  _attackPoint: {fileID: 0}
   turet: {fileID: 52727746386946459}
-  target: {fileID: 0}
 --- !u!95 &2388778403106326794
 Animator:
   serializedVersion: 7
@@ -1062,11 +1054,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
---- !u!1 &171548969653625598 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8277573582887613638, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
-  m_PrefabInstance: {fileID: 8124123949209851448}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4372401528951741144 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5481808418566999264, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}

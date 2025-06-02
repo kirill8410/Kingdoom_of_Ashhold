@@ -72,12 +72,12 @@ public class Mortar : Tower, TowerFunctions
                             foreach (Enemy enemy in enemyes)
                             {
                                 if (Vector2.Distance(new Vector2(enemy.transform.position.x, enemy.transform.position.z),
-                                new Vector2(_target.transform.position.x, _target.transform.position.z)) <= 2f)
+                                new Vector2(_target.transform.position.x, _target.transform.position.z)) <= 4f)
                                 {
                                     targets.Add(enemy);
                                 }
                             }
-                            int numberOfShots = 2;
+                            int numberOfShots = TowerLevel + 1;
                             yield return new WaitForSeconds(0.1f);
                             GameObject attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mortars/bom_prefab"), 
                                 new Vector3(_target.transform.position.x,
@@ -89,26 +89,12 @@ public class Mortar : Tower, TowerFunctions
                                 for (int i = 0; i < numberOfShots; i++)
                                 {
                                     yield return new WaitForSeconds(0.1f);
-                                    int random = Random.Range(0, targets.Count);
+                                    int random = Random.Range(0, targets.Count - 1);
                                     attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mortars/bom_prefab"), 
                                         new Vector3(targets[random].transform.position.x,
                                         -0.3f, targets[random].transform.position.z), targets[random].transform.rotation);
                                     attack.GetComponent<Bomb>().Mortar = this;
-                                    attack.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-                                }
-                            }
-                            else
-                            {
-                                for (int i = 0; i < numberOfShots; i++)
-                                {
-                                    yield return new WaitForSeconds(0.1f);
-                                    float random1 = Random.Range(-1, 1);
-                                    float random2 = Random.Range(-1, 1);
-                                    attack = Instantiate(Resources.Load<GameObject>("Prefabs/Projectiles/Mortars/bom_prefab"), 
-                                        new Vector3(_target.transform.position.x + random1,
-                                        -0.3f, _target.transform.position.z + random2), _target.transform.rotation);
-                                    attack.GetComponent<Bomb>().Mortar = this;
-                                    attack.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                                    attack.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                                 }
                             }
                         }

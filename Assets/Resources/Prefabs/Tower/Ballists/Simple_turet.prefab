@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: a697d55fbbf67fb4da020d4d1d7a4abe, type: 2}
-  _attackPoint: {fileID: 0}
+  _attackPoint: {fileID: 7706607923824448461}
   Turet_osnov: {fileID: 4421778034366791578}
   Turet_osnov2: {fileID: 6522714019000063619}
 --- !u!82 &6070740391949129863
@@ -1332,10 +1332,6 @@ PrefabInstance:
       propertyPath: EvolutionButtons.Array.size
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
-      propertyPath: 'EvolutionButtons.Array.data[3]'
-      value: 
-      objectReference: {fileID: 4757761500220391582}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1346,14 +1342,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5481808418566999264, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
   m_PrefabInstance: {fileID: 6597066921889891248}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4757761500220391582 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1840718296795611950, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
-  m_PrefabInstance: {fileID: 6597066921889891248}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

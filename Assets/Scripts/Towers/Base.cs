@@ -106,14 +106,14 @@ public class Base : MonoBehaviour
         _damage = _information.GetNamedChild("DamageText").GetComponent<TextMeshProUGUI>();
         _attackSpeed = _information.GetNamedChild("AttackSpeedText").GetComponent<TextMeshProUGUI>();
         _attackDistance = _information.GetNamedChild("AttackDistanceText").GetComponent<TextMeshProUGUI>();
-        _breakingProtection = _information.GetNamedChild("AttackDistanceText").GetComponent<TextMeshProUGUI>();
+        _breakingProtection = _information.GetNamedChild("BreakingProtectionText").GetComponent<TextMeshProUGUI>();
 
         _textLevelUp = _informationLevelUp.GetNamedChild("Text").GetComponent<TextMeshProUGUI>();
         _priceLevelUp = _informationLevelUp.GetNamedChild("PriceText").GetComponent<TextMeshProUGUI>();
         _damageLevelUp = _informationLevelUp.GetNamedChild("DamageText").GetComponent<TextMeshProUGUI>();
         _attackSpeedLevelUp = _informationLevelUp.GetNamedChild("AttackSpeedText").GetComponent<TextMeshProUGUI>();
         _AttackDistanceLevelUp = _informationLevelUp.GetNamedChild("AttackDistanceText").GetComponent<TextMeshProUGUI>();
-        _breakingProtectionLevelUp = _informationLevelUp.GetNamedChild("AttackDistanceText").GetComponent<TextMeshProUGUI>();
+        _breakingProtectionLevelUp = _informationLevelUp.GetNamedChild("BreakingProtectionText").GetComponent<TextMeshProUGUI>();
 
         #endregion
 

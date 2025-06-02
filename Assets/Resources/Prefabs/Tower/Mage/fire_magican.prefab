@@ -4880,15 +4880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd4e686b86a9f946a77371b6e97f885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 10
-  attackSpeed: 2
-  damage: 2
-  attackPrefab: {fileID: 8641146538944337359, guid: 87224df0b90b755479b8e2175b6c6d1c, type: 3}
-  Distance: {fileID: 7535048300429927255}
-  attackPoint: {fileID: 2303766531708536837}
-  _levelUp: {fileID: 11400000, guid: 757973e481186514d96e9787d98fdf15, type: 2}
+  _parameters: {fileID: 11400000, guid: 274120351eed32044ba7dc80c64be679, type: 2}
+  _attackPoint: {fileID: 2303766531708536837}
   MageCrystal: {fileID: 890065850945640998}
-  mageType: 1
   charge: 0
   target: {fileID: 0}
 --- !u!1 &4075533849627838929
@@ -5215,7 +5209,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8960860944708049704}
+  m_Father: {fileID: 6223214263378090865}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5595,7 +5589,7 @@ PrefabInstance:
     - {fileID: 3398777377441899453, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
     - {fileID: 206493502551500597, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7355882724988259513, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 5481808418566999264, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6997174603458410284}
     m_AddedComponents: []
@@ -5603,15 +5597,5 @@ PrefabInstance:
 --- !u!224 &6223214263378090865 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5481808418566999264, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
-  m_PrefabInstance: {fileID: 1895461087175055249}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7535048300429927255 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8277573582887613638, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
-  m_PrefabInstance: {fileID: 1895461087175055249}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &8960860944708049704 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7355882724988259513, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
   m_PrefabInstance: {fileID: 1895461087175055249}
   m_PrefabAsset: {fileID: 0}
