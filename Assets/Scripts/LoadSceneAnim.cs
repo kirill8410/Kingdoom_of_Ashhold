@@ -23,17 +23,27 @@ public class LoadSceneAnim : MonoBehaviour
     {
         StartCoroutine(Animation());
     }
-    int i;
+    float i;
     IEnumerator Animation()
     {
-        for( i = 0;i < 100; i+=3)
+        for( i = 0;i < 100; i+=1)
         {
+            image.fillAmount = i / 100;
             yield return new WaitForSeconds(time);
-            image.fillAmount = i/100;
         }
-        for (i = 0;i < 100; i++)
+        for (i = 0; i < 100; i += 1)
         {
-
+            sprites[0].GetComponent<Image>().color = new Color(1-i/100, 1 - i / 100 , 1 - i / 100);
+            sprites[1].GetComponent<Image>().color = new Color(1 - i / 100, 1 - i / 100, 1 - i / 100);
+            sprites[2].GetComponent<Image>().color = new Color( 1 - i / 100, 1 - i / 100, 1 - i / 100);
+            yield return new WaitForSeconds(0.01f);
+        }
+        sprites[1].SetActive(false);
+        sprites[2].SetActive(false);
+        for (i = 0; i < 100; i += 1)
+        {
+            sprites[0].GetComponent<Image>().color = new Color(0,0,0,1-i/100);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 }
