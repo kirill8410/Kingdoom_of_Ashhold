@@ -34,7 +34,7 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
 
     private void Awake()
     {
-        _distancePrefab = gameObject.GetNamedChild("Distance");
+        _distancePrefab = GetComponentInChildren<ParticleSystem>(true).gameObject;
 
         _damage = _parameters.Damage_1;
         _attackSpeed = _parameters.AttackSpeed_1;

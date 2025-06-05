@@ -49,10 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75826a3bd60e8e348a5ffd37739b1733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\u041E\u0431\u044B\u0447\u043D\u044B\u0439"
-  dropCoins: 5
-  hp: 80
-  maxHP: 0
+  _parameters: {fileID: 11400000, guid: 76e88a95d3687f240bdbd1344f067bbd, type: 2}
   strips:
   - {fileID: 5869444757524822168}
   - {fileID: 3231707919572328854}
@@ -77,23 +74,6 @@ MonoBehaviour:
   - {fileID: -448098536, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
   - {fileID: 990118371, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
   - {fileID: -403479227, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
-  effect: {fileID: 6107052878214037252, guid: 7a888f4f4f1f36a4eacb5f503846fa0b, type: 3}
-  protection: 5
-  shield: 0
-  protectionType: 0
-  enemyType: 0
-  enemySpell: 0
-  spellDistance: 0
-  enemySpawn: {fileID: 0}
-  heal: 0
-  speedBoost: 0
-  cooldown: 0
-  speed: 0.9
-  points: []
-  numberPoint: 0
-  distanceToPoint: 0
-  immunity: 0
-  _potion: 0
 --- !u!195 &5785045042091345980
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     {
         #region Parameters
 
-        _name = _parameters.name;
+        _name = _parameters.Name;
 
         _maxHP = _parameters.MaxHP;
         _protection = _parameters.Protection;
@@ -124,14 +124,14 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
         _LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
-        _agent = GetComponent<NavMeshAgent>();
-        _agent.SetDestination(new Vector3(_nextPoint.x, 0, _nextPoint.y));
-
         _maxHP = _maxHP * PlayerPrefs.GetFloat("Difficulty");
         _hp = _maxHP;
 
         _nextPoint = new Vector2(_points[_numberPoint].transform.position.x, _points[_numberPoint].transform.position.z);
-        
+
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.SetDestination(new Vector3(_nextPoint.x, 0, _nextPoint.y));
+
         HealthBar();
 
         if (_enemySpell != EnemySpell.None)
@@ -188,7 +188,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     public string GetName()
     {
-        return _name;
+        return _parameters.Name;
     }
 
     public Enemy.EnemyTypes GetEnemyType()

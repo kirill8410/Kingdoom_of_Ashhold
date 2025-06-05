@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SimpleEnemy
   m_EditorClassIdentifier: 
   Name: "\u041E\u0431\u044B\u0447\u043D\u044B\u0439"
-  MaxHP: 100
+  MaxHP: 50
   Shield: 0
-  Protection: 0
+  Protection: 5
   Speed: 1
-  DropCoins: 0
+  DropCoins: 20
   EnemyType: 0
   ProtectionType: 0
   EnemySpell: 0
