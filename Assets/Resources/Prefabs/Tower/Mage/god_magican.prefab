@@ -182,7 +182,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1427885463988250232}
+  m_Father: {fileID: 4167744628222830113}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 4671893132071524285}
   m_Layer: 0
   m_Name: god_magican
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -695,16 +695,11 @@ PrefabInstance:
     - {fileID: 3398777377441899453, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
     - {fileID: 206493502551500597, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7355882724988259513, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 5481808418566999264, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9147845171159623283}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
---- !u!224 &1427885463988250232 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7355882724988259513, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
-  m_PrefabInstance: {fileID: 8486336536872037057}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4167744628222830113 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5481808418566999264, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}

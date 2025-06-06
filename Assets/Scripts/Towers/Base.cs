@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Base : MonoBehaviour
 {
+    [SerializeField] GameObject _basePrefab;
+
     // Менеджеры
     private LevelManager LM;
     private SoundManager SM;
@@ -185,9 +187,9 @@ public class Base : MonoBehaviour
             {
                 _selectTower = null;
                 _information.SetActive(false);
-                _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
                 _informationLevelUp.SetActive(false);
-                _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
                 _distance.gameObject.SetActive(false);
             }
             if (_tower.TowerLevel != 3 && _tower != null) // Отображение кнопок прокачки если уровень не максимальный
@@ -227,7 +229,7 @@ public class Base : MonoBehaviour
             _selectTower = tower;
 
             _information.SetActive(true);
-            _selection.transform.localPosition = new Vector3(-80f, 135f, 0f);
+            _selection.transform.localPosition = new Vector3(-80f, 135f, -150f);
 
             _name.text = tower.TowerName;
             _price.text = tower.Price_1.ToString();
@@ -252,9 +254,10 @@ public class Base : MonoBehaviour
         {
             _selectTower = null;
             _information.SetActive(false);
-            _selection.transform.localPosition = new Vector3(0f, 135f, 0f);
+            _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
         }
     }
+
     public void Build() // Построить башню
     {
         if (_base != null)
@@ -267,7 +270,7 @@ public class Base : MonoBehaviour
                 LM._coins -= _selectTower.Price_1;
                 Instantiate(_selectTower.TowerPrefab, _base.transform.position, Quaternion.identity);
                 Destroy(_information, 0.1f);
-                Destroy(_base, 4f);
+                Destroy(_base, 0.1f);
             }
             else
             {
@@ -276,12 +279,19 @@ public class Base : MonoBehaviour
             }
         }
     }
+
+    public void DestroyTower()
+    {
+        Instantiate(_basePrefab, _base.transform.position, Quaternion.identity);
+        Destroy(_base, 0.1f);
+    }
+
     public void ShowLevelUpInformation() // Показать информацию о улучшении башни
     {
         if (_informationLevelUp.activeSelf == false) // Показать информацию если информация не показана
         {
             _informationLevelUp.SetActive(true);
-            _selection.transform.localPosition = new Vector3(-80f, 135f, 0f);
+            _selection.transform.localPosition = new Vector3(-80f, 135f,-150f);
             if (_tower.TowerLevel == 1)
             {
                 _damageLevelUp.text = $"{_tower.Parameters.Damage_2}\n(+{_tower.Parameters.Damage_2 - _tower.Parameters.Damage_1})";
@@ -311,7 +321,7 @@ public class Base : MonoBehaviour
         else if ((_informationLevelUp.activeSelf == true) || GetComponent<Canvas>().enabled == false) // Скрыть информацию
         {
             _informationLevelUp.SetActive(false);
-            _selection.transform.localPosition = new Vector3(0f, 135f, 0f);
+            _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
         }
     }
 
@@ -328,7 +338,7 @@ public class Base : MonoBehaviour
                 _tower.LevelUp();
 
                 _informationLevelUp.SetActive(false);
-                _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
             }
             else
             {
@@ -347,7 +357,7 @@ public class Base : MonoBehaviour
                 _tower.LevelUp();
 
                 _informationLevelUp.SetActive(false);
-                _selection.transform.localPosition = new Vector3(0f, 0f, 0f);
+                _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
             }
             else
             {

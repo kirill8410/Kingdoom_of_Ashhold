@@ -783,7 +783,7 @@ GameObject:
   - component: {fileID: 2853805872106771208}
   m_Layer: 0
   m_Name: sniper_turet
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

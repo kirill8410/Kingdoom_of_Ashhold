@@ -17,7 +17,7 @@ MonoBehaviour:
   Shield: 0
   Protection: 5
   Speed: 1
-  DropCoins: 20
+  DropCoins: 10
   EnemyType: 0
   ProtectionType: 0
   EnemySpell: 0
