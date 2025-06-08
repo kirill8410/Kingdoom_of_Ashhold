@@ -348,6 +348,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3376592715574179922, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1924906102, guid: 9acc384df027ee54d8ad97d7585352af, type: 3}
     - target: {fileID: 4678503524695511569, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_Name
       value: EvolutionButton
@@ -478,6 +482,10 @@ PrefabInstance:
       propertyPath: _isTower
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6290475528246224813, guid: fbb392a1ff42f2044b5a4ac449ceaa58, type: 3}
+      propertyPath: _basePrefab
+      value: 
+      objectReference: {fileID: 7145987800736687984}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

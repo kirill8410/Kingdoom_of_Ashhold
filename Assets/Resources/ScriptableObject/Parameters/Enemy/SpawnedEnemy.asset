@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpawnedEnemy
   m_EditorClassIdentifier: 
   Name: "\u041F\u0440\u0438\u0437\u0432\u0430\u043D\u043D\u044B\u0439"
-  MaxHP: 100
+  MaxHP: 50
   Shield: 0
   Protection: 0
   Speed: 1

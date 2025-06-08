@@ -26,6 +26,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
         {
             if (Ballista.GetTowerType() == Tower.TowerTypes.SniperBallist)
             {
+                print("1");
                 if (Vector2.Distance(new Vector2(Target.transform.position.x, Target.transform.position.z),
                     new Vector2(Ballista.transform.position.x, Ballista.transform.position.z)) > 6)
                 {
