@@ -104,5 +104,11 @@ public class SaveDataTourney
     public Dictionary<string, int> LocalRecords;
     public Dictionary<string, int> PublicRecords;
     public int TourneyDifficulty;
-    public int GameDifficulty;
+
+    public GameObject[] Towers = new GameObject[10];
+
+    public int Score;
+    public int NumberWave;
+    public float HP;
+    public int Coins;
 }
