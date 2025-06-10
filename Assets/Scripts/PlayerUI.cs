@@ -3,6 +3,7 @@ using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
@@ -23,6 +24,8 @@ public class PlayerUI : MonoBehaviour
     private TextMeshProUGUI _HPText;
     private TextMeshProUGUI _waveText;
 
+    private TextMeshProUGUI _finishText;
+
     private TextMeshProUGUI _waveInformationText;
 
     #region Кнопки
@@ -34,12 +37,14 @@ public class PlayerUI : MonoBehaviour
     private Button _startWaveButton;
     private Button _exitButton;
 
+    private Button _finishButton;
+
     #endregion
 
     #region Разделы
 
     private GameObject _sectionMenu;
-    private GameObject _sectionSpell;
+    private GameObject _sectionFinish;
 
     private GameObject _subsectionMenu;
     private GameObject _subsectionWaveInformation;
@@ -54,6 +59,8 @@ public class PlayerUI : MonoBehaviour
     private Button _yesButton;
 
     #endregion
+
+    private bool _isFinish = false;
 
     private void Start()
     {
@@ -78,7 +85,7 @@ public class PlayerUI : MonoBehaviour
         }
 
         _sectionMenu = gameObject.GetNamedChild("Menu");
-        _sectionSpell = gameObject.GetNamedChild("Spell");
+        _sectionFinish = gameObject.GetNamedChild("Finish");
 
         _subsectionMenu = _sectionMenu.GetNamedChild("SubMenu");
         _subsectionWaveInformation = _sectionMenu.GetNamedChild("Wave Information");
@@ -94,6 +101,8 @@ public class PlayerUI : MonoBehaviour
         _coinsText = _sectionMenu.GetNamedChild("Coins").GetComponent<TextMeshProUGUI>();
         _HPText = _sectionMenu.GetNamedChild("HP").GetComponent<TextMeshProUGUI>();
         _waveText = _sectionMenu.GetNamedChild("Wave").GetComponent<TextMeshProUGUI>();
+        
+        _finishText = _sectionFinish.GetNamedChild("Finish Text").GetComponent<TextMeshProUGUI>();
 
         _waveInformationText = _subsectionWaveInformation.GetNamedChild("Information Text").GetComponent<TextMeshProUGUI>();
 
@@ -106,12 +115,16 @@ public class PlayerUI : MonoBehaviour
         _startWaveButton = _sectionMenu.GetNamedChild("Start Wave Button").GetComponent<Button>();
         _exitButton = _sectionMenu.GetNamedChild("Exit Button").GetComponent<Button>();
 
+        _finishButton = _sectionFinish.GetNamedChild("Finish Button").GetComponent<Button>();
+
         _normalTimeButton.onClick.AddListener(NormalTime);
         _fastTimeButton.onClick.AddListener(FastTime);
         _skipWaveButton.onClick.AddListener(SkipWave);
         _waveInformationButton.onClick.AddListener(InformationWave);
         _startWaveButton.onClick.AddListener(StartWave);
         _exitButton.onClick.AddListener(Exit);
+
+        _finishButton.onClick.AddListener(LM.ReturtToLobby);
 
         #endregion
 
@@ -163,12 +176,12 @@ public class PlayerUI : MonoBehaviour
 
         #region Управление
 
-        if (_openMenuAction.triggered)
+        if (_openMenuAction.triggered && !_isFinish)
         {
             if (!_sectionMenu.activeSelf)
             {
                 _sectionMenu.SetActive(true);
-                _sectionSpell.SetActive(false);
+                _sectionFinish.SetActive(false);
                 StabilizeMenu();
             }
             else
@@ -286,7 +299,23 @@ public class PlayerUI : MonoBehaviour
 
         _subsectionWaveInformation.transform.localPosition = new Vector3(-130, 0, 0);
         _subsectionWaveInformation.SetActive(false);
-        
+
+    }
+
+    public void Lose()
+    {
+        _sectionMenu.SetActive(false);
+        _sectionFinish.SetActive(true);
+        _isFinish = true;
+        _finishText.text = "Поражение\n:(";
+    }
+
+    public void Win()
+    {
+        _sectionMenu.SetActive(false);
+        _sectionFinish.SetActive(true);
+        _isFinish = true;
+        _finishText.text = "Победа!";
     }
 
     #endregion
