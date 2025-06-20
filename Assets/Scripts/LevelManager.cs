@@ -26,6 +26,8 @@ public class LevelManager : MonoBehaviour
     
     private bool _isTourney = false;
 
+    private PlayerUI _playerUI;
+
     private void Awake()
     {
         if (!_isTourney)
@@ -44,10 +46,10 @@ public class LevelManager : MonoBehaviour
                 _enemySpawn = GameObject.FindGameObjectWithTag("EnemySpawnPoint").transform;
             }
         }
-        PlayerUI pui = FindFirstObjectByType<PlayerUI>();
-        if (pui == null)
+        _playerUI = FindFirstObjectByType<PlayerUI>();
+        if (_playerUI == null)
         {
-            Instantiate(Resources.Load<GameObject>("Prefabs/PlayerUI"), Vector3.zero, Quaternion.identity);
+            _playerUI = Instantiate(Resources.Load<GameObject>("Prefabs/PlayerUI"), Vector3.zero, Quaternion.identity).GetComponent<PlayerUI>();
         }
     }
 
@@ -64,6 +66,7 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+
     private void Update()
     { 
         if (_numberWave >= _waves.Length)
@@ -153,6 +156,7 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetInt("Level", _numberLevel + 1);
             PlayerPrefs.Save();
         }
+        _playerUI.Win();
     }
 
     public void Lose()
@@ -162,6 +166,7 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(enemy.gameObject);
         }
+        _playerUI.Lose();
     }
 
     public void ReturtToLobby()
