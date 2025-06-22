@@ -20,8 +20,8 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     #region HP
 
-    private float _hp;
-    private float _maxHP;
+    public float _hp;
+    public float _maxHP;
 
     #endregion
 
