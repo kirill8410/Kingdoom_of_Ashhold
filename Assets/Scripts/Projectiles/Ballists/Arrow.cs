@@ -57,5 +57,9 @@ public class Arrow : MonoBehaviour // Обычная стрела
             }
             Destroy(gameObject);
         }
+        else if (other.gameObject.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
     }
 }

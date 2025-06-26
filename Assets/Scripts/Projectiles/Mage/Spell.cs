@@ -24,5 +24,9 @@ public class Spell : MonoBehaviour
             Mage.MageCrystalRecharge(true);
             Destroy(gameObject);
         }
+        else if (other.gameObject.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
     }
 }

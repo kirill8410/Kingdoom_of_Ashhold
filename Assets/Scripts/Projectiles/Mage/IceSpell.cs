@@ -27,5 +27,9 @@ public class IceSpell : MonoBehaviour
             Target.Ice(slow);
             Destroy(gameObject);
         }
+        else if (other.gameObject.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
     }
 }
