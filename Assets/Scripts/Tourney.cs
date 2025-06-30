@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -6,23 +7,46 @@ using UnityEngine;
 public class Tourney : MonoBehaviour
 {
     private SaveDataTourney _saveData;
+    private SaveDataTourneyGame _saveDataGame;
 
     private void Start()
     {
         _saveData = LoadTourney();
+        if ( _saveData == null)
+        {
+            SaveDataTourney data = new SaveDataTourney();
+            _saveData = data;
+            SaveTourney(_saveData);
+        }
     }
+    
+    #region Get
 
-    public SaveDataTourney GetSaveData()
+    public SaveDataTourney GetTourney()
     {
         _saveData = LoadTourney();
         return _saveData;
     }
 
-    public SaveDataTourney GetSaveData(string fileName)
+    public SaveDataTourney GetTourney(string fileName)
     {
         _saveData = LoadTourney(fileName);
         return _saveData;
     }
+
+    public SaveDataTourneyGame GetTourneyGame()
+    {
+        _saveDataGame = LoadTourneyGame();
+        return _saveDataGame;
+    }
+
+    public SaveDataTourneyGame GetTourneyGame(string fileName)
+    {
+        _saveDataGame = LoadTourneyGame(fileName);
+        return _saveDataGame;
+    }
+
+    #endregion
 
     public static Tourney CreateTourney()
     {
@@ -37,22 +61,22 @@ public class Tourney : MonoBehaviour
         return null;
     }
 
-    private void StartTourney()
+    public void StartTourney()
     {
         
     }
 
     #region Сохранение файлов
 
-    private void SaveTourney(SaveDataTourney saveData)
+    public void SaveTourney(SaveDataTourney saveData)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/Tourney.dat");
+        FileStream file = File.Create("D:"/*Application.persistentDataPath*/ + "/Tourney.dat");
         SaveDataTourney data = saveData;
         bf.Serialize(file, data);
         file.Close();;
     }
-    private void SaveTourney(SaveDataTourney saveData, string fileName)
+    public void SaveTourney(SaveDataTourney saveData, string fileName)
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + $"/{fileName}.dat");
@@ -61,16 +85,33 @@ public class Tourney : MonoBehaviour
         file.Close();
     }
 
+    public void SaveTourneyGame(SaveDataTourneyGame saveData)
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create("D:"/*Application.persistentDataPath*/ + "/TourneyGame.dat");
+        SaveDataTourneyGame data = saveData;
+        bf.Serialize(file, data);
+        file.Close(); ;
+    }
+    public void SaveTourneyGame(SaveDataTourneyGame saveData, string fileName)
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + $"/{fileName}.dat");
+        SaveDataTourneyGame data = saveData;
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
     #endregion
 
     #region Загрузка файлов
 
-    private SaveDataTourney LoadTourney()
+    public SaveDataTourney LoadTourney()
     {
-        if (File.Exists(Application.persistentDataPath + "/Tourney.dat"))
+        if (File.Exists("D:"/*Application.persistentDataPath*/ + "/Tourney.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/Tourney.dat", FileMode.Open);
+            FileStream file = File.Open("D:"/*Application.persistentDataPath*/ + "/Tourney.dat", FileMode.Open);
             SaveDataTourney data = (SaveDataTourney)bf.Deserialize(file);
             file.Close();
             return data;
@@ -80,7 +121,7 @@ public class Tourney : MonoBehaviour
             return null;
         }
     }
-    private SaveDataTourney LoadTourney(string fileName)
+    public SaveDataTourney LoadTourney(string fileName)
     {
         if (File.Exists(Application.persistentDataPath + $"/{fileName}.dat"))
         {
@@ -96,19 +137,55 @@ public class Tourney : MonoBehaviour
         }
     }
 
+    public SaveDataTourneyGame LoadTourneyGame()
+    {
+        if (File.Exists("D:"/*Application.persistentDataPath*/ + "/TourneyGame.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open("D:"/*Application.persistentDataPath*/ + "/TourneyGame.dat", FileMode.Open);
+            SaveDataTourneyGame data = (SaveDataTourneyGame)bf.Deserialize(file);
+            file.Close();
+            return data;
+        }
+        else
+        {
+            return null;
+        }
+    }
+    public SaveDataTourneyGame LoadTourneyGame(string fileName)
+    {
+        if (File.Exists(Application.persistentDataPath + $"/{fileName}.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + $"/{fileName}.dat", FileMode.Open);
+            SaveDataTourneyGame data = (SaveDataTourneyGame)bf.Deserialize(file);
+            file.Close();
+            return data;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     #endregion
 }
 [System.Serializable]
 public class SaveDataTourney
 {
-    public Dictionary<string, int> LocalRecords;
-    public Dictionary<string, int> PublicRecords;
-    public int TourneyDifficulty;
+    public Dictionary<string, int> Records;
+}
 
-    public GameObject[] Towers = new GameObject[10];
+[System.Serializable]
+public class SaveDataTourneyGame
+{
+    public string Name;
 
-    public int Score;
-    public int NumberWave;
     public float HP;
+    public int Wave;
+    public int Points;
     public int Coins;
+
+    public Tower.TowerTypes[] Towers = new Tower.TowerTypes[10];
+    public int[] TowerLevel = new int[10];
 }

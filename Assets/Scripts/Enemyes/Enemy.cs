@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     private NavMeshAgent _agent; // NavMeshAgent
     private LevelManager _LM;
+    private TourneyLevelManager TLM;
 
     private string _name;
 
@@ -122,7 +123,14 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
         #endregion
 
-        _LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        if (GameObject.Find("LevelManager") != null)
+        {
+            _LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        }
+        else
+        {
+            TLM = GameObject.Find("TourneyLevelManager").GetComponent<TourneyLevelManager>();
+        }
 
         _maxHP = _maxHP * PlayerPrefs.GetFloat("Difficulty");
         _hp = _maxHP;
@@ -226,12 +234,23 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
     public void Finish()
     {
-        _LM.ReduceHP(_hp);
-        if (_enemyType == EnemyTypes.Boss)
+        if ( _LM != null)
         {
-            _LM.ReduceHP(10000);
+            _LM.ReduceHP(_hp);
+            if (_enemyType == EnemyTypes.Boss)
+            {
+                _LM.ReduceHP(10000);
+            }
         }
-        Destroy(gameObject);
+        else
+        {
+            TLM.ReduceHP(_hp);
+            if (_enemyType == EnemyTypes.Boss)
+            {
+                TLM.ReduceHP(10000);
+            }
+        }
+            Destroy(gameObject);
     }
 
     #endregion
@@ -366,7 +385,14 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
     private void Dead()
     {
         Instantiate(_deathEffect, this.transform.position, Quaternion.identity);
-        _LM._coins += _dropCoins;
+        if (_LM != null)
+        {
+            _LM._coins += _dropCoins;
+        }
+        else
+        {
+            TLM._coins += _dropCoins;
+        }
         Destroy(gameObject);
     }
 
