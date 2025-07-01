@@ -9,10 +9,10 @@ public class Tourney : MonoBehaviour
     private SaveDataTourney _saveData;
     private SaveDataTourneyGame _saveDataGame;
 
-    private void Start()
+    private void Awake()
     {
         _saveData = LoadTourney();
-        if ( _saveData == null)
+        if (_saveData == null)
         {
             SaveDataTourney data = new SaveDataTourney();
             _saveData = data;
