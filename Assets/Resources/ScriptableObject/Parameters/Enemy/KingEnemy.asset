@@ -18,7 +18,7 @@ MonoBehaviour:
     \u0433\u043E\u0441 \u043F\u0435\u0440\u0435\u0432\u043E\u0440\u043E\u0442\u0443
     \u0441\u043C\u043E\u0433 \u0437\u0430\u043D\u044F\u0442\u044C \u0442\u0440\u043E\u043D."
   MaxHP: 1000
-  Shield: 0
+  Shield: 10
   Protection: 25
   Speed: 1
   DropCoins: 100

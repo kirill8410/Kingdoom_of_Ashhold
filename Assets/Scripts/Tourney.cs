@@ -66,11 +66,6 @@ public class Tourney : MonoBehaviour
         return null;
     }
 
-    public void StartTourney()
-    {
-        
-    }
-
     #region Сохранение файлов
 
     public void SaveTourney(SaveDataTourney saveData)

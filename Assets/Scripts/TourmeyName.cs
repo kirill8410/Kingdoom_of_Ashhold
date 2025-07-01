@@ -1,22 +1,26 @@
+using TMPro;
 using UnityEngine;
 
 public class TourmeyName : MonoBehaviour
 {
-    public string name;
+    public string Name;
+    public TextMeshProUGUI text;
 
     public void Add(string letter)
     {
-        if(name.Length < 10)
+        if(Name.Length < 10)
         {
-            name += letter;
+            Name += letter;
+            text.text = Name;
         }
     }
 
     public void Remove()
     {
-        if (name.Length > 0)
+        if (Name.Length > 0)
         {
-            name = name.Substring(0, name.Length - 1);
+            Name = Name.Substring(0, Name.Length - 1);
+            text.text = Name;
         }
     }
 }

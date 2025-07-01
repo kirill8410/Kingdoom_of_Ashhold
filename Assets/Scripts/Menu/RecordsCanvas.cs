@@ -9,16 +9,21 @@ public class RecordsCanvas : MonoBehaviour
     private GameObject _prefabPlace;
     private Tourney _tourney;
     private GameObject[] places = new GameObject[10];
-    
+
+    private void Awake()
+    {
+        _tourney = FindFirstObjectByType<Tourney>();
+        if (_tourney == null)// Создаём и получаем Tourney если его нет
+        {
+            _tourney = Tourney.CreateTourney();
+        }
+    }
+
     private void Start()
     {
         _prefabPlace = Resources.Load<GameObject>("Prefabs/TourneyMenu/Place");
 
-        _tourney = FindFirstObjectByType<Tourney>();
-        if ( _tourney == null)// Создаём и получаем Tourney если его нет
-        {
-            _tourney = Tourney.CreateTourney();
-        }
+        
         UpdateRecords();
     }
 

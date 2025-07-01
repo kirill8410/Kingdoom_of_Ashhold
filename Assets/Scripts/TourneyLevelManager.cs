@@ -129,6 +129,8 @@ public class TourneyLevelManager : MonoBehaviour
             {
                 _numberWave += 1;
                 _isWaveContinues = false;
+                PlayerPrefs.SetFloat("Difficulty",(1 + 0.5f * (_numberWave / 30)));
+                PlayerPrefs.Save();
                 Save();
                 GivePoints();
             }
@@ -250,28 +252,21 @@ public class TourneyLevelManager : MonoBehaviour
     {
         Wave wave = new Wave();
         int a;
-        if (_numberWave < 30)
+        if (_numberWave % 10 < 2)
         {
-            if (_numberWave % 10 < 2)
-            {
-                a = 3;
-            }
-            else if (_numberWave % 10 < 4)
-            {
-                a = 6;
-            }
-            else if (_numberWave % 10 < 5)
-            {
-                a = 9;
-            }
-            else if (_numberWave % 10 < 7)
-            {
-                a = 12;
-            }
-            else
-            {
-                a = 15;
-            }
+            a = 3;
+        }
+        else if (_numberWave % 10 < 4)
+        {
+            a = 6;
+        }
+        else if (_numberWave % 10 < 5)
+        {
+            a = 9;
+        }
+        else if (_numberWave % 10 < 7)
+        {
+            a = 12;
         }
         else
         {
@@ -279,11 +274,332 @@ public class TourneyLevelManager : MonoBehaviour
         }
         wave.Enemies = new GameObject[a];
         wave.NumberOfEnemies = new int[a];
-        for (int i = 0; i < a; i++)
+
+        #region Wave
+
+        if (_numberWave % 10 == 0 || _numberWave == 0)
         {
-            wave.Enemies[i] = GetGoblin("Simple_goblin");
-            wave.NumberOfEnemies[i] = a;
+            wave.Enemies[0] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[0] = 5;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[1] = 5;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[2] = 5;
+            }
         }
+        else if (_numberWave % 10 == 1 || _numberWave == 1)
+        {
+            wave.Enemies[0] = GetGoblin("Fast_goblin");
+            wave.NumberOfEnemies[0] = 3;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[1] = 3;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[2] = 3;
+            }
+        }
+        else if (_numberWave % 10 == 2 || _numberWave == 2)
+        {
+            wave.Enemies[0] = GetGoblin("Fast_goblin");
+            wave.NumberOfEnemies[0] = 3;
+            wave.Enemies[3] = GetGoblin("Sila_goblin");
+            wave.NumberOfEnemies[3] = 1;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[1] = 3;
+                wave.Enemies[4] = GetGoblin("Sila_goblin");
+                wave.NumberOfEnemies[4] = 1;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[2] = 3;
+                wave.Enemies[5] = GetGoblin("Sila_goblin");
+                wave.NumberOfEnemies[5] = 1;
+            }
+        }
+        else if (_numberWave % 10 == 3 || _numberWave == 3)
+        {
+            wave.Enemies[0] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[0] = 5;
+            wave.Enemies[3] = GetGoblin("Heal_goblin Variant");
+            wave.NumberOfEnemies[3] = 1;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[1] = 3;
+                wave.Enemies[4] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[4] = 3;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("Sila_goblin");
+                wave.NumberOfEnemies[2] = 2;
+                wave.Enemies[5] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[5] = 3;
+            }
+        }
+        else if (_numberWave % 10 == 4 || _numberWave == 4)
+        {
+            wave.Enemies[0] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[0] = 3;
+            wave.Enemies[3] = GetGoblin("Sila_goblin");
+            wave.NumberOfEnemies[3] = 2;
+            wave.Enemies[6] = GetGoblin("Fast_goblin");
+            wave.NumberOfEnemies[6] = 3;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Sila_goblin");
+                wave.NumberOfEnemies[1] = 2;
+                wave.Enemies[4] = GetGoblin("Heal_goblin Variant");
+                wave.NumberOfEnemies[4] = 1;
+                wave.Enemies[7] = GetGoblin("Sila_goblin");
+                wave.NumberOfEnemies[7] = 1;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[2] = 2;
+                wave.Enemies[5] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[5] = 2;
+                wave.Enemies[8] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[8] = 2;
+            }
+        }
+        else if (_numberWave % 10 == 5 || _numberWave == 5)
+        {
+            wave.Enemies[0] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[0] = 4;
+            wave.Enemies[3] = GetGoblin("Crystal_goblin Variant");
+            wave.NumberOfEnemies[3] = 1;
+            wave.Enemies[6] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[6] = 2;
+            wave.Enemies[9] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[9] = 2;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[1] = 2;
+                wave.Enemies[4] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[4] = 2;
+                wave.Enemies[7] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[7] = 2;
+                wave.Enemies[10] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[10] = 1;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[2] = 1;
+                wave.Enemies[5] = GetGoblin("Sila_goblin");
+                wave.NumberOfEnemies[5] = 2;
+                wave.Enemies[8] = GetGoblin("MakeFast_goblin Variant");
+                wave.NumberOfEnemies[8] = 2;
+                wave.Enemies[11] = GetGoblin("Sila_goblin");
+                wave.NumberOfEnemies[11] = 2;
+            }
+        }
+        else if (_numberWave % 10 == 6 || _numberWave == 6)
+        {
+            wave.Enemies[0] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[0] = 3;
+            wave.Enemies[3] = GetGoblin("Heal_goblin Variant");
+            wave.NumberOfEnemies[3] = 1;
+            wave.Enemies[6] = GetGoblin("Crystal_goblin Variant");
+            wave.NumberOfEnemies[6] = 1;
+            wave.Enemies[9] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[9] = 3;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[1] = 3;
+                wave.Enemies[4] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[4] = 2;
+                wave.Enemies[7] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[7] = 3;
+                wave.Enemies[10] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[10] = 2;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("MakeFast_goblin Variant");
+                wave.NumberOfEnemies[2] = 1;
+                wave.Enemies[5] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[5] = 3;
+                wave.Enemies[8] = GetGoblin("MakeFast_goblin Variant");
+                wave.NumberOfEnemies[8] = 1;
+                wave.Enemies[11] = GetGoblin("Fast_goblin");
+                wave.NumberOfEnemies[11] = 3;
+            }
+        }
+        else if (_numberWave % 10 == 7 || _numberWave == 7)
+        {
+            wave.Enemies[0] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[0] = 3;
+            wave.Enemies[3] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[3] = 3;
+            wave.Enemies[6] = GetGoblin("Crystal_goblin Variant");
+            wave.NumberOfEnemies[6] = 3;
+            wave.Enemies[9] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[9] = 3;
+            wave.Enemies[12] = GetGoblin("Simple_goblin");
+            wave.NumberOfEnemies[12] = 3;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[1] = 2;
+                wave.Enemies[4] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[4] = 2;
+                wave.Enemies[7] = GetGoblin("Crystal_defence_goblin Variant");
+                wave.NumberOfEnemies[7] = 2;
+                wave.Enemies[10] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[10] = 2;
+                wave.Enemies[13] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[13] = 2;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[2] = 1;
+                wave.Enemies[5] = GetGoblin("Crystal_goblin Variant");
+                wave.NumberOfEnemies[5] = 2;
+                wave.Enemies[8] = GetGoblin("MakeFast_goblin Variant");
+                wave.NumberOfEnemies[8] = 2;
+                wave.Enemies[11] = GetGoblin("Heal_goblin Variant");
+                wave.NumberOfEnemies[11] = 2;
+                wave.Enemies[14] = GetGoblin("Simple_goblin");
+                wave.NumberOfEnemies[14] = 1;
+            }
+        }
+        else if (_numberWave % 10 == 8 || _numberWave == 8)
+        {
+            wave.Enemies[0] = GetGoblin("Iron_goblin Variant");
+            wave.NumberOfEnemies[0] = 2;
+            wave.Enemies[3] = GetGoblin("Crystal_defence_goblin Variant");
+            wave.NumberOfEnemies[3] = 2;
+            wave.Enemies[6] = GetGoblin("Iron_goblin Variant");
+            wave.NumberOfEnemies[6] = 2;
+            wave.Enemies[9] = GetGoblin("Crystal_defence_goblin Variant");
+            wave.NumberOfEnemies[9] = 2;
+            wave.Enemies[12] = GetGoblin("Iron_goblin Variant");
+            wave.NumberOfEnemies[12] = 2;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[1] = 2;
+                wave.Enemies[4] = GetGoblin("Crystal_defence_goblin Variant");
+                wave.NumberOfEnemies[4] = 2;
+                wave.Enemies[7] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[7] = 2;
+                wave.Enemies[10] = GetGoblin("Crystal_defence_goblin Variant");
+                wave.NumberOfEnemies[10] = 2;
+                wave.Enemies[13] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[13] = 2;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[2] = 2;
+                wave.Enemies[5] = GetGoblin("Crystal_defence_goblin Variant");
+                wave.NumberOfEnemies[5] = 2;
+                wave.Enemies[8] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[8] = 2;
+                wave.Enemies[11] = GetGoblin("Crystal_defence_goblin Variant");
+                wave.NumberOfEnemies[11] = 2;
+                wave.Enemies[14] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[14] = 2;
+            }
+        }
+        else if ((_numberWave % 10 == 9 || _numberWave == 9) && _numberWave + 1 % 30 != 0)
+        {
+            wave.Enemies[0] = GetGoblin("Iron_goblin Variant");
+            wave.NumberOfEnemies[0] = 2;
+            wave.Enemies[3] = GetGoblin("Crystal_defence_goblin Variant");
+            wave.NumberOfEnemies[3] = 2;
+            wave.Enemies[6] = GetGoblin("Heal_goblin Variant");
+            wave.NumberOfEnemies[6] = 2;
+            wave.Enemies[9] = GetGoblin("Crystal_defence_goblin Variant");
+            wave.NumberOfEnemies[9] = 2;
+            wave.Enemies[12] = GetGoblin("Iron_goblin Variant");
+            wave.NumberOfEnemies[12] = 2;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[1] = 2;
+                wave.Enemies[4] = GetGoblin("Crystal_defence_goblin Variant");
+                wave.NumberOfEnemies[4] = 2;
+                wave.Enemies[7] = GetGoblin("MakeFast_goblin Variant");
+                wave.NumberOfEnemies[7] = 2;
+                wave.Enemies[10] = GetGoblin("Crystal_defence_goblin Variant");
+                wave.NumberOfEnemies[10] = 2;
+                wave.Enemies[13] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[13] = 2;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[2] = 2;
+                wave.Enemies[5] = GetGoblin("Crystal_defence_goblin Variant");
+                wave.NumberOfEnemies[5] = 2;
+                wave.Enemies[8] = GetGoblin("Crystal_goblin Variant");
+                wave.NumberOfEnemies[8] = 2;
+                wave.Enemies[11] = GetGoblin("Crystal_defence_goblin Variant");
+                wave.NumberOfEnemies[11] = 2;
+                wave.Enemies[14] = GetGoblin("Iron_goblin Variant");
+                wave.NumberOfEnemies[14] = 2;
+            }
+        }
+        else if (_numberWave + 1 % 30 == 0)
+        {
+            wave.Enemies[0] = GetGoblin("Gold_goblin Variant");
+            wave.NumberOfEnemies[0] = 1;
+            wave.Enemies[3] = GetGoblin("Gold_goblin Variant");
+            wave.NumberOfEnemies[3] = 1;
+            wave.Enemies[6] = GetGoblin("Gold_goblin Variant");
+            wave.NumberOfEnemies[6] = 1;
+            wave.Enemies[9] = GetGoblin("Gold_goblin Variant");
+            wave.NumberOfEnemies[9] = 1;
+            wave.Enemies[12] = GetGoblin("King_goblin Variant");
+            wave.NumberOfEnemies[12] = 1;
+            if (_numberWave >= 10)
+            {
+                wave.Enemies[1] = GetGoblin("Gold_goblin Variant");
+                wave.NumberOfEnemies[1] = 1;
+                wave.Enemies[4] = GetGoblin("Gold_goblin Variant");
+                wave.NumberOfEnemies[4] = 1;
+                wave.Enemies[7] = GetGoblin("Gold_goblin Variant");
+                wave.NumberOfEnemies[7] = 1;
+                wave.Enemies[10] = GetGoblin("Gold_goblin Variant");
+                wave.NumberOfEnemies[10] = 1;
+                wave.Enemies[13] = GetGoblin("King_goblin Variant");
+                wave.NumberOfEnemies[13] = 1;
+            }
+            if (_numberWave >= 20)
+            {
+                wave.Enemies[2] = GetGoblin("Gold_goblin Variant");
+                wave.NumberOfEnemies[2] = 1;
+                wave.Enemies[5] = GetGoblin("Gold_goblin Variant");
+                wave.NumberOfEnemies[5] = 1;
+                wave.Enemies[8] = GetGoblin("Gold_goblin Variant");
+                wave.NumberOfEnemies[8] = 1;
+                wave.Enemies[11] = GetGoblin("Gold_goblin Variant");
+                wave.NumberOfEnemies[11] = 1;
+                wave.Enemies[14] = GetGoblin("King_goblin Variant");
+                wave.NumberOfEnemies[14] = 1;
+            }
+        }
+
+        #endregion
         return wave;
     }
 
