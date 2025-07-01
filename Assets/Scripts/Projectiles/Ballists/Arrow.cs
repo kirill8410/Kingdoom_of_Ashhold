@@ -22,7 +22,7 @@ public class Arrow : MonoBehaviour // Обычная стрела
 
     private void OnTriggerEnter(Collider other) // Нанесение урона при поподании по врагу
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && other.gameObject == Target.gameObject)
         {
             if (Ballista.GetTowerType() == Tower.TowerTypes.SniperBallist)
             {
@@ -55,6 +55,10 @@ public class Arrow : MonoBehaviour // Обычная стрела
                 Target.ReduceHP(Ballista.GetDamage(), Ballista.GetDamageType(), Ballista.GetBreakingProtection());
                 print(Ballista.GetDamage());
             }
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.tag == "Wall")
+        {
             Destroy(gameObject);
         }
     }

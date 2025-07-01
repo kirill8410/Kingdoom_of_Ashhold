@@ -9,11 +9,6 @@ public class RecordsCanvas : MonoBehaviour
     private GameObject _prefabPlace;
     private Tourney _tourney;
     private GameObject[] places = new GameObject[10];
-    private enum RecordsCanvasTypes
-    {
-        Public, Local
-    }
-    [SerializeField] RecordsCanvasTypes _recordsCanvasType;
     
     private void Start()
     {
@@ -34,39 +29,18 @@ public class RecordsCanvas : MonoBehaviour
 
     private void UpdateRecords()
     {
-        if (_recordsCanvasType == RecordsCanvasTypes.Public)
-        {
-            int[] records = new int[10];
+        int[] records = new int[10];
             
-            foreach (string key in _tourney.GetSaveData().PublicRecords.Keys)
-            {
-                int[] recs = records;
-                foreach (int rec in recs)
-                {
-                    if (rec == 0 || _tourney.GetSaveData().PublicRecords[key] > rec)
-                    {
-                        int recI = Array.IndexOf(recs, rec);
-                        CreatePlace(records, key, recI);
-                        break;
-                    }
-                }
-            }
-        }
-        else
+        foreach (string key in _tourney.GetTourney().Records.Keys)
         {
-            int[] records = new int[10];
-
-            foreach (string key in _tourney.GetSaveData().LocalRecords.Keys)
+            int[] recs = records;
+            foreach (int rec in recs)
             {
-                int[] recs = records;
-                foreach (int rec in recs)
+                if (rec == 0 || _tourney.GetTourney().Records[key] > rec)
                 {
-                    if (rec == 0 || _tourney.GetSaveData().LocalRecords[key] > rec)
-                    {
-                        int recI = Array.IndexOf(recs, rec);
-                        CreatePlace(records, key, recI);
-                        break;
-                    }
+                    int recI = Array.IndexOf(recs, rec);
+                    CreatePlace(records, key, recI);
+                    break;
                 }
             }
         }
@@ -84,8 +58,8 @@ public class RecordsCanvas : MonoBehaviour
         TextMeshProUGUI name = place.GetNamedChild("Name").GetComponent<TextMeshProUGUI>();
         name.text = key;
         TextMeshProUGUI record = place.GetNamedChild("Record").GetComponent<TextMeshProUGUI>();
-        record.text = _tourney.GetSaveData().PublicRecords[key].ToString();
-        records[recI] = _tourney.GetSaveData().PublicRecords[key];
+        record.text = _tourney.GetTourney().Records[key].ToString();
+        records[recI] = _tourney.GetTourney().Records[key];
         places[recI] = place;
     }
 }

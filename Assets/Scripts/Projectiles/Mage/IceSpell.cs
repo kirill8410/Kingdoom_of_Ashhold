@@ -21,10 +21,14 @@ public class IceSpell : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) // Ќанесение урона при поподании по врагу
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && other.gameObject == Target.gameObject)
         {
             Target.ReduceHP(Mage.GetDamage(), Mage.GetDamageType(), Mage.GetBreakingProtection());
             Target.Ice(slow);
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.tag == "Wall")
+        {
             Destroy(gameObject);
         }
     }

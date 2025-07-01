@@ -11,6 +11,7 @@ public class Base : MonoBehaviour
 
     // Менеджеры
     private LevelManager LM;
+    private TourneyLevelManager TLM;
     private SoundManager SM;
 
     private TowerFunctions _tower;
@@ -135,6 +136,10 @@ public class Base : MonoBehaviour
         {
             LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         }
+        else
+        {
+            TLM = GameObject.Find("TourneyLevelManager").GetComponent<TourneyLevelManager>();
+        }
         if (GameObject.Find("SoundManager"))
         {
             SM = GameObject.Find("SoundManager").GetComponent<SoundManager>();
@@ -157,7 +162,10 @@ public class Base : MonoBehaviour
         }
         _evolutionButtons = evolutionButtons.ToArray<GameObject>();
 
-        GetComponent<BuildButtonsAnimation>().SetIcons(_evolutionButtons);
+        if (evolutionButtons.Count > 0)
+        {
+            GetComponent<BuildButtonsAnimation>().SetIcons(_evolutionButtons);
+        }
 
         #endregion
 
@@ -262,21 +270,43 @@ public class Base : MonoBehaviour
     {
         if (_base != null)
         {
-            if (LM._coins >= _selectTower.Price_1)
+            if (LM != null)
             {
-                GetComponent<AudioSource>().clip = _soundBuy;
-                SM.PlaySound(GetComponent<AudioSource>());
+                if (LM._coins >= _selectTower.Price_1)
+                {
+                    GetComponent<AudioSource>().clip = _soundBuy;
+                    SM.PlaySound(GetComponent<AudioSource>());
 
-                LM._coins -= _selectTower.Price_1;
-                Instantiate(_selectTower.TowerPrefab, _base.transform.position, Quaternion.identity);
-                Destroy(_information, 0.1f);
-                Destroy(_base, 0.1f);
+                    LM._coins -= _selectTower.Price_1;
+                    Instantiate(_selectTower.TowerPrefab, _base.transform.position, Quaternion.identity);
+                    Destroy(_information, 0.1f);
+                    Destroy(_base, 0.1f);
+                }
+                else
+                {
+                    GetComponent<AudioSource>().clip = _soundError;
+                    SM.PlaySound(GetComponent<AudioSource>());
+                }
             }
             else
             {
-                GetComponent<AudioSource>().clip = _soundError;
-                SM.PlaySound(GetComponent<AudioSource>());
+                if (TLM._coins >= _selectTower.Price_1)
+                {
+                    GetComponent<AudioSource>().clip = _soundBuy;
+                    SM.PlaySound(GetComponent<AudioSource>());
+
+                    TLM._coins -= _selectTower.Price_1;
+                    Instantiate(_selectTower.TowerPrefab, _base.transform.position, Quaternion.identity);
+                    Destroy(_information, 0.1f);
+                    Destroy(_base, 0.1f);
+                }
+                else
+                {
+                    GetComponent<AudioSource>().clip = _soundError;
+                    SM.PlaySound(GetComponent<AudioSource>());
+                }
             }
+            
         }
     }
 
@@ -327,42 +357,86 @@ public class Base : MonoBehaviour
 
     public void LevelUp() // Повышение уровня башни
     {
-        if (_tower.TowerLevel == 1)
+        if (LM != null)
         {
-            if (LM._coins >= _tower.Parameters.Price_2)
+            if (_tower.TowerLevel == 1)
             {
-                GetComponent<AudioSource>().clip = _soundBuy;
-                SM.PlaySound(GetComponent<AudioSource>());
+                if (LM._coins >= _tower.Parameters.Price_2)
+                {
+                    GetComponent<AudioSource>().clip = _soundBuy;
+                    SM.PlaySound(GetComponent<AudioSource>());
 
-                LM._coins -= _tower.Parameters.Price_2;
-                _tower.LevelUp();
+                    LM._coins -= _tower.Parameters.Price_2;
+                    _tower.LevelUp();
 
-                _informationLevelUp.SetActive(false);
-                _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
+                    _informationLevelUp.SetActive(false);
+                    _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
+                }
+                else
+                {
+                    GetComponent<AudioSource>().clip = _soundError;
+                    SM.PlaySound(GetComponent<AudioSource>());
+                }
             }
-            else
+            else if (_tower.TowerLevel == 2)
             {
-                GetComponent<AudioSource>().clip = _soundError;
-                SM.PlaySound(GetComponent<AudioSource>());
+                if (LM._coins >= _tower.Parameters.Price_2)
+                {
+                    GetComponent<AudioSource>().clip = _soundBuy;
+                    SM.PlaySound(GetComponent<AudioSource>());
+
+                    LM._coins -= _tower.Parameters.Price_2;
+                    _tower.LevelUp();
+
+                    _informationLevelUp.SetActive(false);
+                    _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
+                }
+                else
+                {
+                    GetComponent<AudioSource>().clip = _soundError;
+                    SM.PlaySound(GetComponent<AudioSource>());
+                }
             }
         }
-        else if (_tower.TowerLevel == 2)
+        else
         {
-            if (LM._coins >= _tower.Parameters.Price_2)
+            if (_tower.TowerLevel == 1)
             {
-                GetComponent<AudioSource>().clip = _soundBuy;
-                SM.PlaySound(GetComponent<AudioSource>());
+                if (TLM._coins >= _tower.Parameters.Price_2)
+                {
+                    GetComponent<AudioSource>().clip = _soundBuy;
+                    SM.PlaySound(GetComponent<AudioSource>());
 
-                LM._coins -= _tower.Parameters.Price_2;
-                _tower.LevelUp();
+                    TLM._coins -= _tower.Parameters.Price_2;
+                    _tower.LevelUp();
 
-                _informationLevelUp.SetActive(false);
-                _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
+                    _informationLevelUp.SetActive(false);
+                    _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
+                }
+                else
+                {
+                    GetComponent<AudioSource>().clip = _soundError;
+                    SM.PlaySound(GetComponent<AudioSource>());
+                }
             }
-            else
+            else if (_tower.TowerLevel == 2)
             {
-                GetComponent<AudioSource>().clip = _soundError;
-                SM.PlaySound(GetComponent<AudioSource>());
+                if (TLM._coins >= _tower.Parameters.Price_2)
+                {
+                    GetComponent<AudioSource>().clip = _soundBuy;
+                    SM.PlaySound(GetComponent<AudioSource>());
+
+                    TLM._coins -= _tower.Parameters.Price_2;
+                    _tower.LevelUp();
+
+                    _informationLevelUp.SetActive(false);
+                    _selection.transform.localPosition = new Vector3(0f, 135f, -150f);
+                }
+                else
+                {
+                    GetComponent<AudioSource>().clip = _soundError;
+                    SM.PlaySound(GetComponent<AudioSource>());
+                }
             }
         }
     }

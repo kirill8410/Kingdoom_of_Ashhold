@@ -5,6 +5,7 @@ using UnityEngine.UIElements.Experimental;
 public class EnemyParameters : ScriptableObject
 {
     public string Name;
+    [TextArea] public string Description;
 
     [Space]
 

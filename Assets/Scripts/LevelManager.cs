@@ -23,28 +23,23 @@ public class LevelManager : MonoBehaviour
 
     private Transform _enemySpawn;
     private Wave[] _waves;
-    
-    private bool _isTourney = false;
 
     private PlayerUI _playerUI;
 
     private void Awake()
     {
-        if (!_isTourney)
+        if (_numberLevel == 0)
         {
-            if (_numberLevel == 0)
-            {
-                _waves = Resources.LoadAll<Wave>($"ScriptableObject/Wave/Level_{_numberLevel + 1}");
-            }
-            else
-            {
-                _waves = Resources.LoadAll<Wave>($"ScriptableObject/Wave/Level_{_numberLevel}");
-            }
+            _waves = Resources.LoadAll<Wave>($"ScriptableObject/Wave/Level_{_numberLevel + 1}");
+        }
+        else
+        {
+            _waves = Resources.LoadAll<Wave>($"ScriptableObject/Wave/Level_{_numberLevel}");
+        }
 
-            if (GameObject.FindGameObjectWithTag("EnemySpawnPoint") != null)
-            {
-                _enemySpawn = GameObject.FindGameObjectWithTag("EnemySpawnPoint").transform;
-            }
+        if (GameObject.FindGameObjectWithTag("EnemySpawnPoint") != null)
+        {
+            _enemySpawn = GameObject.FindGameObjectWithTag("EnemySpawnPoint").transform;
         }
         _playerUI = FindFirstObjectByType<PlayerUI>();
         if (_playerUI == null)
@@ -171,14 +166,7 @@ public class LevelManager : MonoBehaviour
 
     public void ReturtToLobby()
     {
-        if (_isTourney)
-        {
-            SceneManager.LoadSceneAsync("TourneyLobby");
-        }
-        else
-        {
-            SceneManager.LoadSceneAsync("GameLobby");
-        }   
+        SceneManager.LoadSceneAsync("GameLobby");
     }
 
     public void StartWave()

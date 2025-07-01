@@ -18,6 +18,7 @@ public class PlayerUI : MonoBehaviour
     #endregion
 
     private LevelManager LM;
+    private TourneyLevelManager TLM;
     private GameObject _player;
 
     private TextMeshProUGUI _coinsText;
@@ -65,7 +66,14 @@ public class PlayerUI : MonoBehaviour
     private void Start()
     {
         _inputActions = Resources.Load<InputActionAsset>("InputActions");
-        LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        if (GameObject.Find("LevelManager") != null)
+        {
+            LM = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        }
+        else
+        {
+            TLM = GameObject.Find("TourneyLevelManager").GetComponent<TourneyLevelManager>();
+        }
         _player = FindFirstObjectByType<XROrigin>().gameObject;
 
         #region Actions
@@ -123,10 +131,16 @@ public class PlayerUI : MonoBehaviour
         _waveInformationButton.onClick.AddListener(InformationWave);
         _startWaveButton.onClick.AddListener(StartWave);
         _exitButton.onClick.AddListener(Exit);
+        if (LM != null)
+        {
+            _finishButton.onClick.AddListener(LM.ReturtToLobby);
+        }
+        else
+        {
+            _finishButton.onClick.AddListener(TLM.ReturtToLobby);
+        }
 
-        _finishButton.onClick.AddListener(LM.ReturtToLobby);
-
-        #endregion
+            #endregion
 
         #region Question
 
@@ -135,6 +149,7 @@ public class PlayerUI : MonoBehaviour
         _noButton = _subsectionQuestion.GetNamedChild("No Button").GetComponent<Button>();
 
         _noButton.onClick.AddListener(StabilizeMenu);
+
         #endregion
 
         StabilizeMenu();
@@ -142,9 +157,18 @@ public class PlayerUI : MonoBehaviour
 
     private void Update()
     {
-        _coinsText.text = LM._coins.ToString();
-        _HPText.text = LM.GetHP().ToString();
-        _waveText.text = $"{LM.GetWave()}/{LM.GetWaves().Length}";
+        if (LM != null)
+        {
+            _coinsText.text = LM._coins.ToString();
+            _HPText.text = LM.GetHP().ToString();
+            _waveText.text = $"{LM.GetWave()}/{LM.GetWaves().Length}";
+        }
+        else
+        {
+            _coinsText.text = TLM._coins.ToString();
+            _HPText.text = TLM.GetHP().ToString();
+            _waveText.text = $"{TLM.GetNumberWave()}";
+        }
 
         #region Движение
 
@@ -194,13 +218,27 @@ public class PlayerUI : MonoBehaviour
 
         #region Кнопки
 
-        if (LM.GetWaveContinues())
+        if (LM != null)
         {
-            _startWaveButton.enabled = false;
+            if (LM.GetWaveContinues())
+            {
+                _startWaveButton.enabled = false;
+            }
+            else
+            {
+                _startWaveButton.enabled = true;
+            }
         }
         else
         {
-            _startWaveButton.enabled = true;
+            if (TLM.GetWaveContinues())
+            {
+                _startWaveButton.enabled = false;
+            }
+            else
+            {
+                _startWaveButton.enabled = true;
+            }
         }
 
         #endregion
@@ -221,25 +259,79 @@ public class PlayerUI : MonoBehaviour
 
     private void SkipWave()
     {
-        if (LM.GetWaveContinues())
+        if (LM != null)
         {
-            _subsectionMenu.transform.localPosition = new Vector3(-80, 0, 0);
+            if (LM.GetWaveContinues())
+            {
+                _subsectionMenu.transform.localPosition = new Vector3(-80, 0, 0);
 
-            _subsectionQuestion.SetActive(true);
-            _subsectionQuestion.transform.localPosition = new Vector3(50, 0, 0);
+                _subsectionQuestion.SetActive(true);
+                _subsectionQuestion.transform.localPosition = new Vector3(50, 0, 0);
 
-            _questionText.text = "Вы уверены что хотите закончить волну?";
-            _yesButton.onClick.AddListener(LM.SkipWave);
+                _questionText.text = "Вы уверены что хотите закончить волну?";
+                _yesButton.onClick.AddListener(LM.SkipWave);
+            }
+        }
+        else
+        {
+            if (TLM.GetWaveContinues())
+            {
+                _subsectionMenu.transform.localPosition = new Vector3(-80, 0, 0);
+
+                _subsectionQuestion.SetActive(true);
+                _subsectionQuestion.transform.localPosition = new Vector3(50, 0, 0);
+
+                _questionText.text = "Вы уверены что хотите закончить волну?";
+                _yesButton.onClick.AddListener(TLM.SkipWave);
+            }
         }
     }
 
     private void InformationWave()
     {
-        if (!_subsectionWaveInformation.activeSelf)
+        if (LM != null)
         {
-            if (LM.GetWave() < LM.GetWaves().Length)
+            if (!_subsectionWaveInformation.activeSelf)
             {
-                Wave nextWave = LM.GetWaves()[LM.GetWave()];
+                if (LM.GetWave() < LM.GetWaves().Length)
+                {
+                    Wave nextWave = LM.GetWaves()[LM.GetWave()];
+                    Dictionary<string, int> enemyes = new Dictionary<string, int>();
+                    for (int i = 0; i < nextWave.Enemies.Length; i++)
+                    {
+                        if (enemyes.ContainsKey(nextWave.Enemies[i].GetComponent<Enemy>().GetName()))
+                        {
+                            enemyes[nextWave.Enemies[i].GetComponent<Enemy>().GetName()] += nextWave.NumberOfEnemies[i];
+                        }
+                        else
+                        {
+                            enemyes.Add(nextWave.Enemies[i].GetComponent<Enemy>().GetName(), nextWave.NumberOfEnemies[i]);
+                        }
+                    }
+                    string text = "";
+                    foreach (KeyValuePair<string, int> kvp in enemyes)
+                    {
+                        text += $"{kvp.Key}: {kvp.Value}\n";
+                    }
+
+                    _subsectionMenu.transform.localPosition = new Vector3(80, 0, 0);
+
+                    _subsectionWaveInformation.SetActive(true);
+                    _subsectionWaveInformation.transform.localPosition = new Vector3(-50, 0, 0);
+
+                    _waveInformationText.text = text;
+                }
+            }
+            else
+            {
+                StabilizeMenu();
+            }
+        }
+        else
+        {
+            if (!_subsectionWaveInformation.activeSelf)
+            {
+                Wave nextWave = TLM.GetWave();
                 Dictionary<string, int> enemyes = new Dictionary<string, int>();
                 for (int i = 0; i < nextWave.Enemies.Length; i++)
                 {
@@ -265,17 +357,25 @@ public class PlayerUI : MonoBehaviour
 
                 _waveInformationText.text = text;
             }
-        }
-        else
-        {
-            StabilizeMenu();
+            else
+            {
+                StabilizeMenu();
+            }
         }
     }
 
     private void StartWave()
     {
-        LM.StartWave();
-        StabilizeMenu();
+        if (LM != null)
+        {
+            LM.StartWave();
+            StabilizeMenu();
+        }
+        else
+        {
+            TLM.StartWave();
+            StabilizeMenu();
+        }
     }
 
     private void Exit()
@@ -286,7 +386,14 @@ public class PlayerUI : MonoBehaviour
         _subsectionQuestion.transform.localPosition = new Vector3(50, 0, 0);
 
         _questionText.text = "Вы уверены что хотите выйти?";
-        _yesButton.onClick.AddListener(LM.ReturtToLobby);
+        if (LM != null)
+        {
+            _yesButton.onClick.AddListener(LM.ReturtToLobby);
+        }
+        else
+        {
+            _yesButton.onClick.AddListener(TLM.ReturtToLobby);
+        }
     }
 
     private void StabilizeMenu()

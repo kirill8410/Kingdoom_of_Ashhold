@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TourneyLobby.unity
     guid: 857123e18ca3b424ca38f94030cf4d4e
+  - enabled: 1
+    path: Assets/Scenes/Tourney.unity
+    guid: feffb896d22660746b858856b55da41d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}

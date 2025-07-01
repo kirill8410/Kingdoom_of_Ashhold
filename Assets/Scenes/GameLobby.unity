@@ -1140,6 +1140,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1886207371268302276, guid: feee75ce24b66fd48a8e436f71b060e2, type: 3}
+      propertyPath: _isTestMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886207371268302276, guid: feee75ce24b66fd48a8e436f71b060e2, type: 3}
       propertyPath: waves.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -1314,6 +1318,67 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &2793135666749462366
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3042788910547358, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042788910547358, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042788910547358, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.909
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042788910547358, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042788910547358, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042788910547358, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042788910547358, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042788910547358, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042788910547358, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042788910547358, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036627273195074839, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_Name
+      value: Goblins Information
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480797474544733433, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1692394367}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 47a05205f2c8b8f4fa149a522bfce45c, type: 3}
 --- !u!4 &3745622627869534879
 Transform:
   m_ObjectHideFlags: 0
@@ -1402,3 +1467,4 @@ SceneRoots:
   - {fileID: 327308989}
   - {fileID: 1264483263}
   - {fileID: 1869903989}
+  - {fileID: 2793135666749462366}

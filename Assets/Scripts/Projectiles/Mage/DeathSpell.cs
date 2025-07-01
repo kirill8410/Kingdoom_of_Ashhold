@@ -31,5 +31,9 @@ public class DeathSpell : MonoBehaviour
         {
             other.GetComponent<Enemy>().Curse(Mage.GetDamage(), Mage.GetDamage());
         }
+        else if (other.gameObject.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
     }
 }
