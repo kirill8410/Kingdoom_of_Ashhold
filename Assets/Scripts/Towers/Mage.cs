@@ -171,16 +171,16 @@ public class Mage : Tower, TowerFunctions
     {
         if (TowerLevel == 1)
         {
-            _damage = Parameters.Damage_2;
-            _attackDistance = Parameters.AttackDistance_2;
-            _attackSpeed = Parameters.AttackSpeed_2;
+            _damage = _parameters.Damage_2;
+            _attackDistance = _parameters.AttackDistance_2;
+            _attackSpeed = _parameters.AttackSpeed_2;
             TowerLevel = 2;
         }
         else if (TowerLevel == 2)
         {
-            _damage = Parameters.Damage_3;
-            _attackDistance = Parameters.AttackDistance_3;
-            _attackSpeed = Parameters.AttackSpeed_3;
+            _damage = _parameters.Damage_3;
+            _attackDistance = _parameters.AttackDistance_3;
+            _attackSpeed = _parameters.AttackSpeed_3;
             TowerLevel = 3;
         }
     }

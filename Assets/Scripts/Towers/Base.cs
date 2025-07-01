@@ -296,7 +296,7 @@ public class Base : MonoBehaviour
                     SM.PlaySound(GetComponent<AudioSource>());
 
                     TLM._coins -= _selectTower.Price_1;
-                    Instantiate(_selectTower.TowerPrefab, _base.transform.position, Quaternion.identity);
+                    Instantiate(_selectTower.TowerPrefab, GetComponentInParent<TowerSpawn>().gameObject.transform);
                     Destroy(_information, 0.1f);
                     Destroy(_base, 0.1f);
                 }

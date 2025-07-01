@@ -16,6 +16,11 @@ public class Tourney : MonoBehaviour
         {
             SaveDataTourney data = new SaveDataTourney();
             _saveData = data;
+            for (int i = 0; i < 10; i++)
+            {
+                _saveData.Records[i] = 0;
+                _saveData.Names[i] = "None";
+            }
             SaveTourney(_saveData);
         }
     }
@@ -173,7 +178,8 @@ public class Tourney : MonoBehaviour
 [System.Serializable]
 public class SaveDataTourney
 {
-    public Dictionary<string, int> Records;
+    public string[] Names = new string[10];
+    public int[] Records = new int[10];
 }
 
 [System.Serializable]

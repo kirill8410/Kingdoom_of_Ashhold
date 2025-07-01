@@ -94,6 +94,10 @@ public class TourneyLevelManager : MonoBehaviour
             _saveData.Coins = 100;
             _saveData.Wave = 0;
             _saveData.Points = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                _saveData.Towers[i] = Tower.TowerTypes.Base;
+            }
             _tourney.SaveTourneyGame(_saveData);
         }
         PlayerPrefs.SetFloat("Difficulty", 1);
@@ -104,14 +108,39 @@ public class TourneyLevelManager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
+        Load();
+        
+    }
 
+    private void Update()
+    {
+        if (_HP <= 0)
+        {
+            _HP = 0;
+            Lose();
+        }
+        if (_isWaveContinues)
+        {
+            Enemy[] e = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+            if (e.Length == 0 && !_lose)
+            {
+                _numberWave += 1;
+                _isWaveContinues = false;
+                Save();
+                Points();
+            }
+        }
+    }
+
+    private void Load()
+    {
         #region Load
 
         #region Tower
 
         for (int i = 0; i < 10; i++)
         {
-            if (_bases[i] == null)
+            if (_saveData.Towers[i] == Tower.TowerTypes.Base)
             {
                 GameObject t = Instantiate(_base, _bases[i].transform);
                 t.transform.localPosition = Vector3.zero;
@@ -171,7 +200,7 @@ public class TourneyLevelManager : MonoBehaviour
                     tower.transform.localPosition = Vector3.zero;
                     tower.transform.localRotation = Quaternion.identity;
                 }
-            }  
+            }
         }
 
         #endregion
@@ -184,26 +213,6 @@ public class TourneyLevelManager : MonoBehaviour
         #endregion
     }
 
-    private void Update()
-    {
-        if (_HP <= 0)
-        {
-            _HP = 0;
-            Lose();
-        }
-        if (_isWaveContinues)
-        {
-            Enemy[] e = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-            if (e.Length == 0 && !_lose)
-            {
-                _numberWave += 1;
-                _isWaveContinues = false;
-                Save();
-                Points();
-            }
-        }
-    }
-
     private void Save()
     {
         _saveData.Wave = _numberWave;
@@ -213,8 +222,17 @@ public class TourneyLevelManager : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-
+            if (_bases[i].GetComponentInChildren<TowerFunctions>() != null)
+            {
+                _saveData.Towers[i] = _bases[i].GetComponentInChildren<TowerFunctions>().Parameters.TowerType;
+                _saveData.TowerLevel[i] = _bases[i].GetComponentInChildren<TowerFunctions>().TowerLevel;
+            }
+            else
+            {
+                _saveData.Towers[i] = Tower.TowerTypes.Base;
+            }
         }
+        _tourney.SaveTourneyGame(_saveData);
     }
 
     private void Points()
@@ -320,6 +338,7 @@ public class TourneyLevelManager : MonoBehaviour
         _saveData.Points = _points;
         _tourney.SaveTourneyGame(_saveData);
         _playerUI.Lose();
+        Save();
     }
 
     public void ReturtToLobby()

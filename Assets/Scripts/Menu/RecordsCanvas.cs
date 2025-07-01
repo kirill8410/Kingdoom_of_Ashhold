@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
@@ -22,44 +22,30 @@ public class RecordsCanvas : MonoBehaviour
         UpdateRecords();
     }
 
-    private void Update()
-    {
-        UpdateRecords();
-    }
-
     private void UpdateRecords()
     {
-        int[] records = new int[10];
-            
-        foreach (string key in _tourney.GetTourney().Records.Keys)
+        if ( _tourney.GetTourney() != null)
         {
-            int[] recs = records;
-            foreach (int rec in recs)
+            for (int i = 0; i < 10; i++)
             {
-                if (rec == 0 || _tourney.GetTourney().Records[key] > rec)
-                {
-                    int recI = Array.IndexOf(recs, rec);
-                    CreatePlace(records, key, recI);
-                    break;
-                }
+                CreatePlace(i); ;
             }
         }
     }
 
-    private void CreatePlace(int[] records, string key, int recI)
+    private void CreatePlace(int i)
     {
-        if (places[recI] != null)
+        if (places[i] != null)
         {
-            Destroy(places[recI]);
-            places[recI] = null;
+            Destroy(places[i]);
+            places[i] = null;
         }
         GameObject place = Instantiate(_prefabPlace, gameObject.GetNamedChild("Texts").transform);
-        place.transform.localPosition = new Vector3(0, 100 - 20 * recI, 0);
+        place.transform.localPosition = new Vector3(0, 100 - 20 * i, 0);
         TextMeshProUGUI name = place.GetNamedChild("Name").GetComponent<TextMeshProUGUI>();
-        name.text = key;
+        name.text = _tourney.GetTourney().Names[i];
         TextMeshProUGUI record = place.GetNamedChild("Record").GetComponent<TextMeshProUGUI>();
-        record.text = _tourney.GetTourney().Records[key].ToString();
-        records[recI] = _tourney.GetTourney().Records[key];
-        places[recI] = place;
+        record.text = _tourney.GetTourney().Records[i].ToString();
+        places[i] = place;
     }
 }

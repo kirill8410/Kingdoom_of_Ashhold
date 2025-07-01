@@ -21,7 +21,7 @@ public class Tower : MonoBehaviour// Общие пораметры всех башен
     {
         SimpleBallist, DoubleBallist, BigBallist, PoisonBallist, SniperBallist,
         SimpleMage, IceMage, GodMage, FireMage, DeathMage,
-        SimpleMortar, FireMortar, RoketMortar, ShrapnelMortar
+        SimpleMortar, FireMortar, RoketMortar, ShrapnelMortar, Base
     }
 
     protected DamageTypes _damageType;
