@@ -335,14 +335,17 @@ public class PlayerUI : MonoBehaviour
                 Dictionary<string, int> enemyes = new Dictionary<string, int>();
                 for (int i = 0; i < nextWave.Enemies.Length; i++)
                 {
-                    if (enemyes.ContainsKey(nextWave.Enemies[i].GetComponent<Enemy>().GetName()))
+                    if (nextWave.Enemies[i] != null)
                     {
-                        enemyes[nextWave.Enemies[i].GetComponent<Enemy>().GetName()] += nextWave.NumberOfEnemies[i];
-                    }
-                    else
-                    {
-                        enemyes.Add(nextWave.Enemies[i].GetComponent<Enemy>().GetName(), nextWave.NumberOfEnemies[i]);
-                    }
+                        if (enemyes.ContainsKey(nextWave.Enemies[i].GetComponent<Enemy>().GetName()))
+                        {
+                            enemyes[nextWave.Enemies[i].GetComponent<Enemy>().GetName()] += nextWave.NumberOfEnemies[i];
+                        }
+                        else
+                        {
+                            enemyes.Add(nextWave.Enemies[i].GetComponent<Enemy>().GetName(), nextWave.NumberOfEnemies[i]);
+                        }
+                    }       
                 }
                 string text = "";
                 foreach (KeyValuePair<string, int> kvp in enemyes)
