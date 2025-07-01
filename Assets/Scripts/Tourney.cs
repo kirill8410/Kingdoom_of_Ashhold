@@ -71,7 +71,7 @@ public class Tourney : MonoBehaviour
     public void SaveTourney(SaveDataTourney saveData)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(/*"D:"*/Application.persistentDataPath + "/Tourney.dat");
+        FileStream file = File.Create("D:"/*Application.persistentDataPath*/ + "/Tourney.dat");
         SaveDataTourney data = saveData;
         bf.Serialize(file, data);
         file.Close();;
@@ -88,7 +88,7 @@ public class Tourney : MonoBehaviour
     public void SaveTourneyGame(SaveDataTourneyGame saveData)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(/*"D:"*/Application.persistentDataPath + "/TourneyGame.dat");
+        FileStream file = File.Create("D:"/*Application.persistentDataPath*/ + "/TourneyGame.dat");
         SaveDataTourneyGame data = saveData;
         bf.Serialize(file, data);
         file.Close(); ;
@@ -108,10 +108,10 @@ public class Tourney : MonoBehaviour
 
     public SaveDataTourney LoadTourney()
     {
-        if (File.Exists(/*"D:"*/Application.persistentDataPath + "/Tourney.dat"))
+        if (File.Exists("D:"/*Application.persistentDataPath*/ + "/Tourney.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(/*"D:"*/Application.persistentDataPath + "/Tourney.dat", FileMode.Open);
+            FileStream file = File.Open("D:"/*Application.persistentDataPath*/ + "/Tourney.dat", FileMode.Open);
             SaveDataTourney data = (SaveDataTourney)bf.Deserialize(file);
             file.Close();
             return data;
@@ -139,10 +139,10 @@ public class Tourney : MonoBehaviour
 
     public SaveDataTourneyGame LoadTourneyGame()
     {
-        if (File.Exists(/*"D:"*/Application.persistentDataPath + "/TourneyGame.dat"))
+        if (File.Exists("D:"/*Application.persistentDataPath*/ + "/TourneyGame.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(/*"D:"*/Application.persistentDataPath + "/TourneyGame.dat", FileMode.Open);
+            FileStream file = File.Open("D:" /*Application.persistentDataPath*/ + "/TourneyGame.dat", FileMode.Open);
             SaveDataTourneyGame data = (SaveDataTourneyGame)bf.Deserialize(file);
             file.Close();
             return data;
@@ -172,9 +172,9 @@ public class Tourney : MonoBehaviour
 
     public void DeleteTourneyGame()
     {
-        if (File.Exists(/*"D:"*/Application.persistentDataPath + "/TourneyGame.dat"))
+        if (File.Exists("D:" /*Application.persistentDataPath*/ + "/TourneyGame.dat"))
         {
-            File.Delete(/*"D:"*/Application.persistentDataPath + "/TourneyGame.dat");
+            File.Delete("D:"/*Application.persistentDataPath*/ + "/TourneyGame.dat");
         }
     }
 }

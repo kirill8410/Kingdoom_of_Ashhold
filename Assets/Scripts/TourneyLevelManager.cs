@@ -657,7 +657,6 @@ public class TourneyLevelManager : MonoBehaviour
         _saveData.Points = Points;
         _tourney.SaveTourneyGame(_saveData);
         _playerUI.Lose();
-        Finish();
     }
 
     private void Finish()
@@ -683,6 +682,10 @@ public class TourneyLevelManager : MonoBehaviour
 
     public void ReturtToLobby()
     {
+        if (_HP <= 0)
+        {
+            Finish();
+        }
         SceneManager.LoadSceneAsync("TourneyLobby");
     }
 
