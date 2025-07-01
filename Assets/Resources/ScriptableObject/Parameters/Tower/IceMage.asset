@@ -15,20 +15,20 @@ MonoBehaviour:
   TowerPrefab: {fileID: 3570106119244801292, guid: 3c9a06b3cb0a30e4d9c6cb66baffd32a, type: 3}
   TowerName: "\u041B\u0435\u0434\u044F\u043D\u043E\u0439 \u043C\u0430\u0433"
   TowerDescription: 
-  Damage_1: 0
-  AttackSpeed_1: 0
-  AttackDistance_1: 0
+  Damage_1: 30
+  AttackSpeed_1: 0.8
+  AttackDistance_1: 8
   BreakingProtection_1: 0
-  Price_1: 0
-  Damage_2: 0
-  AttackSpeed_2: 0
-  AttackDistance_2: 0
+  Price_1: 65
+  Damage_2: 30
+  AttackSpeed_2: 1
+  AttackDistance_2: 12
   BreakingProtection_2: 0
-  Price_2: 0
-  Damage_3: 0
-  AttackSpeed_3: 0
-  AttackDistance_3: 0
+  Price_2: 70
+  Damage_3: 30
+  AttackSpeed_3: 1.2
+  AttackDistance_3: 12
   BreakingProtection_3: 0
-  Price_3: 0
+  Price_3: 75
   DamageType: 1
   TowerType: 6
