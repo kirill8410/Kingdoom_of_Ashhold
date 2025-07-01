@@ -29,11 +29,7 @@ public class DeathSpell : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().Curse(Mage.GetDamage(), Mage.GetDamage());
-        }
-        else if (other.gameObject.tag == "Wall")
-        {
-            Destroy(gameObject);
+            other.GetComponent<Enemy>().Curse(Mage.GetDamage(), 5);
         }
     }
 }

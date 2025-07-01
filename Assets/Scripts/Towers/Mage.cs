@@ -91,7 +91,7 @@ public class Mage : Tower, TowerFunctions
                         target2 = target;
                         if (target.GetEnemyType() != Enemy.EnemyTypes.Boss)
                         {
-                            target.ReduceHP(_damage + charge);
+                            target.ReduceHP(_damage * charge);
                         }
                         else
                         {

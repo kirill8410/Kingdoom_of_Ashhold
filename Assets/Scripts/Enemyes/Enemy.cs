@@ -555,25 +555,25 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
         StartCoroutine(_Potion(potionDamage));
     }
 
-    private IEnumerator _Ice(float slow)
+    private IEnumerator _Ice()
     {
         if (!_ice)
         {
             if (!_immunity)
             {
                 _ice = true;
-                float SlowSpeed = _speed * slow;
+                float SlowSpeed = 0.2f;
                 _speed -= SlowSpeed;
-                yield return new WaitForSeconds(slow * 10f + 1f);
+                yield return new WaitForSeconds(10f);
                 _speed += SlowSpeed;
                 yield return new WaitForSeconds(0.5f);
                 _ice = false;
             }
         }
     }
-    public void Ice(float slow)
+    public void Ice()
     {
-        StartCoroutine(_Ice(slow));
+        StartCoroutine(_Ice());
     }
 
     public void Curse(float damage, float reduceProtection)

@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class TourneyLevelManager : MonoBehaviour
 {
+    private bool _isSave = false;
+
     private Tourney _tourney;
     private SaveDataTourneyGame _saveData;
 
     public int _coins = 100;
     private float _HP = 1000;
     private int _numberWave = 0;
-    private int _points = 0;
+    public int Points = 0;
 
     private bool _isWaveContinues = false;
     private bool _lose = false;
@@ -100,6 +102,7 @@ public class TourneyLevelManager : MonoBehaviour
             }
             _tourney.SaveTourneyGame(_saveData);
         }
+
         PlayerPrefs.SetFloat("Difficulty", 1);
         PlayerPrefs.Save();
         if (PlayerPrefs.GetString("Music") != "true" && PlayerPrefs.GetString("Music") != "false")
@@ -127,7 +130,7 @@ public class TourneyLevelManager : MonoBehaviour
                 _numberWave += 1;
                 _isWaveContinues = false;
                 Save();
-                Points();
+                GivePoints();
             }
         }
     }
@@ -207,7 +210,7 @@ public class TourneyLevelManager : MonoBehaviour
 
         _HP = _saveData.HP;
         _coins = _saveData.Coins;
-        _points = _saveData.Points;
+        Points = _saveData.Points;
         _numberWave = _saveData.Wave;
 
         #endregion
@@ -216,7 +219,7 @@ public class TourneyLevelManager : MonoBehaviour
     private void Save()
     {
         _saveData.Wave = _numberWave;
-        _saveData.Points = _points;
+        _saveData.Points = Points;
         _saveData.HP = _HP;
         _saveData.Coins = _coins;
 
@@ -235,11 +238,11 @@ public class TourneyLevelManager : MonoBehaviour
         _tourney.SaveTourneyGame(_saveData);
     }
 
-    private void Points()
+    private void GivePoints()
     {
-        _points += ((int)_HP / 50 + _coins / 10) * (1 + _numberWave / 10);
+        Points += ((int)_HP / 50 + _coins / 10) * (1 + _numberWave / 10);
         _saveData = _tourney.LoadTourneyGame();
-        _saveData.Points = _points;
+        _saveData.Points = Points;
         _tourney.SaveTourneyGame(_saveData);
     }
 
@@ -335,14 +338,39 @@ public class TourneyLevelManager : MonoBehaviour
             Destroy(enemy.gameObject);
         }
         _saveData = _tourney.LoadTourneyGame();
-        _saveData.Points = _points;
+        _saveData.Points = Points;
         _tourney.SaveTourneyGame(_saveData);
         _playerUI.Lose();
-        Save();
+        Finish();
+    }
+
+    private void Finish()
+    {
+        if (!_isSave)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (Points == _tourney.LoadTourney().Records[i] && _saveData.Name == _tourney.LoadTourney().Names[i])
+                {
+                    break;
+                }
+                if (Points > _tourney.LoadTourney().Records[i])
+                {
+                    SaveDataTourney sd = _tourney.LoadTourney();
+                    sd.Records[i] = Points;
+                    sd.Names[i] = _saveData.Name;
+                    break;
+                }
+            }
+            _isSave = true;
+        }
     }
 
     public void ReturtToLobby()
     {
+        _tourney.DeleteTourneyGame();
+        PlayerPrefs.SetFloat("Difficulty", 1);
+        PlayerPrefs.Save();
         SceneManager.LoadSceneAsync("TourneyLobby");
     }
 

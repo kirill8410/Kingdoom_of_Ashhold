@@ -13,15 +13,22 @@ MonoBehaviour:
   m_Name: HealerEnemy
   m_EditorClassIdentifier: 
   Name: "\u041B\u0435\u0447\u0430\u0449\u0438\u0439"
+  Description: "\u0421\u0430\u043C\u044B\u0439 \u043B\u0443\u0447\u0448\u0438\u0439
+    \u0438 \u043F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u044B\u0439 \u043B\u0435\u043A\u0430\u0440\u044C
+    \u0441\u0440\u0435\u0434\u0438 \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432
+    \u0432\u0441\u0432\u0435\u0437\u0438 \u0441 \u043E\u0442\u0441\u0443\u0442\u0441\u0432\u0438\u0435\u043C
+    \u043A\u043E\u043D\u043A\u0443\u0440\u0435\u043D\u0442\u043E\u0432.\n\u0420\u0430\u0437
+    \u0432 10 \u0441\u0435\u043A\u0443\u043D\u0434 \u043B\u0435\u0447\u0438\u0442
+    \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432."
   MaxHP: 100
   Shield: 0
-  Protection: 0
+  Protection: 10
   Speed: 1
-  DropCoins: 0
+  DropCoins: 25
   EnemyType: 0
   ProtectionType: 1
   EnemySpell: 1
-  SpellColldown: 0
-  SpellDistance: 0
-  SpellModifier: 0
+  SpellColldown: 10
+  SpellDistance: 10
+  SpellModifier: 20
   Immunity: 0

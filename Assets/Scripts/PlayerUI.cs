@@ -411,10 +411,20 @@ public class PlayerUI : MonoBehaviour
 
     public void Lose()
     {
-        _sectionMenu.SetActive(false);
-        _sectionFinish.SetActive(true);
-        _isFinish = true;
-        _finishText.text = "Поражение\n:(";
+        if (LM != null)
+        {
+            _sectionMenu.SetActive(false);
+            _sectionFinish.SetActive(true);
+            _isFinish = true;
+            _finishText.text = "Поражение\n:(";
+        }
+        else
+        {
+            _sectionMenu.SetActive(false);
+            _sectionFinish.SetActive(true);
+            _isFinish = true;
+            _finishText.text = $"Ваш счет:\n{TLM.Points}";
+        }
     }
 
     public void Win()

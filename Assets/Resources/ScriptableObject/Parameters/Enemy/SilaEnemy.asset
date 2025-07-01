@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: SilaEnemy
   m_EditorClassIdentifier: 
   Name: "\u0421\u0438\u043B\u044C\u043D\u044B\u0439"
-  MaxHP: 150
+  Description: "\u041E\u0447\u0435\u043D\u044C \u0441\u0438\u043B\u044C\u043D\u044B\u0439
+    \u0433\u043E\u0431\u043B\u0438\u043D. \u041C\u0435\u0447\u0442\u0430\u0435\u0442
+    \u0441\u0442\u0430\u0442\u044C \u0431\u043E\u0441\u0441\u043E\u043C \u0441\u0432\u043E\u0435\u0439
+    \u043A\u0430\u0447\u0430\u043B\u043A\u0438."
+  MaxHP: 200
   Shield: 0
-  Protection: 0
+  Protection: 5
   Speed: 1
-  DropCoins: 0
+  DropCoins: 20
   EnemyType: 0
   ProtectionType: 0
   EnemySpell: 0

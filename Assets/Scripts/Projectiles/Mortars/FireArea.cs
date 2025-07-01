@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class FireArea : MonoBehaviour
 {
-    float bangDistance = 4f;
+    float bangDistance = 1.2f;
     float damage = 10;
     public int seconds;
 

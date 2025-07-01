@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: SimpleEnemy
   m_EditorClassIdentifier: 
   Name: "\u041E\u0431\u044B\u0447\u043D\u044B\u0439"
-  MaxHP: 50
+  Description: "\u0421\u043B\u0438\u0448\u043A\u043E\u043C \u043E\u0431\u044B\u0447\u043D\u044B\u0439
+    \u0433\u043E\u0431\u043B\u0438\u043D."
+  MaxHP: 100
   Shield: 0
   Protection: 5
   Speed: 1

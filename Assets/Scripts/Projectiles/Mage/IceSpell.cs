@@ -24,7 +24,7 @@ public class IceSpell : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && other.gameObject == Target.gameObject)
         {
             Target.ReduceHP(Mage.GetDamage(), Mage.GetDamageType(), Mage.GetBreakingProtection());
-            Target.Ice(slow);
+            Target.Ice();
             Destroy(gameObject);
         }
         else if (other.gameObject.tag == "Wall")

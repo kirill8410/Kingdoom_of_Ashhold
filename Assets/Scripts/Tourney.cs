@@ -174,6 +174,14 @@ public class Tourney : MonoBehaviour
     }
 
     #endregion
+
+    public void DeleteTourneyGame()
+    {
+        if (File.Exists("D:"/*Application.persistentDataPath*/ + "/TourneyGame.dat"))
+        {
+            File.Delete("D:"/*Application.persistentDataPath*/ + "/TourneyGame.dat");
+        }
+    }
 }
 [System.Serializable]
 public class SaveDataTourney

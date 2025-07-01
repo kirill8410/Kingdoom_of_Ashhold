@@ -54,7 +54,7 @@ public class Mortar : Tower, TowerFunctions
                                 -0.3f, _target.transform.position.z), _target.transform.rotation);
 
                             attack.GetComponent<Bomb>().Mortar = this;
-                            attack.transform.localScale = new Vector3(2, 2, 2);
+                            attack.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                         }
                         else
                         {
@@ -83,7 +83,7 @@ public class Mortar : Tower, TowerFunctions
                                 new Vector3(_target.transform.position.x,
                                     -0.3f, _target.transform.position.z), _target.transform.rotation);
                             attack.GetComponent<Bomb>().Mortar = this;
-                            attack.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                            attack.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             if (targets.Count > 1)
                             {
                                 for (int i = 0; i < numberOfShots; i++)
@@ -112,7 +112,7 @@ public class Mortar : Tower, TowerFunctions
                                 new Vector3(_target.transform.position.x,
                             -0.3f, _target.transform.position.z), _target.transform.rotation);
                             attack.GetComponent<Bomb>().Mortar = this;
-                            attack.transform.localScale = new Vector3(4, 4, 4);
+                            attack.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
                             attack.SetActive(true);
                         }
                         else
@@ -130,7 +130,7 @@ public class Mortar : Tower, TowerFunctions
                                 new Vector3(_target.transform.position.x,
                             -0.3f, _target.transform.position.z), _target.transform.rotation);
                             attack.GetComponent<FireBomb>().Mortar = this;
-                            attack.transform.localScale = new Vector3(2f, 2f, 2f);
+                            attack.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
                             attack.GetComponent<FireBomb>().fireSeconds = 4 + TowerLevel * 2;
                         }
                         else

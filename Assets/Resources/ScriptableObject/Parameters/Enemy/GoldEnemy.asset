@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: GoldEnemy
   m_EditorClassIdentifier: 
   Name: "\u0413\u0440\u0430\u0431\u0438\u0442\u0435\u043B\u044C"
-  MaxHP: 50
+  Description: "\u0412 \u0434\u0435\u0442\u0441\u0442\u0432\u0435 \u0435\u0433\u043E
+    \u0440\u043E\u0434\u0438\u0442\u0435\u043B\u0438 \u0443\u043A\u0440\u0430\u043B\u0438
+    \u0435\u0433\u043E \u0443 \u0446\u0438\u0433\u0430\u043D \u0438 \u043E\u043D
+    \u0440\u0435\u0448\u0438\u043B \u043F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C
+    \u0441\u0438\u043C\u0435\u0439\u043D\u043E\u0435 \u0434\u0435\u043B\u043E."
+  MaxHP: 80
   Shield: 0
-  Protection: 0
-  Speed: 1
-  DropCoins: 0
+  Protection: 5
+  Speed: 1.2
+  DropCoins: 50
   EnemyType: 0
   ProtectionType: 0
   EnemySpell: 0
