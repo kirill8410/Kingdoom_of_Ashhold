@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 947444708, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
+  m_Sprite: {fileID: -65435287, guid: 026e628d5988f18418a8535515209e2a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2017,6 +2017,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _basePrefab: {fileID: 7145987800736687984, guid: 613e359824c37c54fa00e0a7f9f4ac24, type: 3}
+  _physicalDamageSprite: {fileID: -811221617, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
+  _mageDamageSprite: {fileID: -1738677108, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
 --- !u!114 &3682227997728079898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2403,7 +2405,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 947444708, guid: c6a22ea877b9f794ba5002b212b364be, type: 3}
+  m_Sprite: {fileID: -65435287, guid: 026e628d5988f18418a8535515209e2a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3447,7 +3449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4896685538344930357
 RectTransform:
   m_ObjectHideFlags: 0

@@ -666,10 +666,6 @@ public class TourneyLevelManager : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                if (Points == _tourney.LoadTourney().Records[i] && _saveData.Name == _tourney.LoadTourney().Names[i])
-                {
-                    break;
-                }
                 if (Points > _tourney.LoadTourney().Records[i])
                 {
                     SaveDataTourney sd = _tourney.LoadTourney();
@@ -680,13 +676,13 @@ public class TourneyLevelManager : MonoBehaviour
             }
             _isSave = true;
         }
+        _tourney.DeleteTourneyGame();
+        PlayerPrefs.SetFloat("Difficulty", 1);
+        PlayerPrefs.Save();
     }
 
     public void ReturtToLobby()
     {
-        _tourney.DeleteTourneyGame();
-        PlayerPrefs.SetFloat("Difficulty", 1);
-        PlayerPrefs.Save();
         SceneManager.LoadSceneAsync("TourneyLobby");
     }
 

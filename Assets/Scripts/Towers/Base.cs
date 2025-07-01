@@ -49,8 +49,8 @@ public class Base : MonoBehaviour
     Image _imageDamage;
     Image _imageDamageLevelUp;
 
-    Sprite _physicalDamageSprite;
-    Sprite _mageDamageSprite;
+    [SerializeField] Sprite _physicalDamageSprite;
+    [SerializeField] Sprite _mageDamageSprite;
     Sprite _trueDamageSprite;
 
     #endregion
@@ -124,9 +124,6 @@ public class Base : MonoBehaviour
 
         _imageDamage = _information.GetNamedChild("Damage").GetComponent<Image>();
         _imageDamageLevelUp = _informationLevelUp.GetNamedChild("Damage").GetComponent<Image>();
-
-        _physicalDamageSprite = Resources.LoadAll<Sprite>("Sprites/Tower/BaseIcon")[1];
-        _mageDamageSprite = Resources.LoadAll<Sprite>("Sprites/Tower/BaseIcon")[0];
 
         #endregion
 
@@ -322,6 +319,14 @@ public class Base : MonoBehaviour
         {
             _informationLevelUp.SetActive(true);
             _selection.transform.localPosition = new Vector3(-80f, 135f,-150f);
+            if (_tower.Parameters.DamageType == Tower.DamageTypes.Physical)
+            {
+                _imageDamageLevelUp.sprite = _physicalDamageSprite;
+            }
+            else if (_tower.Parameters.DamageType == Tower.DamageTypes.Magic)
+            {
+                _imageDamageLevelUp.sprite = _mageDamageSprite;
+            }
             if (_tower.TowerLevel == 1)
             {
                 _damageLevelUp.text = $"{_tower.Parameters.Damage_2}\n(+{_tower.Parameters.Damage_2 - _tower.Parameters.Damage_1})";
