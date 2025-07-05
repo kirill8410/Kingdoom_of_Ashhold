@@ -33,6 +33,7 @@ public class BuildButtonsAnimation : MonoBehaviour
 
     public void SetIcons(GameObject[] icons)
     {
+        print("1");
         _icons = icons;
         animation = true;
         switch (_icons.Length)

@@ -1876,7 +1876,6 @@ GameObject:
   - component: {fileID: 8559420874195830315}
   - component: {fileID: 6620997493947939444}
   - component: {fileID: 6290475528246224813}
-  - component: {fileID: 3682227997728079898}
   - component: {fileID: 2574382597367595991}
   m_Layer: 0
   m_Name: TowerUI
@@ -2019,18 +2018,6 @@ MonoBehaviour:
   _basePrefab: {fileID: 7145987800736687984, guid: 613e359824c37c54fa00e0a7f9f4ac24, type: 3}
   _physicalDamageSprite: {fileID: -811221617, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
   _mageDamageSprite: {fileID: -1738677108, guid: c43c0c1a556d8aa4d9c2fb4fb05475a9, type: 3}
---- !u!114 &3682227997728079898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4478355760606884413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8018f8ecdf76f0469de711b67332dee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &2574382597367595991
 AudioSource:
   m_ObjectHideFlags: 0

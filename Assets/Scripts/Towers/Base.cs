@@ -159,11 +159,6 @@ public class Base : MonoBehaviour
         }
         _evolutionButtons = evolutionButtons.ToArray<GameObject>();
 
-        if (evolutionButtons.Count > 0)
-        {
-            GetComponent<BuildButtonsAnimation>().SetIcons(_evolutionButtons);
-        }
-
         #endregion
 
         _tower = GetComponentInParent<TowerFunctions>();

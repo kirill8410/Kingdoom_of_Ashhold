@@ -799,7 +799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.49999994
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalRotation.x
@@ -811,7 +811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0.86602545
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -831,12 +831,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3376592715574179922, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 735173118, guid: bd7930286bbef88408940766f33111a4, type: 3}
+    - target: {fileID: 3394970894701733010, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394970894701733010, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.86602545
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394970894701733010, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -120
+      objectReference: {fileID: 0}
     - target: {fileID: 4678503524695511569, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_Name
       value: EvolutionButton (1)
@@ -917,7 +929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalRotation.x
@@ -929,7 +941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -949,12 +961,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3376592715574179922, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -348372872, guid: bd7930286bbef88408940766f33111a4, type: 3}
+    - target: {fileID: 3394970894701733010, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394970894701733010, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394970894701733010, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4678503524695511569, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_Name
       value: EvolutionButton
@@ -1035,7 +1059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.49999994
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1047,7 +1071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: -0.86602545
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1067,12 +1091,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048790845467501137, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: -120
       objectReference: {fileID: 0}
     - target: {fileID: 3376592715574179922, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -349719725, guid: 2d54b91c910abcf47a5e2c2cbe686ec9, type: 3}
+    - target: {fileID: 3394970894701733010, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394970894701733010, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.86602545
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394970894701733010, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 4678503524695511569, guid: 5c17924f0025aa042ac28d8a93d98d78, type: 3}
       propertyPath: m_Name
       value: EvolutionButton (2)

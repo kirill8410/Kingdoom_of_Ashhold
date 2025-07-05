@@ -28,12 +28,10 @@ public class UIBehavior : MonoBehaviour // Поведение UI
         {
             if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= 6f)
             {
-                GetComponent<BuildButtonsAnimation>().off = false;
                 GetComponent<Canvas>().enabled = true;
             }
             else
             {
-                GetComponent<BuildButtonsAnimation>().off = true;
                 GetComponent<Canvas>().enabled = false;
             }
         }
