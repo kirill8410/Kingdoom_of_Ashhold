@@ -9,6 +9,7 @@ public class BuildButtonsAnimation : MonoBehaviour
     int angle;
     int corect;
     bool animation = false;
+    public bool off;
 
     // Update is called once per frame
     void Update()
@@ -81,7 +82,11 @@ public class BuildButtonsAnimation : MonoBehaviour
             {
                 animation = true;
                 _icons[num - 1].transform.Rotate(0, 0, 1);
-                yield return new WaitForSeconds(0.005f);
+                yield return new WaitForSeconds(0.0001f);
+                if (off)
+                {
+                    break;
+                }
             }
             animation = false;
         }

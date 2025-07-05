@@ -309,8 +309,17 @@ public class Base : MonoBehaviour
 
     public void DestroyTower()
     {
-        Instantiate(_basePrefab, _base.transform.position, Quaternion.identity);
-        Destroy(_base, 0.1f);
+        if(LM != null)
+        {
+            Instantiate(_basePrefab, _base.transform.position, Quaternion.identity);
+            Destroy(_base, 0.1f);
+        }
+        else
+        {
+            Instantiate(_basePrefab, GetComponentInParent<TowerSpawn>().gameObject.transform);
+            Destroy(_base, 0.1f);
+        }
+
     }
 
     public void ShowLevelUpInformation() // Показать информацию о улучшении башни
