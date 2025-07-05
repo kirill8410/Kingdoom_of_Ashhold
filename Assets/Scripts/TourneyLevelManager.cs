@@ -520,46 +520,7 @@ public class TourneyLevelManager : MonoBehaviour
                 wave.NumberOfEnemies[14] = 2;
             }
         }
-        else if ((_numberWave % 10 == 9 || _numberWave == 9) && _numberWave + 1 % 30 != 0)
-        {
-            wave.Enemies[0] = GetGoblin("Iron_goblin Variant");
-            wave.NumberOfEnemies[0] = 2;
-            wave.Enemies[3] = GetGoblin("Crystal_defence_goblin Variant");
-            wave.NumberOfEnemies[3] = 2;
-            wave.Enemies[6] = GetGoblin("Heal_goblin Variant");
-            wave.NumberOfEnemies[6] = 2;
-            wave.Enemies[9] = GetGoblin("Crystal_defence_goblin Variant");
-            wave.NumberOfEnemies[9] = 2;
-            wave.Enemies[12] = GetGoblin("Iron_goblin Variant");
-            wave.NumberOfEnemies[12] = 2;
-            if (_numberWave >= 10)
-            {
-                wave.Enemies[1] = GetGoblin("Iron_goblin Variant");
-                wave.NumberOfEnemies[1] = 2;
-                wave.Enemies[4] = GetGoblin("Crystal_defence_goblin Variant");
-                wave.NumberOfEnemies[4] = 2;
-                wave.Enemies[7] = GetGoblin("MakeFast_goblin Variant");
-                wave.NumberOfEnemies[7] = 2;
-                wave.Enemies[10] = GetGoblin("Crystal_defence_goblin Variant");
-                wave.NumberOfEnemies[10] = 2;
-                wave.Enemies[13] = GetGoblin("Iron_goblin Variant");
-                wave.NumberOfEnemies[13] = 2;
-            }
-            if (_numberWave >= 20)
-            {
-                wave.Enemies[2] = GetGoblin("Iron_goblin Variant");
-                wave.NumberOfEnemies[2] = 2;
-                wave.Enemies[5] = GetGoblin("Crystal_defence_goblin Variant");
-                wave.NumberOfEnemies[5] = 2;
-                wave.Enemies[8] = GetGoblin("Crystal_goblin Variant");
-                wave.NumberOfEnemies[8] = 2;
-                wave.Enemies[11] = GetGoblin("Crystal_defence_goblin Variant");
-                wave.NumberOfEnemies[11] = 2;
-                wave.Enemies[14] = GetGoblin("Iron_goblin Variant");
-                wave.NumberOfEnemies[14] = 2;
-            }
-        }
-        else if (_numberWave + 1 % 30 == 0)
+        else if (_numberWave % 10 == 9 || _numberWave == 9)
         {
             wave.Enemies[0] = GetGoblin("Gold_goblin Variant");
             wave.NumberOfEnemies[0] = 1;
