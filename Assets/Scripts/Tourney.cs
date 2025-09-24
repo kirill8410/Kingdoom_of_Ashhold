@@ -12,7 +12,7 @@ public class Tourney : MonoBehaviour
     private void Awake()
     {
         _saveData = LoadTourney();
-        if (_saveData == null)
+        if (_saveData == null || _saveData.Names == null || _saveData.Records == null)
         {
             SaveDataTourney data = new SaveDataTourney();
             _saveData = data;
@@ -23,6 +23,11 @@ public class Tourney : MonoBehaviour
             }
             SaveTourney(_saveData);
         }
+
+        SaveDataTourney sd = LoadTourney();
+        sd.Names[1] = "kirill";
+        sd.Records[1] = 123456;
+        SaveTourney(sd);
     }
     
     #region Get

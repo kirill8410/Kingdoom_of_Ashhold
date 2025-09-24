@@ -29,11 +29,11 @@ public class RecordsCanvas : MonoBehaviour
 
     private void UpdateRecords()
     {
-        if ( _tourney.GetTourney() != null)
+        if (_tourney.GetTourney() != null)
         {
             for (int i = 0; i < 10; i++)
             {
-                CreatePlace(i); ;
+                CreatePlace(i);
             }
         }
     }

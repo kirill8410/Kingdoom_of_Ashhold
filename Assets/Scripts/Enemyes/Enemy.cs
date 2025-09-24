@@ -429,7 +429,7 @@ public class Enemy : MonoBehaviour // Общий скрипт для всех врагов
 
                                 foreach (Enemy enemy1 in enemyes)
                                 {
-                                    if (Vector3.Distance(gameObject.transform.position, enemy1.transform.position) <= _spellDistance && enemy1 != this)
+                                    if (enemy1 != null && Vector3.Distance(gameObject.transform.position, enemy1.transform.position) <= _spellDistance && enemy1 != this)
                                     {
                                         enemy1.Heal(_modifier);
                                     }

@@ -631,6 +631,7 @@ public class TourneyLevelManager : MonoBehaviour
                     SaveDataTourney sd = _tourney.LoadTourney();
                     sd.Records[i] = Points;
                     sd.Names[i] = _saveData.Name;
+                    _tourney.SaveTourney(sd);
                     break;
                 }
             }
